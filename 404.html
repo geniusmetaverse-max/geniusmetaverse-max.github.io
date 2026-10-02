@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Magic Mirror</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+      window.onload = function() {
+        // Cihazın ne olduğunu tespit et
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // Linklerimiz
+        var iosLink = "https://apps.apple.com/us/app/id6760668920";
+        var androidLink = "https://play.google.com/store/apps/details?id=com.geniusmetaverse.magicmirror";
+        
+        // Eğer Android ise Play Store'a fırlat
+        if (/android/i.test(userAgent)) {
+            window.location.replace(androidLink);
+        } 
+        // Eğer iPhone/iPad ise App Store'a fırlat
+        else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            window.location.replace(iosLink);
+        } 
+        // Bilgisayardan girenler için yönlendirme yapma, ekrandaki butonları göster
+        else {
+            document.getElementById("status-text").innerText = "Lütfen mobil cihazınızdan tıklayın veya aşağıdaki mağazalardan uygulamanızı indirin.";
+        }
+      };
+    </script>
+    <style>
+      body { background-color: #FFF9E3; text-align: center; padding-top: 10vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .btn { display: inline-block; padding: 15px 30px; margin: 10px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 16px; transition: transform 0.2s; }
+      .btn:active { transform: scale(0.95); }
+      .ios-btn { background-color: #000; color: #fff; }
+      .android-btn { background-color: #3DDC84; color: #000; }
+    </style>
+  </head>
+  <body>
+    <h2 style="color: #D4AF37; font-size: 28px;">Magic Mirror</h2>
+    <p id="status-text" style="color: #333; margin-bottom: 40px;">Uygulama mağazasına yönlendiriliyorsunuz...</p>
+    
+    <!-- Bilgisayardan girenler veya otomatik yönlendirmesi engellenenler için manuel butonlar -->
+    <div>
+      <a href="https://apps.apple.com/us/app/id6760668920" class="btn ios-btn">App Store'dan İndir</a>
+      <br>
+      <a href="https://play.google.com/store/apps/details?id=com.geniusmetaverse.magicmirror" class="btn android-btn">Google Play'den İndir</a>
+    </div>
+  </body>
+</html>
