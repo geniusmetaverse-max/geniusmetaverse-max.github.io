@@ -1,57 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
   <head>
     <meta charset="utf-8">
     <title>Magic Mirror | Dijital Gelinlik Provası</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-itunes-app" content="app-id=6760668920">
     <style>
       body { background-color: #FFFDF9; text-align: center; padding-top: 12vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #2D2724; margin: 0; }
       .container { max-width: 400px; margin: 0 auto; padding: 28px 20px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); background: #fff; border: 1px solid #F0E6D8; }
       .title { color: #D4AF37; font-size: 24px; font-weight: bold; margin-bottom: 8px; letter-spacing: 1px; }
       .desc { font-size: 14px; color: #665C54; margin-bottom: 24px; line-height: 1.5; }
-      .btn { display: block; width: 100%; box-sizing: border-box; padding: 16px; margin: 10px 0; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 15px; transition: transform 0.2s; }
-      .btn:active { transform: scale(0.97); }
+      .btn { display: block; width: 100%; box-sizing: border-box; padding: 16px; margin: 10px 0; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 15px; }
       .app-btn { background: linear-gradient(135deg, #D4AF37 0%, #B88E3C 100%); color: #fff; box-shadow: 0 4px 14px rgba(212,175,55,0.35); }
       .store-btn { background-color: #F7F3EC; color: #5C5248; font-size: 13px; font-weight: 500; }
+      .hint { font-size: 12px; color: #A69789; margin: 18px 0 8px; }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="title">✨ MAGIC MIRROR</div>
       <p class="desc">Gelinlik koleksiyonu ve sanal prova kabinine yönlendiriliyorsunuz.</p>
-      
-      <!-- Uygulama Yüklü İse Doğrudan Açar -->
+
       <a id="open-app-btn" href="#" class="btn app-btn">Uygulamada Aç</a>
 
-      <div style="margin: 18px 0 8px; font-size: 12px; color: #A69789;">Uygulamanız henüz yüklü değilse:</div>
+      <div class="hint">Uygulamanız henüz yüklü değilse:</div>
       <a id="store-btn" href="#" class="btn store-btn">Mağazadan İndir</a>
     </div>
 
     <script type="text/javascript">
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      var path = window.location.pathname; // örn: /brand/MM_000
-      var deepLink = "magicmirror:/" + path;
-      var iosLink = "https://apps.apple.com/us/app/id6760668920";
-      var androidLink = "https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror";
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      var isAndroid = /android/i.test(ua);
+      var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+      var host = "geniusmetaverse-max.github.io";
+      var path = window.location.pathname + window.location.search; // örn: /brand/MM_000
+      var iosStore = "https://apps.apple.com/us/app/id6760668920";
+      var androidStore = "https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror";
 
       var openBtn = document.getElementById("open-app-btn");
       var storeBtn = document.getElementById("store-btn");
 
-      // Buton linklerini ayarla
-      openBtn.href = deepLink;
-
-      if (/android/i.test(userAgent)) {
-        storeBtn.href = androidLink;
+      if (isAndroid) {
+        // Android'de uygulamayı doğrudan açmayı dener, yüklü değilse Play Store'a yönlendirir
+        var intentUrl = "intent://" + host + path +
+          "#Intent;scheme=https;package=com.geniusmetaversemagicmirror;" +
+          "S.browser_fallback_url=" + encodeURIComponent(androidStore) + ";end";
+        openBtn.href = intentUrl;
+        storeBtn.href = androidStore;
         storeBtn.innerText = "Google Play'den İndir";
-      } else {
-        storeBtn.href = iosLink;
+        setTimeout(function () { window.location.href = intentUrl; }, 300);
+      } else if (isIOS) {
+        // iOS için 'Uygulamada Aç' butonu
+        openBtn.href = "magicmirror:/" + path; // magicmirror://brand/MM_000
+        storeBtn.href = iosStore;
         storeBtn.innerText = "App Store'dan İndir";
+      } else {
+        openBtn.style.display = "none";
+        storeBtn.href = iosStore;
+        storeBtn.innerText = "App Store / Google Play";
       }
-
-      // Sayfa açıldığında otomatik olarak uygulamaya geçmeyi dene
-      setTimeout(function() {
-        window.location.href = deepLink;
-      }, 300);
     </script>
   </body>
 </html>
