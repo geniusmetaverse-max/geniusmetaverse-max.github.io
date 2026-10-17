@@ -1,89 +1,266 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>littleGenius Metaverse</title>
-  <!-- Favicon for desktop -->
-  <link rel="icon" type="image/png" href="favicon_littleGenius.png">
-  <!-- Apple Touch Icon for iOS -->
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon_littleGenius.png">
-  <!-- Android Chrome Icons -->
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon_littleGenius.png">
-  <link rel="icon" type="image/png" sizes="128x128" href="favicon_littleGenius.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon_littleGenius.png">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background: url("./littleGenius.png") no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Arial', 'Helvetica', sans-serif;
-      color: white;
-      text-align: center;
-    }
-    h1 {
-      font-size: 3rem;
-      margin: 40px 0 20px;
-      text-shadow: 0 6px 15px rgba(0,0,0,0.6);
-    }
-    .apps {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin: 20px 0 60px;
-    }
-    .app {
-      width: 200px;
-      height: 200px;
-      border: 3px solid #ffd700;
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: rgba(0, 0, 0, 0.4);
-    }
-    .app img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .app:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
-    }
-    .footer {
-      margin-top: auto;
-      padding: 20px;
-      font-size: 1rem;
-      opacity: 0.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06152e">
+
+    <title>littleGenius Metaverse</title>
+
+    <meta name="description" content="Discover littleGenius mobile apps: Magic Mirror, Volexi, Word Legend, and Reflex.">
+
+    <!-- Favicon for desktop -->
+    <link rel="icon" type="image/png" href="./favicon_littleGenius.png">
+
+    <!-- Apple Touch Icon for iOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_littleGenius.png">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicon_littleGenius.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="./favicon_littleGenius.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_littleGenius.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            background-color: #06152e;
+            background-image: url("./littleGenius.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            width: 100%;
+            padding: 0 20px;
+
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.2;
+            margin: 40px 0 26px;
+
+            text-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* APPLICATION LOGOS */
+
+        .apps {
+            width: 100%;
+            max-width: 1120px;
+            padding: 0 24px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+
+            margin: 20px auto 60px;
+        }
+
+        .app {
+            display: block;
+            width: 200px;
+            height: 200px;
+            flex: 0 1 200px;
+
+            border: 3px solid #ffd700;
+            border-radius: 22px;
+            overflow: hidden;
+
+            background: rgba(0, 0, 0, 0.4);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .app img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .app:hover {
+            transform: translateY(-10px);
+            border-color: #ffe766;
+
+            box-shadow:
+                0 8px 24px rgba(255, 215, 0, 0.48);
+        }
+
+        .app:focus-visible {
+            outline: 3px solid white;
+            outline-offset: 5px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            width: 100%;
+            margin-top: auto;
+            padding: 20px;
+
+            font-size: 1rem;
+            line-height: 1.5;
+            color: white;
+            opacity: 0.85;
+
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        /* TABLETS */
+
+        @media (max-width: 900px) {
+            h1 {
+                margin-top: 32px;
+            }
+
+            .apps {
+                max-width: 700px;
+                gap: 22px;
+            }
+
+            .app {
+                width: 180px;
+                height: 180px;
+                flex-basis: 180px;
+            }
+        }
+
+        /* MOBILE PHONES */
+
+        @media (max-width: 480px) {
+            body {
+                background-attachment: scroll;
+                background-position: center center;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin: 28px 0 20px;
+            }
+
+            .apps {
+                padding: 0 18px;
+                gap: 18px;
+                margin-top: 12px;
+                margin-bottom: 35px;
+            }
+
+            .app {
+                width: min(40vw, 165px);
+                height: min(40vw, 165px);
+                flex: 0 1 min(40vw, 165px);
+                border-width: 2px;
+                border-radius: 18px;
+            }
+
+            .footer {
+                font-size: 0.9rem;
+                padding: 18px 12px;
+            }
+        }
+
+        /* REDUCE MOTION WHEN REQUESTED */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .app:hover {
+                transform: none;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <h1>Welcome to littleGenius</h1>
+    <h1>Welcome to littleGenius</h1>
 
-  <div class="apps">
-    <a href="https://geniusmetaverse-max.github.io/geniusmetaverse/magicmirror/" class="app">
-      <img src="Magic%20Mirror.png" alt="Magic Mirror">
-    </a>
-    <a href="https://geniusmetaverse-max.github.io/geniusmetaverse/wordlegend/" class="app">
-      <img src="Word%20Legend.png" alt="Word Legend">
-    </a>
-    <a href="https://geniusmetaverse-max.github.io/geniusmetaverse/reflex/" class="app">
-      <img src="Reflex.png" alt="Reflex">
-    </a>
-  </div>
+    <main class="apps" aria-label="littleGenius mobile applications">
 
-  <div class="footer">
-    littleGenius © 2026 • All rights reserved
-  </div>
+        <!-- 1. MAGIC MIRROR -->
+        <a
+            href="https://geniusmetaverse-max.github.io/geniusmetaverse/magicmirror/"
+            class="app"
+            aria-label="Open Magic Mirror"
+        >
+            <img
+                src="./Magic%20Mirror.png"
+                alt="Magic Mirror"
+            >
+        </a>
+
+        <!-- 2. VOLEXI -->
+        <a
+            href="https://geniusmetaverse-max.github.io/geniusmetaverse/volexi/"
+            class="app"
+            aria-label="Open Volexi"
+        >
+            <img
+                src="./Volexi.png"
+                alt="Volexi"
+            >
+        </a>
+
+        <!-- 3. WORD LEGEND -->
+        <a
+            href="https://geniusmetaverse-max.github.io/geniusmetaverse/wordlegend/"
+            class="app"
+            aria-label="Open Word Legend"
+        >
+            <img
+                src="./Word%20Legend.png"
+                alt="Word Legend"
+            >
+        </a>
+
+        <!-- 4. REFLEX -->
+        <a
+            href="https://geniusmetaverse-max.github.io/geniusmetaverse/reflex/"
+            class="app"
+            aria-label="Open Reflex"
+        >
+            <img
+                src="./Reflex.png"
+                alt="Reflex"
+            >
+        </a>
+
+    </main>
+
+    <footer class="footer">
+        littleGenius © 2026 • All rights reserved
+    </footer>
 
 </body>
 </html>
