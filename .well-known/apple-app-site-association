@@ -4,7 +4,12 @@
     "details": [
       {
         "appID": "8CWHKS9DTP.com.geniusmetaverse.magicmirror",
-        "paths": [ "*" ]
+        "paths": [
+          "NOT /geniusmetaverse/*",
+          "/brand/*",
+          "/poll/*",
+          "/promo/*"
+        ]
       }
     ]
   }
