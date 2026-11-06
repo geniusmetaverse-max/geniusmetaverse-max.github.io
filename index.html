@@ -17,7 +17,7 @@
       --gold: #e7c45b;
       --cream: #f5f3ee;
       --white: #fff;
-      --header-h: 76px;
+      --header-h: 64px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
@@ -165,7 +165,7 @@
       border: 1px solid rgba(255,255,255,.68);
       border-radius: 25px;
       background: rgba(255,255,255,.94);
-      box-shadow: inset 0 0 0 3px rgba(231,196,91,.9);
+      box-shadow: none;
       opacity: 0;
       transform: translateX(115%) scale(.92);
       transition: transform .72s cubic-bezier(.2,.75,.25,1), opacity .58s ease, box-shadow .25s ease;
@@ -245,7 +245,7 @@
     .footer { padding: 23px 20px; color: #b7c1d3; background: #0b1427; text-align: center; font-size: .82rem; }
 
     @media (max-width: 760px) {
-      :root { --header-h: 68px; }
+      :root { --header-h: 60px; }
       .site-header { padding: 0 19px; gap: 10px; }
       .brand { font-size: 1.05rem; }
       .header-right { gap: 12px; }
@@ -290,7 +290,7 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="littleGENIUS home">littleGenius</a>
+    <a class="brand" href="#home" aria-label="littleGENIUS home">littleGENIUS</a>
     <div class="header-right">
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#home" data-i18n="navHome">HOME</a>
@@ -405,10 +405,10 @@
         heroTitle:"A little idea.<br>A big possibility.",
         heroText:"We create digital experiences that inspire, entertain and bring ideas to life.",
         aboutKicker:"WHO WE ARE", aboutTitle:"Curiosity is where everything begins.",
-        aboutText:"littleGenius is an independent digital brand creating original mobile applications and interactive experiences. We turn ideas into simple, engaging products designed to make everyday moments more creative, useful and fun.",
-        aboutNote:"From creative tools to playful digital experiences, every littleGenius product starts with a simple question: what if?",
-        appsKicker:"MADE BY LITTLEGENIUS", appsTitle:"Our apps & experiences",
-        appsText:"Explore our growing collection of digital products, each created with its own idea and personality.",
+        aboutText:"littleGENIUS is an independent digital brand creating original mobile applications and interactive experiences. We turn ideas into simple, engaging products designed to make everyday moments more creative, useful and fun.",
+        aboutNote:"From creative tools to playful digital experiences, every littleGENIUS product starts with a simple question: what if?",
+        appsKicker:"MADE BY LittleGENIUS", appsTitle:"Our apps & experiences",
+        appsText:"Explore our growing collection of mobile app products, each created with its own idea and personality.",
         magicDesc:"AI Bridal Try-On", volexiDesc:"Word Game", wordDesc:"Word Puzzle Game", reflexDesc:"Reflex Experience Game",
         contactKicker:"LET'S CONNECT", contactTitle:"Have an idea in mind?",
         contactText:"We would love to hear from you. Get in touch for questions, feedback or collaboration opportunities.",
@@ -417,14 +417,14 @@
       },
       tr: {
         navHome:"ANA SAYFA", navAbout:"HAKKIMIZDA", navApps:"UYGULAMALARIMIZ", navContact:"İLETİŞİM",
-        featured:"UYGULAMALARIMIZI KEŞFEDİN", eyebrow:"YARATICI BİR DİJİTAL STÜDYO",
+        featured:"UYGULAMALARIMIZI KEŞFEDİN", eyebrow:"YARATICI DİJİTAL STÜDYO",
         heroTitle:"Küçük bir fikir.<br>Büyük bir olasılık.",
         heroText:"İlham veren, eğlendiren ve fikirleri gerçeğe dönüştüren dijital deneyimler geliştiriyoruz.",
         aboutKicker:"BİZ KİMİZ?", aboutTitle:"Her şey bir merakla başlar.",
         aboutText:"littleGENIUS, özgün mobil uygulamalar ve etkileşimli dijital deneyimler geliştiren bağımsız bir markadır. Fikirleri; günlük yaşamı daha yaratıcı, kullanışlı ve eğlenceli hale getiren sade ve keyifli ürünlere dönüştürüyoruz.",
-        aboutNote:"Yaratıcı araçlardan eğlenceli dijital deneyimlere kadar her littleGenius ürünü basit bir soruyla başlar: ya şöyle olsaydı?",
-        appsKicker:"LITTLEGENIUS TARAFINDAN GELİŞTİRİLDİ", appsTitle:"Uygulamalarımız ve deneyimlerimiz",
-        appsText:"Her biri kendine özgü bir fikir ve karakterle tasarlanan dijital ürünlerimizi keşfedin.",
+        aboutNote:"Yaratıcı araçlardan eğlenceli dijital deneyimlere kadar her littleGENIUS ürünü basit bir soruyla başlar: ya şöyle olsaydı?",
+        appsKicker:"LittleGENIUS TARAFINDAN GELİŞTİRİLDİ", appsTitle:"Uygulamalarımız ve deneyimlerimiz",
+        appsText:"Her biri kendine özgü bir fikir ve karakterle tasarlanan mobil uygulamalarımızı keşfedin.",
         magicDesc:"Yapay Zekâ Gelinlik Provası", volexiDesc:"Kelime Oyunu", wordDesc:"Kelime Bulmaca Oyunu", reflexDesc:"Reflex Deneyim Oyunu",
         contactKicker:"BİZE ULAŞIN", contactTitle:"Aklınızda bir fikir mi var?",
         contactText:"Sorularınız, geri bildirimleriniz veya iş birliği fırsatları için bizimle iletişime geçebilirsiniz.",
@@ -487,13 +487,13 @@
         button.setAttribute("aria-pressed", String(button.dataset.lang === nextLanguage));
       });
       appDescription.textContent = translations[language].appDescriptions[current];
-      try { localStorage.setItem("littleGeniusLanguage", nextLanguage); } catch (e) {}
+      try { localStorage.setItem("littleGENIUSLanguage", nextLanguage); } catch (e) {}
     }
     document.querySelectorAll("[data-lang]").forEach(button => {
       button.addEventListener("click", () => setLanguage(button.dataset.lang));
     });
     let savedLanguage = "en";
-    try { savedLanguage = localStorage.getItem("littleGeniusLanguage") || "en"; } catch (e) {}
+    try { savedLanguage = localStorage.getItem("littleGENIUSLanguage") || "en"; } catch (e) {}
     setLanguage(savedLanguage === "tr" ? "tr" : "en");
     startCarousel();
   </script>
