@@ -90,23 +90,13 @@
       background: rgba(255, 255, 255, 0.22);
     }
 
-    /* Sayfa Başına Dönen Magic Mirror Başlığı */
-    .app-title-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    /* Magic Mirror Başlığı (Sade & Kurumsal) */
+    .app-brand-title {
       color: #fff;
       font-size: 1.05rem;
       font-weight: 750;
       letter-spacing: .02em;
-      transition: color .2s ease;
-    }
-    .app-title-link:hover { color: var(--gold); }
-    .app-title-link svg {
-      width: 17px;
-      height: 17px;
-      fill: var(--gold);
-      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .header-right {
@@ -129,6 +119,25 @@
       white-space: nowrap;
     }
     .main-nav a:hover { color: var(--gold); }
+
+    /* Home İkonu: Web sayfasına ait butonların tam başında */
+    .nav-home-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      padding: 4px;
+      transition: transform .2s ease, color .2s ease;
+    }
+    .nav-home-icon:hover {
+      color: var(--gold-hover);
+      transform: scale(1.15);
+    }
+    .nav-home-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
 
     .nav-cta {
       display: inline-flex;
@@ -177,7 +186,7 @@
     }
 
     /* ==========================================================================
-       HERO BÖLÜMÜ
+       HERO BÖLÜMÜ (Transparanlığı Artırılmış & Netleşen Görsel)
        ========================================================================== */
     .hero {
       position: relative;
@@ -190,14 +199,15 @@
       background: #08172f url("./magicmirror_hero.png") center right / cover no-repeat;
       overflow: hidden;
     }
+    /* Daha ferah, görseli kapatmayan hafifletilmiş overlay */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: 1;
       background:
-        linear-gradient(90deg, rgba(8,23,47,.95) 0%, rgba(8,23,47,.82) 48%, rgba(8,23,47,.35) 100%),
-        linear-gradient(0deg, rgba(8,23,47,.9) 0%, transparent 40%);
+        linear-gradient(90deg, rgba(8,23,47,.72) 0%, rgba(8,23,47,.45) 50%, rgba(8,23,47,.12) 100%),
+        linear-gradient(0deg, rgba(8,23,47,.62) 0%, transparent 45%);
     }
 
     .hero-container {
@@ -212,18 +222,21 @@
       gap: 40px;
     }
 
-    .hero-content { max-width: 620px; }
+    .hero-content {
+      max-width: 620px;
+      text-shadow: 0 2px 14px rgba(0,0,0,.5);
+    }
 
     .app-badge {
       display: inline-flex;
       align-items: center;
       gap: 9px;
       padding: 6px 14px;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(8, 23, 47, .65);
+      border: 1px solid rgba(255,255,255,.24);
       border-radius: 999px;
       margin-bottom: 20px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
     .app-badge-icon {
       width: 22px;
@@ -255,7 +268,7 @@
 
     .hero-lead {
       margin: 0 0 32px;
-      color: rgba(255, 255, 255, .88);
+      color: rgba(255, 255, 255, .92);
       font-size: clamp(1rem, 1.25vw, 1.14rem);
       line-height: 1.75;
       max-width: 540px;
@@ -296,15 +309,15 @@
       padding: 13px 24px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.35);
-      background: rgba(255,255,255,.07);
+      background: rgba(8, 23, 47, .5);
       color: #fff;
       font-weight: 650;
       font-size: .92rem;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
       transition: all .2s ease;
     }
     .btn-secondary:hover {
-      background: rgba(255,255,255,.15);
+      background: rgba(255,255,255,.2);
       border-color: #fff;
     }
 
@@ -312,13 +325,13 @@
       display: flex;
       align-items: center;
       gap: 24px;
-      font-size: .8rem;
-      color: rgba(255,255,255,.7);
+      font-size: .82rem;
+      color: rgba(255,255,255,.85);
     }
     .hero-meta-item { display: flex; align-items: center; gap: 7px; }
     .hero-meta-item svg { width: 16px; height: 16px; fill: var(--gold); }
 
-    /* Hero Vitrin Kartı */
+    /* Hero Vitrin Kartı (Etiketler kaldırıldı, logo & metin odaklı) */
     .hero-preview-box {
       display: flex;
       justify-content: center;
@@ -326,11 +339,11 @@
     }
     .hero-card {
       position: relative;
-      width: min(100%, 360px);
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid rgba(255, 255, 255, .18);
+      width: min(100%, 340px);
+      background: rgba(8, 23, 47, .55);
+      border: 1px solid rgba(255, 255, 255, .22);
       border-radius: 28px;
-      padding: 24px;
+      padding: 32px 24px 28px;
       backdrop-filter: blur(20px);
       box-shadow: 0 30px 60px rgba(0,0,0,.45);
       text-align: center;
@@ -338,39 +351,24 @@
     .hero-card-img {
       width: 140px;
       height: 140px;
-      margin: 0 auto 18px;
+      margin: 0 auto 20px;
       border-radius: 26px;
       object-fit: contain;
-      filter: drop-shadow(0 12px 24px rgba(0,0,0,.3));
-      border: 2px solid rgba(255,255,255,.2);
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,.35));
+      border: 2px solid rgba(255,255,255,.25);
       background: #fff;
       padding: 8px;
     }
     .hero-card h3 {
       margin: 0 0 6px;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 750;
       color: #fff;
     }
     .hero-card p {
-      margin: 0 0 18px;
-      color: rgba(255,255,255,.75);
-      font-size: .88rem;
-    }
-    .hero-card-tags {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .hero-card-tag {
-      padding: 5px 12px;
-      background: rgba(231,196,91,.15);
-      color: var(--gold);
-      border: 1px solid rgba(231,196,91,.3);
-      border-radius: 12px;
-      font-size: .75rem;
-      font-weight: 650;
+      margin: 0;
+      color: rgba(255,255,255,.82);
+      font-size: .92rem;
     }
 
     /* ==========================================================================
@@ -408,7 +406,7 @@
     }
 
     /* ==========================================================================
-       HOW IT WORKS (3 ADIMDA PROVA)
+       HOW IT WORKS (Beyaz Zemin)
        ========================================================================== */
     .steps-section { background: #ffffff; }
     .steps-grid {
@@ -457,7 +455,7 @@
     }
 
     /* ==========================================================================
-       FEATURES (AKILLI ÖZELLİKLER)
+       FEATURES (Krem Zemin)
        ========================================================================== */
     .features-section { background: var(--cream); }
     .features-grid {
@@ -507,7 +505,7 @@
     }
 
     /* ==========================================================================
-       BRANDS & SILHOUETTES
+       BRANDS & SILHOUETTES (Beyaz Zemin)
        ========================================================================== */
     .brands-section { background: #fff; }
     .silhouette-grid {
@@ -553,29 +551,43 @@
     }
 
     /* ==========================================================================
-       DOWNLOAD & QR BÖLÜMÜ
+       DOWNLOAD BÖLÜMÜ (Krem Zemin - Doğal Ayırım & Ferah Geçiş)
        ========================================================================== */
     .download-section {
-      background: linear-gradient(180deg, #101a31 0%, #0d172e 100%);
-      color: #fff;
+      background: #f5f3ee;
+      color: var(--ink);
       position: relative;
       overflow: hidden;
+      border-top: 1px solid #edebe4;
     }
-    .download-section .section-kicker { color: #f4d987; }
-    .download-section h2 { color: #fff; }
-    .download-section .section-intro { color: rgba(255,255,255,.78); }
+    .download-section .section-kicker { color: #a17d27; }
+    .download-section h2 { color: var(--navy); }
+    .download-section .section-intro { color: var(--muted); }
 
     .download-box {
       margin-top: 48px;
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.15fr .85fr;
       gap: 40px;
       align-items: center;
       padding: clamp(28px, 5vw, 52px);
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.12);
+      background: #ffffff;
+      border: 1px solid #e7e5dc;
       border-radius: 32px;
-      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 48px rgba(16,26,49,.06);
+    }
+    .download-box h3 {
+      margin: 0 0 12px;
+      font-size: 1.55rem;
+      font-weight: 750;
+      color: var(--navy);
+      letter-spacing: -.02em;
+    }
+    .download-box p.download-p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .98rem;
+      line-height: 1.7;
     }
 
     .store-buttons {
@@ -590,20 +602,22 @@
       gap: 12px;
       padding: 12px 22px;
       border-radius: 16px;
-      background: rgba(255,255,255,.09);
-      border: 1px solid rgba(255,255,255,.24);
+      background: var(--navy);
+      border: 1px solid var(--navy);
       color: #fff;
       text-decoration: none;
       transition: all .2s ease;
+      box-shadow: 0 4px 14px rgba(16,26,49,.14);
     }
     .store-btn:hover {
-      background: rgba(255,255,255,.2);
+      background: var(--navy-2);
       border-color: var(--gold);
       transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(16,26,49,.24);
     }
-    .store-btn svg { width: 28px; height: 28px; fill: currentColor; }
-    .store-btn-text small { display: block; font-size: .68rem; color: rgba(255,255,255,.7); text-transform: uppercase; }
-    .store-btn-text strong { display: block; font-size: .98rem; font-weight: 700; }
+    .store-btn svg { width: 28px; height: 28px; fill: var(--gold); }
+    .store-btn-text small { display: block; font-size: .68rem; color: rgba(255,255,255,.75); text-transform: uppercase; }
+    .store-btn-text strong { display: block; font-size: .98rem; font-weight: 700; color: #fff; }
 
     .qr-container {
       display: flex;
@@ -613,8 +627,8 @@
       text-align: center;
       padding: 24px;
       border-radius: 24px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
+      background: #faf9f6;
+      border: 1px solid #eae8e0;
     }
     .qr-frame {
       width: 170px;
@@ -622,7 +636,8 @@
       background: #ffffff;
       padding: 12px;
       border-radius: 20px;
-      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      box-shadow: 0 10px 24px rgba(16,26,49,.07);
+      border: 1px solid #eceae3;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -634,13 +649,13 @@
     }
     .qr-caption {
       margin-top: 14px;
-      color: rgba(255,255,255,.8);
+      color: var(--muted);
       font-size: .84rem;
       max-width: 240px;
     }
 
     /* ==========================================================================
-       CONTACT US BÖLÜMÜ (Revize Edilmiş Açıklama & Form)
+       CONTACT US BÖLÜMÜ (Lacivert Zemin - Net ve Doğal Ayırım)
        ========================================================================== */
     .contact-section {
       background: #0d172e;
@@ -944,7 +959,7 @@
       .brand-group { gap: 8px; }
       .back-btn { padding: 6px 10px; font-size: .74rem; }
       .brand-divider { height: 18px; }
-      .app-title-link { font-size: .88rem; }
+      .app-brand-title { font-size: .95rem; }
       .main-nav { display: none; }
       .features-grid { grid-template-columns: 1fr; }
       .silhouette-grid { grid-template-columns: 1fr; }
@@ -969,7 +984,7 @@
 <body id="top">
 
   <!-- ==========================================================================
-       SITE HEADER
+       SITE HEADER (Home İkonu Sayfa Gezinti Butonlarının Başına Alındı)
        ========================================================================== -->
   <header class="site-header">
     <div class="brand-group">
@@ -979,15 +994,16 @@
         <span>littleGENIUS</span>
       </a>
       <span class="brand-divider" aria-hidden="true"></span>
-      <!-- Sayfa Başına Dönen Magic Mirror Başlığı -->
-      <a class="app-title-link" href="#top" aria-label="Magic Mirror sayfa başına dön">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        <span>MAGIC MIRROR</span>
-      </a>
+      <!-- Başlık (Sade & Kurumsal) -->
+      <span class="app-brand-title">MAGIC MIRROR</span>
     </div>
 
     <div class="header-right">
       <nav class="main-nav" aria-label="Magic Mirror navigation">
+        <!-- Home İkonu: Web sayfasına ait butonların tam solunda -->
+        <a class="nav-home-icon" href="#top" aria-label="Magic Mirror Home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        </a>
         <a href="#how-it-works" data-i18n="navHow">HOW IT WORKS</a>
         <a href="#features" data-i18n="navFeatures">FEATURES</a>
         <a href="#brands" data-i18n="navBrands">BRANDS</a>
@@ -1037,24 +1053,18 @@
           </div>
         </div>
 
+        <!-- Vitrin Kartı (Etiketler kaldırıldı) -->
         <div class="hero-preview-box">
           <div class="hero-card">
             <img class="hero-card-img" src="./magicmirror_logo.png" onerror="this.onerror=null;this.src='./magicmirror.png'" alt="Magic Mirror App Icon">
             <h3>Magic Mirror</h3>
             <p data-i18n="cardSubtitle">Bridal AI Studio & Virtual Fitting</p>
-            <div class="hero-card-tags">
-              <span class="hero-card-tag">A-Line</span>
-              <span class="hero-card-tag">Princess</span>
-              <span class="hero-card-tag">Mermaid</span>
-              <span class="hero-card-tag">Boho</span>
-              <span class="hero-card-tag">Custom Studio</span>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS BÖLÜMÜ -->
+    <!-- HOW IT WORKS BÖLÜMÜ (Beyaz Zemin) -->
     <section class="section steps-section" id="how-it-works">
       <div class="section-inner">
         <div class="section-header text-center">
@@ -1083,7 +1093,7 @@
       </div>
     </section>
 
-    <!-- FEATURES BÖLÜMÜ -->
+    <!-- FEATURES BÖLÜMÜ (Krem Zemin) -->
     <section class="section features-section" id="features">
       <div class="section-inner">
         <div class="section-header text-center">
@@ -1144,7 +1154,7 @@
       </div>
     </section>
 
-    <!-- BRANDS & MODELLER BÖLÜMÜ -->
+    <!-- BRANDS & MODELLER BÖLÜMÜ (Beyaz Zemin) -->
     <section class="section brands-section" id="brands">
       <div class="section-inner">
         <div class="section-header text-center">
@@ -1181,7 +1191,7 @@
       </div>
     </section>
 
-    <!-- DOWNLOAD BÖLÜMÜ -->
+    <!-- DOWNLOAD BÖLÜMÜ (Krem Zemin - Doğal Ayırım & Ferah Geçiş) -->
     <section class="section download-section" id="download">
       <div class="section-inner">
         <div class="section-header">
@@ -1192,8 +1202,8 @@
 
         <div class="download-box">
           <div class="download-info">
-            <h3 style="margin: 0 0 12px; font-size: 1.5rem; color: #fff;" data-i18n="dlHeading">Gelinliğinizi Keşfetmek Artık Çok Kolay</h3>
-            <p style="margin: 0; color: rgba(255,255,255,.8); font-size: .98rem; line-height: 1.7;" data-i18n="dlParagraph">
+            <h3 data-i18n="dlHeading">Gelinliğinizi Keşfetmek Artık Çok Kolay</h3>
+            <p class="download-p" data-i18n="dlParagraph">
               Mağaza aramalarında zaman kaybetmeyin. İster Google Play'den ister App Store'dan ücretsiz indirip hemen ilk provanızı yapabilirsiniz.
             </p>
 
@@ -1230,8 +1240,8 @@
     </section>
 
     <!-- ==========================================================================
-         CONTACT US BÖLÜMÜ (Revize Edilmiş Açıklama Metni & Form)
-         ========================================================================== -->
+       CONTACT US BÖLÜMÜ (Lacivert Zemin - Net ve Doğal Ayırım)
+       ========================================================================== -->
     <section class="section contact-section" id="contact">
       <div class="section-inner">
         <div class="contact-title-top">
