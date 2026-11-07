@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a31">
+  <title id="pageTitle">WordLegend - Kullanım Koşulları · littleGENIUS</title>
+  <meta name="description" id="pageMetaDesc" content="WordLegend Kullanım Koşulları: Hizmet şartları, paket satın alımları, abonelikler, fikri mülkiyet ve kullanıcı hakları hakkında yasal bilgilendirme.">
+  <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
+  <style>
+    :root {
+      --navy: #101a31;
+      --navy-2: #172541;
+      --navy-deep: #0a1324;
+      --ink: #182238;
+      --ink-soft: #2c3850;
+      --muted: #5e6c84;
+      --gold: #e7c45b;
+      --gold-hover: #f1d36f;
+      --cream: #f5f3ee;
+      --white: #ffffff;
+      --border-subtle: #e6e4dc;
+      --header-h: 68px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ==========================================================================
+       SITE HEADER (littleGENIUS Standart Üst Bar)
+       ========================================================================== */
+    .site-header {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 auto;
+      min-height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 clamp(16px, 4vw, 56px);
+      color: #fff;
+      background: rgba(13, 24, 47, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 4px 24px rgba(0,0,0,.25);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* En solda Sarı Geri Butonu: Daima Ana Çatı Marka (littleGENIUS) */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-size: .8rem;
+      font-weight: 750;
+      letter-spacing: -.01em;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+      box-shadow: 0 2px 10px rgba(231,196,91,.28);
+    }
+    .back-btn:hover {
+      background: var(--gold-hover);
+      transform: translateX(-2px);
+      box-shadow: 0 4px 14px rgba(231,196,91,.4);
+    }
+    .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .brand-divider {
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* Yanındaki Beyaz Başlık Linki: Daima İlgili Ürüne (WordLegend) Yönlendirir */
+    .app-brand-link {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      transition: color .2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .app-brand-link:hover {
+      color: var(--gold);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      border-left: 1px solid rgba(255,255,255,.14);
+      padding-left: 14px;
+    }
+    .language-switch button {
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(255,255,255,.75);
+      font-size: .76rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .language-switch button:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,.25);
+    }
+    .language-switch button[aria-pressed="true"] {
+      color: var(--navy-deep);
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ==========================================================================
+       DOKÜMAN GÖVDE & TİPOGRAFİ
+       ========================================================================== */
+    .doc-page {
+      padding: calc(var(--header-h) + 36px) clamp(16px, 4vw, 32px) 80px;
+    }
+
+    .doc-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 40px rgba(16, 26, 49, 0.05);
+      padding: clamp(28px, 5vw, 64px);
+    }
+
+    .doc-header {
+      text-align: center;
+      margin-bottom: 36px;
+      border-bottom: 2px solid #eef0f4;
+      padding-bottom: 28px;
+    }
+
+    .doc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(231, 196, 91, 0.15);
+      color: #946f17;
+      border: 1px solid rgba(231, 196, 91, 0.35);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .doc-header h1 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: clamp(1.9rem, 3.8vw, 2.7rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(12px, 2.5vw, 24px);
+      font-size: .86rem;
+      color: var(--muted);
+    }
+    .doc-meta-item strong { color: var(--ink); }
+
+    /* Hızlı İndeks (İçindekiler) */
+    .doc-toc {
+      background: #faf9f6;
+      border: 1px solid #ebe8de;
+      border-radius: 18px;
+      padding: 22px 26px;
+      margin-bottom: 40px;
+    }
+    .doc-toc h3 {
+      margin: 0 0 12px;
+      font-size: .95rem;
+      font-weight: 750;
+      color: var(--navy);
+      letter-spacing: -.01em;
+    }
+    .doc-toc ol {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 24px;
+      font-size: .85rem;
+    }
+    .doc-toc a {
+      color: #3b5998;
+      transition: color .2s ease;
+    }
+    .doc-toc a:hover {
+      color: var(--navy);
+      text-decoration: underline;
+    }
+
+    /* İçerik Bölümleri */
+    .doc-section {
+      margin-bottom: 44px;
+    }
+    .doc-section:last-child { margin-bottom: 0; }
+
+    .doc-section h2 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .doc-section h2::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .doc-section h3 {
+      margin: 22px 0 10px;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 750;
+    }
+
+    .doc-section p {
+      margin: 0 0 14px;
+      color: var(--ink-soft);
+      font-size: .98rem;
+    }
+
+    .doc-section ul {
+      margin: 0 0 18px;
+      padding-left: 22px;
+      color: var(--ink-soft);
+      font-size: .98rem;
+    }
+    .doc-section li {
+      margin-bottom: 8px;
+    }
+
+    /* Vurgu Kutuları & İletişim */
+    .callout-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #3b82f6;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .callout-box p { margin: 0; }
+
+    .contact-highlight {
+      background: #fdfbf7;
+      border: 1px solid rgba(231, 196, 91, 0.4);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .contact-highlight a {
+      color: var(--navy);
+      font-weight: 750;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ==========================================================================
+       SITE FOOTER (Kurumsal 3 Sütunlu Yapı)
+       ========================================================================== */
+    .site-footer {
+      background: var(--navy-deep);
+      color: #ffffff;
+      padding: 60px clamp(16px, 4vw, 56px) 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .footer-top-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-brand-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #ffffff;
+      margin: 0 0 10px;
+      display: inline-block;
+    }
+    .footer-brand-col p {
+      color: rgba(255,255,255,.65);
+      font-size: .88rem;
+      line-height: 1.65;
+      margin: 0 0 20px;
+      max-width: 320px;
+    }
+    .footer-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+    .footer-back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .footer-col-title {
+      font-size: .82rem;
+      font-weight: 750;
+      color: rgba(255,255,255,.9);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+    .footer-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links-list a {
+      color: rgba(255,255,255,.68);
+      font-size: .86rem;
+      transition: color .2s ease;
+    }
+    .footer-links-list a:hover {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom-copyright {
+      padding-top: 30px;
+      text-align: center;
+      font-size: .84rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* Dil Paneli Görünürlük Kontrolü */
+    .lang-panel { display: none; }
+    .lang-panel.is-active { display: block; }
+
+    @media (max-width: 768px) {
+      .doc-toc ol { grid-template-columns: 1fr; }
+      .footer-top-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-highlight { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SABİT ÜST BAR (littleGENIUS & WordLegend Gezintisi)
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="brand-group">
+      <!-- 1. En solda Sarı "Geri" Butonu: Her zaman Ana Platform littleGENIUS -->
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Platformuna Dön">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        <span>littleGENIUS</span>
+      </a>
+
+      <!-- Ayırıcı İnce Çizgi -->
+      <div class="brand-divider" aria-hidden="true"></div>
+
+      <!-- 2. Hemen Yanında Beyaz Font ile Ürün Linki: WordLegend index.html Sayfasına Yönlendirir -->
+      <a class="app-brand-link" href="./" id="backToAppBtn" aria-label="WordLegend Ana Sayfasına Dön">
+        <span id="backToAppText">WORDLEGEND</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <div class="language-switch" aria-label="Dil / Language">
+        <button type="button" data-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc-page">
+    <div class="doc-container">
+
+      <!-- ====================================================================
+           TÜRKÇE İÇERİK PANELİ (TR)
+           ==================================================================== -->
+      <div class="lang-panel is-active" id="panel-tr">
+        <div class="doc-header">
+          <div class="doc-badge">HİZMET ŞARTLARI</div>
+          <h1>WordLegend Hizmet Şartları</h1>
+          <div class="doc-meta">
+            <span class="doc-meta-item">Yürürlük: <strong>01 Ocak 2026</strong></span>
+            <span class="doc-meta-item">Son Güncelleme: <strong>01 Nisan 2026</strong></span>
+            <span class="doc-meta-item">Geliştirici: <strong>littleGenius</strong></span>
+          </div>
+        </div>
+
+        <nav class="doc-toc">
+          <h3>İçindekiler</h3>
+          <ol>
+            <li><a href="#tr-1">Hizmetin Kullanımı</a></li>
+            <li><a href="#tr-2">Uygunluk</a></li>
+            <li><a href="#tr-3">Kullanıcı Hesapları</a></li>
+            <li><a href="#tr-4">Paketler ve Satın Alımlar</a></li>
+            <li><a href="#tr-5">İptal ve İadeler</a></li>
+            <li><a href="#tr-6">Üretilen İçerik ve Fikri Mülkiyet</a></li>
+            <li><a href="#tr-7">Gizlilik ve Güvenlik</a></li>
+            <li><a href="#tr-8">Yasaklı Kullanım</a></li>
+            <li><a href="#tr-9">Sonlandırma ve Hesap Askıya Alma</a></li>
+            <li><a href="#tr-10">Sorumluluk Sınırlaması</a></li>
+            <li><a href="#tr-11">Tazminat</a></li>
+            <li><a href="#tr-12">Şartlarda Değişiklik</a></li>
+            <li><a href="#tr-13">Geçerli Hukuk ve Uyuşmazlık Çözümü</a></li>
+            <li><a href="#tr-14">Bölünebilirlik ve Sözleşmenin Bütünlüğü</a></li>
+            <li><a href="#tr-15">İletişim</a></li>
+          </ol>
+        </nav>
+
+        <section class="doc-section" id="tr-1">
+          <h2>1. Hizmetin Kullanımı</h2>
+          <ul>
+            <li>Uygulamayı yalnızca yasal amaçlarla ve bu Şartlara uygun şekilde kullanabilirsiniz.</li>
+            <li>Uygulama içinde hile, bot, script veya yetkisiz yöntem kullanmak kesinlikle yasaktır.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="tr-2">
+          <h2>2. Uygunluk</h2>
+          <p>WordLegend uygulamasını kullanabilmek için en az 16 yaşında olmalısınız. Uygulamayı kullanarak yaş şartını karşıladığınızı ve bu şartları kabul etme ehliyetine sahip olduğunuzu beyan edersiniz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-3">
+          <h2>3. Kullanıcı Hesapları</h2>
+          <p>Uygulamaya Google veya Apple hesabınızla giriş yapıp kayıt olabilirsiniz. Hesabınızın güvenliğinden ve oturum bilgilerinizin gizliliğinden siz sorumlusunuz. Şüpheli bir kullanım fark ederseniz hemen bizimle iletişime geçiniz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-4">
+          <h2>4. Paketler ve Satın Alımlar</h2>
+          <ul>
+            <li><strong>Puan Paketleri:</strong> Ücretli puan paketleri, farklı miktarlarda “puan” alternatifleri sunar ve oyun içerisinde Enerji, Yenile, İpucu, Süre, Joker, Göster özellikleri ile kullanıcı profil fotoğrafı olarak kullanabileceğiniz Avatar sahibi olmanızı sağlar.</li>
+            <li><strong>WordLegend Pro:</strong> Kullanıcıya aylık olarak belirli miktarda Enerji ve Puan yüklemesinin yapıldığı ve ekstra oyun ayrıcalıkları sunulan aylık abonelik paketidir.</li>
+            <li><strong>Tek Seferlik Paketler:</strong> Standart puan paketleri tek seferliktir; otomatik yenilenmez ve abonelik niteliğinde değildir.</li>
+            <li>Kullanılmayan paket veya “puan”lar hiçbir koşulda nakit paraya çevrilemez ve iade edilmez.</li>
+            <li>Tüm satın alımlar yalnızca Apple App Store veya Google Play Store üzerinden gerçekleştirilir ve ilgili uygulama mağazalarının ödeme koşullarına tabidir.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="tr-5">
+          <h2>5. İptal ve İadeler</h2>
+          <p>Puan Paketleri satın alındıktan sonra tüketilebilir dijital içerik niteliğinde olduğundan iptal veya iade edilemez; yalnızca yürürlükteki kanunların gerektirdiği durumlarda istisna uygulanır. İade işlemleri, varsa, yalnızca Apple veya Google tarafından kendi mağaza politikalarına göre gerçekleştirilir.</p>
+          <p>WordLegend Pro aylık abonelik paketinde ise kullanıcı aboneliğini App Store veya Google Play hesap ayarlarından dilediği an durdurabilir ve iptal edebilir.</p>
+        </section>
+
+        <section class="doc-section" id="tr-6">
+          <h2>6. Üretilen İçerik ve Fikri Mülkiyet</h2>
+          <p>Uygulama içindeki tüm tasarımlar, grafikler, oyun kurguları, sözlük dizilimleri, sesler, animasyonlar ve kaynak kodları © WordLegend ve littleGenius stüdyosu tarafından korunmaktadır. Hiçbir içerik önceden yazılı izin alınmaksızın kopyalanamaz, çoğaltılamaz, dağıtılamaz veya ticari amaçla kullanılamaz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-7">
+          <h2>7. Gizlilik ve Güvenlik</h2>
+          <p>Kişisel verileriniz, KVKK ve GDPR standartlarına uygun olarak hazırlanan <a href="privacy-policy.html?lang=tr" style="color:var(--navy); font-weight:750; text-decoration:underline;">Gizlilik Politikamız</a> kapsamında işlenmektedir. Lütfen Gizlilik Politikamızı dikkatlice inceleyiniz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-8">
+          <h2>8. Yasaklı Kullanım</h2>
+          <ul>
+            <li>Uygulamayı tersine mühendislik (reverse engineering), decompile etme, kaynak koda dönüştürme veya müdahale amacıyla kullanmak.</li>
+            <li>Uygulama sunucularını veya ağ altyapısını aşırı yükleyecek zararlı yazılımlar ya da botlar çalıştırmak.</li>
+            <li>Uygulamayı yasa dışı amaçlarla veya üçüncü taraf haklarını ihlal edecek şekilde kullanmak.</li>
+            <li>Kimliğinizi yanlış beyan etmek veya başka kullanıcıları taklit etmek.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="tr-9">
+          <h2>9. Sonlandırma ve Hesap Askıya Alma</h2>
+          <p>Bu Şartları veya yürürlükteki yasaları ihlal etmeniz halinde, ya da kullanımınız hizmete veya diğer kullanıcılara güvenlik riski oluşturuyorsa, erişiminiz askıya alınabilir veya kalıcı olarak sonlandırılabilir. Acil güvenlik gerektirmeyen durumlarda tarafınıza makul ölçüde bildirim yapılır.</p>
+        </section>
+
+        <section class="doc-section" id="tr-10">
+          <h2>10. Sorumluluk Sınırlaması</h2>
+          <p>WordLegend uygulaması “olduğu gibi” ve “mevcut olduğu şekilde” sunulmaktadır; açık veya zımni herhangi bir garanti verilmez. Kesintisiz erişim, hatasız çalışma veya belirli sonuçlar garanti edilmez. Yasal olarak izin verilen en geniş kapsamda, WordLegend, littleGenius ve GeniusMetaverse, kullanımınızdan doğan dolaylı, tesadüfi, sonuçsal veya cezai zararlardan sorumlu tutulamaz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-11">
+          <h2>11. Tazminat</h2>
+          <p>Bu Şartları ihlalinizden veya hizmeti kötüye kullanımınızdan doğan her türlü iddia, kayıp, sorumluluk, zarar, maliyet ve masraf (makul avukatlık ücretleri dahil) için WordLegend, littleGenius, GeniusMetaverse ve bağlı kuruluşlarını tazmin etmeyi kabul edersiniz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-12">
+          <h2>12. Şartlarda Değişiklik</h2>
+          <p>Bu Hizmet Şartları zaman zaman güncellenebilir. Önemli değişiklikler uygulama içi bildirim veya web sitemiz üzerinden duyurulur. Değişikliklerin yayınlanmasından sonra uygulamayı kullanmaya devam etmeniz, güncellenmiş Şartları kabul ettiğiniz anlamına gelir.</p>
+        </section>
+
+        <section class="doc-section" id="tr-13">
+          <h2>13. Geçerli Hukuk ve Uyuşmazlık Çözümü</h2>
+          <p>Bu Şartlar, Türkiye Cumhuriyeti yasalarına tabidir. Bu Şartlardan doğan her türlü uyuşmazlığın çözümünde İstanbul (Çağlayan) Mahkemeleri ve İcra Daireleri yetkilidir. Resmî yasal süreç başlatmadan önce doğrudan bizimle iletişime geçerek dostane ve gayriresmî çözüm aranması teşvik edilir.</p>
+        </section>
+
+        <section class="doc-section" id="tr-14">
+          <h2>14. Bölünebilirlik ve Sözleşmenin Bütünlüğü</h2>
+          <p>Bu Şartların herhangi bir hükmü yetkili bir merci tarafından geçersiz veya uygulanamaz bulunursa, söz konusu hüküm minimum düzeyde sınırlandırılır veya çıkarılır; kalan hükümler tam olarak yürürlükte kalmaya devam eder. Bu Şartlar ve Gizlilik Politikamız, tarafınız ile WordLegend arasındaki sözleşmenin bütününü oluşturur.</p>
+        </section>
+
+        <section class="doc-section" id="tr-15">
+          <h2>15. İletişim</h2>
+          <p>Bu Hizmet Şartları ile ilgili her türlü soru, bildirim veya destek talebiniz için:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGenius Stüdyosu</strong><br>
+              E-posta: <a href="mailto:geniusmetaverse@gmail.com">geniusmetaverse@gmail.com</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           İNGİLİZCE İÇERİK PANELİ (EN)
+           ==================================================================== -->
+      <div class="lang-panel" id="panel-en">
+        <div class="doc-header">
+          <div class="doc-badge">TERMS OF SERVICE</div>
+          <h1>WordLegend Terms of Service</h1>
+          <div class="doc-meta">
+            <span class="doc-meta-item">Effective Date: <strong>January 01, 2026</strong></span>
+            <span class="doc-meta-item">Last Updated: <strong>April 01, 2026</strong></span>
+            <span class="doc-meta-item">Owner: <strong>littleGenius</strong></span>
+          </div>
+        </div>
+
+        <nav class="doc-toc">
+          <h3>Table of Contents</h3>
+          <ol>
+            <li><a href="#en-1">Use of Service</a></li>
+            <li><a href="#en-2">Eligibility</a></li>
+            <li><a href="#en-3">User Accounts</a></li>
+            <li><a href="#en-4">Packages and Purchases</a></li>
+            <li><a href="#en-5">Cancellations and Refunds</a></li>
+            <li><a href="#en-6">Content and Intellectual Property</a></li>
+            <li><a href="#en-7">Privacy and Security</a></li>
+            <li><a href="#en-8">Prohibited Use</a></li>
+            <li><a href="#en-9">Termination and Account Suspension</a></li>
+            <li><a href="#en-10">Limitation of Liability</a></li>
+            <li><a href="#en-11">Indemnification</a></li>
+            <li><a href="#en-12">Changes to Terms</a></li>
+            <li><a href="#en-13">Governing Law and Dispute Resolution</a></li>
+            <li><a href="#en-14">Severability and Entire Agreement</a></li>
+            <li><a href="#en-15">Contact</a></li>
+          </ol>
+        </nav>
+
+        <section class="doc-section" id="en-1">
+          <h2>1. Use of Service</h2>
+          <ul>
+            <li>You may use the application only for lawful purposes and in accordance with these Terms.</li>
+            <li>Cheating, bots, scripts, automated scraping, or unauthorized exploitation methods are strictly prohibited within the application.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-2">
+          <h2>2. Eligibility</h2>
+          <p>You must be at least 16 years old to use WordLegend. By accessing or using the application, you confirm that you meet this age requirement and hold full legal capacity to enter into these Terms.</p>
+        </section>
+
+        <section class="doc-section" id="en-3">
+          <h2>3. User Accounts</h2>
+          <p>You can sign in and create an account securely via Google Sign-In or Apple ID. You are solely responsible for maintaining the confidentiality and security of your account credentials. If you detect any unauthorized access or security breach, notify us immediately.</p>
+        </section>
+
+        <section class="doc-section" id="en-4">
+          <h2>4. Packages and Purchases</h2>
+          <ul>
+            <li><strong>Point Packages:</strong> Paid point bundles offer different quantities of in-game points to unlock Energy, Refresh, Hints, Additional Time, Jokers, Reveal bonuses, and custom profile Avatars.</li>
+            <li><strong>WordLegend Pro:</strong> A premium monthly subscription that grants regular monthly allocations of Energy and Points alongside exclusive in-game privileges.</li>
+            <li><strong>One-Time Bundles:</strong> Standard point packages are one-time consumables; they do not auto-renew and do not constitute subscriptions.</li>
+            <li>Unused packages or points cannot be redeemed for legal currency and are strictly non-refundable.</li>
+            <li>All transactions are processed exclusively through Apple App Store or Google Play Store in accordance with their standard terms and conditions.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-5">
+          <h2>5. Cancellations and Refunds</h2>
+          <p>Point Packages are consumable digital content delivered immediately upon confirmation and cannot be canceled or refunded, except where explicitly required by mandatory consumer protection law. Any refund requests are administered solely by Apple or Google under their respective platform refund policies.</p>
+          <p>WordLegend Pro monthly subscriptions may be managed or cancelled at any time through your Apple ID or Google Play subscription management settings to prevent future renewals.</p>
+        </section>
+
+        <section class="doc-section" id="en-6">
+          <h2>6. Content and Intellectual Property</h2>
+          <p>All artwork, visual identities, logos, puzzle layouts, vocabulary database configurations, sound effects, animations, and source code within WordLegend are the exclusive intellectual property of © WordLegend and littleGenius studio. No content may be copied, reproduced, reverse-compiled, distributed, or commercially exploited without our prior written authorization.</p>
+        </section>
+
+        <section class="doc-section" id="en-7">
+          <h2>7. Privacy and Security</h2>
+          <p>Your personal data is treated in strict accordance with GDPR and international standards as explained in our <a href="privacy-policy.html?lang=en" style="color:var(--navy); font-weight:750; text-decoration:underline;">Privacy Policy</a>. Please review our Privacy Policy carefully.</p>
+        </section>
+
+        <section class="doc-section" id="en-8">
+          <h2>8. Prohibited Use</h2>
+          <ul>
+            <li>Reverse engineering, decompiling, disassembling, or extracting the source code of the application.</li>
+            <li>Interfering with or disrupting application servers, network infrastructure, or connected security layers.</li>
+            <li>Using the service for unlawful purposes or in violation of intellectual property rights.</li>
+            <li>Impersonating another player, moderator, or representing false identity information.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-9">
+          <h2>9. Termination and Account Suspension</h2>
+          <p>We reserve the right to suspend or terminate your access to WordLegend immediately if you breach these Terms or if your usage presents a severe operational, security, or legal threat. Where reasonably feasible and not precluded by emergency circumstances, prior notice will be issued.</p>
+        </section>
+
+        <section class="doc-section" id="en-10">
+          <h2>10. Limitation of Liability</h2>
+          <p>WordLegend is provided on an “AS IS” and “AS AVAILABLE” basis without warranties of any kind, whether express or implied. Continuous uptime, uninterrupted connectivity, or fault-free gameplay is not guaranteed. To the fullest extent permissible by applicable law, WordLegend, littleGenius, and GeniusMetaverse shall not be liable for any indirect, incidental, consequential, special, or punitive damages.</p>
+        </section>
+
+        <section class="doc-section" id="en-11">
+          <h2>11. Indemnification</h2>
+          <p>You agree to indemnify, defend, and hold harmless WordLegend, littleGenius, GeniusMetaverse, and their officers, directors, and affiliates from and against any claims, losses, damages, liabilities, and expenses (including reasonable attorney fees) arising from your breach of these Terms or misuse of the service.</p>
+        </section>
+
+        <section class="doc-section" id="en-12">
+          <h2>12. Changes to Terms</h2>
+          <p>We may modify these Terms from time to time. Meaningful modifications will be communicated via in-app updates or on our website. Continued gameplay after modified Terms take effect constitutes binding acceptance of the updated terms.</p>
+        </section>
+
+        <section class="doc-section" id="en-13">
+          <h2>13. Governing Law and Dispute Resolution</h2>
+          <p>These Terms shall be governed by and construed in accordance with the laws of the Republic of Turkey. Any disputes arising out of or related to these Terms shall be subject to the exclusive jurisdiction of the Courts and Execution Offices of Istanbul (Çağlayan). Parties are strongly encouraged to seek amicable informal resolution by contacting us before initiating legal proceedings.</p>
+        </section>
+
+        <section class="doc-section" id="en-14">
+          <h2>14. Severability and Entire Agreement</h2>
+          <p>If any provision of these Terms is determined to be invalid, unlawful, or unenforceable, that provision will be severed to the minimum extent necessary, and the remaining provisions shall remain fully enforceable. These Terms together with our Privacy Policy constitute the entire agreement between you and WordLegend.</p>
+        </section>
+
+        <section class="doc-section" id="en-15">
+          <h2>15. Contact</h2>
+          <p>For any questions, legal notices, or inquiries regarding these Terms of Service, please contact:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGenius Studio</strong><br>
+              Email: <a href="mailto:geniusmetaverse@gmail.com">geniusmetaverse@gmail.com</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER (Kurumsal 3 Sütunlu Yapı)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- 1. Kolon: Marka Tanıtımı -->
+        <div class="footer-brand-col">
+          <span class="footer-brand-title">littleGENIUS</span>
+          <p id="footerBrandText">Fikirleri gerçeğe dönüştüren bağımsız dijital stüdyo. Özgün mobil oyunlar ve yaratıcı dijital deneyimler.</p>
+          <a class="footer-back-link" href="../">
+            <span>← littleGENIUS Ana Sayfa</span>
+          </a>
+        </div>
+
+        <!-- 2. Kolon: WordLegend Menüsü -->
+        <div>
+          <h4 class="footer-col-title" id="footerColPages">Sayfalar</h4>
+          <ul class="footer-links-list">
+            <li><a href="./#how-to-play" id="footNavHow">Nasıl Oynanır</a></li>
+            <li><a href="./#features" id="footNavFeatures">Özellikler</a></li>
+            <li><a href="./#modes" id="footNavModes">Paketler & Modlar</a></li>
+            <li><a href="./#contact" id="footNavContact">İletişim</a></li>
+            <li><a href="./#download" id="footNavDownload">Oyunu İndir</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Kolon: Yasal Belgeler -->
+        <div>
+          <h4 class="footer-col-title" id="footerColLegal">Yasal</h4>
+          <ul class="footer-links-list">
+            <li><a href="faq.html" id="footLinkFaq">Sıkça Sorulan Sorular (SSS)</a></li>
+            <li><a href="terms-of-service.html" style="color:var(--gold); font-weight:700;" id="footLinkTos">Kullanım Koşulları (TOS)</a></li>
+            <li><a href="privacy-policy.html" id="footLinkPp">Gizlilik Politikası (PP)</a></li>
+            <li><a href="support.html" id="footLinkSupport">Destek & İletişim</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-copyright">
+        Copyright © 2026, a product of littleGenius
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       AKILLI DİL YÖNETİM SCRİPTİ (Otomatik Algılama + Senkronizasyon)
+       ========================================================================== -->
+  <script>
+    const uiTranslations = {
+      tr: {
+        pageTitle: "WordLegend - Kullanım Koşulları · littleGENIUS",
+        metaDesc: "WordLegend Kullanım Koşulları: Hizmet şartları, paket satın alımları, abonelikler, fikri mülkiyet ve kullanıcı hakları hakkında yasal bilgilendirme.",
+        backToApp: "WORDLEGEND",
+        footerBrand: "Fikirleri gerçeğe dönüştüren bağımsız dijital stüdyo. Özgün mobil oyunlar ve yaratıcı dijital deneyimler.",
+        colPages: "Sayfalar",
+        colLegal: "Yasal",
+        navHow: "Nasıl Oynanır",
+        navFeatures: "Özellikler",
+        navModes: "Paketler & Modlar",
+        navContact: "İletişim",
+        navDownload: "Oyunu İndir",
+        linkFaq: "Sıkça Sorulan Sorular (SSS)",
+        linkTos: "Kullanım Koşulları (TOS)",
+        linkPp: "Gizlilik Politikası (PP)",
+        linkSupport: "Destek & İletişim"
+      },
+      en: {
+        pageTitle: "WordLegend - Terms of Service · littleGENIUS",
+        metaDesc: "WordLegend Terms of Service: Legal terms, in-app purchases, subscriptions, intellectual property, and user obligations.",
+        backToApp: "WORDLEGEND",
+        footerBrand: "An independent digital studio turning ideas into reality. Original mobile games and creative digital experiences.",
+        colPages: "Pages",
+        colLegal: "Legal",
+        navHow: "How to Play",
+        navFeatures: "Features",
+        navModes: "Packs & Modes",
+        navContact: "Contact Us",
+        navDownload: "Play Now",
+        linkFaq: "Frequently Asked Questions (FAQ)",
+        linkTos: "Terms of Service (TOS)",
+        linkPp: "Privacy Policy (PP)",
+        linkSupport: "Support & Contact"
+      }
+    };
+
+    function setLanguage(activeLang) {
+      document.documentElement.lang = activeLang;
+
+      // Panelleri Aç/Kapat
+      document.getElementById("panel-tr").classList.toggle("is-active", activeLang === "tr");
+      document.getElementById("panel-en").classList.toggle("is-active", activeLang === "en");
+
+      // Butonları Güncelle
+      document.querySelectorAll("[data-lang]").forEach(btn => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.lang === activeLang));
+      });
+
+      // Başlık ve Meta Güncelle
+      document.getElementById("pageTitle").textContent = uiTranslations[activeLang].pageTitle;
+      document.getElementById("pageMetaDesc").setAttribute("content", uiTranslations[activeLang].metaDesc);
+      document.getElementById("backToAppText").textContent = uiTranslations[activeLang].backToApp;
+
+      // Footer Metinlerini Güncelle
+      document.getElementById("footerBrandText").textContent = uiTranslations[activeLang].footerBrand;
+      document.getElementById("footerColPages").textContent = uiTranslations[activeLang].colPages;
+      document.getElementById("footerColLegal").textContent = uiTranslations[activeLang].colLegal;
+      document.getElementById("footNavHow").textContent = uiTranslations[activeLang].navHow;
+      document.getElementById("footNavFeatures").textContent = uiTranslations[activeLang].navFeatures;
+      document.getElementById("footNavModes").textContent = uiTranslations[activeLang].navModes;
+      document.getElementById("footNavContact").textContent = uiTranslations[activeLang].navContact;
+      document.getElementById("footNavDownload").textContent = uiTranslations[activeLang].navDownload;
+      document.getElementById("footLinkFaq").textContent = uiTranslations[activeLang].linkFaq;
+      document.getElementById("footLinkTos").textContent = uiTranslations[activeLang].linkTos;
+      document.getElementById("footLinkPp").textContent = uiTranslations[activeLang].linkPp;
+      document.getElementById("footLinkSupport").textContent = uiTranslations[activeLang].linkSupport;
+
+      // Seçili dille alt linkleri parametreli tut
+      if (document.getElementById("footLinkFaq")) document.getElementById("footLinkFaq").href = `faq.html?lang=${activeLang}`;
+      if (document.getElementById("footLinkPp")) document.getElementById("footLinkPp").href = `privacy-policy.html?lang=${activeLang}`;
+      if (document.getElementById("backToAppBtn")) document.getElementById("backToAppBtn").href = `./?lang=${activeLang}`;
+
+      // LocalStorage'a kaydet (Ana siteyle senkron)
+      try {
+        localStorage.setItem("littleGENIUSLanguage", activeLang);
+      } catch (e) {}
+    }
+
+    // Dil Butonlarına Tıklama Olayı
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
+
+    // Otomatik Başlangıç Dili Belirleme Mantığı
+    function initLanguage() {
+      // 1. URL Parametresi Kontrolü (?lang=en veya ?lang=tr) -> App Store/Google Play inceleyicileri için
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get("lang");
+      if (urlLang === "en" || urlLang === "tr") {
+        setLanguage(urlLang);
+        return;
+      }
+
+      // 2. LocalStorage Kontrolü (Ziyaretçinin sitede daha önce seçtiği dil)
+      try {
+        const storedLang = localStorage.getItem("littleGENIUSLanguage");
+        if (storedLang === "en" || storedLang === "tr") {
+          setLanguage(storedLang);
+          return;
+        }
+      } catch (e) {}
+
+      // 3. Tarayıcı Dili Kontrolü
+      const browserLang = (navigator.language || navigator.userLanguage || "tr").toLowerCase();
+      if (browserLang.startsWith("tr")) {
+        setLanguage("tr");
+      } else {
+        setLanguage("en");
+      }
+    }
+
+    initLanguage();
+  </script>
+</body>
+</html>
