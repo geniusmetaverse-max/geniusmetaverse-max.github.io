@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a31">
+  <title id="pageTitle">WordLegend - Sıkça Sorulan Sorular (SSS) · littleGENIUS</title>
+  <meta name="description" id="pageMetaDesc" content="WordLegend Sıkça Sorulan Sorular: Oyun modları, günlük meydan okumalar, WordLegend Pro aboneliği, sıralama ve paketler hakkında merak edilenler.">
+  <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
+  <style>
+    :root {
+      --navy: #101a31;
+      --navy-2: #172541;
+      --navy-deep: #0a1324;
+      --ink: #182238;
+      --ink-soft: #2c3850;
+      --muted: #5e6c84;
+      --gold: #e7c45b;
+      --gold-hover: #f1d36f;
+      --cream: #f5f3ee;
+      --white: #ffffff;
+      --border-subtle: #e6e4dc;
+      --header-h: 68px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ==========================================================================
+       SITE HEADER (littleGENIUS Standart Üst Bar)
+       ========================================================================== */
+    .site-header {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 auto;
+      min-height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 clamp(16px, 4vw, 56px);
+      color: #fff;
+      background: rgba(13, 24, 47, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 4px 24px rgba(0,0,0,.25);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* En solda Sarı Geri Butonu: Daima Ana Çatı Marka (littleGENIUS) */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-size: .8rem;
+      font-weight: 750;
+      letter-spacing: -.01em;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+      box-shadow: 0 2px 10px rgba(231,196,91,.28);
+    }
+    .back-btn:hover {
+      background: var(--gold-hover);
+      transform: translateX(-2px);
+      box-shadow: 0 4px 14px rgba(231,196,91,.4);
+    }
+    .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .brand-divider {
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* Yanındaki Beyaz Başlık Linki: Daima İlgili Ürüne (WordLegend) Yönlendirir */
+    .app-brand-link {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      transition: color .2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .app-brand-link:hover {
+      color: var(--gold);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      border-left: 1px solid rgba(255,255,255,.14);
+      padding-left: 14px;
+    }
+    .language-switch button {
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(255,255,255,.75);
+      font-size: .76rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .language-switch button:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,.25);
+    }
+    .language-switch button[aria-pressed="true"] {
+      color: var(--navy-deep);
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ==========================================================================
+       DOKÜMAN GÖVDE & FAQ TASARIMI
+       ========================================================================== */
+    .doc-page {
+      padding: calc(var(--header-h) + 36px) clamp(16px, 4vw, 32px) 80px;
+    }
+
+    .doc-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 40px rgba(16, 26, 49, 0.05);
+      padding: clamp(28px, 5vw, 64px);
+    }
+
+    .doc-header {
+      text-align: center;
+      margin-bottom: 36px;
+      border-bottom: 2px solid #eef0f4;
+      padding-bottom: 28px;
+    }
+
+    .doc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(231, 196, 91, 0.15);
+      color: #946f17;
+      border: 1px solid rgba(231, 196, 91, 0.35);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .doc-header h1 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: clamp(1.9rem, 3.8vw, 2.7rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+    }
+
+    .doc-intro {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Akordiyon Konteyner */
+    .faq-container {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #ebe8de;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #f0eee6;
+      transition: background-color .2s ease;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      padding: 22px 26px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-weight: 750;
+      font-size: 1.05rem;
+      color: var(--navy);
+      user-select: none;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    .faq-question:hover {
+      background-color: #faf9f6;
+      color: var(--navy-2);
+    }
+    .faq-item.active .faq-question {
+      background-color: #faf9f6;
+      color: #946f17;
+    }
+
+    .faq-plus {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(231, 196, 91, 0.15);
+      color: #946f17;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform .3s ease, background-color .2s ease, color .2s ease;
+    }
+    .faq-item.active .faq-plus {
+      transform: rotate(45deg);
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+
+    .faq-answer {
+      padding: 0 26px 24px 26px;
+      display: none;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      font-size: .98rem;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+      animation: fadeIn .25s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* İletişim Çağrısı Kutusu */
+    .faq-contact-card {
+      background: #faf9f6;
+      border: 1px solid rgba(231, 196, 91, 0.45);
+      border-radius: 18px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .faq-contact-info h3 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .faq-contact-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .faq-contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #ffffff;
+      font-weight: 750;
+      font-size: .88rem;
+      white-space: nowrap;
+      transition: background-color .2s ease, transform .2s ease;
+    }
+    .faq-contact-btn:hover {
+      background: var(--navy-2);
+      transform: translateY(-2px);
+      color: var(--gold);
+    }
+
+    /* ==========================================================================
+       SITE FOOTER (Kurumsal 3 Sütunlu Yapı)
+       ========================================================================== */
+    .site-footer {
+      background: var(--navy-deep);
+      color: #ffffff;
+      padding: 60px clamp(16px, 4vw, 56px) 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .footer-top-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-brand-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #ffffff;
+      margin: 0 0 10px;
+      display: inline-block;
+    }
+    .footer-brand-col p {
+      color: rgba(255,255,255,.65);
+      font-size: .88rem;
+      line-height: 1.65;
+      margin: 0 0 20px;
+      max-width: 320px;
+    }
+    .footer-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+    .footer-back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .footer-col-title {
+      font-size: .82rem;
+      font-weight: 750;
+      color: rgba(255,255,255,.9);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+    .footer-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links-list a {
+      color: rgba(255,255,255,.68);
+      font-size: .86rem;
+      transition: color .2s ease;
+    }
+    .footer-links-list a:hover {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom-copyright {
+      padding-top: 30px;
+      text-align: center;
+      font-size: .84rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* Dil Paneli Görünürlük Kontrolü */
+    .lang-panel { display: none; }
+    .lang-panel.is-active { display: block; }
+
+    @media (max-width: 768px) {
+      .footer-top-grid { grid-template-columns: 1fr; gap: 32px; }
+      .faq-contact-card { flex-direction: column; align-items: flex-start; }
+      .faq-question { padding: 18px 20px; font-size: 1rem; }
+      .faq-answer { padding: 0 20px 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SABİT ÜST BAR (littleGENIUS & WordLegend Gezintisi)
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="brand-group">
+      <!-- 1. En solda Sarı "Geri" Butonu: Her zaman Ana Platform littleGENIUS -->
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Platformuna Dön">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        <span>littleGENIUS</span>
+      </a>
+
+      <!-- Ayırıcı İnce Çizgi -->
+      <div class="brand-divider" aria-hidden="true"></div>
+
+      <!-- 2. Hemen Yanında Beyaz Font ile Ürün Linki: WordLegend index.html Sayfasına Yönlendirir -->
+      <a class="app-brand-link" href="./" id="backToAppBtn" aria-label="WordLegend Ana Sayfasına Dön">
+        <span id="backToAppText">WORDLEGEND</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <div class="language-switch" aria-label="Dil / Language">
+        <button type="button" data-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc-page">
+    <div class="doc-container">
+
+      <!-- ====================================================================
+           TÜRKÇE İÇERİK PANELİ (TR)
+           ==================================================================== -->
+      <div class="lang-panel is-active" id="panel-tr">
+        <div class="doc-header">
+          <div class="doc-badge">YARDIM & DESTEK</div>
+          <h1>Sık Sorulan Sorular (SSS)</h1>
+          <p class="doc-intro">WordLegend hakkında merak ettiğiniz oyun modları, özellikler ve abonelik detaylarına buradan ulaşabilirsiniz.</p>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              WordLegend nedir?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              WordLegend, kelime dağarcığınızı geliştirmek ve zihinsel bilişsel becerilerinizi eğlenerek pekiştirmek için tasarlanmış modern bir kelime tahmin oyunudur. Her gün yeni kelimelerle 3 harften 6 harfe kadar farklı kelime uzunlukları ve farklı oyun modları ile oynayabilirsiniz.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Oyun Modları nedir?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              Kelime tahmin etme deneyiminizi daha keyifli ve heyecanlı bir seviyeye taşımak üzere geliştirdiğimiz birbirinden farklı oyun modlarını deneyimleyebilirsiniz:<br><br>
+              <strong>Günlük Meydan Okuma:</strong> Günde sadece 1 kere oynanabilen ve sadece 6 harfli özel bir kelime bulmacasıdır. Enerji harcamadan oyunu oynayabilir ve yüksek puan kazanarak sıralama listelerinde üst basamaklara yükselebilirsiniz.<br><br>
+              <strong>Standart Mod:</strong> Belirli bir süre ve 5 tahmin hakkı ile gizli kelimeyi bulun! Seviye ilerleyin ve puan kazanın.<br>
+              <strong>Zor Mod:</strong> Belirli bir süre ve yalnızca tek bir tahmin hakkı ile kelimeyi bulun! Yüksek risk, yüksek seviye ilerlemesi ve puan ödülü sunar.<br>
+              <strong>Süresiz Mod:</strong> Süre baskısı olmadan 5 tahmin hakkı ile sakin bir tempoda kelimeyi bulun. Bu oyun modunda seviye ilerlemesi ve puan ödülü bulunmamaktadır.<br>
+              <strong>Sınırsız Mod:</strong> Süre ve tahmin hakkı sınırı olmadan rahatça kelimeyi bulun. Bu modda da seviye ilerlemesi ve puan ödülü yer almaz.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Hangi dil seçenekleri ile kelime tahmin oyunu oynayabilirim?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              WordLegend kelime oyununu; Ayarlar / Dil menüsünden yapacağınız tercihle hem Türkçe (TDK standartları) hem de İngilizce (Oxford standartları) oynayabilirsiniz. Dil tercihinizi dilediğiniz an tek dokunuşla değiştirebilirsiniz.<br><br>
+              Her iki dil seçeneği için de istisnai olarak etik, argo veya teknik nedenlerden ötürü bazı kelimeler oyun havuzuna dahil edilmemiş olabilir.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Günlük kelime oynama sınırı var mı?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              Hayır! Her gün dilediğiniz kadar kelime çözebilir ve kelime bilginizi geliştirmeye devam edebilirsiniz.<br><br>
+              Yalnızca <strong>“Günlük Meydan Okuma”</strong> modu, o güne özel tek bir kelime içerdiğinden her gün yalnızca bir defa oynanabilmektedir.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Sıralama listeleri neye göre yapılıyor?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              İstatistik sayfasında yer alan tüm sıralama ve skor tablosu; seçmiş olduğunuz kelime uzunluğu veya oyun modu (Günlük Meydan Okuma, Standart ve Zor) fark etmeksizin, toplam oynadığınız oyun adedi ve doğru tahmin ettiğiniz kelime sayısının kombine puanlama algoritmasına göre hesaplanmaktadır.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              WordLegend Pro satın almak ne sağlar?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              WordLegend Pro paketi ile oyun deneyiminizi zirveye taşıyacak ayrıcalıklara erişim kazanırsınız:<br><br>
+              • <strong>Her gün ücretsiz 20 Enerji</strong> yüklemesi yapılır.<br>
+              • <strong>Her ay ücretsiz 5.000 Puan</strong> hesabınıza otomatik tanımlanır.<br>
+              • <strong>“Kelimelerim”</strong> sayfasının kilidi açılır; oyun performansınıza göre kişiselleştirilmiş sonuçlarınıza ve geçmiş sözlüğünüze sınırsız erişirsiniz.<br>
+              • Sıralama ve lig listelerinde adınızın yanında size özel <strong>“Pro” rozeti</strong> görüntülenir.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Paket satın aldıktan sonra iptal edebilir miyim?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              • <strong>Puan Paketleri:</strong> Mini, Standart, Mega ve Ultra puan paketleri tek seferlik tüketilebilir dijital içerik olduğundan iptal veya iade edilemez.<br>
+              • <strong>WordLegend Pro Aylık Abonelik:</strong> Aboneliğinizi Apple App Store veya Google Play abonelik ayarlarınızdan istediğiniz zaman durdurabilir ve iptal edebilirsiniz. Bu durumda mevcut Pro haklarınızı fatura kesim tarihinizin son anına kadar kullanmaya devam edersiniz.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-contact-card">
+          <div class="faq-contact-info">
+            <h3>Aradığınız cevabı bulamadınız mı?</h3>
+            <p>Destek ekibimiz sorularınızı yanıtlamaktan memnuniyet duyar.</p>
+          </div>
+          <a class="faq-contact-btn" href="./#contact" id="contactSupportBtnTr">
+            Bize Ulaşın →
+          </a>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           İNGİLİZCE İÇERİK PANELİ (EN)
+           ==================================================================== -->
+      <div class="lang-panel" id="panel-en">
+        <div class="doc-header">
+          <div class="doc-badge">HELP & SUPPORT</div>
+          <h1>Frequently Asked Questions (FAQ)</h1>
+          <p class="doc-intro">Find answers to the most common questions regarding WordLegend gameplay, game modes, subscriptions, and rules.</p>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              What is WordLegend?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              WordLegend is a modern word guessing and puzzle game engineered to expand your vocabulary and exercise cognitive faculties in an enjoyable format. Every day you can solve new puzzles ranging from 3 to 6 letter words across various engaging game modes.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              What are the game modes?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              Experience diverse gameplay modes crafted to enrich your word-hunting adventure:<br><br>
+              <strong>Daily Challenges:</strong> A unique 6-letter word challenge playable once per calendar day. Play without spending energy and earn bonus leaderboard points.<br><br>
+              <strong>Standard Mode:</strong> Uncover the hidden word within a set time limit and 5 attempts! Level up and earn score points.<br>
+              <strong>Hard Mode:</strong> Find the word under time constraints with only a single guess! High risk, rewarding progression.<br>
+              <strong>Timeless Mode:</strong> Solve words at your own pace with 5 attempts and no timer. Level progression and point bonuses are disabled in this casual mode.<br>
+              <strong>Unlimited Mode:</strong> Discover words with zero time constraints and limitless attempts. Ideal for relaxed vocabulary practice.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Which language options are available?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              You can play WordLegend in both Turkish and English by selecting your preference under Settings / Language. You may switch languages at any time with a single tap.<br><br>
+              In both languages, certain terms may be omitted from the dictionary pool due to ethical, slang, or technical considerations.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Is there a daily word limit?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              No! You are free to solve as many words as you desire every single day.<br><br>
+              Only the <strong>“Daily Challenges”</strong> mode is restricted to one playthrough per day, featuring a specially curated word for that day.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              How are leaderboards calculated?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              All rankings and standings on the Stats leaderboard are computed based on your total games played and the number of successfully guessed words, regardless of chosen word length or active game mode (Daily Challenges, Standard, Hard).
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              What does WordLegend Pro provide?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              Upgrading to WordLegend Pro unlocks an array of premium benefits:<br><br>
+              • <strong>20 free Energy refills</strong> delivered daily.<br>
+              • <strong>5,000 free Points</strong> credited to your profile every month.<br>
+              • Full access to the <strong>“My Words”</strong> portal: review your personalized gameplay archive, stats, and personal dictionary.<br>
+              • An exclusive <strong>“Pro” badge</strong> displayed proudly beside your name across leaderboards.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Can I cancel purchased packages?
+              <span class="faq-plus">+</span>
+            </div>
+            <div class="faq-answer">
+              • <strong>Point Packages:</strong> Mini, Standard, Mega, and Ultra bundles are one-time consumable digital items and are strictly non-refundable.<br>
+              • <strong>WordLegend Pro Monthly Subscription:</strong> You can cancel your recurring subscription at any time via your Apple ID or Google Play Store account settings. Your Pro benefits remain active until the end of the current billing cycle.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-contact-card">
+          <div class="faq-contact-info">
+            <h3>Still have questions?</h3>
+            <p>Our player support team will be happy to assist you.</p>
+          </div>
+          <a class="faq-contact-btn" href="./#contact" id="contactSupportBtnEn">
+            Contact Us →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER (Kurumsal 3 Sütunlu Yapı)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <!-- 1. Kolon: Marka Tanıtımı -->
+        <div class="footer-brand-col">
+          <span class="footer-brand-title">littleGENIUS</span>
+          <p id="footerBrandText">Fikirleri gerçeğe dönüştüren bağımsız dijital stüdyo. Özgün mobil oyunlar ve yaratıcı dijital deneyimler.</p>
+          <a class="footer-back-link" href="../">
+            <span>← littleGENIUS Ana Sayfa</span>
+          </a>
+        </div>
+
+        <!-- 2. Kolon: WordLegend Menüsü -->
+        <div>
+          <h4 class="footer-col-title" id="footerColPages">Sayfalar</h4>
+          <ul class="footer-links-list">
+            <li><a href="./#how-to-play" id="footNavHow">Nasıl Oynanır</a></li>
+            <li><a href="./#features" id="footNavFeatures">Özellikler</a></li>
+            <li><a href="./#modes" id="footNavModes">Paketler & Modlar</a></li>
+            <li><a href="./#contact" id="footNavContact">İletişim</a></li>
+            <li><a href="./#download" id="footNavDownload">Oyunu İndir</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Kolon: Yasal Belgeler -->
+        <div>
+          <h4 class="footer-col-title" id="footerColLegal">Yasal</h4>
+          <ul class="footer-links-list">
+            <li><a href="faq.html" style="color:var(--gold); font-weight:700;" id="footLinkFaq">Sıkça Sorulan Sorular (SSS)</a></li>
+            <li><a href="terms-of-service.html" id="footLinkTos">Kullanım Koşulları (TOS)</a></li>
+            <li><a href="privacy-policy.html" id="footLinkPp">Gizlilik Politikası (PP)</a></li>
+            <li><a href="support.html" id="footLinkSupport">Destek & İletişim</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-copyright">
+        Copyright © 2026, a product of littleGenius
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       AKILLI DİL YÖNETİMİ & AKORDİYON SCRİPTİ
+       ========================================================================== -->
+  <script>
+    const uiTranslations = {
+      tr: {
+        pageTitle: "WordLegend - Sıkça Sorulan Sorular (SSS) · littleGENIUS",
+        metaDesc: "WordLegend Sıkça Sorulan Sorular: Oyun modları, günlük meydan okumalar, WordLegend Pro aboneliği, sıralama ve paketler hakkında merak edilenler.",
+        backToApp: "WORDLEGEND",
+        footerBrand: "Fikirleri gerçeğe dönüştüren bağımsız dijital stüdyo. Özgün mobil oyunlar ve yaratıcı dijital deneyimler.",
+        colPages: "Sayfalar",
+        colLegal: "Yasal",
+        navHow: "Nasıl Oynanır",
+        navFeatures: "Özellikler",
+        navModes: "Paketler & Modlar",
+        navContact: "İletişim",
+        navDownload: "Oyunu İndir",
+        linkFaq: "Sıkça Sorulan Sorular (SSS)",
+        linkTos: "Kullanım Koşulları (TOS)",
+        linkPp: "Gizlilik Politikası (PP)",
+        linkSupport: "Destek & İletişim"
+      },
+      en: {
+        pageTitle: "WordLegend - Frequently Asked Questions (FAQ) · littleGENIUS",
+        metaDesc: "WordLegend Frequently Asked Questions: Learn about game modes, Daily Challenges, WordLegend Pro, leaderboards, and packages.",
+        backToApp: "WORDLEGEND",
+        footerBrand: "An independent digital studio turning ideas into reality. Original mobile games and creative digital experiences.",
+        colPages: "Pages",
+        colLegal: "Legal",
+        navHow: "How to Play",
+        navFeatures: "Features",
+        navModes: "Packs & Modes",
+        navContact: "Contact Us",
+        navDownload: "Play Now",
+        linkFaq: "Frequently Asked Questions (FAQ)",
+        linkTos: "Terms of Service (TOS)",
+        linkPp: "Privacy Policy (PP)",
+        linkSupport: "Support & Contact"
+      }
+    };
+
+    function setLanguage(activeLang) {
+      document.documentElement.lang = activeLang;
+
+      // Panelleri Aç/Kapat
+      document.getElementById("panel-tr").classList.toggle("is-active", activeLang === "tr");
+      document.getElementById("panel-en").classList.toggle("is-active", activeLang === "en");
+
+      // Butonları Güncelle
+      document.querySelectorAll("[data-lang]").forEach(btn => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.lang === activeLang));
+      });
+
+      // Başlık ve Meta Güncelle
+      document.getElementById("pageTitle").textContent = uiTranslations[activeLang].pageTitle;
+      document.getElementById("pageMetaDesc").setAttribute("content", uiTranslations[activeLang].metaDesc);
+      document.getElementById("backToAppText").textContent = uiTranslations[activeLang].backToApp;
+
+      // Footer Metinlerini Güncelle
+      document.getElementById("footerBrandText").textContent = uiTranslations[activeLang].footerBrand;
+      document.getElementById("footerColPages").textContent = uiTranslations[activeLang].colPages;
+      document.getElementById("footerColLegal").textContent = uiTranslations[activeLang].colLegal;
+      document.getElementById("footNavHow").textContent = uiTranslations[activeLang].navHow;
+      document.getElementById("footNavFeatures").textContent = uiTranslations[activeLang].navFeatures;
+      document.getElementById("footNavModes").textContent = uiTranslations[activeLang].navModes;
+      document.getElementById("footNavContact").textContent = uiTranslations[activeLang].navContact;
+      document.getElementById("footNavDownload").textContent = uiTranslations[activeLang].navDownload;
+      document.getElementById("footLinkFaq").textContent = uiTranslations[activeLang].linkFaq;
+      document.getElementById("footLinkTos").textContent = uiTranslations[activeLang].linkTos;
+      document.getElementById("footLinkPp").textContent = uiTranslations[activeLang].linkPp;
+      document.getElementById("footLinkSupport").textContent = uiTranslations[activeLang].linkSupport;
+
+      // Seçili dille alt linkleri parametreli tut
+      if (document.getElementById("footLinkTos")) document.getElementById("footLinkTos").href = `terms-of-service.html?lang=${activeLang}`;
+      if (document.getElementById("footLinkPp")) document.getElementById("footLinkPp").href = `privacy-policy.html?lang=${activeLang}`;
+      if (document.getElementById("backToAppBtn")) document.getElementById("backToAppBtn").href = `./?lang=${activeLang}`;
+
+      // LocalStorage'a kaydet (Ana siteyle senkron)
+      try {
+        localStorage.setItem("littleGENIUSLanguage", activeLang);
+      } catch (e) {}
+    }
+
+    // Dil Butonlarına Tıklama Olayı
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
+
+    // Akordiyon Tıklama Mantığı
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const container = item.closest('.faq-container');
+        const allItems = container.querySelectorAll('.faq-item');
+        
+        allItems.forEach(i => {
+          if (i !== item) {
+            i.classList.remove('active');
+          }
+        });
+        
+        item.classList.toggle('active');
+      });
+    });
+
+    // Otomatik Başlangıç Dili Belirleme Mantığı
+    function initLanguage() {
+      // 1. URL Parametresi Kontrolü (?lang=en veya ?lang=tr) -> App Store/Google Play inceleyicileri için
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get("lang");
+      if (urlLang === "en" || urlLang === "tr") {
+        setLanguage(urlLang);
+        return;
+      }
+
+      // 2. LocalStorage Kontrolü (Ziyaretçinin sitede daha önce seçtiği dil)
+      try {
+        const storedLang = localStorage.getItem("littleGENIUSLanguage");
+        if (storedLang === "en" || storedLang === "tr") {
+          setLanguage(storedLang);
+          return;
+        }
+      } catch (e) {}
+
+      // 3. Tarayıcı Dili Kontrolü
+      const browserLang = (navigator.language || navigator.userLanguage || "tr").toLowerCase();
+      if (browserLang.startsWith("tr")) {
+        setLanguage("tr");
+      } else {
+        setLanguage("en");
+      }
+    }
+
+    initLanguage();
+  </script>
+</body>
+</html>
