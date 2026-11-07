@@ -1267,7 +1267,7 @@
               <div class="form-checkbox-group">
                 <input type="checkbox" id="userConsent" required>
                 <label for="userConsent" data-i18n="formConsent">
-                  littleGENIUS tarafından bilgilendirilme almayı kabul ediyorum. Gizliliğinizi nasıl koruduğumuz hakkında bilgi için <a id="formPrivacyLink" href="privacy-policy-tr.html" target="_blank">Gizlilik Politikası</a>'nı inceleyin.
+                  littleGENIUS tarafından bilgilendirilme almayı kabul ediyorum. Gizliliğinizi nasıl koruduğumuz hakkında bilgi için <a id="formPrivacyLink" href="privacy-policy.html" target="_blank">Gizlilik Politikası</a>'nı inceleyin.
                 </label>
               </div>
 
@@ -1307,9 +1307,9 @@
         <div>
           <h4 class="footer-col-title" data-i18n="footerColLegal">Legal</h4>
           <ul class="footer-links-list">
-            <li><a id="footerFaq" href="faq-tr.html" data-i18n="linkFaq">Frequently Asked Questions (FAQ)</a></li>
-            <li><a id="footerTos" href="terms-of-service-tr.html" data-i18n="linkTos">Terms of Service (TOS)</a></li>
-            <li><a id="footerPp" href="privacy-policy-tr.html" data-i18n="linkPp">Privacy Policy (PP)</a></li>
+            <li><a id="footerFaq" href="faq.html" data-i18n="linkFaq">Frequently Asked Questions (FAQ)</a></li>
+            <li><a id="footerTos" href="terms-of-service.html" data-i18n="linkTos">Terms of Service (TOS)</a></li>
+            <li><a id="footerPp" href="privacy-policy.html" data-i18n="linkPp">Privacy Policy (PP)</a></li>
             <li><a id="footerSupport" href="support.html" data-i18n="linkSupport">Support & Contact</a></li>
           </ul>
         </div>
@@ -1389,7 +1389,7 @@
         formEmail: "Email",
         formName: "Full Name",
         formMessage: "How can we help you?",
-        formConsent: "I agree to receive communications from littleGENIUS. Review our <a id='formPrivacyLink' href='privacy-policy-en.html' target='_blank'>Privacy Policy</a> to learn how we safeguard your data.",
+        formConsent: "I agree to receive communications from littleGENIUS. Review our <a id='formPrivacyLink' href='privacy-policy.html?lang=en' target='_blank'>Privacy Policy</a> to learn how we safeguard your data.",
         btnSubmit: "Send Message",
         btnSending: "Sending...",
         msgSuccess: "Thank you! Your message has been sent successfully. We will respond shortly.",
@@ -1468,7 +1468,7 @@
         formEmail: "E-posta",
         formName: "İsim & Soyisim",
         formMessage: "Size nasıl yardımcı olabiliriz?",
-        formConsent: "littleGENIUS tarafından bilgilendirilme almayı kabul ediyorum. Gizliliğinizi nasıl koruduğumuz hakkında bilgi için <a id='formPrivacyLink' href='privacy-policy-tr.html' target='_blank'>Gizlilik Politikası</a>'nı inceleyin.",
+        formConsent: "littleGENIUS tarafından bilgilendirilme almayı kabul ediyorum. Gizliliğinizi nasıl koruduğumuz hakkında bilgi için <a id='formPrivacyLink' href='privacy-policy.html?lang=tr' target='_blank'>Gizlilik Politikası</a>'nı inceleyin.",
         btnSubmit: "Gönder",
         btnSending: "Gönderiliyor...",
         msgSuccess: "Teşekkürler! Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.",
@@ -1500,16 +1500,15 @@
         button.setAttribute("aria-pressed", String(button.dataset.lang === nextLanguage));
       });
 
-      const suffix = nextLanguage === "en" ? "-en.html" : "-tr.html";
       const faqEl = document.getElementById("footerFaq");
       const tosEl = document.getElementById("footerTos");
       const ppEl = document.getElementById("footerPp");
       const formPpEl = document.getElementById("formPrivacyLink");
 
-      if (faqEl) faqEl.href = `faq${suffix}`;
-      if (tosEl) tosEl.href = `terms-of-service${suffix}`;
-      if (ppEl) ppEl.href = `privacy-policy${suffix}`;
-      if (formPpEl) formPpEl.href = `privacy-policy${suffix}`;
+      if (faqEl) faqEl.href = `faq.html?lang=${nextLanguage}`;
+      if (tosEl) tosEl.href = `terms-of-service.html?lang=${nextLanguage}`;
+      if (ppEl) ppEl.href = `privacy-policy.html?lang=${nextLanguage}`;
+      if (formPpEl) formPpEl.href = `privacy-policy.html?lang=${nextLanguage}`;
 
       try {
         localStorage.setItem("littleGENIUSLanguage", nextLanguage);
