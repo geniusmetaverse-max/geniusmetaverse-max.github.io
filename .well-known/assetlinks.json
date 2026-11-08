@@ -9,5 +9,15 @@
         "BB:97:0B:71:52:76:65:9B:04:0F:B4:C0:1D:95:84:50:B6:C2:78:36:57:BD:F2:5F:C6:B3:B3:CB:53:2E:AB:38"
       ]
     }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.geniusmetaverse.wordlegendtr",
+      "sha256_cert_fingerprints": [
+        "33:B6:70:48:EA:D7:1A:8A:9E:FC:EE:EE:AF:3C:8C:13:74:9D:3C:B8:37:4A:67:FF:0D:8A:BC:6A:77:8A:DF:4B"
+      ]
+    }
   }
 ]
