@@ -8,6 +8,26 @@
   <meta name="description" content="WordLegend: Kelimelerle efsaneleşin! Binlerce seviye, zengin tematik paketler ve iki dilli sözlük altyapısıyla zihninizi geliştiren kelime bulmaca oyunu.">
   <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
+  
+  <!-- Akıllı QR / Cihaz Yönlendirici: Telefon kamerasıyla QR okutulduğunda anında ilgili mağazaya yönlendirir -->
+  <script>
+    (function checkSmartRedirect() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('go') === 'store' || params.has('download') || params.has('qr')) {
+          var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+          var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+          var isAndroid = /android/i.test(ua);
+
+          if (isIOS) {
+            window.location.replace("https://apps.apple.com/us/app/word-legend-word-puzzle-game/id6765661559");
+          } else if (isAndroid) {
+            window.location.replace("https://play.google.com/store/apps/details?id=com.geniusmetaverse.wordlegendtr");
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
   <style>
     :root {
       --navy: #101a31;
@@ -388,15 +408,21 @@
       }
     }
     .hero-card-img {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 20px;
-      border-radius: 26px;
+      width: min(100%, 230px);
+      height: auto;
+      max-height: 190px;
+      margin: 0 auto 16px;
       object-fit: contain;
-      filter: drop-shadow(0 14px 28px rgba(0,0,0,.3));
-      border: 2px solid rgba(255,255,255,.8);
-      background: rgba(255, 255, 255, .96);
-      padding: 8px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      display: block;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 24px rgba(255, 190, 26, 0.38));
+      transition: transform 0.3s ease;
+    }
+    .hero-card:hover .hero-card-img {
+      transform: scale(1.04);
     }
     .hero-card h3 {
       margin: 0 0 8px;
@@ -1243,7 +1269,7 @@
 
           <div class="qr-showcase">
             <div class="qr-frame">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=https%3A%2F%2Flittlegenius.tr%2Fwordlegend" onerror="this.onerror=null;this.src='./wl_logo.png'" alt="WordLegend QR Code">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=https%3A%2F%2Flittlegenius.tr%2Fwordlegend%3Fgo%3Dstore" onerror="this.onerror=null;this.src='./wl_logo.png'" alt="WordLegend QR Code">
             </div>
             <p data-i18n="qrCaption">Telefonunuzun kamerasıyla QR kodu tarayarak oyunu anında indirin.</p>
           </div>
