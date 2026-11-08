@@ -196,7 +196,7 @@
       isolation: isolate;
       padding: calc(var(--header-h) + 50px) clamp(20px, 6vw, 90px) 70px;
       color: #fff;
-      background: #091730 url("./wl_hero.png") center right / cover no-repeat;
+      background: #081124 url("./WL_Background.png") center center / cover no-repeat;
       overflow: hidden;
     }
     .hero::before {
@@ -205,9 +205,21 @@
       inset: 0;
       z-index: 1;
       background:
-        radial-gradient(circle at 75% 40%, rgba(231, 196, 91, 0.08) 0%, transparent 60%),
-        linear-gradient(90deg, rgba(8,23,47,.82) 0%, rgba(8,23,47,.56) 50%, rgba(8,23,47,.22) 100%),
-        linear-gradient(0deg, rgba(8,23,47,.68) 0%, transparent 45%);
+        radial-gradient(circle at 75% 40%, rgba(231, 196, 91, 0.12) 0%, transparent 60%),
+        linear-gradient(90deg, rgba(8,17,36,.88) 0%, rgba(8,17,36,.65) 50%, rgba(8,17,36,.35) 100%),
+        linear-gradient(0deg, rgba(8,17,36,.75) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Uzayda Yolculuk / Starfield Animasyon Canvas'ı */
+    .space-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.9;
     }
 
     .hero-container {
@@ -357,9 +369,23 @@
       backdrop-filter: blur(24px) saturate(160%);
       -webkit-backdrop-filter: blur(24px) saturate(160%);
       box-shadow:
-        0 24px 50px rgba(0, 0, 0, 0.28),
+        0 24px 50px rgba(0, 0, 0, 0.35),
+        0 0 35px rgba(231, 196, 91, 0.18),
         inset 0 1px 1px rgba(255, 255, 255, 0.45);
       text-align: center;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+      100% {
+        transform: translateY(0);
+      }
     }
     .hero-card-img {
       width: 140px;
@@ -1008,10 +1034,11 @@
   <main>
     <!-- HERO BÖLÜMÜ -->
     <section class="hero" aria-label="WordLegend Tanıtımı">
+      <canvas id="spaceCanvas" class="space-canvas"></canvas>
       <div class="hero-container">
         <div class="hero-content">
           <div class="app-badge">
-            <img class="app-badge-icon" src="./wl_logo.png" onerror="this.onerror=null;this.src='../Word%20Legend.png'" alt="WordLegend Logo">
+            <img class="app-badge-icon" src="./wl_logo.png" alt="WordLegend Logo">
             <span data-i18n="badgeText">LEGENDARY WORD PUZZLE</span>
           </div>
           <h1 data-i18n="heroTitle">Kelimelerle Efsaneleşin, <span class="gold-text">Zirveye Hükmedin.</span></h1>
@@ -1047,7 +1074,7 @@
         <!-- Vitrin Kartı -->
         <div class="hero-preview-box">
           <div class="hero-card">
-            <img class="hero-card-img" src="./wl_logo.png" onerror="this.onerror=null;this.src='../Word%20Legend.png'" alt="WordLegend App Icon">
+            <img class="hero-card-img" src="./wl_logo.png" alt="WordLegend App Icon">
             <h3>WordLegend</h3>
             <p data-i18n="cardSubtitle">Ultimate Crossword & Vocabulary Quest</p>
           </div>
@@ -1060,25 +1087,25 @@
       <div class="section-inner">
         <div class="section-header text-center">
           <p class="section-kicker" data-i18n="stepsKicker">EFSANEVİ BİR YOLCULUK</p>
-          <h2 data-i18n="stepsTitle">3 Adımda Bulmaca Ustalığı</h2>
-          <p class="section-intro" data-i18n="stepsIntro">Harfleri birbirine bağlayın, kare bulmaca panosunu tamamlayın ve efsaneler arasındaki yerinizi alın.</p>
+          <h2 data-i18n="stepsTitle">3 Adımda Bulmaca & Düello Ustalığı</h2>
+          <p class="section-intro" data-i18n="stepsIntro">Harfleri bağlayın, arkadaşlarınızla gerçek zamanlı düellolara katılın ve liderlik kürsüsüne çıkın.</p>
         </div>
 
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">01</div>
             <h3 data-i18n="step1Title">Harfleri Birleştirin</h3>
-            <p data-i18n="step1Desc">Dairesel çarkta harfleri parmağınızla birleştirerek bulmaca tablosundaki gizli sözcükleri tek tek açığa çıkarın.</p>
+            <p data-i18n="step1Desc">Dairesel harf çarkında parmağınızı kaydırarak gizli kelimeleri bulun, kare bulmaca panosunu çözün.</p>
           </div>
           <div class="step-card">
             <div class="step-number">02</div>
-            <h3 data-i18n="step2Title">Tematik Paketleri Çözün</h3>
-            <p data-i18n="step2Desc">Doğa, tarih, bilim ve sanat temalı özel seviye paketlerini tamamlayarak yeni dünyaların kapısını aralayın.</p>
+            <h3 data-i18n="step2Title">Arkadaşına Meydan Oku (1v1 Düello)</h3>
+            <p data-i18n="step2Desc">6 haneli özel kod ile arkadaşını davet et; 4, 5 ve 6 harfli kelimelerde hızını ve kelime dağarcığını yarıştır!</p>
           </div>
           <div class="step-card">
             <div class="step-number">03</div>
-            <h3 data-i18n="step3Title">Efsane Rozetlerini Kazanın</h3>
-            <p data-i18n="step3Desc">Zorlu bulmacalarda jokerlerinizi akıllıca kullanın, bonus kelimeler toplayın ve usta oyuncu unvanına erişin.</p>
+            <h3 data-i18n="step3Title">Kupaları & Efsane Rozetlerini Topla</h3>
+            <p data-i18n="step3Desc">Haftalık ve aylık liglerde zirveye çıkın, büyük kupa ödülü ve 8 özel düello rozetinin sahibi olun.</p>
           </div>
         </div>
       </div>
@@ -1090,7 +1117,7 @@
         <div class="section-header text-center">
           <p class="section-kicker" data-i18n="featKicker">GÜÇLÜ ÖZELLİKLER</p>
           <h2 data-i18n="featTitle">Klasik Bulmacanın Modern ve Zengin Hali</h2>
-          <p class="section-intro" data-i18n="featIntro">WordLegend, derin kelime arşivi ve akıcı oyun mekanikleriyle zihinsel gelişiminizi keyifli bir maceraya dönüştürür.</p>
+          <p class="section-intro" data-i18n="featIntro">WordLegend, tek kişilik zengin bulmaca serüvenini canlı 1v1 düellolar ve tematik etkinliklerle taçlandırır.</p>
         </div>
 
         <div class="features-grid">
@@ -1098,16 +1125,16 @@
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/></svg>
             </div>
-            <h3 data-i18n="feat1Title">5.000+ Benzersiz Seviye</h3>
-            <p data-i18n="feat1Desc">Kolay seviyelerden başlayıp gerçek bir kelime ustasına dönüşeceğiniz uçsuz bucaksız bir içerik zenginliği.</p>
+            <h3 data-i18n="feat1Title">Canlı 1v1 Kelime Düelloları</h3>
+            <p data-i18n="feat1Desc">Arkadaşlarınla veya rakiplerle 24 saat içinde yarış; Standart ve Zor modlarda kelime ustalığını kanıtla.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
             </div>
-            <h3 data-i18n="feat2Title">Çift Dilli Sözlük Havuzu</h3>
-            <p data-i18n="feat2Desc">Hem Türkçe TDK sözlük kurallarına hem kapsamlı İngilizce sözlük standartlarına uygun güvenilir sözcük yapısı.</p>
+            <h3 data-i18n="feat2Title">Dönemsel Tematik Etkinlikler</h3>
+            <p data-i18n="feat2Desc">Özel gün ve bayramlara özel süreli etkinliklere katıl, tematik kelimeleri çözerek özel rozetler ve hediyeler kazan.</p>
           </div>
 
           <div class="feature-card">
@@ -1115,31 +1142,31 @@
               <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
             </div>
             <h3 data-i18n="feat3Title">İnternetsiz (Offline) Oynama</h3>
-            <p data-i18n="feat3Desc">Uçakta, metroda veya seyahatlerinizde veri paketi gerektirmeden tam fonksiyonel oyun deneyimi.</p>
+            <p data-i18n="feat3Desc">Uçakta, metroda veya seyahatlerinizde internet bağlantısı gerekmeden binlerce seviyeyi kesintisiz çözün.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.28 19.59 10.6 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
             </div>
-            <h3 data-i18n="feat4Title">Bilişsel Zihin Antrenmanı</h3>
-            <p data-i18n="feat4Desc">Kelime çağrışımını hızlandırır, odaklanmayı güçlendirir ve günlük stresinizi azaltarak zihni dinlendirir.</p>
+            <h3 data-i18n="feat4Title">Çift Dilli Zengin Sözlük (TR & EN)</h3>
+            <p data-i18n="feat4Desc">Türkçe TDK kurallarına ve İngilizce sözlük standartlarına tam uyumlu, titizlikle filtrelenmiş devasa kelime hazinesi.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
             </div>
-            <h3 data-i18n="feat5Title">Özel Güçlendiriciler & İpuçları</h3>
-            <p data-i18n="feat5Desc">Zorlandığınız anlarda ampul, büyüteç ve roket jokerlerini kullanarak bulmacayı zahmetsizce çözün.</p>
+            <h3 data-i18n="feat5Title">Günün Kelimesi & Ana Ekran Widget'ı</h3>
+            <p data-i18n="feat5Desc">Her sabah yenilenen gizli kelime bulmacası! Android ve iOS ana ekran widget'ı ile serinizi tek dokunuşla sürdürün.</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
             </div>
-            <h3 data-i18n="feat6Title">Göz Alıcı Temalar</h3>
-            <p data-i18n="feat6Desc">Yüksek çözünürlüklü doğa manzaraları, sakinleştirici renkler ve konforlu tipografi.</p>
+            <h3 data-i18n="feat6Title">Haftalık & Aylık Liderlik Ligi</h3>
+            <p data-i18n="feat6Desc">Düellolarda puanları toplayın; haftanın ve ayın 1.'si olarak kupa ödüllerini ve büyük hediye puanlarını kazanın.</p>
           </div>
         </div>
       </div>
@@ -1156,27 +1183,27 @@
 
         <div class="modes-grid">
           <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode1Tag">TEMATİK YOLCULUK</span>
+            <span class="mode-tag" data-i18n="mode1Tag">TEMATİK MACERA</span>
             <h4 data-i18n="mode1Title">Bölüm Paketleri</h4>
-            <p data-i18n="mode1Desc">Doğa, okyanus, uzay ve antik medeniyet temaları eşliğinde yüzlerce seviyelik ana macera.</p>
+            <p data-i18n="mode1Desc">Doğa, okyanus, uzay ve antik medeniyet temaları eşliğinde binlerce seviyelik rahatlatıcı klasik bulmaca yolculuğu.</p>
           </div>
 
           <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode2Tag">GÜNLÜK SERİ</span>
-            <h4 data-i18n="mode2Title">Günün Bulmacası</h4>
-            <p data-i18n="mode2Desc">Her gün sabah yenilenen taptaze bulmaca ile zihninizi açın ve galibiyet serinizi yükseltin.</p>
+            <span class="mode-tag" data-i18n="mode2Tag">ZİRVE REKABETİ</span>
+            <h4 data-i18n="mode2Title">1v1 Kelime Düellosu</h4>
+            <p data-i18n="mode2Desc">4, 5 ve 6 harfli kelimelerle ister Standart ister Zor modda arkadaşına kod gönder, düelloya katıl ve rakibini geride bırak.</p>
           </div>
 
           <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode3Tag">DEDEKTİF MODU</span>
-            <h4 data-i18n="mode3Title">Bonus Kelime Avı</h4>
-            <p data-i18n="mode3Desc">Tabloda yer almayan alternatif gizli kelimeleri keşfederek altın kavanozunu doldurun.</p>
+            <span class="mode-tag" data-i18n="mode3Tag">GÜNLÜK SERİ & WIDGET</span>
+            <h4 data-i18n="mode3Title">Günün Kelimesi</h4>
+            <p data-i18n="mode3Desc">Her sabah yenilenen gizli kelimeyi tahmin et; kazanma serini koru ve ana ekran widget'ından anında takip et.</p>
           </div>
 
           <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode4Tag">USTALIK LİGİ</span>
-            <h4 data-i18n="mode4Title">Efsaneler Turnuvası</h4>
-            <p data-i18n="mode4Desc">En çok kelime türetenler listesinde üst sıralara çıkın, özel efsane rozetlerini toplayın.</p>
+            <span class="mode-tag" data-i18n="mode4Tag">HEDİYE & KUPA LİGİ</span>
+            <h4 data-i18n="mode4Title">Tematik Etkinlikler & Ligler</h4>
+            <p data-i18n="mode4Desc">Özel gün temalı etkinlik görevlerini tamamla; haftalık ve aylık liderlik tablosunda 1. olarak kupa ve 1000 puan hediye kazan!</p>
           </div>
         </div>
       </div>
@@ -1197,14 +1224,14 @@
             <p data-i18n="dlParagraph">İster Google Play'den ister App Store'dan ücretsiz indirip hemen ilk bulmacanızı çözmeye başlayabilirsiniz.</p>
             
             <div class="download-badges">
-              <a class="store-badge" href="https://play.google.com/store/apps/developer?id=littleGenius" target="_blank" rel="noopener" aria-label="Google Play'den İndir">
+              <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.geniusmetaverse.wordlegendtr" target="_blank" rel="noopener" aria-label="Google Play'den İndir">
                 <svg viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.986 1.986 0 0 1-.61-.954V2.768c.15-.365.367-.698.61-.954zm11.246 11.247l2.257 2.258-11.238 6.486 8.981-8.744zm0-2.122L5.875 2.195l11.237 6.486-2.257 2.258zm1.06 1.06l3.473-2.005c.875-.505.875-1.326 0-1.831L15.915 12z"/></svg>
                 <div>
                   <span class="sub">GET IT ON</span>
                   <span class="main">Google Play</span>
                 </div>
               </a>
-              <a class="store-badge" href="https://apps.apple.com/developer/littlegenius" target="_blank" rel="noopener" aria-label="App Store'dan İndir">
+              <a class="store-badge" href="https://apps.apple.com/us/app/word-legend-word-puzzle-game/id6765661559" target="_blank" rel="noopener" aria-label="App Store'dan İndir">
                 <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.54c.64-.78 1.08-1.87.96-2.96-.93.04-2.06.62-2.73 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.1-.49 2.74-1.27z"/></svg>
                 <div>
                   <span class="sub">DOWNLOAD ON THE</span>
@@ -1216,7 +1243,7 @@
 
           <div class="qr-showcase">
             <div class="qr-frame">
-              <img src="./wl_qr_code.png" onerror="this.onerror=null;this.src='./wl_logo.png'" alt="WordLegend QR Code">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=https%3A%2F%2Flittlegenius.tr%2Fwordlegend" onerror="this.onerror=null;this.src='./wl_logo.png'" alt="WordLegend QR Code">
             </div>
             <p data-i18n="qrCaption">Telefonunuzun kamerasıyla QR kodu tarayarak oyunu anında indirin.</p>
           </div>
@@ -1307,7 +1334,7 @@
         <div>
           <h4 class="footer-col-title" data-i18n="footerColLegal">Legal</h4>
           <ul class="footer-links-list">
-            <li><a id="footerFaq" href="faq.html" data-i18n="linkFaq">Frequently Asked Questions (FAQ)</a></li>
+            <li><a id="footerFaq" href="fqa.html" data-i18n="linkFaq">Frequently Asked Questions (FAQ)</a></li>
             <li><a id="footerTos" href="terms-of-service.html" data-i18n="linkTos">Terms of Service (TOS)</a></li>
             <li><a id="footerPp" href="privacy-policy.html" data-i18n="linkPp">Privacy Policy (PP)</a></li>
             <li><a id="footerSupport" href="support.html" data-i18n="linkSupport">Support & Contact</a></li>
@@ -1339,44 +1366,44 @@
         metaDict: "Oxford & TDK Dictionaries",
         cardSubtitle: "Ultimate Crossword & Vocabulary Quest",
         stepsKicker: "A LEGENDARY JOURNEY",
-        stepsTitle: "Master the Grid in 3 Steps",
-        stepsIntro: "Swipe to link letters, discover hidden vocabulary words and complete the crossword grid.",
+        stepsTitle: "Master Crosswords & Duels in 3 Steps",
+        stepsIntro: "Connect letters, challenge friends to real-time 1v1 duels, and claim your place on the leaderboard.",
         step1Title: "Connect the Letters",
-        step1Desc: "Slide your finger across the letter circle to form words and solve each crossword puzzle.",
-        step2Title: "Explore Thematic Packs",
-        step2Desc: "Embark on voyages through nature, science, world history and literature packages.",
-        step3Title: "Collect Legend Badges",
-        step3Desc: "Use tactical boosters, hunt down bonus words and earn your spot on the hall of fame.",
+        step1Desc: "Slide your finger across the circular wheel to uncover hidden words and complete crossword grids.",
+        step2Title: "Challenge a Friend (1v1 Duel)",
+        step2Desc: "Invite a friend via a 6-digit duel code; test your speed and vocabulary across 4, 5, and 6-letter words!",
+        step3Title: "Earn Trophies & Legend Badges",
+        step3Desc: "Climb the weekly and monthly leagues, claim grand trophy prizes, and unlock 8 exclusive duel badges.",
         featKicker: "GAME CAPABILITIES",
-        featTitle: "The Modern Evolution of Crossword Puzzles",
-        featIntro: "WordLegend brings together encyclopedic depth and soothing aesthetics for the quintessential brain workout.",
-        feat1Title: "5,000+ Unique Levels",
-        feat1Desc: "Expansive puzzle journeys scaling from gentle warm-ups to intellectual mastermind challenges.",
-        feat2Title: "Dual Linguistic Engine",
-        feat2Desc: "Fully verified English Oxford dictionary and Turkish TDK reference vocabularies.",
+        featTitle: "Modern Evolution of Crosswords & Duels",
+        featIntro: "WordLegend blends timeless crossword relaxation with high-stakes 1v1 PvP duels and seasonal events.",
+        feat1Title: "Live 1v1 Word Duels",
+        feat1Desc: "Challenge friends with 6-digit codes; battle across Standard and Hard modes to prove your vocabulary supremacy.",
+        feat2Title: "Seasonal Thematic Events",
+        feat2Desc: "Participate in festive limited-time events, solve themed words, and unlock exclusive badges and coin rewards.",
         feat3Title: "100% Offline Freedom",
-        feat3Desc: "Play on flights, subways, or travels with zero mobile data or Wi-Fi required.",
-        feat4Title: "Cognitive Memory Exercise",
-        feat4Desc: "Sharpens linguistic association, focus, and rapid memory recall while reducing daily fatigue.",
-        feat5Title: "Tactical Boosters & Hints",
-        feat5Desc: "Use magnifying glasses, rockets, and lightbulbs to reveal elusive tricky letter spots.",
-        feat6Title: "Stunning Ambient Themes",
-        feat6Desc: "High-definition peaceful landscapes, calming color palettes, and legible typography.",
-        modesKicker: "PACKAGES & MODES",
+        feat3Desc: "Play thousands of single-player crossword levels on flights, subways, or travels with zero mobile data required.",
+        feat4Title: "Dual Linguistic Engine (TR & EN)",
+        feat4Desc: "Fully verified against Oxford English and Turkish TDK references for reliable, high-standard gameplay.",
+        feat5Title: "Daily Crossword & Home Widget",
+        feat5Desc: "A fresh brain workout every morning! Keep your streak alive with iOS and Android home screen widgets.",
+        feat6Title: "Weekly & Monthly Leaderboard Leagues",
+        feat6Desc: "Earn duel points and climb the rankings; finish #1 of the week or month to claim champion trophies and gifts.",
+        modesKicker: "PACKS & MODES",
         modesTitle: "Diverse Experiences, Rich Options",
-        modesIntro: "Whether taking a relaxing 5-minute break or pursuing high scores, WordLegend adapts to you.",
+        modesIntro: "Whether relaxing with peaceful crosswords or racing friends in fast-paced duels, WordLegend has it all.",
         mode1Tag: "THEMATIC ODYSSEY",
-        mode1Title: "Chapter Packs",
-        mode1Desc: "Journey through ocean, cosmos, civilization, and flora chapters with hundreds of levels.",
-        mode2Tag: "DAILY STREAK",
-        mode2Title: "Daily Crossword",
-        mode2Desc: "A fresh puzzle every single morning to keep your winning streak going strong.",
-        mode3Tag: "DETECTIVE MODE",
-        mode3Title: "Bonus Word Hunt",
-        mode3Desc: "Discover obscure off-grid words to fill your treasure bank with extra coins.",
-        mode4Tag: "MASTERY LEAGUE",
-        mode4Title: "Tournament of Legends",
-        mode4Desc: "Climb the global ranks by solving puzzles swiftly and collect legendary badges.",
+        mode1Title: "Chapter Adventure Packs",
+        mode1Desc: "Embark on voyages through nature, ocean, cosmos, and ancient civilization chapters across thousands of levels.",
+        mode2Tag: "PVP COMPETITION",
+        mode2Title: "1v1 Word Duel",
+        mode2Desc: "Battle in 4, 5, or 6-letter words across Standard or Hard mode. Share a 6-digit code or rematch recent rivals.",
+        mode3Tag: "DAILY STREAK & WIDGET",
+        mode3Title: "Daily Word Challenge",
+        mode3Desc: "Guess the secret daily word every morning; build your winning streak and inspect it directly via home screen widgets.",
+        mode4Tag: "CHAMPIONSHIP LEAGUE",
+        mode4Title: "Thematic Events & Leagues",
+        mode4Desc: "Complete festive event milestones; dominate weekly and monthly duel rankings to win grand trophies and coin gifts!",
         dlKicker: "GET STARTED NOW",
         dlTitle: "Play WordLegend for Free",
         dlIntro: "Download to your iOS or Android device in seconds and embark on your word quest today.",
@@ -1418,44 +1445,44 @@
         metaDict: "TDK & Oxford Standartları",
         cardSubtitle: "Efsanevi Kelime Bulmacası & Sözcük Avı",
         stepsKicker: "EFSANEVİ BİR YOLCULUK",
-        stepsTitle: "3 Adımda Bulmaca Ustalığı",
-        stepsIntro: "Harfleri birbirine bağlayın, kare bulmaca panosunu tamamlayın ve efsaneler arasındaki yerinizi alın.",
+        stepsTitle: "3 Adımda Bulmaca & Düello Ustalığı",
+        stepsIntro: "Harfleri bağlayın, arkadaşlarınızla gerçek zamanlı düellolara katılın ve liderlik kürsüsüne çıkın.",
         step1Title: "Harfleri Birleştirin",
-        step1Desc: "Dairesel çarkta harfleri parmağınızla birleştirerek bulmaca tablosundaki gizli sözcükleri tek tek açığa çıkarın.",
-        step2Title: "Tematik Paketleri Çözün",
-        step2Desc: "Doğa, tarih, bilim ve sanat temalı özel seviye paketlerini tamamlayarak yeni dünyaların kapısını aralayın.",
-        step3Title: "Efsane Rozetlerini Kazanın",
-        step3Desc: "Zorlu bulmacalarda jokerlerinizi akıllıca kullanın, bonus kelimeler toplayın ve usta oyuncu unvanına erişin.",
+        step1Desc: "Dairesel harf çarkında parmağınızı kaydırarak gizli kelimeleri bulun, kare bulmaca panosunu çözün.",
+        step2Title: "Arkadaşına Meydan Oku (1v1 Düello)",
+        step2Desc: "6 haneli özel kod ile arkadaşını davet et; 4, 5 ve 6 harfli kelimelerde hızını ve kelime dağarcığını yarıştır!",
+        step3Title: "Kupaları & Efsane Rozetlerini Topla",
+        step3Desc: "Haftalık ve aylık liglerde zirveye çıkın, büyük kupa ödülü ve 8 özel düello rozetinin sahibi olun.",
         featKicker: "GÜÇLÜ ÖZELLİKLER",
         featTitle: "Klasik Bulmacanın Modern ve Zengin Hali",
-        featIntro: "WordLegend, derin kelime arşivi ve akıcı oyun mekanikleriyle zihinsel gelişiminizi keyifli bir maceraya dönüştürür.",
-        feat1Title: "5.000+ Benzersiz Seviye",
-        feat1Desc: "Kolay seviyelerden başlayıp gerçek bir kelime ustasına dönüşeceğiniz uçsuz bucaksız bir içerik zenginliği.",
-        feat2Title: "Çift Dilli Sözlük Havuzu",
-        feat2Desc: "Hem Türkçe TDK sözlük kurallarına hem kapsamlı İngilizce sözlük standartlarına uygun güvenilir sözcük yapısı.",
+        featIntro: "WordLegend, tek kişilik zengin bulmaca serüvenini canlı 1v1 düellolar ve tematik etkinliklerle taçlandırır.",
+        feat1Title: "Canlı 1v1 Kelime Düelloları",
+        feat1Desc: "Arkadaşlarınla veya rakiplerle 24 saat içinde yarış; Standart ve Zor modlarda kelime ustalığını kanıtla.",
+        feat2Title: "Dönemsel Tematik Etkinlikler",
+        feat2Desc: "Özel gün ve bayramlara özel süreli etkinliklere katıl, tematik kelimeleri çözerek özel rozetler ve hediyeler kazan.",
         feat3Title: "İnternetsiz (Offline) Oynama",
-        feat3Desc: "Uçakta, metroda veya seyahatlerinizde veri paketi gerektirmeden tam fonksiyonel oyun deneyimi.",
-        feat4Title: "Bilişsel Zihin Antrenmanı",
-        feat4Desc: "Kelime çağrışımını hızlandırır, odaklanmayı güçlendirir ve günlük stresinizi azaltarak zihni dinlendirir.",
-        feat5Title: "Özel Güçlendiriciler & İpuçları",
-        feat5Desc: "Zorlandığınız anlarda ampul, büyüteç ve roket jokerlerini kullanarak bulmacayı zahmetsizce çözün.",
-        feat6Title: "Göz Alıcı Temalar",
-        feat6Desc: "Yüksek çözünürlüklü doğa manzaraları, sakinleştirici renkler ve konforlu tipografi.",
+        feat3Desc: "Uçakta, metroda veya seyahatlerinizde internet bağlantısı gerekmeden binlerce seviyeyi kesintisiz çözün.",
+        feat4Title: "Çift Dilli Zengin Sözlük (TR & EN)",
+        feat4Desc: "Türkçe TDK kurallarına ve İngilizce sözlük standartlarına tam uyumlu, titizlikle filtrelenmiş devasa kelime hazinesi.",
+        feat5Title: "Günün Kelimesi & Ana Ekran Widget'ı",
+        feat5Desc: "Her sabah yenilenen gizli kelime bulmacası! Android ve iOS ana ekran widget'ı ile serinizi tek dokunuşla sürdürün.",
+        feat6Title: "Haftalık & Aylık Liderlik Ligi",
+        feat6Desc: "Düellolarda puanları toplayın; haftanın ve ayın 1.'si olarak kupa ödüllerini ve büyük hediye puanlarını kazanın.",
         modesKicker: "PAKETLER & MODLAR",
         modesTitle: "Farklı Deneyimler, Zengin Seçenekler",
         modesIntro: "İster sakin bir bulmaca molası verin, ister arkadaşlarınızla yarışın; WordLegend her moduyla yanınızda.",
-        mode1Tag: "TEMATİK YOLCULUK",
+        mode1Tag: "TEMATİK MACERA",
         mode1Title: "Bölüm Paketleri",
-        mode1Desc: "Doğa, okyanus, uzay ve antik medeniyet temaları eşliğinde yüzlerce seviyelik ana macera.",
-        mode2Tag: "GÜNLÜK SERİ",
-        mode2Title: "Günün Bulmacası",
-        mode2Desc: "Her gün sabah yenilenen taptaze bulmaca ile zihninizi açın ve galibiyet serinizi yükseltin.",
-        mode3Tag: "DEDEKTİF MODU",
-        mode3Title: "Bonus Kelime Avı",
-        mode3Desc: "Tabloda yer almayan alternatif gizli kelimeleri keşfederek altın kavanozunu doldurun.",
-        mode4Tag: "USTALIK LİGİ",
-        mode4Title: "Efsaneler Turnuvası",
-        mode4Desc: "En çok kelime türetenler listesinde üst sıralara çıkın, özel efsane rozetlerini toplayın.",
+        mode1Desc: "Doğa, okyanus, uzay ve antik medeniyet temaları eşliğinde binlerce seviyelik rahatlatıcı klasik bulmaca yolculuğu.",
+        mode2Tag: "ZİRVE REKABETİ",
+        mode2Title: "1v1 Kelime Düellosu",
+        mode2Desc: "4, 5 ve 6 harfli kelimelerle ister Standart ister Zor modda arkadaşına kod gönder, düelloya katıl ve rakibini geride bırak.",
+        mode3Tag: "GÜNLÜK SERİ & WIDGET",
+        mode3Title: "Günün Kelimesi",
+        mode3Desc: "Her sabah yenilenen gizli kelimeyi tahmin et; kazanma serini koru ve ana ekran widget'ından anında takip et.",
+        mode4Tag: "HEDİYE & KUPA LİGİ",
+        mode4Title: "Tematik Etkinlikler & Ligler",
+        mode4Desc: "Özel gün temalı etkinlik görevlerini tamamla; haftalık ve aylık liderlik tablosunda 1. olarak kupa ve 1000 puan hediye kazan!",
         dlKicker: "HEMEN BAŞLAYIN",
         dlTitle: "WordLegend'ı Ücretsiz Oynayın",
         dlIntro: "iOS veya Android cihazınıza saniyeler içinde indirin; kelime maceranızı bugün başlatın.",
@@ -1505,7 +1532,7 @@
       const ppEl = document.getElementById("footerPp");
       const formPpEl = document.getElementById("formPrivacyLink");
 
-      if (faqEl) faqEl.href = `faq.html?lang=${nextLanguage}`;
+      if (faqEl) faqEl.href = `fqa.html?lang=${nextLanguage}`;
       if (tosEl) tosEl.href = `terms-of-service.html?lang=${nextLanguage}`;
       if (ppEl) ppEl.href = `privacy-policy.html?lang=${nextLanguage}`;
       if (formPpEl) formPpEl.href = `privacy-policy.html?lang=${nextLanguage}`;
@@ -1564,6 +1591,86 @@
         btnSubmitText.textContent = translations[language].btnSubmit;
       }
     });
+
+    // --- UZAYDA YOLCULUK / STARFIELD HERO ANİMASYONU ---
+    (function initSpaceAnimation() {
+      const canvas = document.getElementById('spaceCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = 0;
+      let height = 0;
+      const NUM_STARS = 120;
+      const stars = [];
+
+      function resize() {
+        const hero = canvas.parentElement;
+        if (!hero) return;
+        width = canvas.width = hero.offsetWidth;
+        height = canvas.height = hero.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Star {
+        constructor() {
+          this.reset(true);
+        }
+        reset(initial = false) {
+          this.x = (Math.random() - 0.5) * (width || 800) * 1.5;
+          this.y = (Math.random() - 0.5) * (height || 600) * 1.5;
+          this.z = initial ? Math.random() * (width || 800) : (width || 800);
+          this.size = Math.random() * 1.4 + 0.6;
+          const rand = Math.random();
+          if (rand > 0.8) {
+            this.color = '#fce79a'; // Sıcak Altın
+          } else if (rand > 0.6) {
+            this.color = '#00f0ff'; // Kozmik Camgöbeği
+          } else {
+            this.color = '#ffffff'; // Saf Yıldız Beyazı
+          }
+        }
+        update(speed) {
+          this.z -= speed;
+          if (this.z <= 0) {
+            this.reset(false);
+          }
+        }
+        draw() {
+          if (this.z <= 0) return;
+          const k = 200 / this.z;
+          const px = this.x * k + width / 2;
+          const py = this.y * k + height / 2;
+
+          if (px < 0 || px >= width || py < 0 || py >= height) return;
+
+          const r = Math.max(0.6, (1 - this.z / width) * this.size * 2.5);
+          const alpha = Math.min(1, Math.max(0.15, (1 - this.z / width) * 1.3));
+
+          ctx.beginPath();
+          ctx.arc(px, py, r, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.globalAlpha = alpha;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < NUM_STARS; i++) {
+        stars.push(new Star());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < stars.length; i++) {
+          stars[i].update(1.2);
+          stars[i].draw();
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
   </script>
 </body>
 </html>
