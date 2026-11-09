@@ -1,1 +1,746 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a31">
+  <title id="pageTitle">Pawia - Gizlilik Politikası · littleGENIUS</title>
+  <meta name="description" id="pageMetaDesc" content="Pawia Pet Care Gizlilik Politikası: Evcil hayvanınızın sağlık verileri, aşı kayıtları ve gizliliğinizin Apple ekosisteminde nasıl korunduğu hakkında detaylı bilgilendirme.">
+  <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
+  <style>
+    :root {
+      --navy: #101a31;
+      --navy-2: #172541;
+      --navy-deep: #0a1324;
+      --ink: #182238;
+      --ink-soft: #2c3850;
+      --muted: #5e6c84;
+      --gold: #e7c45b;
+      --gold-hover: #f1d36f;
+      --cream: #f5f3ee;
+      --white: #ffffff;
+      --border-subtle: #e6e4dc;
+      --header-h: 68px;
+      --paw-accent: #ff8a5b;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ==========================================================================
+       SITE HEADER (littleGENIUS Standart Üst Bar)
+       ========================================================================== */
+    .site-header {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 auto;
+      min-height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 clamp(16px, 4vw, 56px);
+      color: #fff;
+      background: rgba(13, 24, 47, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 4px 24px rgba(0,0,0,.25);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-size: .8rem;
+      font-weight: 750;
+      letter-spacing: -.01em;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+      box-shadow: 0 2px 10px rgba(231,196,91,.28);
+    }
+    .back-btn:hover {
+      background: var(--gold-hover);
+      transform: translateX(-2px);
+      box-shadow: 0 4px 14px rgba(231,196,91,.4);
+    }
+    .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .brand-divider {
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .app-brand-link {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      transition: color .2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .app-brand-link:hover { color: var(--gold); }
+    .app-brand-link svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--gold);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 4px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .language-switch button {
+      border: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .language-switch button[aria-pressed="true"] {
+      background: var(--gold);
+      color: var(--navy-deep);
+      box-shadow: 0 2px 8px rgba(231, 196, 91, 0.3);
+    }
+
+    /* ==========================================================================
+       DOKÜMAN ALANI (Temiz, Okunaklı & Kurumsal Kart)
+       ========================================================================== */
+    .doc-page {
+      padding: calc(var(--header-h) + 40px) clamp(16px, 4vw, 40px) 90px;
+      min-height: 100vh;
+    }
+
+    .doc-container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      padding: clamp(32px, 6vw, 64px);
+      box-shadow: 0 12px 40px rgba(16,26,49,.05);
+    }
+
+    /* Doküman Üst Başlık & Meta */
+    .doc-header {
+      text-align: center;
+      padding-bottom: 32px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .doc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(231, 196, 91, 0.15);
+      color: #946f17;
+      border: 1px solid rgba(231, 196, 91, 0.35);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .doc-header h1 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: clamp(1.9rem, 3.8vw, 2.7rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.2;
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(12px, 2.5vw, 24px);
+      font-size: .86rem;
+      color: var(--muted);
+    }
+    .doc-meta-item strong { color: var(--ink); }
+
+    /* Hızlı İndeks (İçindekiler) */
+    .doc-toc {
+      background: #faf9f6;
+      border: 1px solid #ebe8de;
+      border-radius: 18px;
+      padding: 22px 26px;
+      margin-bottom: 40px;
+    }
+    .doc-toc h3 {
+      margin: 0 0 12px;
+      font-size: .95rem;
+      font-weight: 750;
+      color: var(--navy);
+      letter-spacing: -.01em;
+    }
+    .doc-toc ol {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 24px;
+      font-size: .85rem;
+    }
+    .doc-toc a {
+      color: #3b5998;
+      transition: color .2s ease;
+    }
+    .doc-toc a:hover {
+      color: var(--navy);
+      text-decoration: underline;
+    }
+
+    /* İçerik Bölümleri */
+    .doc-section {
+      margin-bottom: 44px;
+    }
+    .doc-section:last-child { margin-bottom: 0; }
+
+    .doc-section h2 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .doc-section h2::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .doc-section h3 {
+      margin: 22px 0 10px;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 750;
+    }
+
+    .doc-section p {
+      margin: 0 0 14px;
+      color: var(--ink-soft);
+      font-size: .98rem;
+    }
+
+    .doc-section ul {
+      margin: 0 0 18px;
+      padding-left: 22px;
+      color: var(--ink-soft);
+      font-size: .98rem;
+    }
+    .doc-section li {
+      margin-bottom: 8px;
+    }
+
+    /* Özel Vurgu / İletişim Kutuları */
+    .callout-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #3b82f6;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 20px 0;
+      font-size: .93rem;
+      color: #334155;
+    }
+    .callout-box strong { color: var(--navy); }
+
+    .contact-highlight {
+      background: #fdfaf0;
+      border: 1px solid #f3e6be;
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .contact-email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 700;
+      transition: all .2s ease;
+    }
+    .contact-email-link:hover {
+      background: var(--navy-2);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* Dil Panelleri */
+    .lang-panel { display: none; }
+    .lang-panel.is-active { display: block; }
+
+    /* ==========================================================================
+       SITE FOOTER (Kurumsal 3 Sütunlu Yapı)
+       ========================================================================== */
+    .site-footer {
+      background: #091325;
+      color: #fff;
+      padding: 60px clamp(20px, 6vw, 90px) 32px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .footer-inner {
+      width: min(1160px, 100%);
+      margin: 0 auto;
+    }
+    .footer-top-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: clamp(30px, 5vw, 60px);
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+    .footer-brand-desc {
+      margin: 0;
+      color: rgba(255,255,255,.62);
+      font-size: .88rem;
+      line-height: 1.65;
+      max-width: 440px;
+    }
+    .footer-col-title {
+      margin: 0 0 16px;
+      font-size: .82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--gold);
+    }
+    .footer-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links-list a {
+      color: rgba(255,255,255,.72);
+      font-size: .88rem;
+      transition: color .2s ease;
+    }
+    .footer-links-list a:hover {
+      color: var(--gold);
+    }
+    .footer-bottom-copyright {
+      padding-top: 32px;
+      text-align: center;
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    @media (max-width: 768px) {
+      .doc-toc ol { grid-template-columns: 1fr; }
+      .footer-top-grid { grid-template-columns: 1fr; gap: 32px; }
+      .doc-header h1 { font-size: 1.85rem; }
+      .contact-highlight { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       ÜST MENÜ (littleGENIUS Standart Header)
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="brand-group">
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Sayfasına Dön">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        <span>littleGENIUS</span>
+      </a>
+      <div class="brand-divider" aria-hidden="true"></div>
+      <a class="app-brand-link" id="backToAppBtn" href="./" aria-label="Pawia Ana Sayfası">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.1 0 2 .9 2 2v1.1c.6.2 1.2.5 1.7.9l.8-.8c.8-.8 2-.8 2.8 0s.8 2 0 2.8l-.8.8c.4.5.7 1.1.9 1.7H20c1.1 0 2 .9 2 2s-.9 2-2 2h-1.1c-.2.6-.5 1.2-.9 1.7l.8.8c.8.8.8 2 0 2.8s-2 .8-2.8 0l-.8-.8c-.5.4-1.1.7-1.7.9V20c0 1.1-.9 2-2 2s-2-.9-2-2v-1.1c-.6-.2-1.2-.5-1.7-.9l-.8.8c-.8.8-2 .8-2.8 0s-.8-2 0-2.8l.8-.8c-.4-.5-.7-1.1-.9-1.7H4c-1.1 0-2-.9-2-2s.9-2 2-2h1.1c.2-.6.5-1.2.9-1.7l-.8-.8c-.8-.8-.8-2 0-2.8s2-.8 2.8 0l.8.8c.5-.4 1.1-.7 1.7-.9V4c0-1.1.9-2 2-2zm0 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/></svg>
+        <span id="backToAppText">PAWIA</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <div class="language-switch" aria-label="Language Selector">
+        <button type="button" data-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       DOKÜMAN GÖVDESİ (TÜRKÇE VE İNGİLİZCE PANELLER)
+       ========================================================================== -->
+  <main class="doc-page">
+    <div class="doc-container">
+
+      <!-- ==================== TÜRKÇE PANEL ==================== -->
+      <article class="lang-panel is-active" id="panel-tr" lang="tr">
+        <header class="doc-header">
+          <div class="doc-badge">Yasal Metin & Uyumluluk</div>
+          <h1>Gizlilik Politikası</h1>
+          <div class="doc-meta">
+            <span class="doc-meta-item"><strong>Uygulama:</strong> Pawia Pet Care</span>
+            <span class="doc-meta-item"><strong>Son Güncelleme:</strong> Kasım 2026</span>
+            <span class="doc-meta-item"><strong>Geliştirici:</strong> littleGENIUS</span>
+          </div>
+        </header>
+
+        <nav class="doc-toc" aria-label="İçindekiler">
+          <h3>İçindekiler</h3>
+          <ol>
+            <li><a href="#tr-sec-1">Toplanan Bilgiler ve Kullanım Amaçları</a></li>
+            <li><a href="#tr-sec-2">Üçüncü Taraf Takip ve Reklamlar</a></li>
+            <li><a href="#tr-sec-3">Veri Güvenliği ve Silme</a></li>
+            <li><a href="#tr-sec-4">Çocukların Gizliliği</a></li>
+            <li><a href="#tr-sec-5">Haklarınız ve İletişim</a></li>
+          </ol>
+        </nav>
+
+        <section class="doc-section">
+          <p><strong>Pawia</strong> ("biz", "uygulamamız") olarak sizlerin ve can dostlarınızın gizliliğine en üst düzeyde önem veriyoruz. Pawia, <strong>"Önce Gizlilik" (Privacy-by-Design)</strong> ilkesiyle tasarlanmıştır: evcil hayvanlarınıza ve size ait tüm veriler yalnızca size aittir.</p>
+        </section>
+
+        <section class="doc-section" id="tr-sec-1">
+          <h2>1. Toplanan Bilgiler ve Kullanım Amaçları</h2>
+          <ul>
+            <li><strong>Evcil Hayvan & Sağlık Bilgileri:</strong> Uygulamaya girdiğiniz evcil hayvan adı, türü, doğum tarihi, aşı takvimi, ilaç planlaması, randevular ve kilo takibi verileri doğrudan cihazınızda ve kişisel Apple iCloud hesabınızda saklanır. Tarafımızca işletilen, verilerinizi toplayan harici bir üçüncü taraf sunucu bulunmamaktadır.</li>
+            <li><strong>Fotoğraflar ve Kamera Erişimi:</strong> Kamera ve Fotoğraf Galerisi izni, yalnızca evcil dostunuzun profil fotoğrafını belirlemeniz ve anı albümü oluşturmanız amacıyla istenir. Fotoğraftaki evcil hayvan türü doğrulaması, Apple Vision teknolojisiyle tamamen cihazınızın içinde (on-device) gerçekleştirilir; fotoğraflarınız hiçbir harici sunucuya iletilmez.</li>
+            <li><strong>Konum Verisi:</strong> Yalnızca uygulama kullanılırken ("Uygulamayı Kullanırken") verilen konum izni, Apple MapKit harita altyapısı üzerinden yakınınızdaki veteriner kliniklerini ve nöbetçi hastaneleri listelemek için kullanılır. Konumunuz asla kaydedilmez, izlenmez ve üçüncü taraflarla paylaşılmaz.</li>
+            <li><strong>Apple ile Giriş Yap (Sign in with Apple):</strong> Giriş yapmayı tercih ettiğinizde yalnızca Apple tarafından sağlanan anonim kullanıcı kimliği ve izniniz dahilindeki ad/e-posta bilgisi kullanılır. Pawia'yı herhangi bir hesap açmadan "Misafir Modu"nda da kullanabilirsiniz.</li>
+            <li><strong>Uygulama İçi Satın Alımlar:</strong> Ömür boyu lisans ve hediye kodu işlemleri doğrudan Apple StoreKit 2 güvencesiyle gerçekleştirilir. Kredi kartı veya fatura bilgilerinize tarafımızca asla erişilemez.</li>
+            <li><strong>Bildirimler:</strong> Aşı, ilaç saati, mama stoğu ve aile görevlerine dair bildirimler doğrudan cihazınızın yerel bildirim sistemi üzerinden kurulur.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="tr-sec-2">
+          <h2>2. Üçüncü Taraf Takip ve Reklamlar</h2>
+          <ul>
+            <li><strong>Reklamsız Deneyim:</strong> Pawia'da hiçbir reklam gösterilmez.</li>
+            <li><strong>Takipçi (Tracker) Bulunmaz:</strong> Uygulamamızda Google AdMob, Meta/Facebook SDK veya kullanıcı hareketlerini izleyen üçüncü taraf veri toplama araçları yer almaz. Verileriniz hiçbir kişi veya kuruma satılmaz.</li>
+            <li><strong>Apple Teknolojileri:</strong> Veri senkronizasyonu Apple'ın CloudKit/iCloud altyapısı üzerinden, Apple Gizlilik Politikası standartlarında yönetilir.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="tr-sec-3">
+          <h2>3. Veri Güvenliği ve Silme</h2>
+          <p>Verileriniz Apple'ın donanımsal şifreleme ve iCloud güvenlik standartlarıyla korunur. Uygulamadan sildiğiniz herhangi bir kayıt veya evcil hayvan profili, cihazınızdan ve iCloud arşivinizden anında kalıcı olarak silinir.</p>
+          <div class="callout-box">
+            <strong>Tam Veri Kontrolü:</strong> Verilerinizi dışa aktarma (export) veya sıfırlama işlemlerini uygulama içerisindeki Ayarlar sekmesinden dilediğiniz zaman gerçekleştirebilirsiniz.
+          </div>
+        </section>
+
+        <section class="doc-section" id="tr-sec-4">
+          <h2>4. Çocukların Gizliliği</h2>
+          <p>Pawia, 13 yaşın altındaki çocuklardan bilerek kişisel veri toplamaz veya talep etmez.</p>
+        </section>
+
+        <section class="doc-section" id="tr-sec-5">
+          <h2>5. Haklarınız ve İletişim</h2>
+          <p>Gizlilik Politikamızla ilgili her türlü soru, öneri ve talepleriniz için bizimle iletişime geçebilirsiniz:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGENIUS Destek Ekibi</strong><br>
+              E-posta: <a href="mailto:info@littlegenius.tr">info@littlegenius.tr</a><br>
+              Web: <a href="https://littlegenius.tr" target="_blank" rel="noopener">https://littlegenius.tr</a>
+            </div>
+            <a class="contact-email-link" href="mailto:info@littlegenius.tr">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>E-posta Gönder</span>
+            </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- ==================== İNGİLİZCE PANEL ==================== -->
+      <article class="lang-panel" id="panel-en" lang="en">
+        <header class="doc-header">
+          <div class="doc-badge">Legal Document & Compliance</div>
+          <h1>Privacy Policy</h1>
+          <div class="doc-meta">
+            <span class="doc-meta-item"><strong>Application:</strong> Pawia Pet Care</span>
+            <span class="doc-meta-item"><strong>Last Updated:</strong> November 2026</span>
+            <span class="doc-meta-item"><strong>Developer:</strong> littleGENIUS</span>
+          </div>
+        </header>
+
+        <nav class="doc-toc" aria-label="Table of Contents">
+          <h3>Table of Contents</h3>
+          <ol>
+            <li><a href="#en-sec-1">Information We Collect and How We Use It</a></li>
+            <li><a href="#en-sec-2">Third-Party Services & Tracking</a></li>
+            <li><a href="#en-sec-3">Data Storage, Security & Retention</a></li>
+            <li><a href="#en-sec-4">Children's Privacy</a></li>
+            <li><a href="#en-sec-5">Your Rights & Contact Us</a></li>
+          </ol>
+        </nav>
+
+        <section class="doc-section">
+          <p>Welcome to <strong>Pawia</strong> ("we", "our", or "the App"). We are committed to protecting your privacy and the privacy of your furry companions. Pawia is built with a <strong>Privacy-by-Design</strong> philosophy: your personal data and your pets' records belong exclusively to you.</p>
+        </section>
+
+        <section class="doc-section" id="en-sec-1">
+          <h2>1. Information We Collect and How We Use It</h2>
+          <ul>
+            <li><strong>Pet Information & Care Records:</strong> Names, species, breeds, birthdates, weights, vaccination histories, medication routines, and vet appointment records entered into Pawia are stored locally on your device and synchronized via your personal Apple iCloud account. We do not operate external third-party servers that harvest or store this data.</li>
+            <li><strong>Photos & Camera Access:</strong> Pawia requests access to your Camera and Photo Library solely to allow you to add avatar images and create a memory album for your pets. Photo species validation (detecting cats or dogs) is performed 100% on-device using Apple's Vision framework. Your photos are never uploaded to any external server.</li>
+            <li><strong>Location Data:</strong> If granted, location access ("While Using the App") is used solely to locate nearby veterinary clinics, pet hospitals, and pet supplies using Apple's native MapKit. Your real-time location is never tracked, stored, or transmitted to third parties.</li>
+            <li><strong>Apple ID & Authentication:</strong> If you choose to sign in with "Sign in with Apple", we receive only the authentication identifier, name, and email authorized by Apple (including private relay emails). You can also use Pawia completely anonymously in Guest Mode.</li>
+            <li><strong>In-App Purchases:</strong> All transactions and promo code redemptions are processed directly by Apple through StoreKit 2. We do not collect or have access to your credit card or billing details.</li>
+            <li><strong>Notifications:</strong> Local notifications for vaccine dates, medication times, food depletion alerts, and family tasks are scheduled and triggered entirely on your device via iOS Notification Services.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-sec-2">
+          <h2>2. Third-Party Services & Tracking</h2>
+          <ul>
+            <li><strong>No Advertisements:</strong> Pawia is 100% ad-free.</li>
+            <li><strong>No Third-Party Analytics or Trackers:</strong> We do not embed third-party tracking libraries, advertising SDKs (such as Google AdMob, Meta Pixel, or data brokers), or cross-app tracking tools.</li>
+            <li><strong>Apple Technologies:</strong> Data synchronization is handled directly by Apple's CloudKit/iCloud ecosystem under Apple's Privacy Policy.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-sec-3">
+          <h2>3. Data Storage, Security & Retention</h2>
+          <p>Your data is protected by Apple's hardware encryption, Secure Enclave, and iCloud security protocols. You retain full control over your data at all times: deleting a pet or record in the App immediately deletes it from your device and your iCloud storage.</p>
+          <div class="callout-box">
+            <strong>Full Data Control:</strong> You have the right to access, export, or delete your data at any time directly within the Settings section of the app.
+          </div>
+        </section>
+
+        <section class="doc-section" id="en-sec-4">
+          <h2>4. Children's Privacy</h2>
+          <p>Pawia does not knowingly collect or solicit personal information from children under the age of 13.</p>
+        </section>
+
+        <section class="doc-section" id="en-sec-5">
+          <h2>5. Your Rights & Contact Us</h2>
+          <p>If you have questions or concerns regarding this Privacy Policy, please contact us at:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGENIUS Support Team</strong><br>
+              Support Email: <a href="mailto:info@littlegenius.tr">info@littlegenius.tr</a><br>
+              Website: <a href="https://littlegenius.tr" target="_blank" rel="noopener">https://littlegenius.tr</a>
+            </div>
+            <a class="contact-email-link" href="mailto:info@littlegenius.tr">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Send Email</span>
+            </a>
+          </div>
+        </section>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER (Kurumsal 3 Sütunlu Yapı)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top-grid">
+        <div class="footer-brand">
+          <h3 class="footer-brand-title">littleGENIUS · Pawia</h3>
+          <p class="footer-brand-desc" id="footerBrandText">Can dostlarımızın yaşam kalitesini artıran, gizlilik odaklı bağımsız dijital deneyimler. Akıllı mobil çözümler ve sevgi dolu pet teknolojileri.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title" id="footerColPages">Sayfalar</h4>
+          <ul class="footer-links-list">
+            <li><a href="./#how-it-works" id="footNavHow">Nasıl Çalışır</a></li>
+            <li><a href="./#features" id="footNavFeatures">Özellikler</a></li>
+            <li><a href="./#modules" id="footNavModes">Bakım Modülleri</a></li>
+            <li><a href="./#contact" id="footNavContact">İletişim</a></li>
+            <li><a href="./#download" id="footNavDownload">Uygulamayı İndir</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title" id="footerColLegal">Yasal</h4>
+          <ul class="footer-links-list">
+            <li><a href="terms-of-service.html" id="footLinkTos">Kullanım Koşulları (TOS)</a></li>
+            <li><a href="privacy-policy.html" style="color:var(--gold); font-weight:700;" id="footLinkPp">Gizlilik Politikası (PP)</a></li>
+            <li><a href="support.html" id="footLinkSupport">Destek & İletişim</a></li>
+            <li><a href="mailto:info@littlegenius.tr">info@littlegenius.tr</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-copyright">
+        Copyright &copy; 2026 littleGENIUS & Pawia Pet Care. Tüm hakları saklıdır.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       AKILLI DİL YÖNETİM SCRİPTİ (Otomatik Algılama + Senkronizasyon)
+       ========================================================================== -->
+  <script>
+    const uiTranslations = {
+      tr: {
+        pageTitle: "Pawia - Gizlilik Politikası · littleGENIUS",
+        metaDesc: "Pawia Pet Care Gizlilik Politikası: Evcil hayvanınızın sağlık verileri, aşı kayıtları ve gizliliğinizin Apple ekosisteminde nasıl korunduğu hakkında detaylı bilgilendirme.",
+        backToApp: "PAWIA",
+        footerBrand: "Can dostlarımızın yaşam kalitesini artıran, gizlilik odaklı bağımsız dijital deneyimler. Akıllı mobil çözümler ve sevgi dolu pet teknolojileri.",
+        colPages: "Sayfalar",
+        colLegal: "Yasal",
+        navHow: "Nasıl Çalışır",
+        navFeatures: "Özellikler",
+        navModes: "Bakım Modülleri",
+        navContact: "İletişim",
+        navDownload: "Uygulamayı İndir",
+        linkTos: "Kullanım Koşulları (TOS)",
+        linkPp: "Gizlilik Politikası (PP)",
+        linkSupport: "Destek & İletişim"
+      },
+      en: {
+        pageTitle: "Pawia - Privacy Policy · littleGENIUS",
+        metaDesc: "Pawia Pet Care Privacy Policy: Learn how your pet's medical data, vaccination logs, and personal privacy are safeguarded in the Apple ecosystem.",
+        backToApp: "PAWIA",
+        footerBrand: "Independent digital studio dedicated to enhancing the quality of life for our pets. Privacy-first mobile experiences crafted with care.",
+        colPages: "Pages",
+        colLegal: "Legal",
+        navHow: "How It Works",
+        navFeatures: "Features",
+        navModes: "Care Modules",
+        navContact: "Contact Us",
+        navDownload: "Download App",
+        linkTos: "Terms of Service (TOS)",
+        linkPp: "Privacy Policy (PP)",
+        linkSupport: "Support & Contact"
+      }
+    };
+
+    function setLanguage(lang) {
+      const activeLang = (lang === "en") ? "en" : "tr";
+      document.documentElement.lang = activeLang;
+
+      // Panelleri Aç/Kapat
+      document.getElementById("panel-tr").classList.toggle("is-active", activeLang === "tr");
+      document.getElementById("panel-en").classList.toggle("is-active", activeLang === "en");
+
+      // Butonları Güncelle
+      document.querySelectorAll("[data-lang]").forEach(btn => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.lang === activeLang));
+      });
+
+      // Başlık ve Meta Güncelle
+      document.getElementById("pageTitle").textContent = uiTranslations[activeLang].pageTitle;
+      document.getElementById("pageMetaDesc").setAttribute("content", uiTranslations[activeLang].metaDesc);
+      document.getElementById("backToAppText").textContent = uiTranslations[activeLang].backToApp;
+
+      // Footer Metinlerini Güncelle
+      document.getElementById("footerBrandText").textContent = uiTranslations[activeLang].footerBrand;
+      document.getElementById("footerColPages").textContent = uiTranslations[activeLang].colPages;
+      document.getElementById("footerColLegal").textContent = uiTranslations[activeLang].colLegal;
+      document.getElementById("footNavHow").textContent = uiTranslations[activeLang].navHow;
+      document.getElementById("footNavFeatures").textContent = uiTranslations[activeLang].navFeatures;
+      document.getElementById("footNavModes").textContent = uiTranslations[activeLang].navModes;
+      document.getElementById("footNavContact").textContent = uiTranslations[activeLang].navContact;
+      document.getElementById("footNavDownload").textContent = uiTranslations[activeLang].navDownload;
+      document.getElementById("footLinkTos").textContent = uiTranslations[activeLang].linkTos;
+      document.getElementById("footLinkPp").textContent = uiTranslations[activeLang].linkPp;
+      document.getElementById("footLinkSupport").textContent = uiTranslations[activeLang].linkSupport;
+
+      if (document.getElementById("footLinkTos")) document.getElementById("footLinkTos").href = `terms-of-service.html?lang=${activeLang}`;
+      if (document.getElementById("footLinkSupport")) document.getElementById("footLinkSupport").href = `support.html?lang=${activeLang}`;
+      if (document.getElementById("backToAppBtn")) document.getElementById("backToAppBtn").href = `./?lang=${activeLang}`;
+
+      // LocalStorage Senkronizasyonu
+      try {
+        localStorage.setItem("littleGENIUSLanguage", activeLang);
+      } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
+
+    function initLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get("lang");
+      if (urlLang === "en" || urlLang === "tr") {
+        setLanguage(urlLang);
+        return;
+      }
+
+      try {
+        const storedLang = localStorage.getItem("littleGENIUSLanguage");
+        if (storedLang === "en" || storedLang === "tr") {
+          setLanguage(storedLang);
+          return;
+        }
+      } catch (e) {}
+
+      const browserLang = (navigator.language || navigator.userLanguage || "tr").toLowerCase();
+      if (browserLang.startsWith("tr")) {
+        setLanguage("tr");
+      } else {
+        setLanguage("en");
+      }
+    }
+
+    initLanguage();
+  </script>
+</body>
+</html>
 
