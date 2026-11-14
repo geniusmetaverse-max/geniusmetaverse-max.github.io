@@ -5,23 +5,17 @@
     <title id="page-title">Yönlendiriliyorsunuz...</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript">
-      // 1. Statik sayfa kısa yollarını ve eski uygulama linklerini anında gerçek HTML dosyalarına yönlendir
+      // 1. Uzantısız veya eski 'fqa' yazımlı linkleri anında doğru .html dosyalarına yönlendir
       (function () {
         var p = (window.location.pathname || "").replace(/\/+$/, "");
         var q = window.location.search || "";
         var map = {
-          "/wordlegend": "/wordlegend/wordlegend_index.html",
-          "/wordlegend/fqa": "/wordlegend/wordlegend_faq.html",
-          "/wordlegend/fqa.html": "/wordlegend/wordlegend_faq.html",
-          "/wordlegend/faq": "/wordlegend/wordlegend_faq.html",
-          "/wordlegend/faq.html": "/wordlegend/wordlegend_faq.html",
-          "/wordlegend/terms-of-service": "/wordlegend/wordlegend_terms_of_service.html",
-          "/wordlegend/terms-of-service.html": "/wordlegend/wordlegend_terms_of_service.html",
-          "/wordlegend/privacy-policy": "/wordlegend/wordlegend_privacy_policy.html",
-          "/wordlegend/privacy-policy.html": "/wordlegend/wordlegend_privacy_policy.html",
-          "/magicmirror": "/magicmirror/magicmirror_index.html",
-          "/reflex": "/reflex/reflex_index.html",
-          "/volexi": "/volexi/volexi_index.html"
+          "/wordlegend/fqa": "/wordlegend/faq.html",
+          "/wordlegend/fqa.html": "/wordlegend/faq.html",
+          "/wordlegend/faq": "/wordlegend/faq.html",
+          "/wordlegend/terms-of-service": "/wordlegend/terms-of-service.html",
+          "/wordlegend/privacy-policy": "/wordlegend/privacy-policy.html",
+          "/wordlegend/support": "/wordlegend/support.html"
         };
         if (map[p]) {
           window.location.replace(map[p] + q);
