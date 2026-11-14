@@ -2,7 +2,7 @@
 <html lang="tr">
   <head>
     <meta charset="utf-8">
-    <title>Magic Mirror | Dijital Gelinlik Provası</title>
+    <title id="page-title">Yönlendiriliyorsunuz...</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       body { background-color: #FFFDF9; text-align: center; padding-top: 12vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #2D2724; margin: 0; }
@@ -17,8 +17,8 @@
   </head>
   <body>
     <div class="container">
-      <div class="title">✨ MAGIC MIRROR</div>
-      <p class="desc">Gelinlik koleksiyonu ve sanal prova kabinine yönlendiriliyorsunuz.</p>
+      <div id="app-title" class="title">✨ MAGIC MIRROR</div>
+      <p id="app-desc" class="desc">Uygulamaya yönlendiriliyorsunuz...</p>
 
       <a id="open-app-btn" href="#" class="btn app-btn">Uygulamada Aç</a>
 
@@ -31,32 +31,53 @@
       var isAndroid = /android/i.test(ua);
       var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-      var host = "geniusmetaverse-max.github.io";
-      var path = window.location.pathname + window.location.search; // örn: /brand/MM_000
-      var iosStore = "https://apps.apple.com/us/app/id6760668920";
-      var androidStore = "https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror";
+      var host = window.location.host || "www.littlegenius.tr";
+      var pathname = window.location.pathname || "/";
+      var path = pathname + window.location.search;
+
+      var isWordLegend = pathname.indexOf("/wordlegend") === 0 || pathname.indexOf("/wl/") === 0 || pathname === "/wl";
+
+      var config = isWordLegend ? {
+        pageTitle: "Word Legend | Kelime Oyunu",
+        title: "🧩 WORD LEGEND",
+        desc: "Word Legend oyununa yönlendiriliyorsunuz.",
+        androidPackage: "com.geniusmetaverse.wordlegendtr",
+        iosScheme: "wordlegend:/" + path,
+        iosStore: "https://www.littlegenius.tr/wordlegend/",
+        androidStore: "https://play.google.com/store/apps/details?id=com.geniusmetaverse.wordlegendtr"
+      } : {
+        pageTitle: "Magic Mirror | Dijital Gelinlik Provası",
+        title: "✨ MAGIC MIRROR",
+        desc: "Gelinlik koleksiyonu ve sanal prova kabinine yönlendiriliyorsunuz.",
+        androidPackage: "com.geniusmetaversemagicmirror",
+        iosScheme: "magicmirror:/" + path.replace(/^\/magicmirror/, ""),
+        iosStore: "https://apps.apple.com/us/app/id6760668920",
+        androidStore: "https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror"
+      };
+
+      document.title = config.pageTitle;
+      document.getElementById("app-title").innerText = config.title;
+      document.getElementById("app-desc").innerText = config.desc;
 
       var openBtn = document.getElementById("open-app-btn");
       var storeBtn = document.getElementById("store-btn");
 
       if (isAndroid) {
-        // Android'de uygulamayı doğrudan açmayı dener, yüklü değilse Play Store'a yönlendirir
         var intentUrl = "intent://" + host + path +
-          "#Intent;scheme=https;package=com.geniusmetaversemagicmirror;" +
-          "S.browser_fallback_url=" + encodeURIComponent(androidStore) + ";end";
+          "#Intent;scheme=https;package=" + config.androidPackage + ";" +
+          "S.browser_fallback_url=" + encodeURIComponent(config.androidStore) + ";end";
         openBtn.href = intentUrl;
-        storeBtn.href = androidStore;
+        storeBtn.href = config.androidStore;
         storeBtn.innerText = "Google Play'den İndir";
         setTimeout(function () { window.location.href = intentUrl; }, 300);
       } else if (isIOS) {
-        // iOS için 'Uygulamada Aç' butonu
-        openBtn.href = "magicmirror:/" + path; // magicmirror://brand/MM_000
-        storeBtn.href = iosStore;
+        openBtn.href = config.iosScheme;
+        storeBtn.href = config.iosStore;
         storeBtn.innerText = "App Store'dan İndir";
       } else {
         openBtn.style.display = "none";
-        storeBtn.href = iosStore;
-        storeBtn.innerText = "App Store / Google Play";
+        storeBtn.href = config.androidStore;
+        storeBtn.innerText = "Mağazada Görüntüle";
       }
     </script>
   </body>
