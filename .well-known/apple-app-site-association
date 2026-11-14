@@ -5,8 +5,7 @@
       {
         "appID": "8CWHKS9DTP.com.geniusmetaverse.wordlegendtr",
         "paths": [
-          "/wordlegend/*",
-          "/wordlegend",
+          "NOT /wordlegend/*.html",
           "/wl/*"
         ]
       },
