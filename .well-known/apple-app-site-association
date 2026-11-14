@@ -16,9 +16,26 @@
           "NOT /wordlegend/*",
           "NOT /wl/*",
           "NOT /geniusmetaverse/*",
+          "NOT /magicmirror/*.html",
+          "/magicmirror/*",
           "/brand/*",
           "/poll/*",
-          "/promo/*"
+          "/promo",
+          "/promo/*",
+          "/style-adviser",
+          "/style-adviser/*",
+          "/gallery",
+          "/gallery/*",
+          "/home",
+          "/home/*",
+          "/magic",
+          "/magic/*",
+          "/catalog",
+          "/catalog/*",
+          "/store",
+          "/store/*",
+          "/profile",
+          "/profile/*"
         ]
       }
     ]
