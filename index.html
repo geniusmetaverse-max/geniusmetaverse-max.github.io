@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101a31">
   <title>littleGENIUS | Ideas Made Real</title>
-  <meta name="description" content="Discover littleGENIUS digital products and mobile apps: Magic Mirror, Volexi, WordLegend and Reflex.">
+  <meta name="description" content="Discover littleGENIUS digital products and mobile apps: Magic Mirror, Volexi, WordLegend, Reflex, Pawia and Soonify.">
   <link rel="icon" type="image/png" href="./favicon_littleGenius.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./favicon_littleGenius.png">
   <style>
@@ -221,7 +221,42 @@
     .about-note { padding: 27px 30px; border-left: 3px solid var(--gold); background: rgba(255,255,255,.64); color: #48546a; font-size: 1rem; line-height: 1.8; }
 
     .apps-section { background: #fff; }
-    .app-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 20px; margin-top: 43px; }
+    .app-category { margin-top: 42px; }
+    .app-category + .app-category { margin-top: 46px; }
+    .app-category-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .app-category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #f5f3ee;
+      border: 1px solid #e6e2d6;
+      color: var(--navy);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .app-category-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .app-category-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #e8e7e2 0%, rgba(232,231,226,0) 100%);
+    }
+    .app-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
     .app-card {
       display: flex; flex-direction: column; align-items: center; gap: 13px; padding: 25px 18px 22px;
       border: 1px solid #e8e7e2; border-radius: 20px; background: #fff; text-align: center; text-decoration: none;
@@ -273,7 +308,9 @@
       .hero-copy p { max-width: 390px; margin-top: 14px; font-size: .94rem; }
       .section { padding: 72px 24px; }
       .about-grid { grid-template-columns: 1fr; gap: 25px; }
-      .app-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 13px; margin-top: 30px; }
+      .app-category { margin-top: 30px; }
+      .app-category + .app-category { margin-top: 34px; }
+      .app-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 13px; }
       .app-card { padding: 17px 12px; }
       .app-card img { width: min(100%, 112px); }
     }
@@ -296,7 +333,7 @@
         <a href="#home" data-i18n="navHome">HOME</a>
         <a href="#about" data-i18n="navAbout">ABOUT</a>
         <a href="#apps" data-i18n="navApps">OUR APPS</a>
-        <a href="#contactus" data-i18n="navContactus">CONTACT US</a>
+        <a href="#contact" data-i18n="navContactus">CONTACT US</a>
       </nav>
       <div class="language-switch" aria-label="Language">
         <button type="button" data-lang="tr" aria-pressed="false">TR</button>
@@ -313,11 +350,17 @@
           <a class="app-slide is-active" href="./magicmirror/" aria-label="Open Magic Mirror">
             <img src="./Magic%20Mirror.png" alt="Magic Mirror app icon">
           </a>
-          <a class="app-slide" href="./volexi/" aria-label="Open Volexi">
-            <img src="./Volexi.png" alt="Volexi app icon">
+          <a class="app-slide" href="./pawia/" aria-label="Open Pawia">
+            <img src="./pawia/pawia_logo.png" alt="Pawia app icon">
+          </a>
+          <a class="app-slide" href="./soonify/" aria-label="Open Soonify">
+            <img src="./soonify/soonify_logo.png" alt="Soonify app icon">
           </a>
           <a class="app-slide" href="./wordlegend/" aria-label="Open WordLegend">
             <img src="./Word%20Legend.png" alt="WordLegend app icon">
+          </a>
+          <a class="app-slide" href="./volexi/" aria-label="Open Volexi">
+            <img src="./Volexi.png" alt="Volexi app icon">
           </a>
           <a class="app-slide" href="./reflex/" aria-label="Open Reflex">
             <img src="./Reflex.png" alt="Reflex app icon">
@@ -331,8 +374,10 @@
           <button class="carousel-arrow" id="previousApp" type="button" aria-label="Previous app">‹</button>
           <div class="carousel-dots" id="carouselDots" aria-label="Choose an app">
             <button type="button" aria-label="Show Magic Mirror" aria-current="true"></button>
-            <button type="button" aria-label="Show Volexi" aria-current="false"></button>
+            <button type="button" aria-label="Show Pawia" aria-current="false"></button>
+            <button type="button" aria-label="Show Soonify" aria-current="false"></button>
             <button type="button" aria-label="Show WordLegend" aria-current="false"></button>
+            <button type="button" aria-label="Show Volexi" aria-current="false"></button>
             <button type="button" aria-label="Show Reflex" aria-current="false"></button>
           </div>
           <button class="carousel-arrow" id="nextApp" type="button" aria-label="Next app">›</button>
@@ -364,23 +409,47 @@
         <p class="section-kicker" data-i18n="appsKicker">MADE BY LITTLEGENIUS</p>
         <h2 data-i18n="appsTitle">Our apps & experiences</h2>
         <p class="section-intro" data-i18n="appsText">Explore our growing collection of digital products, each created with its own idea and personality.</p>
-        <div class="app-grid">
-          <a class="app-card" href="./magicmirror/">
-            <img src="./Magic%20Mirror.png" alt="Magic Mirror app icon">
-            <strong>Magic Mirror</strong><span data-i18n="magicDesc">AI Bridal Try-On</span>
-          </a>
-          <a class="app-card" href="./volexi/">
-            <img src="./Volexi.png" alt="Volexi app icon">
-            <strong>Volexi</strong><span data-i18n="volexiDesc">Word Game</span>
-          </a>
-          <a class="app-card" href="./wordlegend/">
-            <img src="./Word%20Legend.png" alt="WordLegend app icon">
-            <strong>WordLegend</strong><span data-i18n="wordDesc">Word Puzzle Game</span>
-          </a>
-          <a class="app-card" href="./reflex/">
-            <img src="./Reflex.png" alt="Reflex app icon">
-            <strong>Reflex</strong><span data-i18n="reflexDesc">Reflex Experience Game</span>
-          </a>
+
+        <div class="app-category">
+          <div class="app-category-header">
+            <span class="app-category-badge" data-i18n="catProductivity">PRODUCTIVITY & LIFESTYLE</span>
+            <span class="app-category-line" aria-hidden="true"></span>
+          </div>
+          <div class="app-grid">
+            <a class="app-card" href="./magicmirror/">
+              <img src="./Magic%20Mirror.png" alt="Magic Mirror app icon">
+              <strong>Magic Mirror</strong><span data-i18n="magicDesc">AI Bridal Try-On</span>
+            </a>
+            <a class="app-card" href="./pawia/">
+              <img src="./pawia/pawia_logo.png" alt="Pawia app icon">
+              <strong>Pawia</strong><span data-i18n="pawiaDesc">Smart Pet Care & Health Tracker</span>
+            </a>
+            <a class="app-card" href="./soonify/">
+              <img src="./soonify/soonify_logo.png" alt="Soonify app icon">
+              <strong>Soonify</strong><span data-i18n="soonifyDesc">Day Counter & Event Tracker</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="app-category">
+          <div class="app-category-header">
+            <span class="app-category-badge" data-i18n="catGames">GAMES</span>
+            <span class="app-category-line" aria-hidden="true"></span>
+          </div>
+          <div class="app-grid">
+            <a class="app-card" href="./wordlegend/">
+              <img src="./Word%20Legend.png" alt="WordLegend app icon">
+              <strong>WordLegend</strong><span data-i18n="wordDesc">Word Puzzle Game</span>
+            </a>
+            <a class="app-card" href="./volexi/">
+              <img src="./Volexi.png" alt="Volexi app icon">
+              <strong>Volexi</strong><span data-i18n="volexiDesc">Word Game</span>
+            </a>
+            <a class="app-card" href="./reflex/">
+              <img src="./Reflex.png" alt="Reflex app icon">
+              <strong>Reflex</strong><span data-i18n="reflexDesc">Reflex Experience Game</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -390,7 +459,7 @@
         <p class="section-kicker" data-i18n="contactKicker">LET'S CONNECT</p>
         <h2 data-i18n="contactTitle">Have an idea in mind?</h2>
         <p class="section-intro" data-i18n="contactText">We would love to hear from you. Get in touch for questions, feedback or collaboration opportunities.</p>
-        <a class="contact-link" href="mailto:geniusmetaverse@gmail.com">geniusmetaverse@gmail.com <span aria-hidden="true">↗</span></a>
+        <a class="contact-link" href="mailto:info@littlegenius.tr">info@littlegenius.tr <span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>
@@ -409,11 +478,12 @@
         aboutNote:"From creative tools to playful digital experiences, every littleGENIUS product starts with a simple question: what if?",
         appsKicker:"MADE BY LittleGENIUS", appsTitle:"Our apps & experiences",
         appsText:"Explore our growing collection of mobile app products, each created with its own idea and personality.",
-        magicDesc:"AI Bridal Try-On", volexiDesc:"Word Game", wordDesc:"Word Puzzle Game", reflexDesc:"Reflex Experience Game",
+        catProductivity:"PRODUCTIVITY & LIFESTYLE", catGames:"GAMES",
+        magicDesc:"AI Bridal Try-On", volexiDesc:"Word Game", wordDesc:"Word Puzzle Game", reflexDesc:"Reflex Experience Game", pawiaDesc:"Smart Pet Care & Health Tracker", soonifyDesc:"Day Counter & Event Tracker",
         contactKicker:"LET'S CONNECT", contactTitle:"Have an idea in mind?",
         contactText:"We would love to hear from you. Get in touch for questions, feedback or collaboration opportunities.",
         copyright:"© 2026 littleGENIUS · All rights reserved",
-        appDescriptions:["AI Bridal Try-On","Word Game","Word Puzzle Game","Reflex Experience Game"]
+        appDescriptions:["AI Bridal Try-On","Smart Pet Care & Health Tracker","Day Counter & Event Tracker","Word Puzzle Game","Word Game","Reflex Experience Game"]
       },
       tr: {
         navHome:"ANA SAYFA", navAbout:"HAKKIMIZDA", navApps:"UYGULAMALARIMIZ", navContactus:"İLETİŞİM",
@@ -425,11 +495,12 @@
         aboutNote:"Yaratıcı araçlardan eğlenceli dijital deneyimlere kadar her littleGENIUS ürünü basit bir soruyla başlar: ya şöyle olsaydı?",
         appsKicker:"LittleGENIUS TARAFINDAN GELİŞTİRİLDİ", appsTitle:"Uygulamalarımız ve deneyimlerimiz",
         appsText:"Her biri kendine özgü bir fikir ve karakterle tasarlanan mobil uygulamalarımızı keşfedin.",
-        magicDesc:"Yapay Zekâ Gelinlik Provası", volexiDesc:"Kelime Oyunu", wordDesc:"Kelime Bulmaca Oyunu", reflexDesc:"Reflex Deneyim Oyunu",
+        catProductivity:"ÜRETKENLİK & YAŞAM", catGames:"OYUNLAR",
+        magicDesc:"Yapay Zekâ Gelinlik Provası", volexiDesc:"Kelime Oyunu", wordDesc:"Kelime Bulmaca Oyunu", reflexDesc:"Reflex Deneyim Oyunu", pawiaDesc:"Evcil Hayvan Bakım & Sağlık Takibi", soonifyDesc:"3D Masa Takvimi, Sayaç & Widget",
         contactKicker:"BİZE ULAŞIN", contactTitle:"Aklınızda bir fikir mi var?",
         contactText:"Sorularınız, geri bildirimleriniz veya iş birliği fırsatları için bizimle iletişime geçebilirsiniz.",
         copyright:"© 2026 littleGENIUS · Tüm hakları saklıdır",
-        appDescriptions:["Yapay Zekâ Gelinlik Provası","Kelime Oyunu","Kelime Bulmaca Oyunu","Reflex Deneyim Oyunu"]
+        appDescriptions:["Yapay Zekâ Gelinlik Provası","Evcil Hayvan Bakım & Sağlık Takibi","3D Masa Takvimi, Sayaç & Widget","Kelime Bulmaca Oyunu","Kelime Oyunu","Reflex Deneyim Oyunu"]
       }
     };
 
@@ -437,7 +508,7 @@
     const dots = [...document.querySelectorAll("#carouselDots button")];
     const appName = document.getElementById("appName");
     const appDescription = document.getElementById("appDescription");
-    const names = ["Magic Mirror", "Volexi", "WordLegend", "Reflex"];
+    const names = ["Magic Mirror", "Pawia", "Soonify", "WordLegend", "Volexi", "Reflex"];
     let current = 0;
     let timer = null;
     let language = "en";
@@ -496,6 +567,14 @@
     try { savedLanguage = localStorage.getItem("littleGENIUSLanguage") || "en"; } catch (e) {}
     setLanguage(savedLanguage === "tr" ? "tr" : "en");
     startCarousel();
+
+    if (window.location.protocol === "file:") {
+      document.querySelectorAll("img[src^='./']").forEach(img => {
+        img.src = "https://littlegenius.tr/" + img.getAttribute("src").slice(2);
+      });
+      const hero = document.querySelector(".hero");
+      if (hero) hero.style.backgroundImage = 'url("https://littlegenius.tr/littleGenius.png")';
+    }
   </script>
 </body>
 </html>
