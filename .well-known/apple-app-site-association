@@ -55,7 +55,7 @@
         ]
       },
       {
-        "appID": "8CWHKS9DTP.com.geniusmetaverse.volexi",
+        "appID": "8CWHKS9DTP.MGH.Volexi",
         "paths": [
           "NOT /volexi/",
           "NOT /volexi",
@@ -79,7 +79,7 @@
         ]
       },
       {
-        "appID": "8CWHKS9DTP.com.geniusmetaverse.pawia",
+        "appID": "8CWHKS9DTP.MGH.Patty",
         "paths": [
           "NOT /pawia/",
           "NOT /pawia",
@@ -91,7 +91,7 @@
         ]
       },
       {
-        "appID": "8CWHKS9DTP.com.geniusmetaverse.soonify",
+        "appID": "8CWHKS9DTP.MGH73.Soonify",
         "paths": [
           "NOT /soonify/",
           "NOT /soonify",
