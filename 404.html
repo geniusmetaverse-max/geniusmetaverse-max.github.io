@@ -5,20 +5,19 @@
     <title id="page-title">Yönlendiriliyorsunuz...</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript">
-      // 1. Uzantısız veya eski 'fqa' yazımlı linkleri anında doğru .html dosyalarına yönlendir
+      // 1. Tüm uygulamalar için uzantısız yasal/destek linklerini (.html olmadan yazılanları) doğrudan ilgili web sayfasına yönlendir
       (function () {
         var p = (window.location.pathname || "").replace(/\/+$/, "");
         var q = window.location.search || "";
-        var map = {
-          "/wordlegend/fqa": "/wordlegend/faq.html",
-          "/wordlegend/fqa.html": "/wordlegend/faq.html",
-          "/wordlegend/faq": "/wordlegend/faq.html",
-          "/wordlegend/terms-of-service": "/wordlegend/terms-of-service.html",
-          "/wordlegend/privacy-policy": "/wordlegend/privacy-policy.html",
-          "/wordlegend/support": "/wordlegend/support.html"
-        };
-        if (map[p]) {
-          window.location.replace(map[p] + q);
+        var lower = p.toLowerCase();
+
+        // /<app>/(faq|fqa|privacy-policy|terms-of-service|support) -> /<app>/<page>.html
+        var staticMatch = lower.match(/^\/(wordlegend|magicmirror|volexi|reflex|pawia|soonify)\/(faq|fqa|privacy-policy|terms-of-service|support)$/);
+        if (staticMatch) {
+          var appFolder = staticMatch[1];
+          var pageName = staticMatch[2] === "fqa" ? "faq" : staticMatch[2];
+          window.location.replace("/" + appFolder + "/" + pageName + ".html" + q);
+          return;
         }
       })();
     </script>
@@ -35,7 +34,7 @@
   </head>
   <body>
     <div class="container">
-      <div id="app-title" class="title">✨ MAGIC MIRROR</div>
+      <div id="app-title" class="title">✨ littleGENIUS</div>
       <p id="app-desc" class="desc">Uygulamaya yönlendiriliyorsunuz...</p>
 
       <a id="open-app-btn" href="#" class="btn app-btn">Uygulamada Aç</a>
@@ -45,33 +44,98 @@
     </div>
 
     <script type="text/javascript">
-      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      var ua = navigator.userAgent || navigator.vendor || window.opera || "";
       var isAndroid = /android/i.test(ua);
       var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
       var host = window.location.host || "www.littlegenius.tr";
       var pathname = window.location.pathname || "/";
-      var path = pathname + window.location.search;
+      var search = window.location.search || "";
+      var path = pathname + search;
 
-      var isWordLegend = pathname.indexOf("/wordlegend") === 0 || pathname.indexOf("/wl/") === 0 || pathname === "/wl";
+      var isWordLegend = /^\/(wordlegend|wl)(\/|$)/i.test(pathname);
+      var isVolexi = /^\/volexi(\/|$)/i.test(pathname);
+      var isReflex = /^\/reflex(\/|$)/i.test(pathname);
+      var isPawia = /^\/pawia(\/|$)/i.test(pathname);
+      var isSoonify = /^\/soonify(\/|$)/i.test(pathname);
 
-      var config = isWordLegend ? {
-        pageTitle: "Word Legend | Kelime Oyunu",
-        title: "🧩 WORD LEGEND",
-        desc: "Word Legend oyununa yönlendiriliyorsunuz.",
-        androidPackage: "com.geniusmetaverse.wordlegendtr",
-        iosScheme: "wordlegend:/" + path,
-        iosStore: "https://apps.apple.com/us/app/word-legend-word-puzzle-game/id6765661559",
-        androidStore: "https://play.google.com/store/apps/details?id=com.geniusmetaverse.wordlegendtr"
-      } : {
-        pageTitle: "Magic Mirror | Dijital Gelinlik Provası",
-        title: "✨ MAGIC MIRROR",
-        desc: "Gelinlik koleksiyonu ve sanal prova kabinine yönlendiriliyorsunuz.",
-        androidPackage: "com.geniusmetaversemagicmirror",
-        iosScheme: "magicmirror:/" + path.replace(/^\/magicmirror/, ""),
-        iosStore: "https://apps.apple.com/us/app/id6760668920",
-        androidStore: "https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror"
-      };
+      // Her uygulama için alt yolu temizle (örn. /wordlegend/duel -> /duel)
+      var cleanSubPath = pathname.replace(/^\/(wordlegend|wl|magicmirror|volexi|reflex|pawia|soonify)/i, "");
+      if (!cleanSubPath || cleanSubPath === "/") {
+        cleanSubPath = "/play";
+      }
+      var schemeTarget = cleanSubPath.replace(/^\/+/, "") + search;
+
+      var config;
+      if (isWordLegend) {
+        config = {
+          pageTitle: "Word Legend | Kelime Oyunu",
+          title: "🧩 WORD LEGEND",
+          desc: "Word Legend oyununa yönlendiriliyorsunuz.",
+          androidPackage: "com.geniusmetaverse.wordlegendtr",
+          iosScheme: "wordlegend://" + schemeTarget,
+          iosStore: "https://apps.apple.com/us/app/word-legend-word-puzzle-game/id6765661559",
+          androidStore: "https://play.google.com/store/apps/details?id=com.geniusmetaverse.wordlegendtr",
+          webFallback: "/wordlegend/"
+        };
+      } else if (isVolexi) {
+        config = {
+          pageTitle: "Volexi | Kelime Bulmaca Oyunu",
+          title: "🔤 VOLEXI",
+          desc: "Volexi uygulamasına yönlendiriliyorsunuz.",
+          androidPackage: "com.geniusmetaverse.volexi",
+          iosScheme: "volexi://" + schemeTarget,
+          iosStore: "/volexi/",
+          androidStore: "/volexi/",
+          webFallback: "/volexi/"
+        };
+      } else if (isReflex) {
+        config = {
+          pageTitle: "RefleX | Refleks Oyunu",
+          title: "⚡ REFLEX",
+          desc: "RefleX uygulamasına yönlendiriliyorsunuz.",
+          androidPackage: "com.geniusmetaverse.reflex",
+          iosScheme: "reflex://" + schemeTarget,
+          iosStore: "/reflex/",
+          androidStore: "/reflex/",
+          webFallback: "/reflex/"
+        };
+      } else if (isPawia) {
+        config = {
+          pageTitle: "Pawia | Smart Pet Care",
+          title: "🐾 PAWIA",
+          desc: "Pawia uygulamasına yönlendiriliyorsunuz.",
+          androidPackage: "com.geniusmetaverse.pawia",
+          iosScheme: "pawia://" + schemeTarget,
+          iosStore: "/pawia/",
+          androidStore: "/pawia/",
+          webFallback: "/pawia/"
+        };
+      } else if (isSoonify) {
+        config = {
+          pageTitle: "Soonify · littleGENIUS",
+          title: "⏳ SOONIFY",
+          desc: "Soonify sayfasına yönlendiriliyorsunuz.",
+          androidPackage: "com.geniusmetaverse.soonify",
+          iosScheme: "soonify://" + schemeTarget,
+          iosStore: "/soonify/",
+          androidStore: "/soonify/",
+          webFallback: "/soonify/"
+        };
+      } else {
+        var mmTarget = pathname.replace(/^\/magicmirror/i, "").replace(/^\/+/, "") + search;
+        if (!mmTarget) mmTarget = "home";
+        config = {
+          pageTitle: "Magic Mirror | Dijital Gelinlik Provası",
+          title: "✨ MAGIC MIRROR",
+          desc: "Gelinlik koleksiyonu ve sanal prova kabinine yönlendiriliyorsunuz.",
+          androidPackage: "com.geniusmetaversemagicmirror",
+          iosScheme: "magicmirror://" + mmTarget,
+          iosStore: "https://apps.apple.com/us/app/id6760668920",
+          androidStore: "https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror",
+          webFallback: "/magicmirror/"
+        };
+      }
 
       document.title = config.pageTitle;
       document.getElementById("app-title").innerText = config.title;
@@ -87,15 +151,16 @@
         openBtn.href = intentUrl;
         storeBtn.href = config.androidStore;
         storeBtn.innerText = "Google Play'den İndir";
-        setTimeout(function () { window.location.href = intentUrl; }, 300);
+        setTimeout(function () { window.location.href = intentUrl; }, 250);
       } else if (isIOS) {
         openBtn.href = config.iosScheme;
         storeBtn.href = config.iosStore;
         storeBtn.innerText = "App Store'dan İndir";
+        setTimeout(function () { window.location.href = config.iosScheme; }, 250);
       } else {
         openBtn.style.display = "none";
-        storeBtn.href = config.androidStore;
-        storeBtn.innerText = "Mağazada Görüntüle";
+        storeBtn.href = config.webFallback || config.androidStore;
+        storeBtn.innerText = "Sayfayı Görüntüle";
       }
     </script>
   </body>

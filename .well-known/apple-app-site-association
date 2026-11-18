@@ -5,7 +5,15 @@
       {
         "appID": "8CWHKS9DTP.com.geniusmetaverse.wordlegendtr",
         "paths": [
+          "NOT /wordlegend/",
+          "NOT /wordlegend",
           "NOT /wordlegend/*.html",
+          "NOT /wordlegend/faq",
+          "NOT /wordlegend/fqa",
+          "NOT /wordlegend/privacy-policy",
+          "NOT /wordlegend/terms-of-service",
+          "NOT /wordlegend/support",
+          "/wordlegend/*",
           "/wl/*"
         ]
       },
@@ -14,8 +22,17 @@
         "paths": [
           "NOT /wordlegend/*",
           "NOT /wl/*",
+          "NOT /volexi/*",
+          "NOT /reflex/*",
+          "NOT /pawia/*",
+          "NOT /soonify/*",
           "NOT /geniusmetaverse/*",
+          "NOT /magicmirror/",
+          "NOT /magicmirror",
           "NOT /magicmirror/*.html",
+          "NOT /magicmirror/support",
+          "NOT /magicmirror/privacy-policy",
+          "NOT /magicmirror/terms-of-service",
           "/magicmirror/*",
           "/brand/*",
           "/poll/*",
@@ -35,6 +52,54 @@
           "/store/*",
           "/profile",
           "/profile/*"
+        ]
+      },
+      {
+        "appID": "8CWHKS9DTP.com.geniusmetaverse.volexi",
+        "paths": [
+          "NOT /volexi/",
+          "NOT /volexi",
+          "NOT /volexi/*.html",
+          "NOT /volexi/support",
+          "NOT /volexi/privacy-policy",
+          "NOT /volexi/terms-of-service",
+          "/volexi/*"
+        ]
+      },
+      {
+        "appID": "8CWHKS9DTP.com.geniusmetaverse.reflex",
+        "paths": [
+          "NOT /reflex/",
+          "NOT /reflex",
+          "NOT /reflex/*.html",
+          "NOT /reflex/support",
+          "NOT /reflex/privacy-policy",
+          "NOT /reflex/terms-of-service",
+          "/reflex/*"
+        ]
+      },
+      {
+        "appID": "8CWHKS9DTP.com.geniusmetaverse.pawia",
+        "paths": [
+          "NOT /pawia/",
+          "NOT /pawia",
+          "NOT /pawia/*.html",
+          "NOT /pawia/support",
+          "NOT /pawia/privacy-policy",
+          "NOT /pawia/terms-of-service",
+          "/pawia/*"
+        ]
+      },
+      {
+        "appID": "8CWHKS9DTP.com.geniusmetaverse.soonify",
+        "paths": [
+          "NOT /soonify/",
+          "NOT /soonify",
+          "NOT /soonify/*.html",
+          "NOT /soonify/support",
+          "NOT /soonify/privacy-policy",
+          "NOT /soonify/terms-of-service",
+          "/soonify/*"
         ]
       }
     ]
