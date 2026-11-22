@@ -324,12 +324,12 @@
       color: #cbd5e8;
     }
 
-    /* Avatar & Emotion Modes Interactive Preview Stage */
+    /* RefleX App Screens Preview Stage (WordLegend compact split-card layout) */
     .preview-stage {
-      background: rgba(16, 26, 49, .86);
-      backdrop-filter: blur(14px);
+      background: rgba(16, 26, 49, .88);
+      backdrop-filter: blur(12px);
       color: #fff;
-      border-radius: 28px;
+      border-radius: 26px;
       padding: 20px;
       box-shadow: 0 28px 60px rgba(4, 10, 24, .52);
       border: 1px solid rgba(255, 255, 255, .16);
@@ -339,7 +339,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       padding: 0 4px;
     }
     .stage-brand {
@@ -349,6 +349,12 @@
       font-size: 1rem;
       font-weight: 800;
       color: var(--gold);
+    }
+    .stage-brand img {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      object-fit: cover;
     }
     .stage-badge {
       font-size: .72rem;
@@ -360,51 +366,67 @@
       border: 1px solid rgba(255, 255, 255, .15);
     }
 
-    .mood-frame {
-      position: relative;
-      width: min(230px, 100%);
-      aspect-ratio: 9 / 19.5;
-      margin: 0 auto;
-      border-radius: 26px;
-      overflow: hidden;
-      background: #0a1324;
-      border: 2px solid rgba(255, 255, 255, .18);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
-      display: grid;
-      place-items: center;
-    }
-    .mood-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      opacity: 0;
-      transform: scale(.97);
-      transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
-      pointer-events: none;
-    }
-    .mood-img.is-active {
-      opacity: 1;
-      transform: scale(1);
+    .stage-panel {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .mood-caption {
-      margin-top: 14px;
-      text-align: center;
+    .rx-card {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 155px 1fr;
+      gap: 18px;
+      align-items: center;
+      text-align: left;
     }
-    .mood-caption strong {
+    .rx-shot {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, .35);
       display: block;
-      font-size: 1.08rem;
+    }
+    .rx-card h3 {
+      margin: 0;
+      font-size: 1.12rem;
       font-weight: 800;
       color: #fff;
     }
-    .mood-caption span {
-      display: block;
-      margin-top: 4px;
-      font-size: .84rem;
+    .rx-card p {
+      margin: 8px 0 0;
+      font-size: .88rem;
       color: #cbd5e8;
+      line-height: 1.6;
+    }
+    .rx-stat-row {
+      margin-top: 14px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 520px) {
+      .rx-card { grid-template-columns: 1fr; text-align: center; }
+      .rx-shot { max-width: 170px; margin: 0 auto; }
+      .rx-stat-row { justify-content: center; }
+    }
+    .rx-chip {
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(231, 196, 91, .14);
+      border: 1px solid rgba(231, 196, 91, .36);
+      color: #fce79a;
+      font-variant-numeric: tabular-nums;
     }
 
     .mode-switcher {
@@ -847,20 +869,73 @@
         <!-- RefleX Uygulama Ekranları Önizleme Sahnesi -->
         <div class="preview-stage" aria-label="RefleX Genius app screens preview">
           <div class="stage-topbar">
-            <span class="stage-brand">RefleX</span>
-            <span class="stage-badge" data-i18n="stageBadge">Uygulama Ekranları</span>
+            <span class="stage-brand">
+              <img src="../Reflex.png" alt="RefleX Genius mini logo">
+              <span>RefleX Genius</span>
+            </span>
+            <span class="stage-badge" data-i18n="stageBadge">Oyun Ekranları</span>
           </div>
 
-          <div class="mood-frame">
-            <img class="mood-img is-active" data-mood="home" src="./Home.jpg" alt="RefleX Games Hub">
-            <img class="mood-img" data-mood="arena" src="./Game0.jpg" alt="RefleX Nitro Lane Gameplay">
-            <img class="mood-img" data-mood="rush" src="./Game2.jpg" alt="RefleX Survival Rush Gameplay">
-            <img class="mood-img" data-mood="stats" src="./Stats1.jpg" alt="RefleX Statistics & Rankings">
-          </div>
+          <div class="stage-panel">
+            <!-- Screen 1: Home -->
+            <div class="stage-view" data-view="home">
+              <div class="rx-card">
+                <img class="rx-shot" src="./Home.jpg" alt="RefleX Games Hub screen">
+                <div>
+                  <h3 data-i18n="s1Title">RefleX Oyun Merkezi</h3>
+                  <p data-i18n="s1Desc">Seviye ilerlemenizi takip edin, 12 farklı refleks moduna tek dokunuşla geçin.</p>
+                  <div class="rx-stat-row">
+                    <span class="rx-chip" data-i18n="s1Chip1">12 Oyun Modu</span>
+                    <span class="rx-chip" data-i18n="s1Chip2">Seviye İlerlemesi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <div class="mood-caption" aria-live="polite">
-            <strong id="moodTitle">RefleX Oyun Merkezi</strong>
-            <span id="moodDesc">Seviye ilerlemenizi takip edin, 12 farklı refleks moduna tek dokunuşla geçin.</span>
+            <!-- Screen 2: Nitro Rush -->
+            <div class="stage-view" data-view="arena" hidden>
+              <div class="rx-card">
+                <img class="rx-shot" src="./Game0.jpg" alt="RefleX Nitro Lane gameplay screen">
+                <div>
+                  <h3 data-i18n="s2Title">Yüksek Hızlı Refleks Şeridi</h3>
+                  <p data-i18n="s2Desc">Kombo çarpanlarını yakalayın, Slow Motion ve Kalkan güçlendiricileriyle rekor kırın.</p>
+                  <div class="rx-stat-row">
+                    <span class="rx-chip" data-i18n="s2Chip1">Kombo Çarpanı</span>
+                    <span class="rx-chip" data-i18n="s2Chip2">Slow Motion</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen 3: Survival Rush -->
+            <div class="stage-view" data-view="rush" hidden>
+              <div class="rx-card">
+                <img class="rx-shot" src="./Game2.jpg" alt="RefleX Survival Rush gameplay screen">
+                <div>
+                  <h3 data-i18n="s3Title">Survival Rush Modu</h3>
+                  <p data-i18n="s3Desc">Artan hızda engellerden kaçın, anlık tepkilerle hayatta kalma sürenizi uzatın.</p>
+                  <div class="rx-stat-row">
+                    <span class="rx-chip" data-i18n="s3Chip1">Artan Hız</span>
+                    <span class="rx-chip" data-i18n="s3Chip2">Kalkan Desteği</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen 4: Statistics -->
+            <div class="stage-view" data-view="stats" hidden>
+              <div class="rx-card">
+                <img class="rx-shot" src="./Stats1.jpg" alt="RefleX Statistics & Rankings screen">
+                <div>
+                  <h3 data-i18n="s4Title">Detaylı İstatistik &amp; Sıralama</h3>
+                  <p data-i18n="s4Desc">Hız, Mantık, Ritim ve Odak metriklerinizi görün; başarımlarınızı takip edin.</p>
+                  <div class="rx-stat-row">
+                    <span class="rx-chip" data-i18n="s4Chip1">PRO Sıralama</span>
+                    <span class="rx-chip" data-i18n="s4Chip2">4 Beceri Metriği</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="mode-switcher" role="tablist" aria-label="RefleX app screens">
@@ -1043,17 +1118,27 @@
         storeSmall: "App Store'dan İndirin",
         btnExplore: "Özellikleri İncele",
         platformNote: "iPhone ve iPad için · 12 Oyun Modu · Küresel Liderlik Tabloları",
-        stageBadge: "Uygulama Ekranları",
+        stageBadge: "Oyun Ekranları",
         tabHome: "Ana Ekran",
         tabArena: "Nitro Rush",
         tabRush: "Survival",
         tabStats: "İstatistik",
-        moods: {
-          home: { title: "RefleX Oyun Merkezi", desc: "Seviye ilerlemenizi takip edin, 12 farklı refleks moduna tek dokunuşla geçin." },
-          arena: { title: "Yüksek Hızlı Refleks Şeridi", desc: "Kombo çarpanlarını yakalayın, Slow Motion ve Kalkan güçlendiricileriyle rekor kırın." },
-          rush: { title: "Survival Rush Modu", desc: "Artan hızda engellerden kaçın, anlık tepkilerle hayatta kalma sürenizi uzatın." },
-          stats: { title: "Detaylı İstatistik & Sıralama", desc: "Hız, Mantık, Ritim ve Odak metriklerinizi görün; başarımlarınızı takip edin." }
-        },
+        s1Title: "RefleX Oyun Merkezi",
+        s1Desc: "Seviye ilerlemenizi takip edin, 12 farklı refleks moduna tek dokunuşla geçin.",
+        s1Chip1: "12 Oyun Modu",
+        s1Chip2: "Seviye İlerlemesi",
+        s2Title: "Yüksek Hızlı Refleks Şeridi",
+        s2Desc: "Kombo çarpanlarını yakalayın, Slow Motion ve Kalkan güçlendiricileriyle rekor kırın.",
+        s2Chip1: "Kombo Çarpanı",
+        s2Chip2: "Slow Motion",
+        s3Title: "Survival Rush Modu",
+        s3Desc: "Artan hızda engellerden kaçın, anlık tepkilerle hayatta kalma sürenizi uzatın.",
+        s3Chip1: "Artan Hız",
+        s3Chip2: "Kalkan Desteği",
+        s4Title: "Detaylı İstatistik & Sıralama",
+        s4Desc: "Hız, Mantık, Ritim ve Odak metriklerinizi görün; başarımlarınızı takip edin.",
+        s4Chip1: "PRO Sıralama",
+        s4Chip2: "4 Beceri Metriği",
         featHeading: "12 farklı refleks ve zekâ moduyla tek sınır hızınız",
         featSub: "RefleX Genius, refleks hızını ve bilişsel çevikliği aynı anda test eden dinamik senaryolar sunar.",
         panelDesc: "iPhone ve iPad cihazlarınız için yüksek tempolu refleks ve zekâ oyunu.",
@@ -1108,12 +1193,22 @@
         tabArena: "Nitro Rush",
         tabRush: "Survival",
         tabStats: "Stats",
-        moods: {
-          home: { title: "RefleX Games Hub", desc: "Track your level progress and jump into 12 unique reflex modes." },
-          arena: { title: "High-Speed Reflex Lane", desc: "Chain combo multipliers and trigger Slow Motion or Shield boosters." },
-          rush: { title: "Survival Rush Mode", desc: "Dodge incoming obstacles at rising speed and push your reaction limits." },
-          stats: { title: "Detailed Stats & Rankings", desc: "Track your Speed, Logic, Rhythm, and Focus gauges alongside PRO rankings." }
-        },
+        s1Title: "RefleX Games Hub",
+        s1Desc: "Track your level progress and jump into 12 unique reflex modes.",
+        s1Chip1: "12 Game Modes",
+        s1Chip2: "Level Progress",
+        s2Title: "High-Speed Reflex Lane",
+        s2Desc: "Chain combo multipliers and trigger Slow Motion or Shield boosters.",
+        s2Chip1: "Combo Multiplier",
+        s2Chip2: "Slow Motion",
+        s3Title: "Survival Rush Mode",
+        s3Desc: "Dodge incoming obstacles at rising speed and push your reaction limits.",
+        s3Chip1: "Rising Speed",
+        s3Chip2: "Shield Boost",
+        s4Title: "Detailed Stats & Rankings",
+        s4Desc: "Track your Speed, Logic, Rhythm, and Focus gauges alongside PRO rankings.",
+        s4Chip1: "PRO Rankings",
+        s4Chip2: "4 Skill Gauges",
         featHeading: "12 unique reflex and brain modes built for speed",
         featSub: "RefleX Genius adapts to your play style with dynamic scenarios that never repeat the same way twice.",
         panelDesc: "Fast-paced arcade and brain-training game for iPhone and iPad.",
@@ -1158,19 +1253,12 @@
     let currentMood = "home";
     const moodOrder = ["home", "arena", "rush", "stats"];
     const moodButtons = document.querySelectorAll(".mode-btn");
-    const moodImages = document.querySelectorAll(".mood-img");
-    const moodTitle = document.getElementById("moodTitle");
-    const moodDesc = document.getElementById("moodDesc");
+    const stageViews = document.querySelectorAll(".stage-view");
 
     function showMood(mood) {
       currentMood = mood;
       moodButtons.forEach(b => b.setAttribute("aria-selected", String(b.dataset.mood === mood)));
-      moodImages.forEach(img => img.classList.toggle("is-active", img.dataset.mood === mood));
-      const m = translations[language].moods[mood];
-      if (m) {
-        moodTitle.textContent = m.title;
-        moodDesc.textContent = m.desc;
-      }
+      stageViews.forEach(view => { view.hidden = view.dataset.view !== mood; });
     }
 
     let moodTimer = null;
