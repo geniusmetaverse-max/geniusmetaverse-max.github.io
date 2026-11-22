@@ -257,6 +257,10 @@
       font-weight: 800;
       text-wrap: balance;
     }
+    .gold-text {
+      color: var(--gold);
+      text-shadow: 0 0 28px rgba(231, 196, 91, .45);
+    }
 
     .hero-lead {
       margin: 20px 0 0;
@@ -899,7 +903,7 @@
             </div>
           </div>
 
-          <h1 data-i18n="heroTitle">Her büyük gün bir geri sayımı hak eder.</h1>
+          <h1 data-i18n="heroTitle">Her büyük gün <span class="gold-text">bir geri sayımı hak eder.</span></h1>
           <p class="hero-lead" data-i18n="heroLead">
             Uçuşlarınız, doğum günleriniz, tatilleriniz ve özel hedefleriniz için tasarlanmış 3D masa takvimi ve akıllı geri sayım sayacı. Ana ekran widget'ları ile kalan zamanı her an gözünüzün önünde tutun.
           </p>
@@ -1187,7 +1191,7 @@
         navContact: "İLETİŞİM",
         navDownload: "İNDİR",
         heroSubtitle: "3D Masa Takvimi, Sayaç & Widget",
-        heroTitle: "Her büyük gün bir geri sayımı hak eder.",
+        heroTitle: 'Her büyük gün <span class="gold-text">bir geri sayımı hak eder.</span>',
         heroLead: "Uçuşlarınız, doğum günleriniz, tatilleriniz ve özel hedefleriniz için tasarlanmış 3D masa takvimi ve akıllı geri sayım sayacı. Ana ekran widget'ları ile kalan zamanı her an gözünüzün önünde tutun.",
         storeSmall: "App Store'dan İndirin",
         btnExplore: "Görünümleri İncele",
@@ -1255,7 +1259,7 @@
         navContact: "CONTACT",
         navDownload: "DOWNLOAD",
         heroSubtitle: "Day Counter & Event Tracker",
-        heroTitle: "Every big day deserves a countdown.",
+        heroTitle: 'Every big day <span class="gold-text">deserves a countdown.</span>',
         heroLead: "A tactile 3D desk calendar and smart countdown tracker for flights, birthdays, vacations, and personal milestones. Keep what matters on your iOS Home Screen with widgets.",
         storeSmall: "Download on the",
         btnExplore: "Explore Views",
@@ -1325,7 +1329,8 @@
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
         if (translations[nextLang][key] !== undefined) {
-          el.textContent = translations[nextLang][key];
+          if (key === "heroTitle") el.innerHTML = translations[nextLang][key];
+          else el.textContent = translations[nextLang][key];
         }
       });
       document.querySelectorAll("[data-lang]").forEach(btn => {
