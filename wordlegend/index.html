@@ -1277,16 +1277,35 @@
     } catch (e) {}
     setLanguage(savedLanguage === "en" ? "en" : "tr");
 
-    // Interactive mode switcher
+    // Interactive mode switcher with auto-cycle
     const modeButtons = document.querySelectorAll(".mode-btn");
     const stageViews = document.querySelectorAll(".stage-view");
+    const modeOrder = Array.from(modeButtons).map(b => b.dataset.mode);
+    let currentMode = modeOrder[0] || "modes";
+    let modeTimer = null;
+
+    function showMode(target) {
+      currentMode = target;
+      modeButtons.forEach(b => b.setAttribute("aria-selected", String(b.dataset.mode === target)));
+      stageViews.forEach(v => { v.hidden = v.dataset.view !== target; });
+    }
+
+    function startModeCycle() {
+      if (modeTimer) window.clearInterval(modeTimer);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || modeOrder.length < 2) return;
+      modeTimer = window.setInterval(() => {
+        const nextIdx = (modeOrder.indexOf(currentMode) + 1) % modeOrder.length;
+        showMode(modeOrder[nextIdx]);
+      }, 3500);
+    }
+
     modeButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-        const target = btn.dataset.mode;
-        modeButtons.forEach(b => b.setAttribute("aria-selected", String(b === btn)));
-        stageViews.forEach(v => { v.hidden = v.dataset.view !== target; });
+        showMode(btn.dataset.mode);
+        startModeCycle();
       });
     });
+    startModeCycle();
 
     // FAQ accordion
     document.querySelectorAll(".faq-question").forEach(btn => {
@@ -1327,11 +1346,11 @@
       document.querySelectorAll("img[src^='./']").forEach(img => {
         const rel = img.getAttribute("src").slice(2);
         if (!rel.startsWith("WL_Image/")) {
-          img.src = "https://littlegenius.tr/wordlegend/" + rel;
+          img.src = "https://www.littlegenius.tr/wordlegend/" + rel;
         }
       });
       const heroEl = document.querySelector(".hero");
-      if (heroEl) heroEl.style.backgroundImage = 'url("https://littlegenius.tr/wordlegend/WL_Background.png")';
+      if (heroEl) heroEl.style.backgroundImage = 'url("https://www.littlegenius.tr/wordlegend/WL_Background.png")';
     }
 
     // Preserved Starfield / Space Travel Hero Animation
