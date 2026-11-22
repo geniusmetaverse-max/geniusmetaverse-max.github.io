@@ -704,6 +704,12 @@
       font-size: .92rem;
       transition: border-color .2s ease, background .2s ease;
     }
+    .mail-pill svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
     .mail-pill:hover { border-color: var(--gold); background: rgba(255, 255, 255, .08); }
 
     .contact-form {
@@ -713,42 +719,81 @@
       border: 1px solid rgba(255, 255, 255, .1);
       display: flex;
       flex-direction: column;
+      gap: 16px;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
     .field-label {
       display: block;
-      font-size: .8rem;
+      font-size: .82rem;
       font-weight: 700;
-      color: #d6e0f0;
-      margin-bottom: 6px;
+      color: #fff;
+      margin-bottom: 7px;
+    }
+    .req-star {
+      color: #ef4444;
+      margin-left: 2px;
     }
     .field-input {
       width: 100%;
       padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, .16);
-      background: rgba(10, 19, 36, .6);
-      color: #fff;
+      border-radius: 12px;
+      border: 1px solid #d7dfec;
+      background: #fff;
+      color: var(--ink);
       font: inherit;
       font-size: .95rem;
     }
-    .field-input::placeholder { color: #8c9bb5; }
-    textarea.field-input { min-height: 110px; resize: vertical; }
+    .field-input::placeholder { color: #7a869a; }
+    textarea.field-input { min-height: 112px; resize: vertical; }
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 2px;
+      font-size: .82rem;
+      line-height: 1.55;
+      color: #c9d4e7;
+      cursor: pointer;
+    }
+    .consent-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .consent-row a {
+      color: #fff;
+      text-decoration: underline;
+      text-decoration-color: var(--gold);
+      text-underline-offset: 3px;
+      font-weight: 600;
+    }
+    .consent-row a:hover { color: var(--gold); }
     .submit-btn {
-      align-self: flex-start;
-      padding: 13px 24px;
+      width: 100%;
+      padding: 15px 24px;
       border: 0;
-      border-radius: 12px;
+      border-radius: 999px;
       background: var(--gold);
       color: var(--navy-deep);
       font: inherit;
-      font-size: .94rem;
+      font-size: .98rem;
       font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 8px 24px rgba(231, 196, 91, .28);
       transition: background .2s ease, transform .2s var(--ease-out);
     }
     .submit-btn:hover:not(:disabled) { background: var(--gold-hover); transform: translateY(-1px); }
     .submit-btn:disabled { opacity: .65; cursor: not-allowed; }
+    @media (max-width: 600px) {
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
     .form-status {
       display: none;
       padding: 12px 14px;
@@ -1072,23 +1117,33 @@
           <div class="contact-direct">
             <h3 data-i18n="directTitle">E-posta ile ulaşın</h3>
             <p data-i18n="directText">Geri bildirimlerinizi ve yeni özellik fikirlerinizi duymaktan mutluluk duyarız.</p>
-            <a class="mail-pill" href="mailto:info@littlegenius.tr">info@littlegenius.tr <span aria-hidden="true">↗</span></a>
+            <a class="mail-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>info@littlegenius.tr</span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
 
           <form class="contact-form" id="contactForm">
             <input type="hidden" name="_subject" value="Soonify App Support / Contact">
-            <div>
-              <label class="field-label" for="name" data-i18n="lblName">Adınız</label>
-              <input class="field-input" id="name" name="name" type="text" required placeholder="Adınız Soyadınız">
+            <div class="form-row-2">
+              <div>
+                <label class="field-label" for="email"><span data-i18n="lblEmail">E-posta</span><span class="req-star" aria-hidden="true">*</span></label>
+                <input class="field-input" id="email" name="email" type="email" required placeholder="name@example.com">
+              </div>
+              <div>
+                <label class="field-label" for="name"><span data-i18n="lblName">Ad Soyad</span><span class="req-star" aria-hidden="true">*</span></label>
+                <input class="field-input" id="name" name="name" type="text" required placeholder="Adınız / Your Name">
+              </div>
             </div>
             <div>
-              <label class="field-label" for="email" data-i18n="lblEmail">E-posta Adresiniz</label>
-              <input class="field-input" id="email" name="email" type="email" required placeholder="ornek@mail.com">
+              <label class="field-label" for="message"><span data-i18n="lblMsg">Size nasıl yardımcı olabiliriz?</span><span class="req-star" aria-hidden="true">*</span></label>
+              <textarea class="field-input" id="message" name="message" required placeholder="Mesajınız veya öneriniz... / Write your message here..."></textarea>
             </div>
-            <div>
-              <label class="field-label" for="message" data-i18n="lblMsg">Mesajınız</label>
-              <textarea class="field-input" id="message" name="message" required placeholder="Soonify hakkında mesajınızı yazın..."></textarea>
-            </div>
+            <label class="consent-row" for="consentCheck">
+              <input id="consentCheck" type="checkbox" required>
+              <span id="consentText">littleGENIUS'tan iletişim mesajları almayı kabul ediyorum. Verilerinizi nasıl koruduğumuzu öğrenmek için <a id="formPpLink" href="privacy-policy.html">Gizlilik Politikamızı</a> inceleyebilirsiniz.</span>
+            </label>
             <button class="submit-btn" id="submitBtn" type="submit">
               <span id="btnSubmitText" data-i18n="btnSubmit">Mesaj Gönder</span>
             </button>
@@ -1166,9 +1221,10 @@
         contactSub: "Öneri, hata bildirimi veya destek talepleriniz için bize doğrudan ulaşabilirsiniz.",
         directTitle: "E-posta ile ulaşın",
         directText: "Geri bildirimlerinizi ve yeni özellik fikirlerinizi duymaktan mutluluk duyarız.",
-        lblName: "Adınız",
-        lblEmail: "E-posta Adresiniz",
-        lblMsg: "Mesajınız",
+        lblName: "Ad Soyad",
+        lblEmail: "E-posta",
+        lblMsg: "Size nasıl yardımcı olabiliriz?",
+        consentHtml: 'littleGENIUS\'tan iletişim mesajları almayı kabul ediyorum. Verilerinizi nasıl koruduğumuzu öğrenmek için <a id="formPpLink" href="privacy-policy.html?lang=tr">Gizlilik Politikamızı</a> inceleyebilirsiniz.',
         btnSubmit: "Mesaj Gönder",
         btnSending: "Gönderiliyor...",
         msgSuccess: "Mesajınız başarıyla iletildi. En kısa sürede dönüş yapacağız.",
@@ -1232,9 +1288,10 @@
         contactSub: "Have a question, bug report, or feature idea? Reach out anytime.",
         directTitle: "Email us directly",
         directText: "We read every note and love hearing how you use Soonify.",
-        lblName: "Your Name",
-        lblEmail: "Email Address",
-        lblMsg: "Message",
+        lblName: "Full Name",
+        lblEmail: "Email",
+        lblMsg: "How can we help you?",
+        consentHtml: 'I agree to receive communications from littleGENIUS. Review our <a id="formPpLink" href="privacy-policy.html?lang=en">Privacy Policy</a> to learn how we safeguard your data.',
         btnSubmit: "Send Message",
         btnSending: "Sending...",
         msgSuccess: "Thanks! Your message has been sent and we will reply soon.",
@@ -1258,6 +1315,10 @@
       document.querySelectorAll("[data-lang]").forEach(btn => {
         btn.setAttribute("aria-pressed", String(btn.dataset.lang === nextLang));
       });
+      const consentEl = document.getElementById("consentText");
+      if (consentEl && translations[nextLang].consentHtml) {
+        consentEl.innerHTML = translations[nextLang].consentHtml;
+      }
       const ppEl = document.getElementById("ppLink");
       const tosEl = document.getElementById("tosLink");
       if (ppEl) ppEl.href = `privacy-policy.html?lang=${nextLang}`;
