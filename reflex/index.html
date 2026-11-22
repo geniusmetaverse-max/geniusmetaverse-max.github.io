@@ -4,103 +4,137 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101a31">
-  <title>RefleX | High-Speed Arcade & Reflex Training Game · littleGENIUS</title>
-  <meta name="description" content="RefleX: Milisaniyelerle yarışın! 12 eşsiz arcade modu, beyin antrenmanı dinamikleri ve akıcı oynanışıyla reflekslerinizi test edin ve sınırlarınızı aşın.">
+  <title>RefleX Genius | Arcade &amp; Brain-Training Game · littleGENIUS</title>
+  <meta name="description" content="RefleX Genius: 12 farklı refleks ve zekâ modu, güçlü güçlendiriciler, küresel liderlik tabloları ve özelleştirilebilir avatarlarla hız ve odak sınırlarınızı zorlayın.">
   <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Akıllı QR / Cihaz Yönlendirici -->
+  <script>
+    (function checkSmartRedirect() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('go') === 'store' || params.has('download') || params.has('qr')) {
+          var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+          var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+          if (isIOS) {
+            window.location.replace("https://apps.apple.com/us/app/reflex-genius/id6775504797");
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
     :root {
       --navy: #101a31;
       --navy-2: #172541;
-      --navy-card: #1b2640;
       --navy-deep: #0a1324;
-      --ink: #182238;
-      --muted: #68748a;
       --gold: #e7c45b;
       --gold-hover: #f1d36f;
-      --gold-subtle: rgba(231, 196, 91, 0.12);
       --cream: #f5f3ee;
       --white: #ffffff;
+      --ink: #182238;
+      --muted: #5a677d;
+      --reflex-cyan: #22d3ee;
+      --border: #e4e8f0;
       --header-h: 68px;
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
     }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: #c5ccd8; border-radius: 999px; border: 2px solid var(--cream); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--navy-2); }
+
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background: var(--cream);
-      line-height: 1.6;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font-family: inherit; }
 
-    /* ==========================================================================
-       SITE HEADER (littleGENIUS Alt Sayfa Kurumsal Üst Bar)
-       ========================================================================== */
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Header */
     .site-header {
       position: fixed;
-      z-index: 50;
+      z-index: 30;
       inset: 0 0 auto;
       min-height: var(--header-h);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding: 0 clamp(16px, 4vw, 56px);
-      color: #fff;
-      background: rgba(13, 24, 47, .96);
-      backdrop-filter: blur(12px);
+      gap: 20px;
+      padding: 0 clamp(18px, 4.5vw, 68px);
+      background: rgba(13, 24, 47, .94);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255, 255, 255, .09);
-      box-shadow: 0 4px 24px rgba(0,0,0,.25);
+      color: #fff;
     }
 
     .brand-group {
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .back-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      background: var(--gold);
-      color: var(--navy-deep);
-      font-size: .8rem;
-      font-weight: 750;
-      letter-spacing: -.01em;
-      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-      box-shadow: 0 2px 10px rgba(231,196,91,.28);
+      padding: 6px;
+      border-radius: 10px;
+      color: var(--gold);
+      transition: transform .2s var(--ease-out), color .2s ease;
     }
-    .back-btn:hover {
-      background: var(--gold-hover);
-      transform: translateX(-2px);
-      box-shadow: 0 4px 14px rgba(231,196,91,.4);
-    }
-    .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
+    .back-btn:hover { color: var(--gold-hover); transform: scale(1.12); }
+    .back-btn svg { width: 21px; height: 21px; display: block; fill: currentColor; }
 
     .brand-divider {
       width: 1px;
-      height: 22px;
-      background: rgba(255, 255, 255, 0.22);
+      height: 20px;
+      background: rgba(255, 255, 255, .22);
     }
 
     .app-brand-title {
-      color: #fff;
-      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.05rem;
       font-weight: 800;
-      letter-spacing: .04em;
+      letter-spacing: -.02em;
       white-space: nowrap;
+    }
+    .app-brand-title img {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      object-fit: cover;
     }
 
     .header-right {
       display: flex;
       align-items: center;
-      gap: clamp(14px, 2.5vw, 30px);
+      gap: clamp(12px, 2.5vw, 28px);
     }
 
     .main-nav {
@@ -111,65 +145,40 @@
     .main-nav a {
       color: rgba(255, 255, 255, .82);
       font-size: .74rem;
-      font-weight: 650;
+      font-weight: 700;
       letter-spacing: .06em;
-      transition: color .2s ease;
       white-space: nowrap;
+      transition: color .2s ease;
     }
     .main-nav a:hover { color: var(--gold); }
-
-    .nav-home-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .main-nav a.nav-download {
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(231, 196, 91, .65);
       color: var(--gold);
-      padding: 4px;
-      transition: transform .2s ease, color .2s ease;
+      font-weight: 800;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
-    .nav-home-icon:hover {
-      color: var(--gold-hover);
-      transform: scale(1.15);
-    }
-    .nav-home-icon svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(231, 196, 91, .5);
-      color: var(--gold) !important;
-      font-size: .72rem !important;
-      font-weight: 700 !important;
-      transition: all .2s ease;
-    }
-    .nav-cta:hover {
+    .main-nav a.nav-download:hover {
       background: var(--gold);
-      color: var(--navy-deep) !important;
       border-color: var(--gold);
+      color: var(--navy-deep);
     }
 
     .language-switch {
       display: flex;
       align-items: center;
-      gap: 3px;
-      border-left: 1px solid rgba(255,255,255,.14);
-      padding-left: 12px;
+      gap: 4px;
     }
     .language-switch button {
       border: 0;
       background: transparent;
-      color: rgba(255,255,255,.55);
+      color: rgba(255, 255, 255, .58);
+      font: inherit;
       font-size: .8rem;
       font-weight: 700;
-      padding: 4px 6px;
+      padding: 6px 5px;
       cursor: pointer;
-      transition: color .2s ease;
     }
     .language-switch button[aria-pressed="true"] {
       color: #fff;
@@ -177,24 +186,24 @@
       text-decoration-color: var(--gold);
       text-underline-offset: 5px;
     }
-    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
 
-    /* ==========================================================================
-       HERO BÖLÜMÜ
-       ========================================================================== */
+    /* Hero with Full-Bleed MP4 Background */
     .hero {
       position: relative;
-      min-height: max(680px, 92svh);
-      display: flex;
-      align-items: center;
       isolation: isolate;
-      padding: calc(var(--header-h) + 50px) clamp(20px, 6vw, 90px) 70px;
-      color: #fff;
-      background: #091730 url("./reflex_hero.png") center right / cover no-repeat;
       overflow: hidden;
+      padding: calc(var(--header-h) + 56px) clamp(20px, 6vw, 96px) 84px;
+      background: #08172f url("./reflex_hero.png") center center / cover no-repeat;
+      color: #fff;
+    }
+    .hero-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
     }
     .hero::before {
       content: "";
@@ -202,799 +211,600 @@
       inset: 0;
       z-index: 1;
       background:
-        radial-gradient(circle at 75% 40%, rgba(231, 196, 91, 0.08) 0%, transparent 60%),
-        linear-gradient(90deg, rgba(8,23,47,.82) 0%, rgba(8,23,47,.56) 50%, rgba(8,23,47,.22) 100%),
-        linear-gradient(0deg, rgba(8,23,47,.68) 0%, transparent 45%);
+        linear-gradient(90deg, rgba(8,23,47,.72) 0%, rgba(8,23,47,.45) 50%, rgba(8,23,47,.12) 100%),
+        linear-gradient(0deg, rgba(8,23,47,.62) 0%, transparent 45%);
+      pointer-events: none;
     }
 
-    .hero-container {
+    .hero-inner {
       position: relative;
       z-index: 2;
-      width: 100%;
-      max-width: 1200px;
+      width: min(1140px, 100%);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.08fr .92fr;
+      gap: clamp(32px, 5vw, 72px);
       align-items: center;
-      gap: 40px;
     }
 
-    .hero-content {
-      max-width: 630px;
+    .hero-copy {
+      text-shadow: 0 2px 14px rgba(0, 0, 0, .42);
     }
 
-    .app-badge {
+    .hero-app-row {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      padding: 6px 15px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 999px;
-      margin-bottom: 20px;
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+      gap: 14px;
+      margin-bottom: 22px;
     }
-    .app-badge-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
+    .hero-app-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
       object-fit: cover;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .4);
+      border: 1px solid rgba(255, 255, 255, .2);
     }
-    .app-badge span {
-      font-size: .72rem;
-      font-weight: 750;
-      letter-spacing: .15em;
-      color: #fce79a;
-      text-transform: uppercase;
+    .hero-app-meta strong {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+    .hero-app-meta span {
+      display: block;
+      color: #a5f3fc;
+      font-size: .85rem;
+      font-weight: 600;
     }
 
     .hero h1 {
-      margin: 0 0 20px;
-      font-size: clamp(2.3rem, 4.6vw, 4.4rem);
-      line-height: 1.05;
+      margin: 0;
+      font-size: clamp(2.35rem, 4.5vw, 4rem);
+      line-height: 1.06;
+      letter-spacing: -.045em;
       font-weight: 800;
-      letter-spacing: -.05em;
-      text-shadow: 0 2px 14px rgba(0,0,0,.5);
+      text-wrap: balance;
     }
-
-    .hero h1 span.gold-text {
-      color: #f8df82;
-      background: linear-gradient(135deg, #ffffff 0%, #ffea85 42%, #eec44d 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none !important;
-      filter: drop-shadow(0 3px 12px rgba(0, 0, 0, 0.65));
-      display: inline-block;
+    .gold-text {
+      color: var(--gold);
+      text-shadow: 0 0 28px rgba(231, 196, 91, .45);
     }
 
     .hero-lead {
-      margin: 0 0 32px;
-      color: rgba(255, 255, 255, .92);
-      font-size: clamp(1rem, 1.25vw, 1.14rem);
-      line-height: 1.75;
-      max-width: 540px;
-      text-shadow: 0 2px 12px rgba(0,0,0,.5);
+      margin: 20px 0 0;
+      max-width: 54ch;
+      color: #dce4f3;
+      font-size: 1.05rem;
+      line-height: 1.72;
     }
 
     .hero-actions {
+      margin-top: 30px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 30px;
+      gap: 14px;
     }
 
-    .btn-primary {
+    .store-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 14px 28px;
-      border-radius: 999px;
-      background: var(--gold);
+      gap: 12px;
+      padding: 13px 22px;
+      border-radius: 14px;
+      background: #fff;
       color: var(--navy-deep);
-      font-weight: 750;
-      font-size: .95rem;
-      letter-spacing: -.01em;
-      transition: all .25s ease;
-      box-shadow: 0 8px 24px rgba(231,196,91,.35);
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .28);
+      transition: transform .2s var(--ease-out), background .2s ease;
     }
-    .btn-primary:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(231,196,91,.45);
-    }
+    .store-btn:hover { background: var(--gold); transform: translateY(-2px); }
+    .store-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .store-btn-text small { display: block; font-size: .68rem; font-weight: 600; opacity: .75; line-height: 1.1; }
+    .store-btn-text span { display: block; font-size: .98rem; font-weight: 800; letter-spacing: -.02em; }
 
-    .btn-secondary {
+    .secondary-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 13px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.12);
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .32);
       color: #fff;
-      font-weight: 650;
       font-size: .92rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: all .2s ease;
+      font-weight: 700;
+      transition: border-color .2s ease, background .2s ease;
     }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: #fff;
-    }
+    .secondary-btn:hover { border-color: var(--gold); background: rgba(255, 255, 255, .08); }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 22px;
+    .platform-note {
+      margin: 14px 0 0;
       font-size: .82rem;
-      color: rgba(255,255,255,.9);
-      text-shadow: 0 2px 10px rgba(0,0,0,.45);
-    }
-    .hero-meta-item { display: flex; align-items: center; gap: 7px; }
-    .hero-meta-item svg { width: 16px; height: 16px; fill: var(--gold); }
-
-    /* Frosted Glass Vitrin Kartı */
-    .hero-preview-box {
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-    .hero-card {
-      position: relative;
-      width: min(100%, 340px);
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.38);
-      border-radius: 30px;
-      padding: 34px 26px 30px;
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-      box-shadow:
-        0 24px 50px rgba(0, 0, 0, 0.28),
-        inset 0 1px 1px rgba(255, 255, 255, 0.45);
-      text-align: center;
-    }
-    .hero-card-img {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 20px;
-      border-radius: 26px;
-      object-fit: contain;
-      filter: drop-shadow(0 14px 28px rgba(0,0,0,.3));
-      border: 2px solid rgba(255,255,255,.8);
-      background: rgba(255, 255, 255, .96);
-      padding: 8px;
-    }
-    .hero-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.55rem;
-      font-weight: 800;
-      color: #ffffff;
-      text-shadow: 0 2px 12px rgba(0,0,0,.35);
-      letter-spacing: -.02em;
-    }
-    .hero-card p {
-      margin: 0;
-      color: rgba(255,255,255,.92);
-      font-size: .92rem;
-      text-shadow: 0 1px 8px rgba(0,0,0,.3);
+      color: #cbd5e8;
     }
 
-    /* Genel Bölüm Stilleri */
-    .section { padding: 96px clamp(20px, 6vw, 90px); }
-    .section-inner { width: min(1160px, 100%); margin: 0 auto; }
-    .section-header { margin-bottom: 50px; }
-    .section-header.text-center {
-      text-align: center;
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .section-kicker {
-      margin: 0 0 12px;
-      color: #a17d27;
-      font-size: .74rem;
-      font-weight: 800;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-    .section h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(2rem, 3.8vw, 3.1rem);
-      line-height: 1.1;
-      letter-spacing: -.05em;
-    }
-    .section-intro {
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.75;
-    }
-
-    /* HOW TO PLAY (Beyaz Zemin) */
-    .steps-section { background: #ffffff; }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .step-card {
-      position: relative;
-      padding: 38px 28px 32px;
-      border-radius: 24px;
-      background: #faf9f6;
-      border: 1px solid #edebe4;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    .step-card:hover {
-      transform: translateY(-6px);
-      border-color: #e5cb78;
-      box-shadow: 0 18px 40px rgba(16,26,49,.07);
-    }
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: var(--navy);
-      color: var(--gold);
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 22px;
-    }
-    .step-card h3 {
-      margin: 0 0 12px;
-      color: var(--navy);
-      font-size: 1.22rem;
-      font-weight: 750;
-      letter-spacing: -.02em;
-    }
-    .step-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .94rem;
-      line-height: 1.65;
-    }
-
-    /* FEATURES (Krem Zemin) */
-    .features-section { background: var(--cream); }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .feature-card {
-      padding: 30px 26px;
-      border-radius: 20px;
-      background: #fff;
-      border: 1px solid #eae8e1;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: #e2c66d;
-      box-shadow: 0 16px 36px rgba(16,26,49,.06);
-    }
-    .feature-icon-wrapper {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      background: var(--gold-subtle);
-      border: 1px solid rgba(231,196,91,.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .feature-icon-wrapper svg {
-      width: 24px;
-      height: 24px;
-      fill: #a67c1e;
-    }
-    .feature-card h3 {
-      margin: 0 0 10px;
-      color: var(--navy);
-      font-size: 1.12rem;
-      font-weight: 750;
-    }
-    .feature-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .91rem;
-      line-height: 1.65;
-    }
-
-    /* MODES (Beyaz Zemin) */
-    .modes-section { background: #fff; }
-    .modes-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 36px;
-    }
-    .mode-card {
-      padding: 26px 20px;
-      text-align: center;
-      border-radius: 20px;
-      background: #fdfcf9;
-      border: 1px solid #edebe4;
-      transition: all .2s ease;
-    }
-    .mode-card:hover {
-      background: #fff;
-      border-color: var(--gold);
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(16,26,49,.07);
-    }
-    .mode-tag {
-      display: inline-block;
-      margin-bottom: 10px;
-      font-size: .7rem;
-      font-weight: 800;
-      color: #b08726;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    .mode-card h4 {
-      margin: 0 0 8px;
-      color: var(--navy);
-      font-size: 1.1rem;
-      font-weight: 750;
-    }
-    .mode-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .85rem;
-      line-height: 1.55;
-    }
-
-    /* DOWNLOAD BÖLÜMÜ (Krem Zemin) */
-    .download-section {
-      background: #f5f3ee;
-      color: var(--ink);
-      position: relative;
-      overflow: hidden;
-      border-top: 1px solid #edebe4;
-    }
-    .download-section .section-kicker { color: #a17d27; }
-    .download-section h2 { color: var(--navy); }
-    .download-section .section-intro { color: var(--muted); }
-
-    .download-box {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 40px;
-      align-items: center;
-      padding: clamp(28px, 5vw, 52px);
-      background: #ffffff;
-      border: 1px solid #e7e5dc;
-      border-radius: 32px;
-      box-shadow: 0 20px 48px rgba(16,26,49,.06);
-    }
-    .download-box h3 {
-      margin: 0 0 12px;
-      font-size: 1.55rem;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -.02em;
-    }
-    .download-box p {
-      margin: 0 0 28px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.65;
-    }
-    .download-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-    .store-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 22px;
-      border-radius: 14px;
-      background: var(--navy);
+    /* Avatar & Emotion Modes Interactive Preview Stage */
+    .preview-stage {
+      background: rgba(16, 26, 49, .86);
+      backdrop-filter: blur(14px);
       color: #fff;
-      font-weight: 650;
-      font-size: .85rem;
-      border: 1px solid rgba(16,26,49,.1);
-      transition: all .2s ease;
-      box-shadow: 0 4px 14px rgba(16,26,49,.15);
+      border-radius: 28px;
+      padding: 20px;
+      box-shadow: 0 28px 60px rgba(4, 10, 24, .52);
+      border: 1px solid rgba(255, 255, 255, .16);
     }
-    .store-badge:hover {
-      background: var(--navy-2);
-      border-color: var(--gold);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(16,26,49,.22);
-    }
-    .store-badge svg { width: 22px; height: 22px; fill: currentColor; }
-    .store-badge span.sub { display: block; font-size: .65rem; opacity: .75; text-transform: uppercase; letter-spacing: .08em; }
-    .store-badge span.main { display: block; font-size: 1rem; font-weight: 750; }
 
-    .qr-showcase {
+    .stage-topbar {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 24px;
-      border-radius: 24px;
-      background: #faf9f6;
-      border: 1px solid #ebe9e1;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding: 0 4px;
     }
-    .qr-frame {
-      width: 160px;
-      height: 160px;
-      background: #ffffff;
-      padding: 10px;
-      border-radius: 18px;
-      border: 1px solid #e2dfd5;
-      box-shadow: 0 8px 24px rgba(16,26,49,.08);
+    .stage-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    .stage-badge {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #d6e0f0;
+      background: rgba(255, 255, 255, .1);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .mood-frame {
+      position: relative;
+      width: min(230px, 100%);
+      aspect-ratio: 9 / 19.5;
+      margin: 0 auto;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #0a1324;
+      border: 2px solid rgba(255, 255, 255, .18);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
       display: grid;
       place-items: center;
-      margin-bottom: 14px;
     }
-    .qr-frame img {
+    .mood-img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      border-radius: 8px;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0;
+      transform: scale(.97);
+      transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
+      pointer-events: none;
     }
-    .qr-showcase p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .84rem;
-      line-height: 1.5;
-      max-width: 240px;
+    .mood-img.is-active {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* CONTACT US (Derin Lacivert Zemin) */
-    .contact-section {
-      background: #0d172e;
-      color: #fff;
-      position: relative;
-      padding-bottom: 90px;
-      border-top: 1px solid rgba(255,255,255,.06);
-    }
-    .contact-title-top {
+    .mood-caption {
+      margin-top: 14px;
       text-align: center;
-      margin-bottom: 45px;
     }
-    .contact-title-top h2 {
-      color: #fff;
-      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    .mood-caption strong {
+      display: block;
+      font-size: 1.08rem;
       font-weight: 800;
-      letter-spacing: -.04em;
-      margin: 0;
+      color: #fff;
+    }
+    .mood-caption span {
+      display: block;
+      margin-top: 4px;
+      font-size: .84rem;
+      color: #cbd5e8;
     }
 
-    .contact-grid {
+    .mode-switcher {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(10, 19, 36, .65);
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+    .mode-btn {
+      flex: 1;
+      border: 0;
+      background: transparent;
+      color: #b7c4dc;
+      font: inherit;
+      font-size: .74rem;
+      font-weight: 700;
+      padding: 8px 8px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    .mode-btn[aria-selected="true"] {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+    .mode-btn:hover:not([aria-selected="true"]) {
+      color: #fff;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    /* Sections */
+    .section {
+      padding: 88px clamp(20px, 6vw, 96px);
+    }
+    .section-inner {
+      width: min(1140px, 100%);
+      margin: 0 auto;
+    }
+    .section-heading {
+      margin: 0;
+      font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      font-weight: 800;
+      color: var(--navy);
+      text-wrap: balance;
+    }
+    .section-sub {
+      margin: 14px 0 0;
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.75;
+    }
+
+    /* Features & App Visual Split */
+    .showcase-section { background: var(--white); }
+    .showcase-split {
+      margin-top: 42px;
       display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: clamp(32px, 6vw, 70px);
+      grid-template-columns: .92fr 1.08fr;
+      gap: clamp(28px, 5vw, 60px);
       align-items: center;
     }
 
-    .contact-info-col h3 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    .app-visual-panel {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 26px;
+      text-align: center;
+    }
+    .app-visual-frame {
+      width: min(240px, 100%);
+      aspect-ratio: 1;
+      margin: 0 auto;
+      border-radius: 32px;
+      overflow: hidden;
+      background: #08172f;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 36px rgba(16, 26, 49, .14);
+    }
+    .app-visual-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .app-visual-panel h3 {
+      margin: 22px 0 8px;
+      font-size: 1.15rem;
       font-weight: 800;
-      line-height: 1.18;
-      letter-spacing: -.03em;
-      margin: 0 0 20px;
-      color: #ffffff;
+      color: var(--navy);
+    }
+    .app-visual-panel p {
+      margin: 0 0 18px;
+      font-size: .92rem;
+      color: var(--muted);
+    }
+    .panel-store-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: .84rem;
+      font-weight: 700;
+      transition: background .2s ease;
+    }
+    .panel-store-link:hover { background: var(--navy-2); }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .feature-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #cffafe;
+      color: #0e7490;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .feature-icon.is-amber { background: #fef3c7; color: #b45309; }
+    .feature-icon.is-green { background: #d1fae5; color: #047857; }
+    .feature-icon.is-navy { background: #e2e8f0; color: var(--navy); }
+    .feature-icon svg { width: 20px; height: 20px; }
+    .feature-row h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.015em;
+    }
+    .feature-row p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.65;
     }
 
-    .contact-info-desc {
-      color: rgba(255,255,255,.78);
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0 0 28px;
-      max-width: 480px;
+    /* FAQ */
+    .faq-section { background: var(--cream); }
+    .faq-list {
+      margin-top: 36px;
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+    }
+    .faq-question svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform .25s var(--ease-out);
+      color: var(--muted);
+    }
+    .faq-item.active .faq-question svg { transform: rotate(180deg); color: var(--navy); }
+    .faq-answer {
+      display: none;
+      padding: 0 22px 20px;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.7;
+    }
+    .faq-item.active .faq-answer { display: block; }
 
-    .contact-email-badge {
+    /* Contact */
+    .contact-section {
+      background: var(--navy);
+      color: #fff;
+    }
+    .contact-section .section-heading { color: #fff; }
+    .contact-section .section-sub { color: #c4cfdf; }
+    .contact-grid {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(28px, 5vw, 56px);
+      align-items: start;
+    }
+    .contact-direct {
+      padding: 28px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+    .contact-direct h3 { margin: 0 0 10px; font-size: 1.15rem; }
+    .contact-direct p { margin: 0 0 20px; color: #c4cfdf; font-size: .95rem; }
+    .mail-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 20px;
+      padding: 12px 18px;
       border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255, 255, 255, .32);
       color: #fff;
-      font-size: .9rem;
-      font-weight: 600;
-      transition: all .2s ease;
+      font-weight: 700;
+      font-size: .92rem;
+      transition: border-color .2s ease, background .2s ease;
     }
-    .contact-email-badge:hover {
-      background: rgba(255,255,255,.14);
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    .contact-email-badge svg {
-      width: 17px;
-      height: 17px;
-      fill: var(--gold);
-    }
-
-    .contact-card {
-      background: var(--navy-card);
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 28px;
-      padding: clamp(24px, 4.5vw, 42px);
-      box-shadow: 0 24px 60px rgba(0,0,0,.35);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: .86rem;
-      font-weight: 650;
-      color: rgba(255,255,255,.86);
-      margin-bottom: 8px;
-    }
-    .form-group label span.req { color: #f47264; }
-
-    .form-control {
-      width: 100%;
-      background: #ffffff;
-      border: 1px solid rgba(255,255,255,.3);
-      border-radius: 12px;
-      padding: 13px 16px;
-      font-size: .95rem;
-      color: var(--navy-deep);
-      transition: all .2s ease;
-    }
-    .form-control:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(231,196,91,.4);
-      border-color: var(--gold);
-    }
-    textarea.form-control {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .form-checkbox-group {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin: 22px 0 26px;
-    }
-    .form-checkbox-group input[type="checkbox"] {
+    .mail-pill svg {
       width: 18px;
       height: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .mail-pill:hover { border-color: var(--gold); background: rgba(255, 255, 255, .08); }
+
+    .contact-form {
+      background: var(--navy-2);
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .field-label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 7px;
+    }
+    .req-star {
+      color: #ef4444;
+      margin-left: 2px;
+    }
+    .field-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(10, 19, 36, .6);
+      color: #fff;
+      font: inherit;
+      font-size: .95rem;
+    }
+    .field-input::placeholder { color: #8c9bb5; }
+    textarea.field-input { min-height: 112px; resize: vertical; }
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 2px;
+      font-size: .82rem;
+      line-height: 1.55;
+      color: #c9d4e7;
+      cursor: pointer;
+    }
+    .consent-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
       margin-top: 3px;
       accent-color: var(--gold);
+      flex-shrink: 0;
       cursor: pointer;
     }
-    .form-checkbox-group label {
-      font-size: .78rem;
-      color: rgba(255,255,255,.7);
-      line-height: 1.55;
-      cursor: pointer;
-    }
-    .form-checkbox-group a {
+    .consent-row a {
       color: #fff;
       text-decoration: underline;
       text-decoration-color: var(--gold);
+      text-underline-offset: 3px;
+      font-weight: 600;
     }
-
-    .btn-submit {
+    .consent-row a:hover { color: var(--gold); }
+    .submit-btn {
       width: 100%;
-      padding: 15px;
+      padding: 15px 24px;
       border: 0;
       border-radius: 999px;
       background: var(--gold);
       color: var(--navy-deep);
-      font-size: 1.05rem;
+      font: inherit;
+      font-size: .98rem;
       font-weight: 800;
       cursor: pointer;
-      letter-spacing: -.01em;
-      transition: all .2s ease;
-      box-shadow: 0 6px 20px rgba(231,196,91,.3);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      box-shadow: 0 8px 24px rgba(231, 196, 91, .28);
+      transition: background .2s ease, transform .2s var(--ease-out);
     }
-    .btn-submit:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(231,196,91,.42);
-    }
-    .btn-submit:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
+    .submit-btn:hover:not(:disabled) { background: var(--gold-hover); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: .65; cursor: not-allowed; }
     .form-status {
       display: none;
-      padding: 14px 18px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      font-size: .9rem;
-      line-height: 1.5;
-    }
-    .form-status.is-success {
-      display: block;
-      background: rgba(56, 161, 105, 0.18);
-      border: 1px solid #38a169;
-      color: #81e6d9;
-    }
-    .form-status.is-error {
-      display: block;
-      background: rgba(229, 62, 62, 0.18);
-      border: 1px solid #e53e3e;
-      color: #feb2b2;
-    }
-
-    /* SITE FOOTER */
-    .site-footer {
-      background: #091325;
-      color: #fff;
-      padding: 70px clamp(20px, 6vw, 90px) 36px;
-      border-top: 1px solid rgba(255,255,255,.07);
-    }
-    .footer-inner {
-      width: min(1160px, 100%);
-      margin: 0 auto;
-    }
-    .footer-top-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: clamp(30px, 5vw, 60px);
-      padding-bottom: 50px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-
-    .footer-brand-col .footer-brand-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      color: #ffffff;
-      margin: 0 0 10px;
-      display: inline-block;
-    }
-    .footer-brand-col p {
-      color: rgba(255,255,255,.65);
-      font-size: .9rem;
-      line-height: 1.65;
-      margin: 0 0 20px;
-      max-width: 320px;
-    }
-    .footer-back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--gold);
-      font-size: .84rem;
-      font-weight: 700;
-      transition: transform .2s ease;
-    }
-    .footer-back-link:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      transform: translateX(-3px);
-    }
-
-    .footer-col-title {
-      font-size: .84rem;
-      font-weight: 750;
-      color: rgba(255,255,255,.9);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin: 0 0 20px;
-    }
-    .footer-links-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .footer-links-list a {
-      color: rgba(255,255,255,.68);
+      padding: 12px 14px;
+      border-radius: 10px;
       font-size: .88rem;
-      font-weight: 500;
-      transition: color .2s ease;
-      display: inline-block;
+      font-weight: 600;
     }
-    .footer-links-list a:hover {
-      color: var(--gold);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
+    .form-status.is-success { display: block; background: rgba(16, 185, 129, .18); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, .4); }
+    .form-status.is-error { display: block; background: rgba(239, 68, 68, .18); color: #fecaca; border: 1px solid rgba(239, 68, 68, .4); }
 
-    .footer-bottom-copyright {
-      padding-top: 36px;
-      text-align: center;
-      font-size: .86rem;
-      color: rgba(255,255,255,.55);
-      letter-spacing: .01em;
+    /* Footer */
+    .footer {
+      background: var(--navy-deep);
+      color: #b7c1d3;
+      padding: 26px clamp(20px, 6vw, 96px);
+      font-size: .84rem;
+      border-top: 1px solid rgba(255, 255, 255, .08);
     }
+    .footer-bar {
+      width: min(1140px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px 16px;
+      text-align: left;
+    }
+    .footer-bar a { color: #d7e0ef; font-weight: 600; transition: color .2s ease; }
+    .footer-bar a:hover { color: var(--gold); text-decoration: underline; }
+    .footer-sep { color: rgba(255, 255, 255, .28); user-select: none; }
 
-    @media (max-width: 980px) {
-      .hero-container {
+    @media (max-width: 900px) {
+      .hero-inner, .showcase-split, .contact-grid {
         grid-template-columns: 1fr;
-        text-align: center;
-        gap: 50px;
       }
-      .hero-content {
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .hero-actions { justify-content: center; }
-      .hero-meta { justify-content: center; }
-      .steps-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .modes-grid { grid-template-columns: repeat(2, 1fr); }
-      .download-box { grid-template-columns: 1fr; text-align: center; }
-      .download-badges { justify-content: center; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .contact-info-col { text-align: center; }
-      .contact-info-desc { margin: 0 auto 28px; }
-      .footer-top-grid { grid-template-columns: 1fr 1fr; }
     }
-
-    @media (max-width: 768px) {
+    @media (max-width: 720px) {
       :root { --header-h: 60px; }
-      .site-header { padding: 0 16px; }
       .main-nav { display: none; }
-      .steps-grid, .features-grid, .modes-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-top-grid { grid-template-columns: 1fr; gap: 36px; }
-      .hero {
-        padding: calc(var(--header-h) + 30px) 20px 60px;
-        background-position: center;
+      .section { padding: 64px 20px; }
+      .hero { padding: calc(var(--header-h) + 34px) 20px 56px; }
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
       }
     }
   </style>
 </head>
-<body id="top">
-
-  <!-- ÜST MENÜ -->
+<body>
   <header class="site-header">
     <div class="brand-group">
-      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Sayfasına Dön">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-        <span>littleGENIUS</span>
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Sayfa" title="littleGENIUS">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
       </a>
-      <div class="brand-divider" aria-hidden="true"></div>
-      <span class="app-brand-title">REFLEX</span>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <a class="app-brand-title" href="#top">
+        <img src="../Reflex.png" alt="RefleX Genius logo">
+        <span>RefleX Genius</span>
+      </a>
     </div>
 
     <div class="header-right">
-      <nav class="main-nav" aria-label="RefleX navigation">
-        <a class="nav-home-icon" href="#top" aria-label="RefleX Home">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        </a>
-        <a href="#how-to-play" data-i18n="navHow">HOW TO PLAY</a>
-        <a href="#features" data-i18n="navFeatures">FEATURES</a>
-        <a href="#modes" data-i18n="navModes">GAME MODES</a>
-        <a href="#contact" data-i18n="navContact">CONTACT US</a>
-        <a class="nav-cta" href="#download" data-i18n="navDownload">PLAY NOW</a>
+      <nav class="main-nav" aria-label="Section navigation">
+        <a href="#features" data-i18n="navFeatures">ÖZELLİKLER</a>
+        <a href="#faq" data-i18n="navFaq">SSS</a>
+        <a href="#contact" data-i18n="navContact">İLETİŞİM</a>
+        <a class="nav-download" href="https://apps.apple.com/us/app/reflex-genius/id6775504797" target="_blank" rel="noopener noreferrer" data-i18n="navDownload">İNDİR</a>
       </nav>
-
       <div class="language-switch" aria-label="Language">
         <button type="button" data-lang="tr" aria-pressed="true">TR</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -1002,559 +812,447 @@
     </div>
   </header>
 
-  <main>
-    <!-- HERO BÖLÜMÜ -->
-    <section class="hero" aria-label="RefleX Tanıtımı">
-      <div class="hero-container">
-        <div class="hero-content">
-          <div class="app-badge">
-            <img class="app-badge-icon" src="./reflex_logo.png" onerror="this.onerror=null;this.src='../Reflex.png'" alt="RefleX Logo">
-            <span data-i18n="badgeText">ARCADE & SPEED TRAINING</span>
+  <main id="top">
+    <section class="hero" aria-label="RefleX Genius Tanıtımı">
+      <video class="hero-bg-video" src="./reflex_hero.mp4" autoplay loop muted playsinline poster="./reflex_hero.png"></video>
+
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-app-row">
+            <img class="hero-app-icon" src="../Reflex.png" alt="RefleX Genius app icon">
+            <div class="hero-app-meta">
+              <strong>RefleX Genius</strong>
+              <span data-i18n="heroSubtitle">Refleks &amp; Zekâ Arcade Oyunu</span>
+            </div>
           </div>
-          <h1 data-i18n="heroTitle">Milisaniyelerle Yarışın, <span class="gold-text">Sınırlarınızı Aşın.</span></h1>
-          <p class="hero-lead" data-i18n="heroText">12 farklı bağımlılık yapıcı oyun modu, dinamik görsel ritimler ve refleks geliştirici dinamiklerle tepki sürenizi zirveye taşıyın.</p>
-          
+
+          <h1 data-i18n="heroTitle">Reflekslerini Yönet, <span class="gold-text">Sınırlarını Zorla.</span></h1>
+          <p class="hero-lead" data-i18n="heroLead">
+            12 benzersiz refleks ve zekâ moduyla hızınızı, odağınızı ve tepki sürenizi test edin. Hızlı matematik, genel kültür, Nitro Rush ve Dual Tap ile her turda yeni bir meydan okuma.
+          </p>
+
           <div class="hero-actions">
-            <a class="btn-primary" href="#download" data-i18n="btnDownload">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-              <span>Oyunu İndir</span>
+            <a class="store-btn" href="https://apps.apple.com/us/app/reflex-genius/id6775504797" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.54c.64-.78 1.08-1.87.96-2.96-.93.04-2.06.62-2.73 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.1-.49 2.74-1.27z"/></svg>
+              <div class="store-btn-text">
+                <small data-i18n="storeSmall">App Store'dan İndirin</small>
+                <span>App Store</span>
+              </div>
             </a>
-            <a class="btn-secondary" href="#how-to-play" data-i18n="btnHow">
-              <span>Nasıl Oynanır?</span>
-              <span aria-hidden="true">↓</span>
-            </a>
+            <a class="secondary-btn" href="#features" data-i18n="btnExplore">Özellikleri İncele</a>
           </div>
-
-          <div class="hero-meta">
-            <div class="hero-meta-item">
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <span data-i18n="metaRating">iOS & Android Uyumlu</span>
-            </div>
-            <div class="hero-meta-item">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <span data-i18n="metaOffline">12 Arcade Modu</span>
-            </div>
-            <div class="hero-meta-item">
-              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-              <span data-i18n="metaMs">Milisaniye Ölçümü</span>
-            </div>
-          </div>
+          <p class="platform-note" data-i18n="platformNote">iPhone ve iPad için · 12 Oyun Modu · Küresel Liderlik Tabloları</p>
         </div>
 
-        <!-- Vitrin Kartı -->
-        <div class="hero-preview-box">
-          <div class="hero-card">
-            <img class="hero-card-img" src="./reflex_logo.png" onerror="this.onerror=null;this.src='../Reflex.png'" alt="RefleX App Icon">
-            <h3>RefleX</h3>
-            <p data-i18n="cardSubtitle">Reaction Time & Brain Training Arcade</p>
+        <!-- RefleX Uygulama Ekranları Önizleme Sahnesi -->
+        <div class="preview-stage" aria-label="RefleX Genius app screens preview">
+          <div class="stage-topbar">
+            <span class="stage-brand">RefleX</span>
+            <span class="stage-badge" data-i18n="stageBadge">Uygulama Ekranları</span>
+          </div>
+
+          <div class="mood-frame">
+            <img class="mood-img is-active" data-mood="home" src="./Home.jpg" alt="RefleX Games Hub">
+            <img class="mood-img" data-mood="arena" src="./Game0.jpg" alt="RefleX Nitro Lane Gameplay">
+            <img class="mood-img" data-mood="rush" src="./Game2.jpg" alt="RefleX Survival Rush Gameplay">
+            <img class="mood-img" data-mood="stats" src="./Stats1.jpg" alt="RefleX Statistics & Rankings">
+          </div>
+
+          <div class="mood-caption" aria-live="polite">
+            <strong id="moodTitle">RefleX Oyun Merkezi</strong>
+            <span id="moodDesc">Seviye ilerlemenizi takip edin, 12 farklı refleks moduna tek dokunuşla geçin.</span>
+          </div>
+
+          <div class="mode-switcher" role="tablist" aria-label="RefleX app screens">
+            <button class="mode-btn" type="button" role="tab" data-mood="home" aria-selected="true" data-i18n="tabHome">Ana Ekran</button>
+            <button class="mode-btn" type="button" role="tab" data-mood="arena" aria-selected="false" data-i18n="tabArena">Nitro Rush</button>
+            <button class="mode-btn" type="button" role="tab" data-mood="rush" aria-selected="false" data-i18n="tabRush">Survival</button>
+            <button class="mode-btn" type="button" role="tab" data-mood="stats" aria-selected="false" data-i18n="tabStats">İstatistik</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW TO PLAY BÖLÜMÜ (Beyaz Zemin) -->
-    <section class="section steps-section" id="how-to-play">
+    <section class="section showcase-section" id="features">
       <div class="section-inner">
-        <div class="section-header text-center">
-          <p class="section-kicker" data-i18n="stepsKicker">HIZ VE KONSANTRASYON</p>
-          <h2 data-i18n="stepsTitle">3 Adımda Reflekslerinizi Geliştirin</h2>
-          <p class="section-intro" data-i18n="stepsIntro">Zihinsel çeviklik antrenmanlarına hemen başlayın; tepki sürenizi milisaniyeler seviyesine indirin.</p>
-        </div>
+        <h2 class="section-heading" data-i18n="featHeading">12 farklı refleks ve zekâ moduyla tek sınır hızınız</h2>
+        <p class="section-sub" data-i18n="featSub">RefleX Genius, refleks hızını ve bilişsel çevikliği aynı anda test eden dinamik senaryolar sunar.</p>
 
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-number">01</div>
-            <h3 data-i18n="step1Title">Odaklanın & Dokunun</h3>
-            <p data-i18n="step1Desc">Ekranda beliren hedefleri, yönleri ve renkleri milisaniyeler içinde doğru sıralamayla yakalayın.</p>
+        <div class="showcase-split">
+          <div class="app-visual-panel">
+            <div class="app-visual-frame">
+              <img src="../Reflex.png" alt="RefleX Genius App Icon">
+            </div>
+            <h3>RefleX Genius</h3>
+            <p data-i18n="panelDesc">iPhone ve iPad cihazlarınız için yüksek tempolu refleks ve zekâ oyunu.</p>
+            <a class="panel-store-link" href="https://apps.apple.com/us/app/reflex-genius/id6775504797" target="_blank" rel="noopener noreferrer" data-i18n="panelBtn">App Store'da Görüntüle ↗</a>
           </div>
-          <div class="step-card">
-            <div class="step-number">02</div>
-            <h3 data-i18n="step2Title">Hızlanan Tempoya Ayak Uydurun</h3>
-            <p data-i18n="step2Desc">Her başarılı dokunuşta tempo yükselir. Dikkat dağınıklığını sıfıra indirerek konsantrasyon sınırlarınızı zorlayın.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">03</div>
-            <h3 data-i18n="step3Title">Kendi Rekorlarınızı Kırın</h3>
-            <p data-i18n="step3Desc">Tepki süresi istatistiklerinizi inceleyin, küresel liderlik tablosunda en hızlılar arasında yerinizi alın.</p>
+
+          <div class="feature-list">
+            <div class="feature-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div>
+                <h3 data-i18n="f1Title">12 Benzersiz Oyun Modu</h3>
+                <p data-i18n="f1Desc">Zihinsel Matematik ve Hızlı Tepki Testi'nden yüksek hızlı Nitro Rush ve Dual Tap aksiyonuna kadar asla tekrar etmeyen dinamik turlar.</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-icon is-amber" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <h3 data-i18n="f2Title">Stratejik Güçlendiriciler (Boosters)</h3>
+                <p data-i18n="f2Desc">Ağır Çekim (Slow Motion), Çift Puan, Kalkan ve İkinci Şans güçlendiricileriyle yüksek skor rekorlarınızı kırın.</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-icon is-green" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              </div>
+              <div>
+                <h3 data-i18n="f3Title">Küresel Liderlik &amp; Antrenman Modu</h3>
+                <p data-i18n="f3Desc">Dünya çapındaki oyuncularla yarışın veya sıralamanızı riske atmadan pratik yapmak için Özel (Training) moduna geçin.</p>
+              </div>
+            </div>
+
+            <div class="feature-row">
+              <div class="feature-icon is-navy" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/></svg>
+              </div>
+              <div>
+                <h3 data-i18n="f4Title">Zengin Özelleştirme &amp; Mağaza</h3>
+                <p data-i18n="f4Desc">Oyun içi mağazadan özel avatarlar, altın arabalar ve benzersiz kozmetik öğelerin kilidini açarak tarzınızı yansıtın.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURES BÖLÜMÜ (Krem Zemin) -->
-    <section class="section features-section" id="features">
+    <section class="section faq-section" id="faq">
       <div class="section-inner">
-        <div class="section-header text-center">
-          <p class="section-kicker" data-i18n="featKicker">TEKNİK DİNAMİKLER</p>
-          <h2 data-i18n="featTitle">Hassas Ölçüm ve Zihinsel Gelişim</h2>
-          <p class="section-intro" data-i18n="featIntro">RefleX, yalnızca bir eğlence oyunu değil; odaklanma süresini ve motor becerileri artıran bilimsel bir zihin jimnastiğidir.</p>
-        </div>
+        <h2 class="section-heading" data-i18n="faqHeading">Sıkça Sorulan Sorular</h2>
+        <p class="section-sub" data-i18n="faqSub">RefleX Genius hakkında en çok merak edilen konular.</p>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/></svg>
-            </div>
-            <h3 data-i18n="feat1Title">12 Eşsiz Oyun Modu</h3>
-            <p data-i18n="feat1Desc">Hızlı dokunuş, renk algısı, yön eşleme, hafıza ritmi ve sayı sıralama gibi 12 farklı bağımlılık yapıcı mod.</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q1">RefleX Genius'ta kaç oyun modu bulunuyor?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" data-i18n="a1">Oyunda Mental Math, Quick Reaction Quiz, Nitro Rush ve Dual Tap dahil olmak üzere hız, odak ve refleksinizi ölçen 12 benzersiz oyun modu vardır.</div>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            </div>
-            <h3 data-i18n="feat2Title">Milisaniye Hassasiyeti</h3>
-            <p data-i18n="feat2Desc">Tepki sürenizi milisaniye cinsinden ölçün ve kişisel gelişim grafiğinizi günlük olarak takip edin.</p>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q2">Sıralamamı kaybetmeden pratik yapabilir miyim?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" data-i18n="a2">Evet. Standart modun yanı sıra Özel (Training) moduna geçerek küresel sıralamanızı riske atmadan pratik yapabilirsiniz.</div>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.28 19.59 10.6 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
-            </div>
-            <h3 data-i18n="feat3Title">Göz-El Koordinasyonu</h3>
-            <p data-i18n="feat3Desc">Sporcular, e-sporcular ve reflekslerini zinde tutmak isteyenler için mükemmel bilişsel hazırlık aracı.</p>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q3">Hangi güçlendiriciler (Boosters) mevcut?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" data-i18n="a3">Ağır Çekim (Slow Motion), Çift Puan (Double Points), Kalkan (Shield) ve İkinci Şans (Second Chance) güçlendiricilerini stratejik olarak kullanabilirsiniz.</div>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-            </div>
-            <h3 data-i18n="feat4Title">%100 Çevrimdışı (Offline)</h3>
-            <p data-i18n="feat4Desc">İnternet bağlantısı olmadan istediğiniz her an ve her yerde tam performansla reflekslerinizi test edin.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            </div>
-            <h3 data-i18n="feat5Title">Minimalist Neon Estetiği</h3>
-            <p data-i18n="feat5Desc">Gereksiz detaylardan arındırılmış, dikkati dağıtmayan akıcı 60 FPS görsel arayüz ve efektler.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg>
-            </div>
-            <h3 data-i18n="feat6Title">Haptik & Sesli Uyarılar</h3>
-            <p data-i18n="feat6Desc">Her başarılı dokunuşta ve rekor anında net haptik titreşim ve tatmin edici ses tasarımı.</p>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q4">Hangi cihazlarda oynanabilir?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer" data-i18n="a4">RefleX Genius, Apple App Store üzerinden iPhone ve iPad cihazlar için ücretsiz olarak indirilebilir.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MODES BÖLÜMÜ (Beyaz Zemin) -->
-    <section class="section modes-section" id="modes">
-      <div class="section-inner">
-        <div class="section-header text-center">
-          <p class="section-kicker" data-i18n="modesKicker">OYUN MODLARI</p>
-          <h2 data-i18n="modesTitle">Farklı Refleks Disiplinleri</h2>
-          <p class="section-intro" data-i18n="modesIntro">Hangi alanda daha çeviksiniz? RefleX'in popüler modlarıyla sınırlarınızı keşfedin.</p>
-        </div>
-
-        <div class="modes-grid">
-          <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode1Tag">SAF TEPKİ</span>
-            <h4 data-i18n="mode1Title">Hızlı Dokunuş (Tap Speed)</h4>
-            <p data-i18n="mode1Desc">Ekranda beliren hedeflere milisaniyeler bitmeden en hızlı şekilde dokunun.</p>
-          </div>
-
-          <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode2Tag">GÖRSEL AYIRIM</span>
-            <h4 data-i18n="mode2Title">Renk Çatışması (Color Clash)</h4>
-            <p data-i18n="mode2Desc">Renkler ve kelimeler birbirine karıştığında beyninizin doğru renge odaklanmasını sağlayın.</p>
-          </div>
-
-          <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode3Tag">YÖN & HAREKET</span>
-            <h4 data-i18n="mode3Title">Yön Algısı (Direction Rush)</h4>
-            <p data-i18n="mode3Desc">Okların gösterdiği yöne hızla kaydırın; ters ok tuzaklarına düşmeden rekor kırın.</p>
-          </div>
-
-          <div class="mode-card">
-            <span class="mode-tag" data-i18n="mode4Tag">SONSUZ ODAK</span>
-            <h4 data-i18n="mode4Title">Sonsuz Ritim (Infinite Focus)</h4>
-            <p data-i18n="mode4Desc">Hata yapmadan tempoyu koruyun; serinizi uzattıkça hızlanan aksiyona meydan okuyun.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DOWNLOAD BÖLÜMÜ (Krem Zemin) -->
-    <section class="section download-section" id="download">
-      <div class="section-inner">
-        <div class="section-header text-center">
-          <p class="section-kicker" data-i18n="dlKicker">HEMEN BAŞLAYIN</p>
-          <h2 data-i18n="dlTitle">RefleX'i Ücretsiz Oynayın</h2>
-          <p class="section-intro" data-i18n="dlIntro">iOS veya Android cihazınıza saniyeler içinde indirin; refleks antrenmanınızı bugün başlatın.</p>
-        </div>
-
-        <div class="download-box">
-          <div class="download-info">
-            <h3 data-i18n="dlHeading">Hızınızı Ölçmeye Hazır Mısınız?</h3>
-            <p data-i18n="dlParagraph">İster Google Play'den ister App Store'dan ücretsiz indirip hemen ilk refleks testinizi yapabilirsiniz.</p>
-            
-            <div class="download-badges">
-              <a class="store-badge" href="https://play.google.com/store/apps/developer?id=littleGenius" target="_blank" rel="noopener" aria-label="Google Play'den İndir">
-                <svg viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.986 1.986 0 0 1-.61-.954V2.768c.15-.365.367-.698.61-.954zm11.246 11.247l2.257 2.258-11.238 6.486 8.981-8.744zm0-2.122L5.875 2.195l11.237 6.486-2.257 2.258zm1.06 1.06l3.473-2.005c.875-.505.875-1.326 0-1.831L15.915 12z"/></svg>
-                <div>
-                  <span class="sub">GET IT ON</span>
-                  <span class="main">Google Play</span>
-                </div>
-              </a>
-              <a class="store-badge" href="https://apps.apple.com/developer/littlegenius" target="_blank" rel="noopener" aria-label="App Store'dan İndir">
-                <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.54c.64-.78 1.08-1.87.96-2.96-.93.04-2.06.62-2.73 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.1-.49 2.74-1.27z"/></svg>
-                <div>
-                  <span class="sub">DOWNLOAD ON THE</span>
-                  <span class="main">App Store</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="qr-showcase">
-            <div class="qr-frame">
-              <img src="./reflex_qr_code.png" onerror="this.onerror=null;this.src='./reflex_logo.png'" alt="RefleX QR Code">
-            </div>
-            <p data-i18n="qrCaption">Telefonunuzun kamerasıyla QR kodu tarayarak oyunu anında indirin.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT US BÖLÜMÜ (Derin Lacivert Zemin) -->
     <section class="section contact-section" id="contact">
       <div class="section-inner">
-        <div class="contact-title-top">
-          <h2 data-i18n="contactMainTitle">Bize Ulaşın</h2>
-        </div>
+        <h2 class="section-heading" data-i18n="contactHeading">Destek ve İletişim</h2>
+        <p class="section-sub" data-i18n="contactSub">Öneri, hata bildirimi veya destek talepleriniz için bize doğrudan ulaşabilirsiniz.</p>
 
         <div class="contact-grid">
-          <div class="contact-info-col">
-            <h3 data-i18n="contactPitch">Sorularınız ve önerileriniz için lütfen bize ulaşın</h3>
-            <p class="contact-info-desc" data-i18n="contactDesc">Sorularınız, oyun modu önerileriniz, teknik geri bildirimleriniz veya iş birliği fırsatları için bize dilediğiniz zaman ulaşabilirsiniz. Ekibimiz en kısa sürede sizinle iletişime geçecektir.</p>
-            <a class="contact-email-badge" href="mailto:geniusmetaverse@gmail.com">
-              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              <span>geniusmetaverse@gmail.com</span>
+          <div class="contact-direct">
+            <h3 data-i18n="directTitle">E-posta ile ulaşın</h3>
+            <p data-i18n="directText">Geri bildirimlerinizi ve yeni özellik fikirlerinizi duymaktan mutluluk duyarız.</p>
+            <a class="mail-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>info@littlegenius.tr</span>
+              <span aria-hidden="true">↗</span>
             </a>
           </div>
 
-          <div class="contact-card">
-            <div class="form-status" id="formStatus" role="alert"></div>
-
-            <form id="contactForm" method="POST">
-              <input type="hidden" name="_subject" value="littleGENIUS - RefleX Web İletişim Formu">
-              <input type="hidden" name="_captcha" value="false">
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="userEmail"><span data-i18n="formEmail">E-posta</span> <span class="req">*</span></label>
-                  <input class="form-control" type="email" id="userEmail" name="email" placeholder="name@example.com" required>
-                </div>
-                <div class="form-group">
-                  <label for="userName"><span data-i18n="formName">İsim & Soyisim</span> <span class="req">*</span></label>
-                  <input class="form-control" type="text" id="userName" name="name" placeholder="Adınız / Your Name" required>
-                </div>
+          <form class="contact-form" id="contactForm">
+            <input type="hidden" name="_subject" value="RefleX Genius App Support / Contact">
+            <div class="form-row-2">
+              <div>
+                <label class="field-label" for="email"><span data-i18n="lblEmail">E-posta</span><span class="req-star" aria-hidden="true">*</span></label>
+                <input class="field-input" id="email" name="email" type="email" required placeholder="name@example.com">
               </div>
-
-              <div class="form-group">
-                <label for="userMessage"><span data-i18n="formMessage">Size nasıl yardımcı olabiliriz?</span> <span class="req">*</span></label>
-                <textarea class="form-control" id="userMessage" name="message" placeholder="Mesajınız veya öneriniz... / Write your message here..." required></textarea>
+              <div>
+                <label class="field-label" for="name"><span data-i18n="lblName">Ad Soyad</span><span class="req-star" aria-hidden="true">*</span></label>
+                <input class="field-input" id="name" name="name" type="text" required placeholder="Adınız / Your Name">
               </div>
-
-              <div class="form-checkbox-group">
-                <input type="checkbox" id="userConsent" required>
-                <label for="userConsent" data-i18n="formConsent">
-                  littleGENIUS tarafından bilgilendirilme almayı kabul ediyorum. Gizliliğinizi nasıl koruduğumuz hakkında bilgi için <a id="formPrivacyLink" href="privacy-policy-tr.html" target="_blank">Gizlilik Politikası</a>'nı inceleyin.
-                </label>
-              </div>
-
-              <button class="btn-submit" type="submit" id="submitBtn">
-                <span id="btnSubmitText" data-i18n="btnSubmit">Gönder</span>
-              </button>
-            </form>
-          </div>
+            </div>
+            <div>
+              <label class="field-label" for="message"><span data-i18n="lblMsg">Size nasıl yardımcı olabiliriz?</span><span class="req-star" aria-hidden="true">*</span></label>
+              <textarea class="field-input" id="message" name="message" required placeholder="Mesajınız veya öneriniz... / Write your message here..."></textarea>
+            </div>
+            <label class="consent-row" for="consentCheck">
+              <input id="consentCheck" type="checkbox" required>
+              <span id="consentText">littleGENIUS'tan iletişim mesajları almayı kabul ediyorum. Verilerinizi nasıl koruduğumuzu öğrenmek için <a id="formPpLink" href="privacy-policy.html">Gizlilik Politikamızı</a> inceleyebilirsiniz.</span>
+            </label>
+            <button class="submit-btn" id="submitBtn" type="submit">
+              <span id="btnSubmitText" data-i18n="btnSubmit">Mesaj Gönder</span>
+            </button>
+            <div class="form-status" id="formStatus" role="status"></div>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- SITE FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-top-grid">
-        <div class="footer-brand-col">
-          <span class="footer-brand-title">littleGENIUS</span>
-          <p data-i18n="footerBrandText">Fikirleri gerçeğe dönüştüren bağımsız dijital stüdyo. Özgün mobil oyunlar ve yaratıcı dijital deneyimler.</p>
-          <a class="footer-back-link" href="../">
-            <span>← littleGENIUS Ana Sayfa</span>
-          </a>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title" data-i18n="footerColPages">Pages</h4>
-          <ul class="footer-links-list">
-            <li><a href="#how-to-play" data-i18n="navHow">HOW TO PLAY</a></li>
-            <li><a href="#features" data-i18n="navFeatures">FEATURES</a></li>
-            <li><a href="#modes" data-i18n="navModes">GAME MODES</a></li>
-            <li><a href="#contact" data-i18n="navContact">CONTACT US</a></li>
-            <li><a href="#download" data-i18n="navDownload">PLAY NOW</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title" data-i18n="footerColLegal">Legal</h4>
-          <ul class="footer-links-list">
-            <li><a id="footerFaq" href="faq-tr.html" data-i18n="linkFaq">Frequently Asked Questions (FAQ)</a></li>
-            <li><a id="footerTos" href="terms-of-service-tr.html" data-i18n="linkTos">Terms of Service (TOS)</a></li>
-            <li><a id="footerPp" href="privacy-policy-tr.html" data-i18n="linkPp">Privacy Policy (PP)</a></li>
-            <li><a id="footerSupport" href="support.html" data-i18n="linkSupport">Support & Contact</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom-copyright">
-        Copyright © 2026, a product of littleGenius
-      </div>
+  <footer class="footer">
+    <div class="footer-bar">
+      <span data-i18n="copyright">Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır</span>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="tosLink" href="terms-of-service.html" data-i18n="footTOS">Kullanım Koşulları</a>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="ppLink" href="privacy-policy.html" data-i18n="footPP">Gizlilik Politikası</a>
     </div>
   </footer>
 
   <script>
     const translations = {
+      tr: {
+        navFeatures: "ÖZELLİKLER",
+        navFaq: "SSS",
+        navContact: "İLETİŞİM",
+        navDownload: "İNDİR",
+        heroSubtitle: "Refleks & Zekâ Arcade Oyunu",
+        heroTitle: 'Reflekslerini Yönet, <span class="gold-text">Sınırlarını Zorla.</span>',
+        heroLead: "12 benzersiz refleks ve zekâ moduyla hızınızı, odağınızı ve tepki sürenizi test edin. Hızlı matematik, genel kültür, Nitro Rush ve Dual Tap ile her turda yeni bir meydan okuma.",
+        storeSmall: "App Store'dan İndirin",
+        btnExplore: "Özellikleri İncele",
+        platformNote: "iPhone ve iPad için · 12 Oyun Modu · Küresel Liderlik Tabloları",
+        stageBadge: "Uygulama Ekranları",
+        tabHome: "Ana Ekran",
+        tabArena: "Nitro Rush",
+        tabRush: "Survival",
+        tabStats: "İstatistik",
+        moods: {
+          home: { title: "RefleX Oyun Merkezi", desc: "Seviye ilerlemenizi takip edin, 12 farklı refleks moduna tek dokunuşla geçin." },
+          arena: { title: "Yüksek Hızlı Refleks Şeridi", desc: "Kombo çarpanlarını yakalayın, Slow Motion ve Kalkan güçlendiricileriyle rekor kırın." },
+          rush: { title: "Survival Rush Modu", desc: "Artan hızda engellerden kaçın, anlık tepkilerle hayatta kalma sürenizi uzatın." },
+          stats: { title: "Detaylı İstatistik & Sıralama", desc: "Hız, Mantık, Ritim ve Odak metriklerinizi görün; başarımlarınızı takip edin." }
+        },
+        featHeading: "12 farklı refleks ve zekâ moduyla tek sınır hızınız",
+        featSub: "RefleX Genius, refleks hızını ve bilişsel çevikliği aynı anda test eden dinamik senaryolar sunar.",
+        panelDesc: "iPhone ve iPad cihazlarınız için yüksek tempolu refleks ve zekâ oyunu.",
+        panelBtn: "App Store'da Görüntüle ↗",
+        f1Title: "12 Benzersiz Oyun Modu",
+        f1Desc: "Zihinsel Matematik ve Hızlı Tepki Testi'nden yüksek hızlı Nitro Rush ve Dual Tap aksiyonuna kadar asla tekrar etmeyen dinamik turlar.",
+        f2Title: "Stratejik Güçlendiriciler (Boosters)",
+        f2Desc: "Ağır Çekim (Slow Motion), Çift Puan, Kalkan ve İkinci Şans güçlendiricileriyle yüksek skor rekorlarınızı kırın.",
+        f3Title: "Küresel Liderlik & Antrenman Modu",
+        f3Desc: "Dünya çapındaki oyuncularla yarışın veya sıralamanızı riske atmadan pratik yapmak için Özel (Training) moduna geçin.",
+        f4Title: "Zengin Özelleştirme & Mağaza",
+        f4Desc: "Oyun içi mağazadan özel avatarlar, altın arabalar ve benzersiz kozmetik öğelerin kilidini açarak tarzınızı yansıtın.",
+        faqHeading: "Sıkça Sorulan Sorular",
+        faqSub: "RefleX Genius hakkında en çok merak edilen konular.",
+        q1: "RefleX Genius'ta kaç oyun modu bulunuyor?",
+        a1: "Oyunda Mental Math, Quick Reaction Quiz, Nitro Rush ve Dual Tap dahil olmak üzere hız, odak ve refleksinizi ölçen 12 benzersiz oyun modu vardır.",
+        q2: "Sıralamamı kaybetmeden pratik yapabilir miyim?",
+        a2: "Evet. Standart modun yanı sıra Özel (Training) moduna geçerek küresel sıralamanızı riske atmadan pratik yapabilirsiniz.",
+        q3: "Hangi güçlendiriciler (Boosters) mevcut?",
+        a3: "Ağır Çekim (Slow Motion), Çift Puan (Double Points), Kalkan (Shield) ve İkinci Şans (Second Chance) güçlendiricilerini stratejik olarak kullanabilirsiniz.",
+        q4: "Hangi cihazlarda oynanabilir?",
+        a4: "RefleX Genius, Apple App Store üzerinden iPhone ve iPad cihazlar için ücretsiz olarak indirilebilir.",
+        contactHeading: "Destek ve İletişim",
+        contactSub: "Öneri, hata bildirimi veya destek talepleriniz için bize doğrudan ulaşabilirsiniz.",
+        directTitle: "E-posta ile ulaşın",
+        directText: "Geri bildirimlerinizi ve yeni özellik fikirlerinizi duymaktan mutluluk duyarız.",
+        lblName: "Ad Soyad",
+        lblEmail: "E-posta",
+        lblMsg: "Size nasıl yardımcı olabiliriz?",
+        consentHtml: 'littleGENIUS\'tan iletişim mesajları almayı kabul ediyorum. Verilerinizi nasıl koruduğumuzu öğrenmek için <a id="formPpLink" href="privacy-policy.html?lang=tr">Gizlilik Politikamızı</a> inceleyebilirsiniz.',
+        btnSubmit: "Mesaj Gönder",
+        btnSending: "Gönderiliyor...",
+        msgSuccess: "Mesajınız başarıyla iletildi. En kısa sürede dönüş yapacağız.",
+        msgError: "Mesaj gönderilirken bir sorun oluştu. Doğrudan info@littlegenius.tr adresine yazabilirsiniz.",
+        footPP: "Gizlilik Politikası",
+        footTOS: "Kullanım Koşulları",
+        copyright: "Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır"
+      },
       en: {
-        navHow: "HOW TO PLAY",
         navFeatures: "FEATURES",
-        navModes: "GAME MODES",
-        navContact: "CONTACT US",
-        navDownload: "PLAY NOW",
-        badgeText: "ARCADE & SPEED TRAINING",
-        heroTitle: "Race Against Time, <span class='gold-text'>Unleash Your Reflexes.</span>",
-        heroText: "12 addictive arcade modes, millisecond precision feedback and cognitive speed workouts designed to sharpen your focus and hand-eye coordination.",
-        btnDownload: "Download Game",
-        btnHow: "How to Play",
-        metaRating: "iOS & Android Ready",
-        metaOffline: "12 Arcade Modes",
-        metaMs: "Millisecond Precision",
-        cardSubtitle: "Reaction Time & Brain Training Arcade",
-        stepsKicker: "SPEED & FOCUS",
-        stepsTitle: "Sharpen Your Reflexes in 3 Steps",
-        stepsIntro: "Dive into rapid-fire cognitive drills and shave milliseconds off your reaction speed.",
-        step1Title: "Lock In & Tap",
-        step1Desc: "React instantly to on-screen targets, arrows, and chromatic shifts with rapid precision taps.",
-        step2Title: "Match Escalating Tempo",
-        step2Desc: "The pace accelerates with each point. Filter out distractions and stay in the zone.",
-        step3Title: "Break Personal Records",
-        step3Desc: "Track your reaction curves and climb to the top of the global arcade leaderboards.",
-        featKicker: "ENGINE & MECHANICS",
-        featTitle: "Precision Timing Meets Cognitive Agility",
-        featIntro: "RefleX is more than casual fun; it's a proven mental workout for gamers, athletes and focus enthusiasts.",
-        feat1Title: "12 Distinct Game Modes",
-        feat1Desc: "Tap speed, color conflict, direction rush, memory pulse and number sequences.",
-        feat2Title: "Millisecond Accuracy",
-        feat2Desc: "Track your exact reaction latencies with detailed performance statistics.",
-        feat3Title: "Hand-Eye Coordination",
-        feat3Desc: "Proven drills designed to boost fast decision making and peripheral vision awareness.",
-        feat4Title: "100% Offline Gameplay",
-        feat4Desc: "Zero internet required. Test your wits on planes, trains, or anywhere on the go.",
-        feat5Title: "Minimalist Neon Aesthetic",
-        feat5Desc: "Fluid 60 FPS graphics, zero distraction interfaces and sleek modern styling.",
-        feat6Title: "Haptics & Audio Beats",
-        feat6Desc: "Satisfying tactile vibrations and crisp audio cues that reward every high-speed tap.",
-        modesKicker: "GAME MODES",
-        modesTitle: "Diverse Reflex Disciplines",
-        modesIntro: "Explore different aspects of your neural speed across specialized challenges.",
-        mode1Tag: "PURE LATENCY",
-        mode1Title: "Tap Speed",
-        mode1Desc: "Tap instant flashing targets before the millisecond timer expires.",
-        mode2Tag: "VISUAL CONFLICT",
-        mode2Title: "Color Clash",
-        mode2Desc: "Disregard conflicting words and match the actual hue under high pressure.",
-        mode3Tag: "MOTOR SENSE",
-        mode3Title: "Direction Rush",
-        mode3Desc: "Swipe rapidly in the true direction while avoiding deceptive inverted arrows.",
-        mode4Tag: "FLOW STATE",
-        mode4Title: "Infinite Focus",
-        mode4Desc: "Maintain a flawless streak as tempo scales exponentially without ceiling.",
-        dlKicker: "GET STARTED NOW",
-        dlTitle: "Play RefleX for Free",
-        dlIntro: "Download to your iOS or Android device in seconds and kick off your speed training today.",
-        dlHeading: "Ready to Test Your True Reaction Speed?",
-        dlParagraph: "Available on Google Play and the App Store. Download for free and take your first reflex test now.",
-        qrCaption: "Scan this QR code with your phone camera to download the game instantly.",
-        contactMainTitle: "Contact Us",
-        contactPitch: "We'd love to hear your questions and thoughts",
-        contactDesc: "Feel free to get in touch with us anytime for mode suggestions, feedback, bug reports, or business inquiries. Our team will get back to you promptly.",
-        formEmail: "Email",
-        formName: "Full Name",
-        formMessage: "How can we help you?",
-        formConsent: "I agree to receive communications from littleGENIUS. Review our <a id='formPrivacyLink' href='privacy-policy-en.html' target='_blank'>Privacy Policy</a> to learn how we safeguard your data.",
+        navFaq: "FAQ",
+        navContact: "CONTACT",
+        navDownload: "DOWNLOAD",
+        heroSubtitle: "Arcade & Brain-Training Game",
+        heroTitle: 'Master Your Reflexes, <span class="gold-text">Push Your Limits.</span>',
+        heroLead: "Challenge your speed, focus, and reaction time across 12 unique reflex and puzzle modes—from Mental Math and Quick Reaction Quiz to high-speed Nitro Rush and Dual Tap.",
+        storeSmall: "Download on the",
+        btnExplore: "Explore Features",
+        platformNote: "For iPhone and iPad · 12 Game Modes · Global Leaderboards",
+        stageBadge: "App Screens",
+        tabHome: "Home",
+        tabArena: "Nitro Rush",
+        tabRush: "Survival",
+        tabStats: "Stats",
+        moods: {
+          home: { title: "RefleX Games Hub", desc: "Track your level progress and jump into 12 unique reflex modes." },
+          arena: { title: "High-Speed Reflex Lane", desc: "Chain combo multipliers and trigger Slow Motion or Shield boosters." },
+          rush: { title: "Survival Rush Mode", desc: "Dodge incoming obstacles at rising speed and push your reaction limits." },
+          stats: { title: "Detailed Stats & Rankings", desc: "Track your Speed, Logic, Rhythm, and Focus gauges alongside PRO rankings." }
+        },
+        featHeading: "12 unique reflex and brain modes built for speed",
+        featSub: "RefleX Genius adapts to your play style with dynamic scenarios that never repeat the same way twice.",
+        panelDesc: "Fast-paced arcade and brain-training game for iPhone and iPad.",
+        panelBtn: "View on the App Store ↗",
+        f1Title: "12 Unique Game Modes",
+        f1Desc: "Switch seamlessly between Mental Math, Quick Reaction Quiz, Nitro Rush, and Dual Tap action.",
+        f2Title: "Powerful Strategic Boosters",
+        f2Desc: "Use Slow Motion, Double Points, Shield, and Second Chance power-ups to beat your high scores.",
+        f3Title: "Global Leaderboards & Training Mode",
+        f3Desc: "Compete with players worldwide or switch to Custom (Training) mode to practice without risking your rank.",
+        f4Title: "Rich Store Customization",
+        f4Desc: "Unlock premium avatars, golden cars, and exclusive cosmetic items in the in-game Store.",
+        faqHeading: "Frequently Asked Questions",
+        faqSub: "Quick answers about RefleX Genius.",
+        q1: "How many game modes does RefleX Genius include?",
+        a1: "RefleX Genius includes 12 unique reflex and puzzle modes, including Mental Math, Quick Reaction Quiz, Nitro Rush, and Dual Tap.",
+        q2: "Can I practice without risking my leaderboard rank?",
+        a2: "Yes. You can switch between Standard and Custom (Training) modes anytime to practice freely.",
+        q3: "Which boosters are available?",
+        a3: "You can strategically use Slow Motion, Double Points, Shield, and Second Chance boosters during gameplay.",
+        q4: "Which devices are supported?",
+        a4: "RefleX Genius is available as a free download on the App Store for both iPhone and iPad.",
+        contactHeading: "Support & Contact",
+        contactSub: "Have a question, bug report, or feature idea? Reach out anytime.",
+        directTitle: "Email us directly",
+        directText: "We read every note and love hearing from our players.",
+        lblName: "Full Name",
+        lblEmail: "Email",
+        lblMsg: "How can we help you?",
+        consentHtml: 'I agree to receive communications from littleGENIUS. Review our <a id="formPpLink" href="privacy-policy.html?lang=en">Privacy Policy</a> to learn how we safeguard your data.',
         btnSubmit: "Send Message",
         btnSending: "Sending...",
-        msgSuccess: "Thank you! Your message has been sent successfully. We will respond shortly.",
-        msgError: "An error occurred while sending your message. Please try again or email us directly.",
-        footerBrandText: "An independent digital studio turning ideas into reality. Original mobile games and creative digital experiences.",
-        footerColPages: "Pages",
-        footerColLegal: "Legal",
-        linkFaq: "Frequently Asked Questions (FAQ)",
-        linkTos: "Terms of Service (TOS)",
-        linkPp: "Privacy Policy (PP)",
-        linkSupport: "Support & Contact"
-      },
-      tr: {
-        navHow: "NASIL OYNANIR",
-        navFeatures: "ÖZELLİKLER",
-        navModes: "OYUN MODLARI",
-        navContact: "İLETİŞİM",
-        navDownload: "HEMEN OYNA",
-        badgeText: "HIZ VE REFLEKS DENEYİMİ",
-        heroTitle: "Milisaniyelerle Yarışın, <span class='gold-text'>Sınırlarınızı Aşın.</span>",
-        heroText: "12 farklı bağımlılık yapıcı oyun modu, dinamik görsel ritimler ve refleks geliştirici dinamiklerle tepki sürenizi zirveye taşıyın.",
-        btnDownload: "Oyunu İndir",
-        btnHow: "Nasıl Oynanır?",
-        metaRating: "iOS & Android Uyumlu",
-        metaOffline: "12 Arcade Modu",
-        metaMs: "Milisaniye Ölçümü",
-        cardSubtitle: "Refleks Deneyimi & Hızlı Düşünme",
-        stepsKicker: "HIZ VE KONSANTRASYON",
-        stepsTitle: "3 Adımda Reflekslerinizi Geliştirin",
-        stepsIntro: "Zihinsel çeviklik antrenmanlarına hemen başlayın; tepki sürenizi milisaniyeler seviyesine indirin.",
-        step1Title: "Odaklanın & Dokunun",
-        step1Desc: "Ekranda beliren hedefleri, yönleri ve renkleri milisaniyeler içinde doğru sıralamayla yakalayın.",
-        step2Title: "Hızlanan Tempoya Ayak Uydurun",
-        step2Desc: "Her başarılı dokunuşta tempo yükselir. Dikkat dağınıklığını sıfıra indirerek konsantrasyon sınırlarınızı zorlayın.",
-        step3Title: "Kendi Rekorlarınızı Kırın",
-        step3Desc: "Tepki süresi istatistiklerinizi inceleyin, küresel liderlik tablosunda en hızlılar arasında yerinizi alın.",
-        featKicker: "TEKNİK DİNAMİKLER",
-        featTitle: "Hassas Ölçüm ve Zihinsel Gelişim",
-        featIntro: "RefleX, yalnızca bir eğlence oyunu değil; odaklanma süresini ve motor becerileri artıran bilimsel bir zihin jimnastiğidir.",
-        feat1Title: "12 Eşsiz Oyun Modu",
-        feat1Desc: "Hızlı dokunuş, renk algısı, yön eşleme, hafıza ritmi ve sayı sıralama gibi 12 farklı bağımlılık yapıcı mod.",
-        feat2Title: "Milisaniye Hassasiyeti",
-        feat2Desc: "Tepki sürenizi milisaniye cinsinden ölçün ve kişisel gelişim grafiğinizi günlük olarak takip edin.",
-        feat3Title: "Göz-El Koordinasyonu",
-        feat3Desc: "Sporcular, e-sporcular ve reflekslerini zinde tutmak isteyenler için mükemmel bilişsel hazırlık aracı.",
-        feat4Title: "%100 Çevrimdışı (Offline)",
-        feat4Desc: "İnternet bağlantısı olmadan istediğiniz her an ve her yerde tam performansla reflekslerinizi test edin.",
-        feat5Title: "Minimalist Neon Estetiği",
-        feat5Desc: "Gereksiz detaylardan arındırılmış, dikkati dağıtmayan akıcı 60 FPS görsel arayüz ve efektler.",
-        feat6Title: "Haptik & Sesli Uyarılar",
-        feat6Desc: "Her başarılı dokunuşta ve rekor anında net haptik titreşim ve tatmin edici ses tasarımı.",
-        modesKicker: "OYUN MODLARI",
-        modesTitle: "Farklı Refleks Disiplinleri",
-        modesIntro: "Hangi alanda daha çeviksiniz? RefleX'in popüler modlarıyla sınırlarınızı keşfedin.",
-        mode1Tag: "SAF TEPKİ",
-        mode1Title: "Hızlı Dokunuş (Tap Speed)",
-        mode1Desc: "Ekranda beliren hedeflere milisaniyeler bitmeden en hızlı şekilde dokunun.",
-        mode2Tag: "GÖRSEL AYIRIM",
-        mode2Title: "Renk Çatışması (Color Clash)",
-        mode2Desc: "Renkler ve kelimeler birbirine karıştığında beyninizin doğru renge odaklanmasını sağlayın.",
-        mode3Tag: "YÖN & HAREKET",
-        mode3Title: "Yön Algısı (Direction Rush)",
-        mode3Desc: "Okların gösterdiği yöne hızla kaydırın; ters ok tuzaklarına düşmeden rekor kırın.",
-        mode4Tag: "SONSUZ ODAK",
-        mode4Title: "Sonsuz Ritim (Infinite Focus)",
-        mode4Desc: "Hata yapmadan tempoyu koruyun; serinizi uzattıkça hızlanan aksiyona meydan okuyun.",
-        dlKicker: "HEMEN BAŞLAYIN",
-        dlTitle: "RefleX'i Ücretsiz Oynayın",
-        dlIntro: "iOS veya Android cihazınıza saniyeler içinde indirin; refleks antrenmanınızı bugün başlatın.",
-        dlHeading: "Hızınızı Ölçmeye Hazır Mısınız?",
-        dlParagraph: "İster Google Play'den ister App Store'dan ücretsiz indirip hemen ilk refleks testinizi yapabilirsiniz.",
-        qrCaption: "Telefonunuzun kamerasıyla QR kodu tarayarak oyunu anında indirin.",
-        contactMainTitle: "Bize Ulaşın",
-        contactPitch: "Sorularınız ve önerileriniz için lütfen bize ulaşın",
-        contactDesc: "Sorularınız, oyun modu önerileriniz, teknik geri bildirimleriniz veya iş birliği fırsatları için bize dilediğiniz zaman ulaşabilirsiniz. Ekibimiz en kısa sürede sizinle iletişime geçecektir.",
-        formEmail: "E-posta",
-        formName: "İsim & Soyisim",
-        formMessage: "Size nasıl yardımcı olabiliriz?",
-        formConsent: "littleGENIUS tarafından bilgilendirilme almayı kabul ediyorum. Gizliliğinizi nasıl koruduğumuz hakkında bilgi için <a id='formPrivacyLink' href='privacy-policy-tr.html' target='_blank'>Gizlilik Politikası</a>'nı inceleyin.",
-        btnSubmit: "Gönder",
-        btnSending: "Gönderiliyor...",
-        msgSuccess: "Teşekkürler! Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.",
-        msgError: "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin veya doğrudan e-posta gönderin.",
-        footerBrandText: "Fikirleri gerçeğe dönüştüren bağımsız dijital stüdyo. Özgün mobil oyunlar ve yaratıcı dijital deneyimler.",
-        footerColPages: "Sayfalar",
-        footerColLegal: "Yasal & Destek",
-        linkFaq: "Sıkça Sorulan Sorular (SSS)",
-        linkTos: "Kullanım Koşulları (TOS)",
-        linkPp: "Gizlilik Politikası (PP)",
-        linkSupport: "Destek ve İletişim"
+        msgSuccess: "Thanks! Your message has been sent and we will reply soon.",
+        msgError: "Something went wrong. Please email info@littlegenius.tr directly.",
+        footPP: "Privacy Policy",
+        footTOS: "Terms of Service",
+        copyright: "Copyright © 2026 littleGENIUS · All rights reserved"
       }
     };
 
     let language = "tr";
+    let currentMood = "home";
+    const moodOrder = ["home", "arena", "rush", "stats"];
+    const moodButtons = document.querySelectorAll(".mode-btn");
+    const moodImages = document.querySelectorAll(".mood-img");
+    const moodTitle = document.getElementById("moodTitle");
+    const moodDesc = document.getElementById("moodDesc");
 
-    function setLanguage(nextLanguage) {
-      language = nextLanguage;
-      document.documentElement.lang = nextLanguage;
-
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        if (translations[nextLanguage] && translations[nextLanguage][key] !== undefined) {
-          el.innerHTML = translations[nextLanguage][key];
-        }
-      });
-
-      document.querySelectorAll("[data-lang]").forEach(button => {
-        button.setAttribute("aria-pressed", String(button.dataset.lang === nextLanguage));
-      });
-
-      const suffix = nextLanguage === "en" ? "-en.html" : "-tr.html";
-      const faqEl = document.getElementById("footerFaq");
-      const tosEl = document.getElementById("footerTos");
-      const ppEl = document.getElementById("footerPp");
-      const formPpEl = document.getElementById("formPrivacyLink");
-
-      if (faqEl) faqEl.href = `faq${suffix}`;
-      if (tosEl) tosEl.href = `terms-of-service${suffix}`;
-      if (ppEl) ppEl.href = `privacy-policy${suffix}`;
-      if (formPpEl) formPpEl.href = `privacy-policy${suffix}`;
-
-      try {
-        localStorage.setItem("littleGENIUSLanguage", nextLanguage);
-      } catch (e) {}
+    function showMood(mood) {
+      currentMood = mood;
+      moodButtons.forEach(b => b.setAttribute("aria-selected", String(b.dataset.mood === mood)));
+      moodImages.forEach(img => img.classList.toggle("is-active", img.dataset.mood === mood));
+      const m = translations[language].moods[mood];
+      if (m) {
+        moodTitle.textContent = m.title;
+        moodDesc.textContent = m.desc;
+      }
     }
 
-    document.querySelectorAll("[data-lang]").forEach(button => {
-      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    let moodTimer = null;
+    function startMoodCycle() {
+      if (moodTimer) window.clearInterval(moodTimer);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      moodTimer = window.setInterval(() => {
+        const nextIdx = (moodOrder.indexOf(currentMood) + 1) % moodOrder.length;
+        showMood(moodOrder[nextIdx]);
+      }, 3200);
+    }
+
+    moodButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        showMood(btn.dataset.mood);
+        startMoodCycle();
+      });
+    });
+
+    function setLanguage(nextLang) {
+      language = nextLang;
+      document.documentElement.lang = nextLang;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[nextLang][key] !== undefined) {
+          if (key === "heroTitle") el.innerHTML = translations[nextLang][key];
+          else el.textContent = translations[nextLang][key];
+        }
+      });
+      document.querySelectorAll("[data-lang]").forEach(btn => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.lang === nextLang));
+      });
+      const consentEl = document.getElementById("consentText");
+      if (consentEl && translations[nextLang].consentHtml) {
+        consentEl.innerHTML = translations[nextLang].consentHtml;
+      }
+      showMood(currentMood);
+      const ppEl = document.getElementById("ppLink");
+      const tosEl = document.getElementById("tosLink");
+      if (ppEl) ppEl.href = `privacy-policy.html?lang=${nextLang}`;
+      if (tosEl) tosEl.href = `terms-of-service.html?lang=${nextLang}`;
+      try { localStorage.setItem("littleGENIUSLanguage", nextLang); } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
     });
 
     let savedLanguage = "tr";
     try {
-      savedLanguage = localStorage.getItem("littleGENIUSLanguage") || "tr";
+      const params = new URLSearchParams(window.location.search);
+      savedLanguage = params.get("lang") || localStorage.getItem("littleGENIUSLanguage") || "tr";
     } catch (e) {}
     setLanguage(savedLanguage === "en" ? "en" : "tr");
+    startMoodCycle();
 
+    // FAQ accordion
+    document.querySelectorAll(".faq-question").forEach(btn => {
+      btn.addEventListener("click", () => btn.parentElement.classList.toggle("active"));
+    });
+
+    // Contact form
     const contactForm = document.getElementById("contactForm");
     const formStatus = document.getElementById("formStatus");
     const submitBtn = document.getElementById("submitBtn");
     const btnSubmitText = document.getElementById("btnSubmitText");
-
     contactForm.addEventListener("submit", async function(e) {
       e.preventDefault();
-
       submitBtn.disabled = true;
-      btnSubmitText.textContent = translations[language].btnSending || "Sending...";
+      btnSubmitText.textContent = translations[language].btnSending;
       formStatus.className = "form-status";
-      formStatus.style.display = "none";
-
-      const formData = new FormData(contactForm);
-
       try {
-        const response = await fetch("https://formsubmit.co/ajax/geniusmetaverse@gmail.com", {
+        const res = await fetch("https://formsubmit.co/ajax/info@littlegenius.tr", {
           method: "POST",
-          headers: { 
-            'Accept': 'application/json'
-          },
-          body: formData
+          headers: { "Accept": "application/json" },
+          body: new FormData(contactForm)
         });
-
-        if (response.ok) {
-          formStatus.className = "form-status is-success";
-          formStatus.textContent = translations[language].msgSuccess;
-          contactForm.reset();
-        } else {
-          throw new Error("Form submission error");
-        }
-      } catch (error) {
+        if (!res.ok) throw new Error("Failed");
+        formStatus.className = "form-status is-success";
+        formStatus.textContent = translations[language].msgSuccess;
+        contactForm.reset();
+      } catch (err) {
         formStatus.className = "form-status is-error";
         formStatus.textContent = translations[language].msgError;
       } finally {
@@ -1562,6 +1260,23 @@
         btnSubmitText.textContent = translations[language].btnSubmit;
       }
     });
+
+    // Local file:// preview fallback
+    if (window.location.protocol === "file:") {
+      document.querySelectorAll("img[src^='./']").forEach(img => {
+        img.src = "https://www.littlegenius.tr/reflex/" + img.getAttribute("src").slice(2);
+      });
+      document.querySelectorAll("img[src^='../']").forEach(img => {
+        img.src = "https://www.littlegenius.tr/" + img.getAttribute("src").slice(3);
+      });
+      const vid = document.querySelector("video.hero-bg-video");
+      if (vid) {
+        vid.src = "https://www.littlegenius.tr/reflex/reflex_hero.mp4";
+        vid.poster = "https://www.littlegenius.tr/reflex/reflex_hero.png";
+      }
+      const heroEl = document.querySelector(".hero");
+      if (heroEl) heroEl.style.backgroundImage = 'url("https://www.littlegenius.tr/reflex/reflex_hero.png")';
+    }
   </script>
 </body>
 </html>
