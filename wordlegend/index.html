@@ -272,6 +272,10 @@
       font-weight: 800;
       text-wrap: balance;
     }
+    .gold-text {
+      color: var(--gold);
+      text-shadow: 0 0 28px rgba(231, 196, 91, .45);
+    }
 
     .hero-lead {
       margin: 20px 0 0;
@@ -822,7 +826,7 @@
             </div>
           </div>
 
-          <h1 data-i18n="heroTitle">3'ten 6 harfe kelimeleri çöz, arenada efsane ol.</h1>
+          <h1 data-i18n="heroTitle">3'ten 6 harfe kelimeleri çöz, <span class="gold-text">arenada efsane ol.</span></h1>
           <p class="hero-lead" data-i18n="heroLead">
             Türkçe ve İngilizce binlerce kelimeyle 4 farklı oyun modunda yarışın; her 24 saatte yenilenen Günün Kelimesi ve Ana Ekran Widget'ı ile serinizi koruyun.
           </p>
@@ -1091,7 +1095,7 @@
         navContact: "İLETİŞİM",
         navDownload: "İNDİR",
         heroSubtitle: "Kelime Tahmini, PvP Düello & Zekâ",
-        heroTitle: "3'ten 6 harfe kelimeleri çöz, arenada efsane ol.",
+        heroTitle: '3\'ten 6 harfe kelimeleri çöz, <span class="gold-text">arenada efsane ol.</span>',
         heroLead: "Türkçe ve İngilizce binlerce kelimeyle 4 farklı oyun modunda yarışın; her 24 saatte yenilenen Günün Kelimesi ve Ana Ekran Widget'ı ile serinizi koruyun.",
         storeIosSmall: "App Store'dan İndirin",
         storeGpSmall: "Google Play'den Alın",
@@ -1161,7 +1165,7 @@
         navContact: "CONTACT",
         navDownload: "DOWNLOAD",
         heroSubtitle: "Vocab Guess, PvP Duel & Brain",
-        heroTitle: "Crack 3 to 6-letter words, rule the arena.",
+        heroTitle: 'Crack 3 to 6-letter words, <span class="gold-text">rule the arena.</span>',
         heroLead: "Test your vocabulary across 4 game modes in English and Turkish. Track your daily streak and shields with interactive Home Screen widgets.",
         storeIosSmall: "Download on the",
         storeGpSmall: "GET IT ON",
@@ -1234,7 +1238,8 @@
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
         if (translations[nextLang][key] !== undefined) {
-          el.textContent = translations[nextLang][key];
+          if (key === "heroTitle") el.innerHTML = translations[nextLang][key];
+          else el.textContent = translations[nextLang][key];
         }
       });
       document.querySelectorAll("[data-lang]").forEach(btn => {
