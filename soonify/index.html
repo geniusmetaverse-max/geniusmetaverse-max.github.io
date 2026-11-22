@@ -181,12 +181,23 @@
 
     /* Hero */
     .hero {
+      position: relative;
+      isolation: isolate;
       padding: calc(var(--header-h) + 56px) clamp(20px, 6vw, 96px) 84px;
-      background:
-        radial-gradient(circle at 82% 24%, rgba(56, 189, 248, .18), transparent 44%),
-        radial-gradient(circle at 18% 82%, rgba(245, 158, 11, .12), transparent 42%),
-        linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-2) 100%);
+      background: #08172f url("./soonify_hero.png") center center / cover no-repeat;
       color: #fff;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(8,23,47,.72) 0%, rgba(8,23,47,.45) 50%, rgba(8,23,47,.12) 100%),
+        linear-gradient(0deg, rgba(8,23,47,.62) 0%, transparent 45%);
+    }
+    .hero-inner > div:first-child {
+      text-shadow: 0 2px 14px rgba(0, 0, 0, .35);
     }
 
     .hero-inner {
@@ -1325,8 +1336,9 @@
       document.querySelectorAll("img[src^='./']").forEach(img => {
         img.src = "https://littlegenius.tr/soonify/" + img.getAttribute("src").slice(2);
       });
+      const heroEl = document.querySelector(".hero");
+      if (heroEl) heroEl.style.backgroundImage = 'url("https://littlegenius.tr/soonify/soonify_hero.png")';
     }
   </script>
 </body>
 </html>
-
