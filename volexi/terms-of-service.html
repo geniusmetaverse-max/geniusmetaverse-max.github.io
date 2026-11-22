@@ -1,1 +1,526 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a31">
+  <title id="pageTitle">Volexi - Kullanım Koşulları · littleGENIUS</title>
+  <meta name="description" id="pageMetaDesc" content="Volexi iOS kelime oyunu kullanım koşulları, uygulama içi enerji paketleri, Game Center ve Apple EULA şartları.">
+  <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
+  <style>
+    :root {
+      --navy: #101a31;
+      --navy-2: #172541;
+      --navy-deep: #0a1324;
+      --gold: #e7c45b;
+      --gold-hover: #f1d36f;
+      --cream: #f5f3ee;
+      --white: #ffffff;
+      --ink: #182238;
+      --ink-soft: #364156;
+      --muted: #68748a;
+      --border: #e4e8f0;
+      --header-h: 68px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); }
+    ::selection { background: var(--gold); color: var(--navy-deep); }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    /* Header (matches volexi/index.html) */
+    .site-header {
+      position: fixed; z-index: 30; inset: 0 0 auto; min-height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 0 clamp(18px, 4.5vw, 68px);
+      background: rgba(13, 24, 47, .94); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, .09); color: #fff;
+    }
+    .brand-group { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .back-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 6px; border-radius: 10px; color: var(--gold);
+      transition: transform .2s ease, color .2s ease;
+    }
+    .back-btn:hover { color: var(--gold-hover); transform: scale(1.12); }
+    .back-btn svg { width: 21px; height: 21px; display: block; fill: currentColor; }
+    .brand-divider { width: 1px; height: 20px; background: rgba(255, 255, 255, .22); }
+    .app-brand-title {
+      display: inline-flex; align-items: center; gap: 8px; color: #fff;
+      font-size: 1.05rem; font-weight: 800; letter-spacing: -.02em; white-space: nowrap;
+    }
+    .app-brand-title img { width: 26px; height: 26px; border-radius: 7px; object-fit: cover; }
+    .header-right { display: flex; align-items: center; gap: clamp(12px, 2.5vw, 28px); }
+    .main-nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
+    .main-nav a {
+      color: rgba(255, 255, 255, .82); font-size: .74rem; font-weight: 700;
+      letter-spacing: .06em; white-space: nowrap; transition: color .2s ease;
+    }
+    .main-nav a:hover { color: var(--gold); }
+    .main-nav a.nav-download {
+      padding: 7px 16px; border-radius: 999px; border: 1px solid rgba(231, 196, 91, .65);
+      color: var(--gold); font-weight: 800; transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .main-nav a.nav-download:hover { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); }
+    .language-switch { display: flex; align-items: center; gap: 4px; }
+    .language-switch button {
+      border: 0; background: transparent; color: rgba(255, 255, 255, .58);
+      font: inherit; font-size: .8rem; font-weight: 700; padding: 6px 5px; cursor: pointer;
+    }
+    .language-switch button[aria-pressed="true"] {
+      color: #fff; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px;
+    }
+
+    /* Document Card */
+    .doc-page {
+      flex: 1;
+      padding: calc(var(--header-h) + 40px) clamp(16px, 4vw, 32px) 72px;
+    }
+    .doc-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(16, 26, 49, .05);
+      padding: clamp(28px, 5vw, 60px);
+    }
+    .doc-header {
+      text-align: center;
+      margin-bottom: 34px;
+      border-bottom: 2px solid #eef0f4;
+      padding-bottom: 26px;
+    }
+    .doc-header h1 {
+      margin: 0 0 14px;
+      font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -.04em;
+      color: var(--navy);
+    }
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 24px;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .doc-meta strong { color: var(--ink); font-weight: 700; }
+
+    .doc-toc {
+      background: #faf9f6;
+      border: 1px solid #ebe8de;
+      border-radius: 18px;
+      padding: 22px 26px;
+      margin-bottom: 40px;
+    }
+    .doc-toc h3 {
+      margin: 0 0 12px;
+      font-size: .95rem;
+      font-weight: 750;
+      color: var(--navy);
+      letter-spacing: -.01em;
+    }
+    .doc-toc ol {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 24px;
+      font-size: .85rem;
+    }
+    .doc-toc a {
+      color: #3b5998;
+      font-weight: 500;
+      transition: color .2s ease;
+    }
+    .doc-toc a:hover { color: var(--navy); text-decoration: underline; }
+
+    .doc-section { margin-bottom: 40px; }
+    .doc-section:last-child { margin-bottom: 0; }
+    .doc-section h2 {
+      margin: 0 0 16px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .doc-section h2::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .doc-section p { margin: 0 0 14px; color: var(--ink-soft); font-size: .98rem; }
+    .doc-section ul {
+      margin: 0 0 18px;
+      padding-left: 22px;
+      color: var(--ink-soft);
+      font-size: .98rem;
+    }
+    .doc-section li { margin-bottom: 8px; }
+    .doc-section strong { color: var(--navy); }
+
+    /* Bottom Contact Box */
+    .contact-highlight {
+      background: #faf6eb;
+      border: 1px solid #ece2c6;
+      border-radius: 16px;
+      padding: 22px 26px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+      font-size: .92rem;
+      line-height: 1.7;
+    }
+    .contact-highlight a.email-link {
+      color: #2563eb;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .contact-highlight a.email-link:hover { text-decoration: underline; }
+    .contact-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff !important;
+      font-size: .84rem;
+      font-weight: 750;
+      text-decoration: none !important;
+      white-space: nowrap;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .contact-btn-pill:hover { background: var(--navy-2); transform: translateY(-1px); }
+    .contact-btn-pill svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+    /* Footer */
+    .footer {
+      background: var(--navy-deep);
+      color: #b7c1d3;
+      padding: 24px clamp(16px, 4vw, 32px);
+      font-size: .84rem;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+    .footer-bar {
+      width: min(900px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px 16px;
+      text-align: left;
+    }
+    .footer-bar a { color: #d7e0ef; font-weight: 600; transition: color .2s ease; }
+    .footer-bar a:hover { color: var(--gold); text-decoration: underline; }
+    .footer-sep { color: rgba(255, 255, 255, .28); user-select: none; }
+
+    .lang-panel { display: none; }
+    .lang-panel.is-active { display: block; }
+
+    @media (max-width: 720px) {
+      :root { --header-h: 60px; }
+      .main-nav { display: none; }
+      .doc-toc ol { grid-template-columns: 1fr; }
+      .contact-highlight { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-group">
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Sayfa" title="littleGENIUS">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <a class="app-brand-title" href="index.html" id="backToAppBtn">
+        <img src="./volexi_logo.png" alt="Volexi logo">
+        <span>Volexi</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Section navigation">
+        <a href="index.html#features" id="navFeatures">ÖZELLİKLER</a>
+        <a href="index.html#faq" id="navFaq">SSS</a>
+        <a href="index.html#contact" id="navContact">İLETİŞİM</a>
+        <a class="nav-download" href="https://apps.apple.com/developer/littlegenius" target="_blank" rel="noopener noreferrer" id="navDownload">İNDİR</a>
+      </nav>
+      <div class="language-switch" aria-label="Dil / Language">
+        <button type="button" data-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="doc-page">
+    <div class="doc-container">
+      <!-- TR PANEL -->
+      <article class="lang-panel is-active" id="panel-tr" lang="tr">
+        <div class="doc-header">
+          <h1>Volexi Kullanım Koşulları</h1>
+          <div class="doc-meta">
+            <span>Yürürlük: <strong>15 Ekim 2026</strong></span>
+            <span>Son Güncelleme: <strong>15 Ekim 2026</strong></span>
+            <span>Sahibi: <strong>littleGENIUS</strong></span>
+          </div>
+        </div>
+
+        <nav class="doc-toc" aria-label="İçindekiler">
+          <h3>İçindekiler</h3>
+          <ol>
+            <li><a href="#tr-1">Giriş</a></li>
+            <li><a href="#tr-2">Lisans ve Kullanım Kapsamı</a></li>
+            <li><a href="#tr-3">Uygulama İçi Satın Almalar (Energy Shop)</a></li>
+            <li><a href="#tr-4">Game Center, iCloud ve Adil Oyun</a></li>
+            <li><a href="#tr-5">Fikri Mülkiyet</a></li>
+            <li><a href="#tr-6">Sorumluluk Sınırı</a></li>
+            <li><a href="#tr-7">Değişiklikler ve İletişim</a></li>
+          </ol>
+        </nav>
+
+        <section class="doc-section" id="tr-1">
+          <h2>1. Giriş</h2>
+          <p><strong>Volexi</strong> iOS uygulamasını ("Uygulama") indirerek veya oynayarak işbu Kullanım Koşullarını kabul etmiş sayılırsınız. Lütfen oyunu kullanmadan önce bu şartları dikkatlice okuyunuz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-2">
+          <h2>2. Lisans ve Kullanım Kapsamı</h2>
+          <p>littleGENIUS, size Volexi uygulamasını yalnızca kişisel ve ticari olmayan eğlence amacıyla, Apple App Store Standart Son Kullanıcı Lisans Sözleşmesi (EULA) ve işbu koşullar kapsamında iPhone ve iPad cihazlarınızda kullanmanız için devredilemez ve münhasır olmayan bir lisans tanır.</p>
+        </section>
+
+        <section class="doc-section" id="tr-3">
+          <h2>3. Uygulama İçi Satın Almalar (Energy Shop)</h2>
+          <ul>
+            <li>Volexi ücretsiz oynanabilir; ek enerji güçlendiriciler (Energy Boosters) Apple App Store (StoreKit 2) üzerinden uygulama içi satın alma olarak sunulabilir.</li>
+            <li>Tüm ödeme, faturalandırma ve iade işlemleri doğrudan Apple tarafından yönetilir ve Apple'ın mağaza koşullarına tabidir.</li>
+            <li>Oyun içi enerji bakiyesi sanal bir oyun öğesidir; gerçek para değeri taşımaz, devredilemez ve nakde çevrilemez.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="tr-4">
+          <h2>4. Game Center, iCloud ve Adil Oyun</h2>
+          <ul>
+            <li>Küresel liderlik tablolarına katılım Apple Game Center üzerinden sağlanır.</li>
+            <li>Skor manipülasyonu, otomasyon/bot kullanımı veya oyunun teknik işleyişine müdahale etmek yasaktır ve liderlik tablolarından çıkarılma sebebidir.</li>
+            <li>Oyun içi verileriniz cihazınızda ve kişisel iCloud hesabınızda saklandığından, cihaz kaybı veya istatistik sıfırlama sonrası veri kurtarma yapılamaz.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="tr-5">
+          <h2>5. Fikri Mülkiyet</h2>
+          <p>Volexi adı, logosu, tahta ve tema tasarımları, ses efektleri, sözlük derlemeleri ve kaynak kodu littleGENIUS'a aittir. Yazılı izin olmaksızın kopyalanamaz, tersine mühendislik uygulanamaz veya dağıtılamaz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-6">
+          <h2>6. Sorumluluk Sınırı</h2>
+          <p>Uygulama "olduğu gibi" sunulmaktadır. littleGENIUS, Apple Game Center veya iCloud hizmetlerindeki kesintilerden ya da cihaz kaynaklı veri kayıplarından sorumlu tutulamaz.</p>
+        </section>
+
+        <section class="doc-section" id="tr-7">
+          <h2>7. Değişiklikler ve İletişim</h2>
+          <p>Bu Kullanım Koşulları gerektiğinde güncellenebilir ve güncel sürüm bu sayfada yayınlanır. Sorularınız için:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGENIUS Destek Ekibi</strong><br>
+              E-posta: <a class="email-link" href="mailto:info@littlegenius.tr">info@littlegenius.tr</a><br>
+              Web: https://www.littlegenius.tr
+            </div>
+            <a class="contact-btn-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>E-posta Gönder</span>
+            </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- EN PANEL -->
+      <article class="lang-panel" id="panel-en" lang="en">
+        <div class="doc-header">
+          <h1>Volexi Terms of Service</h1>
+          <div class="doc-meta">
+            <span>Effective Date: <strong>October 15, 2026</strong></span>
+            <span>Last Updated: <strong>October 15, 2026</strong></span>
+            <span>Owner: <strong>littleGENIUS</strong></span>
+          </div>
+        </div>
+
+        <nav class="doc-toc" aria-label="Table of Contents">
+          <h3>Table of Contents</h3>
+          <ol>
+            <li><a href="#en-1">Introduction</a></li>
+            <li><a href="#en-2">License &amp; Scope of Use</a></li>
+            <li><a href="#en-3">In-App Purchases (Energy Shop)</a></li>
+            <li><a href="#en-4">Game Center, iCloud &amp; Fair Play</a></li>
+            <li><a href="#en-5">Intellectual Property</a></li>
+            <li><a href="#en-6">Limitation of Liability</a></li>
+            <li><a href="#en-7">Updates &amp; Contact</a></li>
+          </ol>
+        </nav>
+
+        <section class="doc-section" id="en-1">
+          <h2>1. Introduction</h2>
+          <p>By downloading or playing the <strong>Volexi</strong> iOS application ("App"), you agree to be bound by these Terms of Service. Please read them carefully before using the App.</p>
+        </section>
+
+        <section class="doc-section" id="en-2">
+          <h2>2. License &amp; Scope of Use</h2>
+          <p>littleGENIUS grants you a limited, non-exclusive, non-transferable license to use Volexi on your Apple devices for personal, non-commercial entertainment in accordance with these Terms and Apple's Standard Licensed Application End User License Agreement (EULA).</p>
+        </section>
+
+        <section class="doc-section" id="en-3">
+          <h2>3. In-App Purchases (Energy Shop)</h2>
+          <ul>
+            <li>Volexi is free to play, with optional Energy Boosters offered via In-App Purchases through Apple StoreKit 2.</li>
+            <li>All payments, billing, and refund requests are handled exclusively by Apple and governed by Apple App Store terms.</li>
+            <li>In-game energy balances are virtual items with no monetary value and cannot be transferred or redeemed for cash.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-4">
+          <h2>4. Game Center, iCloud &amp; Fair Play</h2>
+          <ul>
+            <li>Global leaderboards are powered by Apple Game Center.</li>
+            <li>Score manipulation, automated bots, or tampering with game mechanics is strictly prohibited and may result in leaderboard removal.</li>
+            <li>Because your game progress stays on your device and private iCloud account, littleGENIUS cannot restore stats lost due to device loss or manual stat resets.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-5">
+          <h2>5. Intellectual Property</h2>
+          <p>The Volexi name, logo, board themes, audio assets, curated dictionaries, and source code belong exclusively to littleGENIUS and may not be copied, reverse engineered, or redistributed without written permission.</p>
+        </section>
+
+        <section class="doc-section" id="en-6">
+          <h2>6. Limitation of Liability</h2>
+          <p>The App is provided "as is" without warranties of any kind. littleGENIUS is not liable for interruptions in Apple Game Center or iCloud services or device-side data loss.</p>
+        </section>
+
+        <section class="doc-section" id="en-7">
+          <h2>7. Updates &amp; Contact</h2>
+          <p>We may update these Terms from time to time by posting the latest version on this page. For questions, please reach out:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGENIUS Support Team</strong><br>
+              Email: <a class="email-link" href="mailto:info@littlegenius.tr">info@littlegenius.tr</a><br>
+              Website: https://www.littlegenius.tr
+            </div>
+            <a class="contact-btn-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Send Email</span>
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bar">
+      <span id="footCopyright">Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır</span>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="footLinkTos" href="terms-of-service.html">Kullanım Koşulları</a>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="footLinkPp" href="privacy-policy.html">Gizlilik Politikası</a>
+    </div>
+  </footer>
+
+  <script>
+    const uiTranslations = {
+      tr: {
+        pageTitle: "Volexi - Kullanım Koşulları · littleGENIUS",
+        navFeatures: "ÖZELLİKLER",
+        navFaq: "SSS",
+        navContact: "İLETİŞİM",
+        navDownload: "İNDİR",
+        footTos: "Kullanım Koşulları",
+        footPp: "Gizlilik Politikası",
+        footCopy: "Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır"
+      },
+      en: {
+        pageTitle: "Volexi - Terms of Service · littleGENIUS",
+        navFeatures: "FEATURES",
+        navFaq: "FAQ",
+        navContact: "CONTACT",
+        navDownload: "DOWNLOAD",
+        footTos: "Terms of Service",
+        footPp: "Privacy Policy",
+        footCopy: "Copyright © 2026 littleGENIUS · All rights reserved"
+      }
+    };
+
+    function setLanguage(activeLang) {
+      document.documentElement.lang = activeLang;
+      document.getElementById("panel-tr").classList.toggle("is-active", activeLang === "tr");
+      document.getElementById("panel-en").classList.toggle("is-active", activeLang === "en");
+      document.querySelectorAll("[data-lang]").forEach(btn => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.lang === activeLang));
+      });
+      const t = uiTranslations[activeLang];
+      document.getElementById("pageTitle").textContent = t.pageTitle;
+      document.getElementById("navFeatures").textContent = t.navFeatures;
+      document.getElementById("navFaq").textContent = t.navFaq;
+      document.getElementById("navContact").textContent = t.navContact;
+      document.getElementById("navDownload").textContent = t.navDownload;
+      document.getElementById("footLinkTos").textContent = t.footTos;
+      document.getElementById("footLinkPp").textContent = t.footPp;
+      document.getElementById("footCopyright").textContent = t.footCopy;
+
+      document.getElementById("backToAppBtn").href = `index.html?lang=${activeLang}`;
+      document.getElementById("navFeatures").href = `index.html?lang=${activeLang}#features`;
+      document.getElementById("navFaq").href = `index.html?lang=${activeLang}#faq`;
+      document.getElementById("navContact").href = `index.html?lang=${activeLang}#contact`;
+      document.getElementById("footLinkTos").href = `terms-of-service.html?lang=${activeLang}`;
+      document.getElementById("footLinkPp").href = `privacy-policy.html?lang=${activeLang}`;
+      try { localStorage.setItem("littleGENIUSLanguage", activeLang); } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
+
+    (function initLanguage() {
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      if (urlLang === "en" || urlLang === "tr") { setLanguage(urlLang); return; }
+      try {
+        const stored = localStorage.getItem("littleGENIUSLanguage");
+        if (stored === "en" || stored === "tr") { setLanguage(stored); return; }
+      } catch (e) {}
+      setLanguage((navigator.language || "tr").toLowerCase().startsWith("tr") ? "tr" : "en");
+    })();
+
+    if (window.location.protocol === "file:") {
+      document.querySelectorAll("img[src^='./']").forEach(img => {
+        img.src = "https://www.littlegenius.tr/volexi/" + img.getAttribute("src").slice(2);
+      });
+    }
+  </script>
+</body>
+</html>
 
