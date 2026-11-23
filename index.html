@@ -382,12 +382,123 @@
     .contact-section h2 { color: #fff; }
     .contact-section .section-kicker { color: #f0d37a; }
     .contact-section .section-intro { color: #c1cadb; }
-    .contact-link {
-      display: inline-flex; align-items: center; gap: 10px; margin-top: 27px; padding: 13px 19px;
-      border: 1px solid rgba(255, 255, 255, .35); border-radius: 30px; color: #fff; text-decoration: none;
-      transition: background .2s ease, border-color .2s ease;
+    .contact-grid {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(28px, 5vw, 56px);
+      align-items: start;
     }
-    .contact-link:hover { background: rgba(255, 255, 255, .1); border-color: var(--gold); }
+    .contact-direct {
+      padding: 28px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+    .contact-direct h3 { margin: 0 0 18px; font-size: 1.15rem; color: #fff; }
+    .mail-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .32);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .92rem;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .mail-pill svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
+    .mail-pill:hover { border-color: var(--gold); background: rgba(255, 255, 255, .08); }
+    .contact-form {
+      background: var(--navy-2);
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .field-label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 7px;
+    }
+    .req-star { color: #ef4444; margin-left: 2px; }
+    .opt-tag { color: #9aa7bd; font-weight: 500; font-size: .76rem; margin-left: 4px; }
+    .field-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(10, 19, 36, .6);
+      color: #fff;
+      font: inherit;
+      font-size: .95rem;
+    }
+    .field-input::placeholder { color: #8c9bb5; }
+    .field-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-color: transparent; }
+    select.field-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23c1cadb' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    select.field-input option { background: #101a31; color: #fff; }
+    textarea.field-input { min-height: 112px; resize: vertical; }
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 2px;
+      font-size: .82rem;
+      line-height: 1.55;
+      color: #c9d4e7;
+      cursor: pointer;
+    }
+    .consent-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 15px 24px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #0b1427;
+      font: inherit;
+      font-size: .98rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(231, 196, 91, .28);
+      transition: background .2s ease, transform .2s var(--ease-out);
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--gold-hover); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: .65; cursor: not-allowed; }
+    .form-status {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .form-status.is-success { display: block; background: rgba(16, 185, 129, .18); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, .4); }
+    .form-status.is-error { display: block; background: rgba(239, 68, 68, .18); color: #fecaca; border: 1px solid rgba(239, 68, 68, .4); }
     .footer { padding: 23px 20px; color: #b7c1d3; background: #0b1427; text-align: center; font-size: .82rem; }
 
     @media (max-width: 980px) {
@@ -414,7 +525,8 @@
       .phone-slide[data-pos="1"] { transform: translateX(112px) scale(.82); }
       .phone-slide[data-pos="-2"], .phone-slide[data-pos="2"] { opacity: 0; pointer-events: none; }
       .section { padding: 40px 24px; }
-      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .about-grid, .contact-grid, .form-row-2 { grid-template-columns: 1fr; gap: 20px; }
+      .contact-direct, .contact-form { padding: 22px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
@@ -504,7 +616,68 @@
         <p class="section-kicker" data-i18n="contactKicker">LET'S CONNECT</p>
         <h2 data-i18n="contactTitle">Have an idea in mind?</h2>
         <p class="section-intro" data-i18n="contactText">We would love to hear from you. Get in touch for questions, feedback or collaboration opportunities.</p>
-        <a class="contact-link" href="mailto:info@littlegenius.tr">info@littlegenius.tr <span aria-hidden="true">↗</span></a>
+
+        <div class="contact-grid">
+          <div class="contact-direct">
+            <h3 data-i18n="directTitle">Email us directly</h3>
+            <a class="mail-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>info@littlegenius.tr</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <input type="hidden" name="_subject" id="contactSubjectInput" value="littleGENIUS Website Contact">
+            <div class="form-row-2">
+              <div>
+                <label class="field-label" for="email"><span data-i18n="lblEmail">Email</span><span class="req-star" aria-hidden="true">*</span></label>
+                <input class="field-input" id="email" name="email" type="email" required placeholder="name@example.com">
+              </div>
+              <div>
+                <label class="field-label" for="name"><span data-i18n="lblName">Full Name</span><span class="req-star" aria-hidden="true">*</span></label>
+                <input class="field-input" id="name" name="name" type="text" required placeholder="Adınız / Your Name">
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div>
+                <label class="field-label" for="appSelect"><span data-i18n="lblApp">Application</span><span class="opt-tag" data-i18n="optTag">(Optional)</span></label>
+                <select class="field-input" id="appSelect" name="application">
+                  <option value="" data-i18n="optAppDefault">Select app (Optional)</option>
+                  <option value="Magic Mirror">Magic Mirror</option>
+                  <option value="Pawia">Pawia</option>
+                  <option value="Soonify">Soonify</option>
+                  <option value="WordLegend">WordLegend</option>
+                  <option value="Volexi">Volexi</option>
+                  <option value="RefleX Genius">RefleX Genius</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="topicSelect"><span data-i18n="lblTopic">Topic</span><span class="req-star" aria-hidden="true">*</span></label>
+                <select class="field-input" id="topicSelect" name="topic" required>
+                  <option value="" disabled selected data-i18n="optTopicDefault">Select a topic</option>
+                  <option value="Öneri" data-i18n="topicSuggestion">Suggestion</option>
+                  <option value="Geribildirim" data-i18n="topicFeedback">Feedback</option>
+                  <option value="İşbirliği" data-i18n="topicCollaboration">Collaboration</option>
+                  <option value="Şikayet" data-i18n="topicComplaint">Complaint</option>
+                  <option value="Diğer" data-i18n="topicOther">Other</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="field-label" for="message"><span data-i18n="lblMsg">How can we help you?</span><span class="req-star" aria-hidden="true">*</span></label>
+              <textarea class="field-input" id="message" name="message" required placeholder="Mesajınız veya öneriniz... / Write your message here..."></textarea>
+            </div>
+            <label class="consent-row" for="consentCheck">
+              <input id="consentCheck" type="checkbox" required>
+              <span data-i18n="consentText">I agree to receive communications from littleGENIUS regarding my inquiry.</span>
+            </label>
+            <button class="submit-btn" id="submitBtn" type="submit">
+              <span id="btnSubmitText" data-i18n="btnSubmit">Send Message</span>
+            </button>
+            <div class="form-status" id="formStatus" role="status"></div>
+          </form>
+        </div>
       </div>
     </section>
   </main>
@@ -524,6 +697,17 @@
         aboutNote: "From creative tools to playful digital experiences, every littleGENIUS product starts with a simple question: what if?",
         contactKicker: "LET'S CONNECT", contactTitle: "Have an idea in mind?",
         contactText: "We would love to hear from you. Get in touch for questions, feedback or collaboration opportunities.",
+        directTitle: "Email us directly",
+        lblEmail: "Email", lblName: "Full Name",
+        lblApp: "Application", optTag: "(Optional)", optAppDefault: "Select app (Optional)",
+        lblTopic: "Topic", optTopicDefault: "Select a topic",
+        topicSuggestion: "Suggestion", topicFeedback: "Feedback", topicCollaboration: "Collaboration", topicComplaint: "Complaint", topicOther: "Other",
+        lblMsg: "How can we help you?",
+        consentText: "I agree to receive communications from littleGENIUS regarding my inquiry.",
+        btnSubmit: "Send Message",
+        sending: "Sending...",
+        msgSent: "Thank you! Your message has been sent to our team.",
+        msgError: "Could not send message. Please email us directly at info@littlegenius.tr.",
         copyright: "© 2026 littleGENIUS · All rights reserved",
         appDescriptions: [
           "AI Bridal Try-On",
@@ -545,6 +729,17 @@
         aboutNote: "Yaratıcı araçlardan eğlenceli dijital deneyimlere kadar her littleGENIUS ürünü basit bir soruyla başlar: ya şöyle olsaydı?",
         contactKicker: "BİZE ULAŞIN", contactTitle: "Aklınızda bir fikir mi var?",
         contactText: "Sorularınız, geri bildirimleriniz veya iş birliği fırsatları için bizimle iletişime geçebilirsiniz.",
+        directTitle: "E-posta ile ulaşın",
+        lblEmail: "E-posta", lblName: "Ad Soyad",
+        lblApp: "Uygulama", optTag: "(İsteğe bağlı)", optAppDefault: "Uygulama seçiniz (İsteğe bağlı)",
+        lblTopic: "Konu Başlığı", optTopicDefault: "Konu seçiniz",
+        topicSuggestion: "Öneri", topicFeedback: "Geribildirim", topicCollaboration: "İşbirliği", topicComplaint: "Şikayet", topicOther: "Diğer",
+        lblMsg: "Size nasıl yardımcı olabiliriz?",
+        consentText: "Mesajımla ilgili olarak littleGENIUS'tan iletişim mesajları almayı kabul ediyorum.",
+        btnSubmit: "Mesaj Gönder",
+        sending: "Gönderiliyor...",
+        msgSent: "Teşekkürler! Mesajınız ekibimize iletildi.",
+        msgError: "Mesaj gönderilemedi. Lütfen doğrudan info@littlegenius.tr adresine e-posta gönderin.",
         copyright: "© 2026 littleGENIUS · Tüm hakları saklıdır",
         appDescriptions: [
           "Yapay Zekâ Gelinlik Provası",
@@ -667,6 +862,48 @@
     };
     window.addEventListener("scroll", syncHeaderState, { passive: true });
     syncHeaderState();
+
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+      const submitBtn = document.getElementById("submitBtn");
+      const btnSubmitText = document.getElementById("btnSubmitText");
+      const formStatus = document.getElementById("formStatus");
+      const subjectInput = document.getElementById("contactSubjectInput");
+      const appSelect = document.getElementById("appSelect");
+      const topicSelect = document.getElementById("topicSelect");
+
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const t = translations[language] || translations.en;
+        const appVal = appSelect ? appSelect.value : "";
+        const topicVal = topicSelect ? topicSelect.value : "";
+        if (subjectInput) {
+          subjectInput.value = `littleGENIUS Contact: ${topicVal}${appVal ? " — " + appVal : ""}`;
+        }
+        submitBtn.disabled = true;
+        btnSubmitText.textContent = t.sending;
+        formStatus.className = "form-status";
+        formStatus.textContent = "";
+
+        try {
+          const res = await fetch("https://formsubmit.co/ajax/info@littlegenius.tr", {
+            method: "POST",
+            headers: { "Accept": "application/json" },
+            body: new FormData(contactForm)
+          });
+          if (!res.ok) throw new Error("Request failed");
+          formStatus.textContent = t.msgSent;
+          formStatus.classList.add("is-success");
+          contactForm.reset();
+        } catch (err) {
+          formStatus.textContent = t.msgError;
+          formStatus.classList.add("is-error");
+        } finally {
+          submitBtn.disabled = false;
+          btnSubmitText.textContent = t.btnSubmit;
+        }
+      });
+    }
   </script>
 </body>
 </html>
