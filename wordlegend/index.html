@@ -156,15 +156,20 @@
       transition: color .2s ease;
     }
     .main-nav a:hover { color: var(--gold); }
-    .main-nav a.nav-download {
+    .main-nav .nav-download {
       padding: 7px 16px;
       border-radius: 999px;
       border: 1px solid rgba(231, 196, 91, .65);
+      background: transparent;
       color: var(--gold);
+      font: inherit;
+      font-size: .74rem;
       font-weight: 800;
+      letter-spacing: .06em;
+      cursor: pointer;
       transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
-    .main-nav a.nav-download:hover {
+    .main-nav .nav-download:hover {
       background: var(--gold);
       border-color: var(--gold);
       color: var(--navy-deep);
@@ -476,49 +481,133 @@
       line-height: 1.75;
     }
 
-    /* Features & QR Split */
+    /* Features Visual & Modal */
     .showcase-section { background: var(--white); }
     .showcase-split {
       margin-top: 42px;
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
+      grid-template-columns: .92fr 1.08fr;
       gap: clamp(28px, 5vw, 60px);
       align-items: center;
     }
 
-    .qr-panel {
-      background: var(--cream);
-      border: 1px solid var(--border);
+    .feature-visual-panel {
       border-radius: 24px;
-      padding: 32px 26px;
-      text-align: center;
-    }
-    .qr-frame {
-      width: min(210px, 100%);
-      aspect-ratio: 1;
-      margin: 0 auto;
-      padding: 12px;
-      border-radius: 18px;
-      background: #fff;
+      overflow: hidden;
       border: 1px solid var(--border);
-      box-shadow: 0 12px 28px rgba(16, 26, 49, .08);
+      background: var(--cream);
+      box-shadow: 0 20px 44px rgba(16, 26, 49, .1);
     }
-    .qr-frame img {
+    .feature-visual-panel img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: contain;
+      height: auto;
+      object-fit: cover;
     }
-    .qr-panel h3 {
-      margin: 20px 0 6px;
-      font-size: 1.12rem;
-      font-weight: 800;
+
+    /* Download Popup Modal */
+    .dl-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(10, 19, 36, .66);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .dl-modal-backdrop.is-open { display: flex; }
+    .dl-modal {
+      position: relative;
+      width: min(460px, 100%);
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 26px;
+      padding: 32px 28px 28px;
+      box-shadow: 0 32px 72px rgba(10, 19, 36, .35);
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .dl-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #faf9f6;
       color: var(--navy);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background .2s ease, border-color .2s ease;
     }
-    .qr-panel p {
+    .dl-modal-close:hover { background: var(--cream); border-color: var(--gold); }
+    .dl-modal-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .dl-modal-head img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .dl-modal h3 {
+      margin: 0 0 18px;
+      font-size: 1.48rem;
+      line-height: 1.18;
+      letter-spacing: -.03em;
+      color: var(--navy);
+      padding-right: 24px;
+    }
+    .dl-modal-stores {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .dl-modal-stores .store-btn {
+      background: var(--navy);
+      color: #fff;
+      box-shadow: none;
+    }
+    .dl-modal-stores .store-btn:hover { background: var(--navy-2); }
+    .dl-modal-stores .store-btn.is-gold {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+    .dl-modal-stores .store-btn.is-gold:hover { background: var(--gold-hover); }
+    .dl-modal-qr {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .qr-frame {
+      width: 112px;
+      height: 112px;
+      padding: 8px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .qr-frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .dl-modal-qr p {
       margin: 0;
-      font-size: .92rem;
-      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 650;
+      color: var(--navy);
+      line-height: 1.45;
     }
 
     .feature-list {
@@ -803,7 +892,7 @@
         <a href="#features" data-i18n="navFeatures">ÖZELLİKLER</a>
         <a href="#faq" data-i18n="navFaq">SSS</a>
         <a href="#contact" data-i18n="navContact">İLETİŞİM</a>
-        <a class="nav-download" href="#download" data-i18n="navDownload">İNDİR</a>
+        <button class="nav-download" type="button" id="openDownloadModal" data-i18n="navDownload">İNDİR</button>
       </nav>
       <div class="language-switch" aria-label="Language">
         <button type="button" data-lang="tr" aria-pressed="true">TR</button>
@@ -936,13 +1025,9 @@
         <h2 class="section-heading" data-i18n="featHeading">Hem tek başına bulmaca, hem arkadaşlarla düello</h2>
         <p class="section-sub" data-i18n="featSub">WordLegend, klasik kelime bulmaca keyfini gerçek zamanlı düellolar, günlük seriler ve iki dilli sözlük desteğiyle birleştirir.</p>
 
-        <div class="showcase-split" id="download">
-          <div class="qr-panel">
-            <div class="qr-frame">
-              <img src="./wordlegend_qr_code.png" onerror="this.onerror=null;this.src='https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=https%3A%2F%2Flittlegenius.tr%2Fwordlegend%3Fgo%3Dstore'" alt="WordLegend QR Code">
-            </div>
-            <h3 data-i18n="qrTitle">Telefonunla Tara ve İndir</h3>
-            <p data-i18n="qrCaption">Kameranızla QR kodu okutarak iOS veya Android mağazasına doğrudan geçin.</p>
+        <div class="showcase-split">
+          <div class="feature-visual-panel">
+            <img src="./WL_Image/general.png" alt="WordLegend game modes and features preview">
           </div>
 
           <div class="feature-list">
@@ -1076,6 +1161,42 @@
       </div>
     </section>
   </main>
+
+  <!-- DOWNLOAD POPUP MODAL -->
+  <div class="dl-modal-backdrop" id="downloadModal" role="dialog" aria-modal="true" aria-labelledby="dlModalTitle" hidden>
+    <div class="dl-modal">
+      <button class="dl-modal-close" type="button" id="closeDownloadModal" aria-label="Close">×</button>
+      <div class="dl-modal-head">
+        <img src="./Logo.png" alt="WordLegend logo">
+        <strong style="font-size:.95rem; color:var(--navy);">WordLegend</strong>
+      </div>
+      <h3 id="dlModalTitle" data-i18n="qrTitle">Telefonunla Tara ve İndir</h3>
+
+      <div class="dl-modal-stores">
+        <a class="store-btn is-gold" href="https://apps.apple.com/us/app/word-legend-word-puzzle-game/id6765661472" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.54c.64-.78 1.08-1.87.96-2.96-.93.04-2.06.62-2.73 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.1-.49 2.74-1.27z"/></svg>
+          <div class="store-btn-text">
+            <small data-i18n="iosSmall">App Store'dan İndirin</small>
+            <span>App Store</span>
+          </div>
+        </a>
+        <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.geniusmetaverse.wordlegend" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.955V2.77c.17-.386.386-.715.609-.956zm11.266 11.268l2.36 2.36-11.83 6.76 9.47-9.12zm0-2.164L5.405 1.798l11.83 6.76-2.36 2.36zm1.528 1.082l3.414 1.95a1.59 1.59 0 0 1 0 2.766l-3.414 1.95-2.022-2.022 2.022-2.644z"/></svg>
+          <div class="store-btn-text">
+            <small data-i18n="gpSmall">Google Play'den Alın</small>
+            <span>Google Play</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="dl-modal-qr">
+        <div class="qr-frame">
+          <img src="./wordlegend_qr_code.png" onerror="this.onerror=null;this.src='https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=8&data=https%3A%2F%2Flittlegenius.tr%2Fwordlegend%3Fgo%3Dstore'" alt="WordLegend QR Code">
+        </div>
+        <p data-i18n="qrCaption">Kameranızla QR kodu okutarak iOS veya Android mağazasına doğrudan geçin.</p>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="footer-bar">
@@ -1306,6 +1427,31 @@
       });
     });
     startModeCycle();
+
+    // Download popup modal
+    const downloadModal = document.getElementById("downloadModal");
+    const openDownloadBtn = document.getElementById("openDownloadModal");
+    const closeDownloadBtn = document.getElementById("closeDownloadModal");
+
+    function setDownloadModal(open) {
+      if (!downloadModal) return;
+      downloadModal.hidden = !open;
+      downloadModal.classList.toggle("is-open", open);
+    }
+
+    if (openDownloadBtn) openDownloadBtn.addEventListener("click", () => setDownloadModal(true));
+    if (closeDownloadBtn) closeDownloadBtn.addEventListener("click", () => setDownloadModal(false));
+    if (downloadModal) {
+      downloadModal.addEventListener("click", e => {
+        if (e.target === downloadModal) setDownloadModal(false);
+      });
+    }
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") setDownloadModal(false);
+    });
+    try {
+      if (new URLSearchParams(window.location.search).get("modal") === "download") setDownloadModal(true);
+    } catch (e) {}
 
     // FAQ accordion
     document.querySelectorAll(".faq-question").forEach(btn => {
