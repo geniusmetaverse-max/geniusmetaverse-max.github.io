@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a31">
+  <title id="pageTitle">Magic Mirror - Markalar &amp; Mağazalar İş Birliği · littleGENIUS</title>
+  <meta name="description" id="pageMetaDesc" content="Gelinlik markaları, tasarımcılar ve gelinlik mağazaları için Magic Mirror B2B iş birliği: yapay zekâ sanal prova, model bazlı talep içgörüleri ve yüksek niyetli mağaza randevuları.">
+  <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #101a31;
+      --navy-2: #172541;
+      --navy-deep: #0a1324;
+      --gold: #e7c45b;
+      --gold-hover: #f1d36f;
+      --cream: #f5f3ee;
+      --white: #ffffff;
+      --ink: #182238;
+      --ink-soft: #364156;
+      --muted: #68748a;
+      --border: #e4e8f0;
+      --header-h: 68px;
+      --ease-out: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 18px); }
+    ::selection { background: var(--gold); color: var(--navy-deep); }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 { font-family: "Plus Jakarta Sans", Inter, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Sticky Header */
+    .site-header {
+      position: fixed; z-index: 30; inset: 0 0 auto; min-height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 0 clamp(18px, 4.5vw, 68px);
+      background: rgba(13, 24, 47, .94); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, .09); color: #fff;
+    }
+    .brand-group { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .back-btn {
+      width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%;
+      background: rgba(255, 255, 255, .1); color: var(--gold); border: 1px solid rgba(231, 196, 91, .35);
+      transition: background .2s ease, transform .2s ease; flex-shrink: 0;
+    }
+    .back-btn:hover { background: rgba(231, 196, 91, .2); transform: translateY(-1px); }
+    .back-btn svg { width: 17px; height: 17px; fill: currentColor; }
+    .brand-divider { width: 1px; height: 22px; background: rgba(255, 255, 255, .18); flex-shrink: 0; }
+    .app-brand-title {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: -.02em; color: #fff;
+    }
+    .app-brand-title img { width: 26px; height: 26px; border-radius: 7px; object-fit: cover; }
+
+    .header-right { display: flex; align-items: center; gap: 22px; }
+    .main-nav { display: flex; align-items: center; gap: 22px; }
+    .main-nav a {
+      font-size: .74rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+      color: rgba(255, 255, 255, .82); transition: color .2s ease; white-space: nowrap;
+    }
+    .main-nav a:hover { color: var(--gold); }
+    .main-nav .nav-download {
+      padding: 7px 16px; border-radius: 999px; border: 1px solid rgba(231, 196, 91, .65);
+      color: var(--gold); transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .main-nav .nav-download:hover { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); }
+    .language-switch { display: flex; align-items: center; gap: 4px; }
+    .language-switch button {
+      border: 0; background: transparent; color: rgba(255, 255, 255, .58);
+      font: inherit; font-size: .8rem; font-weight: 700; padding: 6px 5px; cursor: pointer;
+    }
+    .language-switch button[aria-pressed="true"] {
+      color: #fff; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: calc(var(--header-h) + 56px) clamp(20px, 6vw, 96px) 76px;
+      background: #0b1428 url("./assets/magicmirror_hero.png") center center / cover no-repeat;
+      color: #fff;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(10, 19, 36, .88) 0%, rgba(10, 19, 36, .74) 55%, rgba(10, 19, 36, .58) 100%),
+        linear-gradient(180deg, rgba(10, 19, 36, .25) 0%, transparent 50%, rgba(10, 19, 36, .65) 100%);
+    }
+    .hero-inner {
+      width: min(1140px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: clamp(28px, 4.5vw, 56px);
+      align-items: center;
+    }
+    .partner-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(231, 196, 91, .14); border: 1px solid rgba(231, 196, 91, .35);
+      color: var(--gold); font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0; font-size: clamp(2.1rem, 4.1vw, 3.2rem); line-height: 1.08; letter-spacing: -.04em; font-weight: 800;
+      text-wrap: balance;
+    }
+    .gold-text {
+      color: var(--gold);
+      background: linear-gradient(135deg, #f3d678 0%, #e7c45b 50%, #d4af37 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      margin: 18px 0 0; max-width: 54ch; font-size: 1.03rem; line-height: 1.72; color: #dbe4f3;
+    }
+    .hero-actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .primary-cta {
+      display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 999px;
+      background: var(--gold); color: var(--navy-deep); font-weight: 800; font-size: .94rem;
+      box-shadow: 0 12px 28px rgba(231, 196, 91, .28); transition: background .2s ease, transform .2s var(--ease-out);
+    }
+    .primary-cta:hover { background: var(--gold-hover); transform: translateY(-2px); }
+    .secondary-cta {
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 999px;
+      background: #fff; color: #111827; font-weight: 800; font-size: .92rem;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .18); transition: background .2s ease, transform .2s var(--ease-out);
+    }
+    .secondary-cta:hover { background: var(--cream); transform: translateY(-2px); }
+
+    /* Hero Ecosystem Loop Card (Frosted Glass) */
+    .loop-card {
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 26px;
+      padding: 26px;
+      box-shadow: 0 28px 60px rgba(10, 19, 36, .36);
+    }
+    .loop-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;
+    }
+    .loop-head h3 { margin: 0; font-size: 1.05rem; color: #fff; }
+    .loop-badge {
+      font-size: .7rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--navy-deep); background: var(--gold); padding: 4px 10px; border-radius: 999px;
+    }
+    .loop-steps { display: grid; gap: 12px; }
+    .loop-step {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 16px; border-radius: 16px;
+      background: rgba(10, 19, 36, .48); border: 1px solid rgba(255, 255, 255, .14);
+    }
+    .loop-num {
+      width: 32px; height: 32px; border-radius: 10px;
+      background: rgba(231, 196, 91, .16); border: 1px solid rgba(231, 196, 91, .45);
+      color: var(--gold); font-weight: 800; font-size: .85rem;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .loop-step strong { display: block; font-size: .92rem; color: #fff; margin-bottom: 2px; }
+    .loop-step span { display: block; font-size: .83rem; color: #d3dcef; line-height: 1.5; }
+
+    /* Sections */
+    .section { padding: 76px clamp(20px, 6vw, 96px); }
+    .section-inner { width: min(1140px, 100%); margin: 0 auto; }
+    .section-heading {
+      margin: 0; font-size: clamp(1.75rem, 3.2vw, 2.55rem); line-height: 1.12; letter-spacing: -.035em;
+      color: var(--navy); font-weight: 800;
+    }
+    .section-sub { margin: 12px 0 0; max-width: 64ch; font-size: 1rem; color: var(--ink-soft); }
+
+    /* Audience Switcher Section (Brands vs Retailers) */
+    .solutions-section { background: var(--cream); }
+    .solutions-top {
+      display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px;
+    }
+    .audience-tabs {
+      display: inline-flex; padding: 5px; border-radius: 999px;
+      background: var(--white); border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(16, 26, 49, .05);
+    }
+    .audience-tab {
+      border: 0; background: transparent; color: var(--ink-soft);
+      font: inherit; font-size: .88rem; font-weight: 800;
+      padding: 11px 22px; border-radius: 999px; cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    .audience-tab[aria-selected="true"] {
+      background: var(--navy); color: #fff;
+    }
+    .audience-panel { margin-top: 34px; }
+    .audience-panel[hidden] { display: none; }
+
+    /* 3-Step Flow Row */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
+    }
+    .step-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 26px;
+      box-shadow: 0 10px 28px rgba(16, 26, 49, .04);
+    }
+    .step-badge {
+      display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 11px;
+      background: var(--navy); color: var(--gold); font-weight: 800; font-size: .92rem; margin-bottom: 14px;
+    }
+    .step-card h3 { margin: 0 0 8px; font-size: 1.08rem; color: var(--navy); }
+    .step-card p { margin: 0; font-size: .92rem; color: var(--ink-soft); line-height: 1.65; }
+
+    /* 4 Value Cards */
+    .cards-2x2 {
+      margin-top: 22px;
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;
+    }
+    .value-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 26px;
+      transition: border-color .2s ease, transform .2s var(--ease-out);
+    }
+    .value-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .value-tag {
+      display: inline-block; padding: 4px 10px; border-radius: 999px;
+      background: rgba(231, 196, 91, .2); color: #7a5c0f;
+      font-size: .72rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .value-card h3 { margin: 0 0 8px; font-size: 1.12rem; color: var(--navy); }
+    .value-card p { margin: 0; font-size: .93rem; color: var(--ink-soft); line-height: 1.65; }
+
+    /* Retailer Pain Points + Free vs Partner Table */
+    .pain-banner {
+      background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 24px 28px;
+      margin-bottom: 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;
+    }
+    .pain-banner strong { display: block; font-size: 1.05rem; color: var(--navy); margin-bottom: 4px; }
+    .pain-banner span { font-size: .92rem; color: var(--ink-soft); }
+    .pain-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pain-pill {
+      padding: 6px 12px; border-radius: 999px; background: var(--cream); border: 1px solid var(--border);
+      font-size: .78rem; font-weight: 700; color: var(--ink-soft);
+    }
+
+    .tier-table-wrap {
+      margin-top: 24px; background: var(--white); border: 1px solid var(--border); border-radius: 22px;
+      overflow: hidden; box-shadow: 0 12px 32px rgba(16, 26, 49, .05);
+    }
+    .tier-table-head {
+      padding: 22px 26px; background: var(--navy); color: #fff;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .tier-table-head h3 { margin: 0; font-size: 1.15rem; }
+    .tier-table-head span { font-size: .86rem; color: var(--gold); font-weight: 700; }
+    .comp-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .comp-table th, .comp-table td {
+      padding: 14px 22px; text-align: left; border-bottom: 1px solid var(--border);
+    }
+    .comp-table th { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: #faf9f6; }
+    .comp-table td:not(:first-child), .comp-table th:not(:first-child) { text-align: center; width: 140px; font-weight: 700; }
+    .comp-table tr:last-child td { border-bottom: 0; }
+    .check-yes { color: #059669; font-weight: 800; }
+    .check-no { color: #94a3b8; }
+
+    /* Channel Comparison Section */
+    .compare-section { background: var(--white); }
+    .channel-table-wrap {
+      margin-top: 30px; border: 1px solid var(--border); border-radius: 22px; overflow-x: auto;
+      box-shadow: 0 12px 32px rgba(16, 26, 49, .04);
+    }
+    .channel-table { width: 100%; min-width: 680px; border-collapse: collapse; font-size: .92rem; }
+    .channel-table th, .channel-table td {
+      padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .channel-table thead th { background: #faf9f6; color: var(--navy); font-weight: 800; font-size: .86rem; }
+    .channel-table thead th.is-mm { background: var(--navy); color: var(--gold); }
+    .channel-table td.is-mm { background: rgba(231, 196, 91, .08); font-weight: 600; color: var(--navy); }
+    .channel-table tr:last-child td { border-bottom: 0; }
+
+    /* FAQ */
+    .faq-section { background: var(--white); padding-top: 24px; }
+    .faq-list { margin-top: 30px; display: grid; gap: 12px; max-width: 880px; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: 16px; background: #faf9f6; overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; border: 0; background: transparent; padding: 18px 22px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      text-align: left; font: inherit; font-size: 1rem; font-weight: 700; color: var(--navy); cursor: pointer;
+    }
+    .faq-q svg { width: 18px; height: 18px; flex-shrink: 0; transition: transform .25s ease; color: var(--muted); }
+    .faq-item[data-open="true"] .faq-q svg { transform: rotate(180deg); color: var(--navy); }
+    .faq-a { display: none; padding: 0 22px 18px; color: var(--ink-soft); font-size: .94rem; line-height: 1.7; }
+    .faq-item[data-open="true"] .faq-a { display: block; }
+    .faq-a p { margin: 0; }
+
+    /* Application Form Section (Cream Background + Crisp White Cards Standard) */
+    .apply-section { background: var(--cream); }
+    .apply-grid {
+      margin-top: 34px; display: grid; grid-template-columns: .85fr 1.15fr;
+      gap: clamp(24px, 4vw, 48px); align-items: start;
+    }
+    .apply-info {
+      background: var(--white); border: 1px solid var(--border); border-radius: 22px; padding: 28px;
+      box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+    }
+    .apply-info h3 { margin: 0 0 8px; font-size: 1.2rem; color: var(--navy); }
+    .apply-info p { margin: 0 0 18px; color: var(--ink-soft); font-size: .94rem; }
+    .mail-pill {
+      display: inline-flex; align-items: center; gap: 10px; padding: 11px 16px; border-radius: 12px;
+      background: var(--navy); color: #fff; font-weight: 700; font-size: .92rem;
+    }
+    .mail-pill svg { width: 18px; height: 18px; fill: var(--gold); flex-shrink: 0; }
+    .apply-note {
+      margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: .85rem; color: var(--ink-soft);
+    }
+
+    .apply-form-card {
+      background: var(--white); color: var(--ink); border: 1px solid var(--border); border-radius: 22px;
+      padding: clamp(24px, 4vw, 34px); box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 15px; }
+    .form-row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .field-label { display: block; font-size: .82rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .req-star { color: #ef4444; margin-left: 2px; }
+    .field-input {
+      width: 100%; padding: 12px 14px; border-radius: 10px;
+      border: 1px solid #d9dfe9; background: #fff; color: var(--navy); font: inherit; font-size: .95rem;
+    }
+    .field-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-color: var(--gold); }
+    .field-input option { background: #fff; color: var(--navy); }
+    .field-input::placeholder { color: #7e8aa1; }
+    textarea.field-input { min-height: 110px; resize: vertical; }
+    .consent-row {
+      display: flex; align-items: flex-start; gap: 10px; font-size: .82rem; line-height: 1.55; color: var(--ink-soft); cursor: pointer;
+    }
+    .consent-row input[type="checkbox"] { width: 16px; height: 16px; margin-top: 3px; accent-color: var(--gold); flex-shrink: 0; }
+    .consent-row a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; font-weight: 600; }
+    .submit-btn {
+      width: 100%; padding: 15px 24px; border: 0; border-radius: 999px;
+      background: var(--gold); color: var(--navy-deep); font: inherit; font-size: .98rem; font-weight: 800;
+      cursor: pointer; box-shadow: 0 8px 24px rgba(231, 196, 91, .28); transition: background .2s ease, transform .2s var(--ease-out);
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--gold-hover); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: .65; cursor: not-allowed; }
+    .form-status { display: none; padding: 12px 14px; border-radius: 10px; font-size: .88rem; font-weight: 600; }
+    .form-status.is-success { display: block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .form-status.is-error { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+    /* Footer (Left-Aligned Apple-Style Bar) */
+    .footer {
+      background: var(--navy-deep); color: #b7c3d9;
+      padding: 28px clamp(20px, 6vw, 96px);
+      border-top: 1px solid rgba(255, 255, 255, .08); font-size: .84rem;
+    }
+    .footer-inner { width: min(1140px, 100%); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .footer-sep { color: rgba(255, 255, 255, .28); }
+    .footer a { color: #d8e0ef; transition: color .2s ease; }
+    .footer a:hover { color: var(--gold); }
+
+    @media (max-width: 940px) {
+      .hero-inner, .steps-grid, .cards-2x2, .apply-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      :root { --header-h: 62px; }
+      .main-nav { display: none; }
+      .section { padding: 56px 20px; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .audience-tabs { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+      .audience-tab { padding: 10px 12px; font-size: .82rem; }
+      .comp-table th, .comp-table td { padding: 12px 14px; font-size: .84rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-group">
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Sayfa" title="littleGENIUS Ana Sayfa">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2L3 10.7V21h6.2v-6.2h5.6V21H21V10.7L12 3.2z"/></svg>
+      </a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <a class="app-brand-title" href="index.html" id="backToAppBtn">
+        <img src="./assets/magicmirror_logo.png" alt="Magic Mirror logo">
+        <span>Magic Mirror</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Section navigation">
+        <a href="#solutions" data-i18n="navSolutions">ÇÖZÜMLER</a>
+        <a href="#compare" data-i18n="navCompare">KARŞILAŞTIRMA</a>
+        <a href="#faq" data-i18n="navFaq">SSS</a>
+        <a href="#apply" data-i18n="navApply">BAŞVURU</a>
+        <a class="nav-download" href="index.html" id="navAppHome" data-i18n="navApp">UYGULAMA</a>
+      </nav>
+      <div class="language-switch" aria-label="Language">
+        <button type="button" data-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <span class="partner-pill" data-i18n="heroPill">Markalar &amp; Gelinlik Mağazaları İçin</span>
+          <h1 data-i18n="heroTitle">Koleksiyonunuzu <span class="gold-text">Karar Anındaki Gelin Adaylarıyla</span> Buluşturun.</h1>
+          <p class="hero-lead" data-i18n="heroLead">
+            Magic Mirror'da gelin adayları kendi fotoğrafları üzerinde gelinlikleri sanal olarak dener, yakınlarıyla canlı anket başlatır ve beğendikleri tasarımı taşıyan en yakın gelinlik mağazasına ulaşır.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-cta" href="#apply" data-role="Brand" data-i18n="heroCtaBrand">Marka Teklifi İste</a>
+            <a class="secondary-cta" href="#apply" data-role="Retailer" data-i18n="heroCtaRetailer">Mağazanı Ücretsiz Listele</a>
+          </div>
+        </div>
+
+        <div class="loop-card">
+          <div class="loop-head">
+            <h3 data-i18n="loopTitle">İki Taraflı Magic Mirror Ekosistemi</h3>
+            <span class="loop-badge" data-i18n="loopBadge">Brands + Retailers</span>
+          </div>
+          <div class="loop-steps">
+            <div class="loop-step">
+              <div class="loop-num">01</div>
+              <div>
+                <strong data-i18n="ls1Title">Markalar Koleksiyonu Sunar</strong>
+                <span data-i18n="ls1Desc">Mevcut gelinlik fotoğraflarınız ve model detaylarınız sanal prova kataloğuna eklenir; ekstra çekim gerekmez.</span>
+              </div>
+            </div>
+            <div class="loop-step">
+              <div class="loop-num">02</div>
+              <div>
+                <strong data-i18n="ls2Title">Gelin Adayı Üzerinde Dener &amp; Ankete Açar</strong>
+                <span data-i18n="ls2Desc">Gelin adayları modelinizi kendi fotoğrafında dener, favoriler ve sevdikleriyle gerçek zamanlı anket yapar.</span>
+              </div>
+            </div>
+            <div class="loop-step">
+              <div class="loop-num">03</div>
+              <div>
+                <strong data-i18n="ls3Title">En Yakın Yetkili Mağazaya Yönlenir</strong>
+                <span data-i18n="ls3Desc">Tasarımınızı üzerinde görüp beğenmiş, karar vermeye hazır gelin adayları doğrudan mağazanıza yönlendirilir.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUDIENCE SWITCHER: BRANDS VS RETAILERS -->
+    <section class="section solutions-section" id="solutions">
+      <div class="section-inner">
+        <div class="solutions-top">
+          <div>
+            <h2 class="section-heading" data-i18n="solHeading">İş Modelinize Uygun Partnerlik</h2>
+            <p class="section-sub" data-i18n="solSub">İster koleksiyon sahibi bir gelinlik markası, ister gelinleri mağazasında ağırlayan bir perakendeci olun; size özel çözümlerimizi inceleyin.</p>
+          </div>
+
+          <div class="audience-tabs" role="tablist" aria-label="Partner types">
+            <button class="audience-tab" type="button" role="tab" id="tabBrands" aria-selected="true" aria-controls="panelBrands" data-i18n="tabBrands">Markalar &amp; Tasarımcılar</button>
+            <button class="audience-tab" type="button" role="tab" id="tabRetailers" aria-selected="false" aria-controls="panelRetailers" data-i18n="tabRetailers">Gelinlik Mağazaları</button>
+          </div>
+        </div>
+
+        <!-- PANEL 1: BRANDS -->
+        <div class="audience-panel" id="panelBrands" role="tabpanel" aria-labelledby="tabBrands">
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-badge">1</span>
+              <h3 data-i18n="brStep1Title">Koleksiyonunuzu Gönderin</h3>
+              <p data-i18n="brStep1Desc">Mevcut model fotoğraflarınızı, silüet, kumaş ve yaka bilgilerinizi iletin; tüm katalog kurulumunu biz tamamlayalım.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-badge">2</span>
+              <h3 data-i18n="brStep2Title">Sanal Prova &amp; Anket İlgi Ölçümü</h3>
+              <p data-i18n="brStep2Desc">Gelin adayları modellerinizi kendi üzerlerinde dener, favorilere ekler ve yakınlarıyla canlı ankette paylaşır.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-badge">3</span>
+              <h3 data-i18n="brStep3Title">Yetkili Mağazalarınıza Trafik</h3>
+              <p data-i18n="brStep3Desc">Her model sayfasından tek dokunuşla markanızı taşıyan en yakın gelinlik mağazaları gösterilir.</p>
+            </div>
+          </div>
+
+          <div class="cards-2x2">
+            <div class="value-card">
+              <span class="value-tag" data-i18n="brC1Tag">Sanal Prova Gücü</span>
+              <h3 data-i18n="brC1Title">Sponsored Try-On &amp; Vitrin Önceliği</h3>
+              <p data-i18n="brC1Desc">Yeni sezon modellerinizi aktif gelinlik arayan kullanıcıların akışında öne çıkarın; statik reklam yerine gerçek deneme sunun.</p>
+            </div>
+            <div class="value-card">
+              <span class="value-tag" data-i18n="brC2Tag">Talep Analitiği</span>
+              <h3 data-i18n="brC2Title">Model &amp; Bölge Bazlı Performans Verisi</h3>
+              <p data-i18n="brC2Desc">Hangi tasarımın kaç kez sanal prova edildiğini, kaydedildiğini ve hangi şehirlerde öne çıktığını aylık raporlarla görün.</p>
+            </div>
+            <div class="value-card">
+              <span class="value-tag" data-i18n="brC3Tag">Yeni Pazar Testi</span>
+              <h3 data-i18n="brC3Title">Yeni Ülke &amp; Koleksiyon Lansman Desteği</h3>
+              <p data-i18n="brC3Desc">Büyük bütçeli fuar veya dağıtım yatırımı öncesi yeni pazarlardaki gelin ilgisini ölçün, perakendecilere somut talep verisi sunun.</p>
+            </div>
+            <div class="value-card">
+              <span class="value-tag" data-i18n="brC4Tag">Hibrit Tasarımcı</span>
+              <h3 data-i18n="brC4Title">Kendi Mağazası Olan Tasarımcılar</h3>
+              <p data-i18n="brC4Desc">Sadece kendi mağazanızda satış yapıyorsanız, modelleriniz bulunduğunuz şehir ve çevresindeki gelin adaylarına doğrudan yönlendirilir.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: RETAILERS -->
+        <div class="audience-panel" id="panelRetailers" role="tabpanel" aria-labelledby="tabRetailers" hidden>
+          <div class="pain-banner">
+            <div>
+              <strong data-i18n="retPainTitle">Klasik dijital pazarlama kanalları her geçen gün zorlaşıyor.</strong>
+              <span data-i18n="retPainSub">Magic Mirror'da mağazanızı ücretsiz listeleyin; taşıdığınız markaları zaten üzerinde deneyip beğenmiş gelinler sizi bulsun.</span>
+            </div>
+            <div class="pain-pills">
+              <span class="pain-pill" data-i18n="pp1">Instagram: Düşen Erişim</span>
+              <span class="pain-pill" data-i18n="pp2">Google Ads: Artan Tıklama Maliyeti</span>
+              <span class="pain-pill" data-i18n="pp3">SEO: Uzun Bekleyiş</span>
+            </div>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-badge">1</span>
+              <h3 data-i18n="retS1Title">Tek Tek Elbise Yüklemeyin</h3>
+              <p data-i18n="retS1Desc">Mağaza fotoğraflarınızı, çalışma saatlerinizi ve mağazanızda bulundurduğunuz markaları seçmeniz yeterli; katalog markalar üzerinden eşleşir.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-badge">2</span>
+              <h3 data-i18n="retS2Title">Marka Bazlı Yerel Eşleşme</h3>
+              <p data-i18n="retS2Desc">Yakınınızdaki bir gelin adayı mağazanızda bulunan bir markanın elbisesini üzerinde deneyip beğendiğinde mağazanız önerilir.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-badge">3</span>
+              <h3 data-i18n="retS3Title">Doğrudan Randevu &amp; İletişim</h3>
+              <p data-i18n="retS3Desc">Aracı takvim zorunluluğu yok; gelin adayları telefon, web sitesi veya Instagram üzerinden doğrudan mağazanıza ulaşır.</p>
+            </div>
+          </div>
+
+          <div class="tier-table-wrap">
+            <div class="tier-table-head">
+              <h3 data-i18n="tierTitle">Mağaza Üyelik Seçenekleri</h3>
+              <span data-i18n="tierNote">Ücretsiz listeleyin · İsterseniz Partner paketiyle 100 km çapında öne çıkın</span>
+            </div>
+            <table class="comp-table">
+              <thead>
+                <tr>
+                  <th data-i18n="thFeat">Özellik</th>
+                  <th data-i18n="thFree">Ücretsiz</th>
+                  <th data-i18n="thPrem">Partner</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-i18n="tr1">Taşıdığınız markaları deneyen gelinlere gösterim</td>
+                  <td class="check-yes">✓</td>
+                  <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                  <td data-i18n="tr2">Mağaza fotoğrafları, saatler ve marka listesi profili</td>
+                  <td class="check-yes">✓</td>
+                  <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                  <td data-i18n="tr3">Görüntüleme, arama, web sitesi ve Instagram tıklama özeti</td>
+                  <td class="check-yes">✓</td>
+                  <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                  <td data-i18n="tr4">100 km çapında mağaza listesinde öncelikli üst sıra</td>
+                  <td class="check-no">—</td>
+                  <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                  <td data-i18n="tr5">Bölgesel Sponsored Try-On gösterimleri &amp; Partner rozeti</td>
+                  <td class="check-no">—</td>
+                  <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                  <td data-i18n="tr6">Bölgenizde en çok denenen model ve silüet trendleri</td>
+                  <td class="check-no">—</td>
+                  <td class="check-yes">✓</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANNEL COMPARISON -->
+    <section class="section compare-section" id="compare">
+      <div class="section-inner">
+        <h2 class="section-heading" data-i18n="cmpHeading">Diğer Kanalların Sunamadığı Nedir?</h2>
+        <p class="section-sub" data-i18n="cmpSub">Gelin adayına yalnızca fotoğraf göstermek yerine, gelinliği kendi üzerinde deneyimleten tek kanal.</p>
+
+        <div class="channel-table-wrap">
+          <table class="channel-table">
+            <thead>
+              <tr>
+                <th data-i18n="ctCol0">Kriter</th>
+                <th class="is-mm">Magic Mirror</th>
+                <th data-i18n="ctCol2">Instagram / Meta Reklamları</th>
+                <th data-i18n="ctCol3">Gelinlik Fuarları</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="ctR1C0">Kim Görür?</td>
+                <td class="is-mm" data-i18n="ctR1C1">Doğrudan gelinlik seçme aşamasındaki yüksek niyetli gelin adayları</td>
+                <td data-i18n="ctR1C2">Geniş hedefleme ve geçici kaydırma kitlesi</td>
+                <td data-i18n="ctR1C3">Yalnızca tek bir hafta sonu fuara katılan alıcılar</td>
+              </tr>
+              <tr>
+                <td data-i18n="ctR2C0">Deneyim Biçimi</td>
+                <td class="is-mm" data-i18n="ctR2C1">Kendi fotoğrafında birebir yapay zekâ sanal prova + canlı anket</td>
+                <td data-i18n="ctR2C2">Pasif görsel veya kısa video görüntüleme</td>
+                <td data-i18n="ctR2C3">Fiziksel stant ve sınırlı numune</td>
+              </tr>
+              <tr>
+                <td data-i18n="ctR3C0">Model Bazlı Veri</td>
+                <td class="is-mm" data-i18n="ctR3C1">Her elbise için prova sayısı, favorileme ve bölge bazlı talep skoru</td>
+                <td data-i18n="ctR3C2">Yalnızca genel reklam tıklaması / erişim</td>
+                <td data-i18n="ctR3C3">Sadece toptan sipariş notları</td>
+              </tr>
+              <tr>
+                <td data-i18n="ctR4C0">Mağaza Dönüşümü</td>
+                <td class="is-mm" data-i18n="ctR4C1">Her modelden en yakın yetkili mağazaya tek dokunuşla yönlendirme</td>
+                <td data-i18n="ctR4C2">Genel marka web sitesine dağınık trafik</td>
+                <td data-i18n="ctR4C3">Bireysel gelin yönlendirmesi yok</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
+      <div class="section-inner">
+        <h2 class="section-heading" data-i18n="faqHeading">Markalar &amp; Mağazalar Hakkında Merak Edilenler</h2>
+        <div class="faq-list">
+          <div class="faq-item" data-open="true">
+            <button class="faq-q" type="button">
+              <span data-i18n="pq1">Marka olarak katılmak için yeni fotoğraf çekimi yapmamız gerekiyor mu?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p data-i18n="pa1">Hayır. Mevcut lookbook veya katalog görsellerinizi ve model detaylarını (silüet, kumaş, koleksiyon adı) paylaşmanız yeterlidir; teknik kurulumu ekibimiz yapar.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button">
+              <span data-i18n="pq2">Gelinlik mağazası olarak her elbiseyi tek tek yüklememiz gerekir mi?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p data-i18n="pa2">Hayır. Mağazanız için 3–7 adet mağaza fotoğrafı, çalışma saatleri ve mağazanızda bulundurduğunuz markaların listesini paylaşmanız yeterlidir. Eşleşme marka düzeyinde otomatik yapılır.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button">
+              <span data-i18n="pq3">Hem kendi tasarımlarımızı üretiyor hem kendi mağazamızda satıyorsak?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p data-i18n="pa3">Hibrit modelle iki tarafın avantajını birleştiriyoruz: Tasarımlarınız sanal prova kataloğuna eklenir ve bulunduğunuz bölgedeki gelin adayları doğrudan sizin mağazanıza yönlendirilir.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button">
+              <span data-i18n="pq4">Mağaza listelemesi ücretsiz mi, Partner paketi ne sağlar?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a"><p data-i18n="pa4">Temel mağaza profili ve marka eşleşmesi ücretsizdir. Partner paketi ise 100 km çapında öncelikli üst sıra, öne çıkarılan sanal prova yerleşimleri ve bölgesel trend raporları sunar.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLICATION FORM (Cream Background + Crisp White Cards Standard) -->
+    <section class="section apply-section" id="apply">
+      <div class="section-inner">
+        <h2 class="section-heading" data-i18n="appHeading">İş Birliği Başvurusu</h2>
+        <p class="section-sub" data-i18n="appSub">Markanız veya gelinlik mağazanız hakkında kısa bilgi bırakın; size özel teklif ve kurulum adımlarıyla dönüş yapalım.</p>
+
+        <div class="apply-grid">
+          <div class="apply-info">
+            <h3 data-i18n="directTitle">Doğrudan İletişim</h3>
+            <p data-i18n="directText">Koleksiyon entegrasyonu, marka sponsorluğu veya mağaza listeleme sorularınız için doğrudan e-posta da gönderebilirsiniz.</p>
+            <a class="mail-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>info@littlegenius.tr</span>
+            </a>
+            <p class="apply-note" data-i18n="applyNote">Başvurular ortalama 24 saat içinde değerlendirilerek size özel kurulum rehberi ile yanıtlanır.</p>
+          </div>
+
+          <div class="apply-form-card">
+            <form class="contact-form" id="partnerForm" action="https://formsubmit.co/ajax/info@littlegenius.tr" method="POST">
+              <input type="hidden" name="_subject" id="partnerSubject" value="Magic Mirror B2B Partner Başvurusu">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+
+              <div class="form-row-2">
+                <div>
+                  <label class="field-label" for="businessName"><span data-i18n="lblBiz">Marka / Mağaza Adı</span> <span class="req-star">*</span></label>
+                  <input class="field-input" id="businessName" name="business_name" type="text" required placeholder="Örn. Atelier Bridal">
+                </div>
+                <div>
+                  <label class="field-label" for="cityCountry"><span data-i18n="lblCity">Şehir / Ülke</span> <span class="req-star">*</span></label>
+                  <input class="field-input" id="cityCountry" name="city_country" type="text" required placeholder="İstanbul, Türkiye">
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div>
+                  <label class="field-label" for="email"><span data-i18n="lblEmail">E-posta</span> <span class="req-star">*</span></label>
+                  <input class="field-input" id="email" name="email" type="email" required placeholder="adiniz@firma.com">
+                </div>
+                <div>
+                  <label class="field-label" for="packageType"><span data-i18n="lblPkg">İş Ortaklığı Türü</span> <span class="req-star">*</span></label>
+                  <select class="field-input" id="packageType" name="package_type" required>
+                    <option value="Marka / Tasarımcı (Brands)" data-i18n="opt1">Marka / Tasarımcı (Brands)</option>
+                    <option value="Gelinlik Mağazası (Retailer)" data-i18n="opt2">Gelinlik Mağazası (Retailer)</option>
+                    <option value="Hibrit — Kendi Mağazası Olan Tasarımcı" data-i18n="opt3">Hibrit — Kendi Mağazası Olan Tasarımcı</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="field-label" for="websiteOrIg"><span data-i18n="lblWeb">Web Sitesi veya Instagram</span></label>
+                <input class="field-input" id="websiteOrIg" name="website_or_instagram" type="text" placeholder="https://... veya @instagram">
+              </div>
+
+              <div>
+                <label class="field-label" for="message"><span data-i18n="lblMsg">Koleksiyonunuz veya taşıdığınız markalar hakkında kısa not</span> <span class="req-star">*</span></label>
+                <textarea class="field-input" id="message" name="message" required placeholder="Kaç model eklemek istiyorsunuz veya mağazanızda hangi markalar bulunuyor?"></textarea>
+              </div>
+
+              <label class="consent-row">
+                <input type="checkbox" id="consentCheck" required>
+                <span id="consentText"></span>
+              </label>
+
+              <button class="submit-btn" type="submit" id="submitBtn">
+                <span id="btnSubmitText" data-i18n="btnSubmit">Başvuruyu Gönder</span>
+              </button>
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span data-i18n="copyright">Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır</span>
+      <span class="footer-sep">|</span>
+      <a href="terms-of-service.html" id="tosLink" data-i18n="footTOS">Kullanım Koşulları</a>
+      <span class="footer-sep">|</span>
+      <a href="privacy-policy.html" id="ppLink" data-i18n="footPP">Gizlilik Politikası</a>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      tr: {
+        navSolutions: "ÇÖZÜMLER",
+        navCompare: "KARŞILAŞTIRMA",
+        navFaq: "SSS",
+        navApply: "BAŞVURU",
+        navApp: "UYGULAMA",
+        heroPill: "Markalar & Gelinlik Mağazaları İçin",
+        heroTitle: 'Koleksiyonunuzu <span class="gold-text">Karar Anındaki Gelin Adaylarıyla</span> Buluşturun.',
+        heroLead: "Magic Mirror'da gelin adayları kendi fotoğrafları üzerinde gelinlikleri sanal olarak dener, yakınlarıyla canlı anket başlatır ve beğendikleri tasarımı taşıyan en yakın gelinlik mağazasına ulaşır.",
+        heroCtaBrand: "Marka Teklifi İste",
+        heroCtaRetailer: "Mağazanı Ücretsiz Listele",
+        loopTitle: "İki Taraflı Magic Mirror Ekosistemi",
+        loopBadge: "Brands + Retailers",
+        ls1Title: "Markalar Koleksiyonu Sunar",
+        ls1Desc: "Mevcut gelinlik fotoğraflarınız ve model detaylarınız sanal prova kataloğuna eklenir; ekstra çekim gerekmez.",
+        ls2Title: "Gelin Adayı Üzerinde Dener & Ankete Açar",
+        ls2Desc: "Gelin adayları modelinizi kendi fotoğrafında dener, favoriler ve sevdikleriyle gerçek zamanlı anket yapar.",
+        ls3Title: "En Yakın Yetkili Mağazaya Yönlenir",
+        ls3Desc: "Tasarımınızı üzerinde görüp beğenmiş, karar vermeye hazır gelin adayları doğrudan mağazanıza yönlendirilir.",
+        solHeading: "İş Modelinize Uygun Partnerlik",
+        solSub: "İster koleksiyon sahibi bir gelinlik markası, ister gelinleri mağazasında ağırlayan bir perakendeci olun; size özel çözümlerimizi inceleyin.",
+        tabBrands: "Markalar & Tasarımcılar",
+        tabRetailers: "Gelinlik Mağazaları",
+        brStep1Title: "Koleksiyonunuzu Gönderin",
+        brStep1Desc: "Mevcut model fotoğraflarınızı, silüet, kumaş ve yaka bilgilerinizi iletin; tüm katalog kurulumunu biz tamamlayalım.",
+        brStep2Title: "Sanal Prova & Anket İlgi Ölçümü",
+        brStep2Desc: "Gelin adayları modellerinizi kendi üzerlerinde dener, favorilere ekler ve yakınlarıyla canlı ankette paylaşır.",
+        brStep3Title: "Yetkili Mağazalarınıza Trafik",
+        brStep3Desc: "Her model sayfasından tek dokunuşla markanızı taşıyan en yakın gelinlik mağazaları gösterilir.",
+        brC1Tag: "Sanal Prova Gücü",
+        brC1Title: "Sponsored Try-On & Vitrin Önceliği",
+        brC1Desc: "Yeni sezon modellerinizi aktif gelinlik arayan kullanıcıların akışında öne çıkarın; statik reklam yerine gerçek deneme sunun.",
+        brC2Tag: "Talep Analitiği",
+        brC2Title: "Model & Bölge Bazlı Performans Verisi",
+        brC2Desc: "Hangi tasarımın kaç kez sanal prova edildiğini, kaydedildiğini ve hangi şehirlerde öne çıktığını aylık raporlarla görün.",
+        brC3Tag: "Yeni Pazar Testi",
+        brC3Title: "Yeni Ülke & Koleksiyon Lansman Desteği",
+        brC3Desc: "Büyük bütçeli fuar veya dağıtım yatırımı öncesi yeni pazarlardaki gelin ilgisini ölçün, perakendecilere somut talep verisi sunun.",
+        brC4Tag: "Hibrit Tasarımcı",
+        brC4Title: "Kendi Mağazası Olan Tasarımcılar",
+        brC4Desc: "Sadece kendi mağazanızda satış yapıyorsanız, modelleriniz bulunduğunuz şehir ve çevresindeki gelin adaylarına doğrudan yönlendirilir.",
+        retPainTitle: "Klasik dijital pazarlama kanalları her geçen gün zorlaşıyor.",
+        retPainSub: "Magic Mirror'da mağazanızı ücretsiz listeleyin; taşıdığınız markaları zaten üzerinde deneyip beğenmiş gelinler sizi bulsun.",
+        pp1: "Instagram: Düşen Erişim",
+        pp2: "Google Ads: Artan Tıklama Maliyeti",
+        pp3: "SEO: Uzun Bekleyiş",
+        retS1Title: "Tek Tek Elbise Yüklemeyin",
+        retS1Desc: "Mağaza fotoğraflarınızı, çalışma saatlerinizi ve mağazanızda bulundurduğunuz markaları seçmeniz yeterli; katalog markalar üzerinden eşleşir.",
+        retS2Title: "Marka Bazlı Yerel Eşleşme",
+        retS2Desc: "Yakınınızdaki bir gelin adayı mağazanızda bulunan bir markanın elbisesini üzerinde deneyip beğendiğinde mağazanız önerilir.",
+        retS3Title: "Doğrudan Randevu & İletişim",
+        retS3Desc: "Aracı takvim zorunluluğu yok; gelin adayları telefon, web sitesi veya Instagram üzerinden doğrudan mağazanıza ulaşır.",
+        tierTitle: "Mağaza Üyelik Seçenekleri",
+        tierNote: "Ücretsiz listeleyin · İsterseniz Partner paketiyle 100 km çapında öne çıkın",
+        thFeat: "Özellik", thFree: "Ücretsiz", thPrem: "Partner",
+        tr1: "Taşıdığınız markaları deneyen gelinlere gösterim",
+        tr2: "Mağaza fotoğrafları, saatler ve marka listesi profili",
+        tr3: "Görüntüleme, arama, web sitesi ve Instagram tıklama özeti",
+        tr4: "100 km çapında mağaza listesinde öncelikli üst sıra",
+        tr5: "Bölgesel Sponsored Try-On gösterimleri & Partner rozeti",
+        tr6: "Bölgenizde en çok denenen model ve silüet trendleri",
+        cmpHeading: "Diğer Kanalların Sunamadığı Nedir?",
+        cmpSub: "Gelin adayına yalnızca fotoğraf göstermek yerine, gelinliği kendi üzerinde deneyimleten tek kanal.",
+        ctCol0: "Kriter", ctCol2: "Instagram / Meta Reklamları", ctCol3: "Gelinlik Fuarları",
+        ctR1C0: "Kim Görür?", ctR1C1: "Doğrudan gelinlik seçme aşamasındaki yüksek niyetli gelin adayları", ctR1C2: "Geniş hedefleme ve geçici kaydırma kitlesi", ctR1C3: "Yalnızca tek bir hafta sonu fuara katılan alıcılar",
+        ctR2C0: "Deneyim Biçimi", ctR2C1: "Kendi fotoğrafında birebir yapay zekâ sanal prova + canlı anket", ctR2C2: "Pasif görsel veya kısa video görüntüleme", ctR2C3: "Fiziksel stant ve sınırlı numune",
+        ctR3C0: "Model Bazlı Veri", ctR3C1: "Her elbise için prova sayısı, favorileme ve bölge bazlı talep skoru", ctR3C2: "Yalnızca genel reklam tıklaması / erişim", ctR3C3: "Sadece toptan sipariş notları",
+        ctR4C0: "Mağaza Dönüşümü", ctR4C1: "Her modelden en yakın yetkili mağazaya tek dokunuşla yönlendirme", ctR4C2: "Genel marka web sitesine dağınık trafik", ctR4C3: "Bireysel gelin yönlendirmesi yok",
+        faqHeading: "Markalar & Mağazalar Hakkında Merak Edilenler",
+        pq1: "Marka olarak katılmak için yeni fotoğraf çekimi yapmamız gerekiyor mu?",
+        pa1: "Hayır. Mevcut lookbook veya katalog görsellerinizi ve model detaylarını (silüet, kumaş, koleksiyon adı) paylaşmanız yeterlidir; teknik kurulumu ekibimiz yapar.",
+        pq2: "Gelinlik mağazası olarak her elbiseyi tek tek yüklememiz gerekir mi?",
+        pa2: "Hayır. Mağazanız için 3–7 adet mağaza fotoğrafı, çalışma saatleri ve mağazanızda bulundurduğunuz markaların listesini paylaşmanız yeterlidir. Eşleşme marka düzeyinde otomatik yapılır.",
+        pq3: "Hem kendi tasarımlarımızı üretiyor hem kendi mağazamızda satıyorsak?",
+        pa3: "Hibrit modelle iki tarafın avantajını birleştiriyoruz: Tasarımlarınız sanal prova kataloğuna eklenir ve bulunduğunuz bölgedeki gelin adayları doğrudan sizin mağazanıza yönlendirilir.",
+        pq4: "Mağaza listelemesi ücretsiz mi, Partner paketi ne sağlar?",
+        pa4: "Temel mağaza profili ve marka eşleşmesi ücretsizdir. Partner paketi ise 100 km çapında öncelikli üst sıra, öne çıkarılan sanal prova yerleşimleri ve bölgesel trend raporları sunar.",
+        appHeading: "İş Birliği Başvurusu",
+        appSub: "Markanız veya gelinlik mağazanız hakkında kısa bilgi bırakın; size özel teklif ve kurulum adımlarıyla dönüş yapalım.",
+        directTitle: "Doğrudan İletişim",
+        directText: "Koleksiyon entegrasyonu, marka sponsorluğu veya mağaza listeleme sorularınız için doğrudan e-posta da gönderebilirsiniz.",
+        applyNote: "Başvurular ortalama 24 saat içinde değerlendirilerek size özel kurulum rehberi ile yanıtlanır.",
+        lblBiz: "Marka / Mağaza Adı",
+        lblCity: "Şehir / Ülke",
+        lblEmail: "E-posta",
+        lblPkg: "İş Ortaklığı Türü",
+        opt1: "Marka / Tasarımcı (Brands)",
+        opt2: "Gelinlik Mağazası (Retailer)",
+        opt3: "Hibrit — Kendi Mağazası Olan Tasarımcı",
+        lblWeb: "Web Sitesi veya Instagram",
+        lblMsg: "Koleksiyonunuz veya taşıdığınız markalar hakkında kısa not",
+        consentHtml: 'littleGENIUS\'tan iş birliği iletişimleri almayı kabul ediyorum. Verilerinizi nasıl koruduğumuzu öğrenmek için <a href="privacy-policy.html?lang=tr">Gizlilik Politikamızı</a> inceleyebilirsiniz.',
+        btnSubmit: "Başvuruyu Gönder",
+        btnSending: "Gönderiliyor...",
+        msgSuccess: "Başvurunuz alındı! Ekibimiz 24 saat içinde dönüş yapacaktır.",
+        msgError: "Gönderim sırasında bir sorun oluştu. Doğrudan info@littlegenius.tr adresine yazabilirsiniz.",
+        footTOS: "Kullanım Koşulları",
+        footPP: "Gizlilik Politikası",
+        copyright: "Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır"
+      },
+      en: {
+        navSolutions: "SOLUTIONS",
+        navCompare: "COMPARE",
+        navFaq: "FAQ",
+        navApply: "APPLY",
+        navApp: "APP",
+        heroPill: "For Bridal Brands & Retailers",
+        heroTitle: 'Put Your Collection & Storefront in Front of <span class="gold-text">Brides Ready to Choose.</span>',
+        heroLead: "On Magic Mirror, brides virtually try on gowns on their own photo, launch live polls with loved ones, and connect directly with the nearest boutique carrying the dress.",
+        heroCtaBrand: "Request Brand Proposal",
+        heroCtaRetailer: "List Your Store Free",
+        loopTitle: "Two-Sided Magic Mirror Ecosystem",
+        loopBadge: "Brands + Retailers",
+        ls1Title: "Brands Supply the Collection",
+        ls1Desc: "Your existing lookbook photos and gown details go live in the virtual fitting catalog—no new shoot required.",
+        ls2Title: "Brides Try On & Poll Loved Ones",
+        ls2Desc: "Brides preview your gown on their own photo, save favorites, and vote live with friends and family.",
+        ls3Title: "High-Intent Routing to Retailers",
+        ls3Desc: "Brides who have already seen themselves in your dress are routed straight to the closest carrying store.",
+        solHeading: "Built for Both Sides of Bridal",
+        solSub: "Whether you are a bridal fashion house or a local bridal retailer, explore how Magic Mirror drives measurable demand.",
+        tabBrands: "Brands & Designers",
+        tabRetailers: "Bridal Retailers",
+        brStep1Title: "Send Us Your Collection",
+        brStep1Desc: "Share your existing gown photos, silhouettes, fabrics, and neckline details—we handle the full catalog setup.",
+        brStep2Title: "Virtual Fitting & Poll Demand",
+        brStep2Desc: "Brides try your gowns on their own photos, save favorites, and gather real-time votes from loved ones.",
+        brStep3Title: "Route Brides to Your Stockists",
+        brStep3Desc: "Every gown page connects interested brides to the nearest authorized bridal retailer in one tap.",
+        brC1Tag: "Virtual Try-On",
+        brC1Title: "Sponsored Try-On & Priority Placement",
+        brC1Desc: "Spotlight new seasonal collections in front of actively searching brides—offering interactive fitting instead of static ads.",
+        brC2Tag: "Demand Analytics",
+        brC2Title: "Dress- & Region-Level Insights",
+        brC2Desc: "Track virtual try-ons, saves, and poll popularity per gown across cities and markets with monthly reports.",
+        brC3Tag: "Market Testing",
+        brC3Title: "New Market & Collection Validation",
+        brC3Desc: "Measure real bride demand in a new region before committing to trade shows or wholesale expansion.",
+        brC4Tag: "Hybrid Designer",
+        brC4Title: "Designers with Their Own Flagship Store",
+        brC4Desc: "If you sell exclusively in your own boutique, your gowns are showcased to brides within your local area and routed straight to you.",
+        retPainTitle: "Standard bridal marketing channels are getting harder every year.",
+        retPainSub: "List your store for free on Magic Mirror and get discovered by nearby brides who already tried on and loved your designers.",
+        pp1: "Instagram: Less Reach",
+        pp2: "Google Ads: Pricier Clicks",
+        pp3: "SEO: Slower Payoff",
+        retS1Title: "Zero Dress Uploads Required",
+        retS1Desc: "Simply add 3–7 store photos, opening hours, and the designers you carry—your brands power the matching automatically.",
+        retS2Title: "Matched by Carried Brands",
+        retS2Desc: "When a nearby bride tries on and saves a gown from a designer you carry, your storefront is recommended to her.",
+        retS3Title: "Direct Calls, Website & Instagram",
+        retS3Desc: "No intermediary booking system needed—brides reach your store directly via phone, website, or Instagram.",
+        tierTitle: "Retailer Listing Options",
+        tierNote: "Free base listing · Upgrade to Partner anytime to rank first within 100 km",
+        thFeat: "Feature", thFree: "Free", thPrem: "Partner",
+        tr1: "Shown to brides trying on gowns from your carried brands",
+        tr2: "Storefront profile with photos, hours & brand list",
+        tr3: "Summary of profile views, calls, website & Instagram taps",
+        tr4: "Priority top placement in store search within 100 km",
+        tr5: "Local Sponsored Try-On boosts & Partner badge",
+        tr6: "Local trend insights: top tried-on dresses & silhouettes",
+        cmpHeading: "What Other Channels Can't Deliver",
+        cmpSub: "Instead of showing brides static models, let them see your gowns on themselves.",
+        ctCol0: "Dimension", ctCol2: "Instagram / Meta Ads", ctCol3: "Trade Shows",
+        ctR1C0: "Who Sees It?", ctR1C1: "High-intent brides actively choosing their wedding dress", ctR1C2: "Broad targeting & casual scrollers", ctR1C3: "Buyers & press on a single weekend",
+        ctR2C0: "Experience", ctR2C1: "Hyper-realistic AI fitting on her own photo + live poll", ctR2C2: "Passive image or short video view", ctR2C3: "Physical booth with limited samples",
+        ctR3C0: "Dress-Level Data", ctR3C1: "Try-on counts, saves & regional demand score per gown", ctR3C2: "Aggregate ad clicks & reach only", ctR3C3: "Wholesale order notes only",
+        ctR4C0: "Path to Store", ctR4C1: "One-tap routing from every gown to the nearest stockist", ctR4C2: "Scattered traffic to brand homepage", ctR4C3: "No direct consumer routing",
+        faqHeading: "Questions Brands & Retailers Ask",
+        pq1: "As a brand, do we need a new photoshoot to join?",
+        pa1: "No. Your existing lookbook photos and gown details (silhouette, fabric, collection name) are all we need—our team handles onboarding.",
+        pq2: "As a bridal retailer, do we have to upload every dress in stock?",
+        pa2: "No. Simply provide 3–7 store photos, opening hours, and the list of designers you carry. Matching works automatically at the brand level.",
+        pq3: "What if we are an independent designer with our own store?",
+        pa3: "Our Hybrid model gives you both halves: your gowns appear in virtual try-on and local brides are routed straight to your own store.",
+        pq4: "Is the store listing free, and what does the Partner tier add?",
+        pa4: "Yes, base store listing and brand matching are free. The optional Partner tier adds priority placement within 100 km, local try-on boosts, and regional trend insights.",
+        appHeading: "Become a Partner",
+        appSub: "Share a few details about your bridal brand or store and we'll reply with a tailored onboarding plan.",
+        directTitle: "Direct Contact",
+        directText: "Prefer email? Reach out directly for catalog integration, brand sponsorships, or retailer onboarding.",
+        applyNote: "Applications are reviewed within 24 hours with a tailored setup guide.",
+        lblBiz: "Brand / Store Name",
+        lblCity: "City / Country",
+        lblEmail: "Work Email",
+        lblPkg: "Partnership Type",
+        opt1: "Brand / Designer",
+        opt2: "Bridal Retailer",
+        opt3: "Hybrid — Designer with Own Store",
+        lblWeb: "Website or Instagram",
+        lblMsg: "Tell us about your collection or carried brands",
+        consentHtml: 'I agree to receive partnership communications from littleGENIUS. Review our <a href="privacy-policy.html?lang=en">Privacy Policy</a> to learn how we safeguard your data.',
+        btnSubmit: "Submit Application",
+        btnSending: "Sending...",
+        msgSuccess: "Application received! Our team will reach out within 24 hours.",
+        msgError: "Could not send right now. Please email info@littlegenius.tr directly.",
+        footTOS: "Terms of Service",
+        footPP: "Privacy Policy",
+        copyright: "Copyright © 2026 littleGENIUS · All rights reserved"
+      }
+    };
+
+    let language = "tr";
+    function setLanguage(nextLang) {
+      language = nextLang;
+      document.documentElement.lang = nextLang;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[nextLang][key] !== undefined) {
+          if (key === "heroTitle") el.innerHTML = translations[nextLang][key];
+          else el.textContent = translations[nextLang][key];
+        }
+      });
+      document.querySelectorAll("[data-lang]").forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.lang === nextLang)));
+      const consentEl = document.getElementById("consentText");
+      if (consentEl) consentEl.innerHTML = translations[nextLang].consentHtml;
+      const ppEl = document.getElementById("ppLink");
+      const tosEl = document.getElementById("tosLink");
+      const appHomeEl = document.getElementById("navAppHome");
+      const backBtn = document.getElementById("backToAppBtn");
+      if (ppEl) ppEl.href = `privacy-policy.html?lang=${nextLang}`;
+      if (tosEl) tosEl.href = `terms-of-service.html?lang=${nextLang}`;
+      if (appHomeEl) appHomeEl.href = `index.html?lang=${nextLang}`;
+      if (backBtn) backBtn.href = `index.html?lang=${nextLang}`;
+      try { localStorage.setItem("littleGENIUSLanguage", nextLang); } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
+    const urlLang = new URLSearchParams(window.location.search).get("lang");
+    let savedLang = "tr";
+    try { savedLang = urlLang || localStorage.getItem("littleGENIUSLanguage") || "tr"; } catch (e) {}
+    setLanguage(savedLang === "en" ? "en" : "tr");
+
+    // Audience Tab Switcher (Brands vs Retailers)
+    const tabBrands = document.getElementById("tabBrands");
+    const tabRetailers = document.getElementById("tabRetailers");
+    const panelBrands = document.getElementById("panelBrands");
+    const panelRetailers = document.getElementById("panelRetailers");
+    function showAudience(target) {
+      const isBrands = target === "brands";
+      tabBrands.setAttribute("aria-selected", String(isBrands));
+      tabRetailers.setAttribute("aria-selected", String(!isBrands));
+      panelBrands.hidden = !isBrands;
+      panelRetailers.hidden = isBrands;
+    }
+    tabBrands.addEventListener("click", () => showAudience("brands"));
+    tabRetailers.addEventListener("click", () => showAudience("retailers"));
+
+    // Hero CTA pre-selects partnership type
+    const packageSelect = document.getElementById("packageType");
+    document.querySelectorAll("[data-role]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!packageSelect) return;
+        packageSelect.selectedIndex = btn.dataset.role === "Retailer" ? 1 : 0;
+      });
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll(".faq-q").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const item = btn.closest(".faq-item");
+        item.dataset.open = item.dataset.open === "true" ? "false" : "true";
+      });
+    });
+
+    // FormSubmit AJAX
+    const partnerForm = document.getElementById("partnerForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const btnSubmitText = document.getElementById("btnSubmitText");
+    const formStatus = document.getElementById("formStatus");
+    const partnerSubject = document.getElementById("partnerSubject");
+    if (partnerForm) {
+      partnerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const t = translations[language];
+        if (partnerSubject && packageSelect) {
+          partnerSubject.value = `Magic Mirror Partner (${packageSelect.value})`;
+        }
+        submitBtn.disabled = true;
+        btnSubmitText.textContent = t.btnSending;
+        formStatus.className = "form-status";
+        formStatus.textContent = "";
+        try {
+          const res = await fetch(partnerForm.action, {
+            method: "POST",
+            headers: { "Accept": "application/json" },
+            body: new FormData(partnerForm)
+          });
+          if (!res.ok) throw new Error("Request failed");
+          formStatus.textContent = t.msgSuccess;
+          formStatus.classList.add("is-success");
+          partnerForm.reset();
+        } catch (err) {
+          formStatus.textContent = t.msgError;
+          formStatus.classList.add("is-error");
+        } finally {
+          submitBtn.disabled = false;
+          btnSubmitText.textContent = t.btnSubmit;
+        }
+      });
+    }
+
+    if (window.location.protocol === "file:") {
+      document.querySelectorAll("img[src^='./']").forEach(img => {
+        const remote = "https://www.littlegenius.tr/magicmirror/" + img.getAttribute("src").slice(2);
+        img.addEventListener("error", () => { img.src = remote; }, { once: true });
+      });
+    }
+  </script>
+</body>
+</html>
