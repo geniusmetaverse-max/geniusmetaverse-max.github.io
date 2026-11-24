@@ -1,145 +1,576 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service – Magic Mirror</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a31">
+  <title id="pageTitle">Magic Mirror - Kullanım Koşulları · littleGENIUS</title>
+  <meta name="description" id="pageMetaDesc" content="Magic Mirror iOS ve Android uygulaması kullanım koşulları, yapay zekâ sanal prova kuralları, kredi ve abonelik şartları.">
+  <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
   <style>
+    :root {
+      --navy: #101a31;
+      --navy-2: #172541;
+      --navy-deep: #0a1324;
+      --gold: #e7c45b;
+      --gold-hover: #f1d36f;
+      --cream: #f5f3ee;
+      --white: #ffffff;
+      --ink: #182238;
+      --ink-soft: #364156;
+      --muted: #68748a;
+      --border: #e4e8f0;
+      --header-h: 68px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 20px); }
+    ::selection { background: var(--gold); color: var(--navy-deep); }
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      line-height: 1.7;
-      color: #333;
-      background-color: #fff;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    h1 {
-      color: #2c3e50;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 10px;
-      margin-bottom: 30px;
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    .site-header {
+      position: fixed; z-index: 30; inset: 0 0 auto; min-height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 0 clamp(18px, 4.5vw, 68px);
+      background: rgba(13, 24, 47, .94); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, .09); color: #fff;
     }
-    h2 {
-      color: #34495e;
-      margin-top: 40px;
-      margin-bottom: 15px;
+    .brand-group { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .back-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 6px; border-radius: 10px; color: var(--gold);
+      transition: transform .2s ease, color .2s ease;
     }
-    p {
-      margin: 16px 0;
+    .back-btn:hover { color: var(--gold-hover); transform: scale(1.12); }
+    .back-btn svg { width: 21px; height: 21px; display: block; fill: currentColor; }
+    .brand-divider { width: 1px; height: 20px; background: rgba(255, 255, 255, .22); }
+    .app-brand-title {
+      display: inline-flex; align-items: center; gap: 8px; color: #fff;
+      font-size: 1.05rem; font-weight: 800; letter-spacing: -.02em; white-space: nowrap;
     }
-    ul, ol {
-      margin: 16px 0 16px 25px;
+    .app-brand-title img { width: 26px; height: 26px; border-radius: 7px; object-fit: cover; }
+    .header-right { display: flex; align-items: center; gap: clamp(12px, 2.5vw, 28px); }
+    .main-nav { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
+    .main-nav a {
+      color: rgba(255, 255, 255, .82); font-size: .74rem; font-weight: 700;
+      letter-spacing: .06em; white-space: nowrap; transition: color .2s ease;
     }
-    li {
-      margin-bottom: 10px;
+    .main-nav a:hover { color: var(--gold); }
+    .main-nav a.nav-download {
+      padding: 7px 16px; border-radius: 999px; border: 1px solid rgba(231, 196, 91, .65);
+      color: var(--gold); font-weight: 800; transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
-    strong {
-      color: #000;
+    .main-nav a.nav-download:hover { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); }
+    .language-switch { display: flex; align-items: center; gap: 4px; }
+    .language-switch button {
+      border: 0; background: transparent; color: rgba(255, 255, 255, .58);
+      font: inherit; font-size: .8rem; font-weight: 700; padding: 6px 5px; cursor: pointer;
     }
-    a {
-      color: #0066cc;
-      text-decoration: none;
+    .language-switch button[aria-pressed="true"] {
+      color: #fff; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .doc-page { flex: 1; padding: calc(var(--header-h) + 40px) clamp(16px, 4vw, 32px) 72px; }
+    .doc-container {
+      max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 24px;
+      border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(16, 26, 49, .05);
+      padding: clamp(28px, 5vw, 60px);
     }
-    .contact {
-      font-weight: bold;
-      margin-top: 30px;
-      padding: 15px;
-      background-color: #f8f9fa;
-      border-left: 4px solid #3498db;
+    .doc-header { text-align: center; margin-bottom: 34px; border-bottom: 2px solid #eef0f4; padding-bottom: 26px; }
+    .doc-header h1 {
+      margin: 0 0 14px; font-size: clamp(1.9rem, 3.8vw, 2.75rem); font-weight: 800;
+      line-height: 1.12; letter-spacing: -.04em; color: var(--navy);
+    }
+    .doc-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 24px; font-size: .82rem; color: var(--muted); }
+    .doc-meta strong { color: var(--ink); font-weight: 700; }
+
+    .doc-toc { background: #faf9f6; border: 1px solid #ebe8de; border-radius: 18px; padding: 22px 26px; margin-bottom: 40px; }
+    .doc-toc h3 { margin: 0 0 12px; font-size: .95rem; font-weight: 750; color: var(--navy); }
+    .doc-toc ol { margin: 0; padding-left: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; font-size: .85rem; }
+    .doc-toc a { color: #3b5998; font-weight: 500; transition: color .2s ease; }
+    .doc-toc a:hover { color: var(--navy); text-decoration: underline; }
+
+    .doc-section { margin-bottom: 40px; }
+    .doc-section:last-child { margin-bottom: 0; }
+    .doc-section h2 {
+      margin: 0 0 16px; font-size: 1.35rem; font-weight: 800; color: var(--navy);
+      letter-spacing: -.02em; display: flex; align-items: center; gap: 10px;
+    }
+    .doc-section h2::before {
+      content: ""; display: inline-block; width: 4px; height: 18px;
+      background: var(--gold); border-radius: 2px; flex-shrink: 0;
+    }
+    .doc-section p { margin: 0 0 14px; color: var(--ink-soft); font-size: .98rem; }
+    .doc-section ul { margin: 0 0 18px; padding-left: 22px; color: var(--ink-soft); font-size: .98rem; }
+    .doc-section li { margin-bottom: 8px; }
+    .doc-section strong { color: var(--navy); }
+    .doc-section a { color: #2563eb; text-decoration: underline; text-underline-offset: 3px; }
+
+    .contact-highlight {
+      background: #faf6eb; border: 1px solid #ece2c6; border-radius: 16px; padding: 22px 26px;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+      margin-top: 18px; font-size: .92rem; line-height: 1.7;
+    }
+    .contact-highlight a.email-link { color: #2563eb; font-weight: 700; text-decoration: none; }
+    .contact-highlight a.email-link:hover { text-decoration: underline; }
+    .contact-btn-pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px;
+      background: var(--navy); color: #fff !important; font-size: .84rem; font-weight: 750;
+      text-decoration: none !important; white-space: nowrap; transition: background .2s ease, transform .2s ease;
+    }
+    .contact-btn-pill:hover { background: var(--navy-2); transform: translateY(-1px); }
+    .contact-btn-pill svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+
+    .footer { background: var(--navy-deep); color: #b7c1d3; padding: 24px clamp(16px, 4vw, 32px); font-size: .84rem; border-top: 1px solid rgba(255, 255, 255, .08); }
+    .footer-bar { width: min(900px, 100%); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px 16px; text-align: left; }
+    .footer-bar a { color: #d7e0ef; font-weight: 600; transition: color .2s ease; }
+    .footer-bar a:hover { color: var(--gold); text-decoration: underline; }
+    .footer-sep { color: rgba(255, 255, 255, .28); user-select: none; }
+
+    .lang-panel { display: none; }
+    .lang-panel.is-active { display: block; }
+
+    @media (max-width: 720px) {
+      :root { --header-h: 60px; }
+      .main-nav { display: none; }
+      .doc-toc ol { grid-template-columns: 1fr; }
+      .contact-highlight { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <h1>Terms of Service – Magic Mirror</h1>
-  <p><strong>Effective Date:</strong> January 01, 2026</p>
-  <p><strong>Operated by:</strong> littleGenius (email: geniusmetaverse@gmail.com)</p>
+  <header class="site-header">
+    <div class="brand-group">
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Sayfa" title="littleGENIUS">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <a class="app-brand-title" href="index.html" id="backToAppBtn">
+        <img src="./assets/magicmirror_logo.png" alt="Magic Mirror logo">
+        <span>Magic Mirror</span>
+      </a>
+    </div>
 
-  <p>Welcome to Magic Mirror, an AI-powered bridal try-on experience that lets you visualize your dream wedding gown on your own photos. By accessing or using our mobile application (the “App”), you agree to be bound by these Terms of Service (“Terms”). Please read them carefully. If you do not agree, please do not use the App.</p>
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Section navigation">
+        <a href="index.html#features" id="navFeatures">ÖZELLİKLER</a>
+        <a href="index.html#faq" id="navFaq">SSS</a>
+        <a href="index.html#contact" id="navContact">İLETİŞİM</a>
+        <a href="partners.html" id="navBoutiques">İŞ BİRLİĞİ</a>
+        <a class="nav-download" href="index.html?download=1" id="navDownload">İNDİR</a>
+      </nav>
+      <div class="language-switch" aria-label="Dil / Language">
+        <button type="button" data-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
 
-  <h2>1. Use of Service</h2>
-  <p>Magic Mirror allows you to upload your photos and generate virtual bridal try-on images using artificial intelligence. The service is provided for personal, non-commercial use only. Any commercial use of the App or generated images is strictly prohibited without our prior written permission.</p>
+  <main class="doc-page">
+    <div class="doc-container">
+      <!-- TR PANEL -->
+      <article class="lang-panel is-active" id="panel-tr" lang="tr">
+        <div class="doc-header">
+          <h1>Magic Mirror Kullanım Koşulları</h1>
+          <div class="doc-meta">
+            <span>Yürürlük: <strong>01 Ocak 2026</strong></span>
+            <span>Son Güncelleme: <strong>01 Ocak 2026</strong></span>
+            <span>Sahibi: <strong>littleGENIUS</strong></span>
+          </div>
+        </div>
 
-  <h2>2. Eligibility</h2>
-  <p>You must be at least 16 years old to use Magic Mirror. By using the App, you represent and warrant that you meet this age requirement and have the legal capacity to agree to these Terms.</p>
+        <nav class="doc-toc" aria-label="İçindekiler">
+          <h3>İçindekiler</h3>
+          <ol>
+            <li><a href="#tr-1">Giriş</a></li>
+            <li><a href="#tr-2">Hizmetin Kullanımı</a></li>
+            <li><a href="#tr-3">Uygunluk</a></li>
+            <li><a href="#tr-4">Ücretsiz Deneme ve Erişim</a></li>
+            <li><a href="#tr-5">Paketler ve Satın Alımlar</a></li>
+            <li><a href="#tr-6">İptal ve İadeler</a></li>
+            <li><a href="#tr-7">Kullanıcı İçeriği</a></li>
+            <li><a href="#tr-8">Üretilen İçerik ve Fikri Mülkiyet</a></li>
+            <li><a href="#tr-9">Gizlilik ve Güvenlik</a></li>
+            <li><a href="#tr-10">Yasaklı Kullanım</a></li>
+            <li><a href="#tr-11">Sonlandırma ve Hesap Askıya Alma</a></li>
+            <li><a href="#tr-12">Sorumluluk Sınırlaması</a></li>
+            <li><a href="#tr-13">Tazminat</a></li>
+            <li><a href="#tr-14">Şartlarda Değişiklik</a></li>
+            <li><a href="#tr-15">Geçerli Hukuk ve Uyuşmazlık Çözümü</a></li>
+            <li><a href="#tr-16">Bölünebilirlik ve Sözleşmenin Bütünlüğü</a></li>
+            <li><a href="#tr-17">İletişim</a></li>
+          </ol>
+        </nav>
 
-  <h2>3. Free Trial & Access</h2>
-  <ul>
-    <li>New users receive one free try-on image upon first use. The free generated image is stored and accessible within the app for 7 days.</li>
-    <li>After the free trial, continued image generation proceeds through one-time package purchases (Star, Sparkle, Radiance, Majesty).</li>
-    <li>The storage and access duration for generated images under paid packages is as follows:</li>
-    <p>Star Package: 7 days</p>
-    <p>Sparkle Package: 15 days</p>
-    <p>Radiance Package: 30 days</p>
-    <p>Majesty Package: 90 days</p>
-  </ul>
+        <section class="doc-section" id="tr-1">
+          <h2>1. Giriş</h2>
+          <p><strong>Magic Mirror</strong>’a hoş geldiniz. Magic Mirror, yapay zekâ destekli bir gelinlik deneme deneyimi sunar; kendi fotoğraflarınız üzerinde hayalinizdeki gelinliği görselleştirmenizi sağlar. Mobil uygulamamıza (“Uygulama”) erişerek veya kullanarak bu Hizmet Şartları’na (“Şartlar”) bağlı olmayı kabul etmiş olursunuz. Lütfen dikkatlice okuyun. Kabul etmiyorsanız Uygulamayı kullanmayınız.</p>
+        </section>
 
-  <h2>4. Packages & Purchases</h2>
-  <ul>
-    <li>Paid packages provide a fixed number of image generations and access to features depending on their content.</li>
-    <li>Packages are one-time purchases. They do not auto-renew and are not subscriptions.</li>
-    <li>Unused generations do not roll over and are non-refundable.</li>
-    <li>Package prices are displayed in the currency of your located country.</li>
-    <li>By purchasing a package, you acknowledge and accept these usage conditions.</li>
-    <li>All purchases are processed exclusively through the Apple App Store or Google Play Store, and are subject to their respective payment terms.</li>
-  </ul>
+        <section class="doc-section" id="tr-2">
+          <h2>2. Hizmetin Kullanımı</h2>
+          <p>Magic Mirror, fotoğraflarınızı yüklemenize ve yapay zekâ ile sanal gelinlik deneme görselleri oluşturmanıza imkân tanır. Hizmet yalnızca kişisel ve ticari olmayan kullanım için sunulmaktadır. Uygulamanın veya üretilen görsellerin ticari kullanımı, önceden yazılı izin alınmadıkça kesinlikle yasaktır.</p>
+        </section>
 
-  <h2>5. Cancellation & Refunds</h2>
-  <ul>
-    <li>Packages cannot be canceled or refunded once purchased, except where required by applicable law.</li>
-    <li>Refunds, if applicable, are handled solely by Apple or Google according to their policies.</li>
-  </ul>
+        <section class="doc-section" id="tr-3">
+          <h2>3. Uygunluk</h2>
+          <p>Magic Mirror’ı kullanabilmek için en az 16 yaşında olmalısınız. Uygulamayı kullanarak bu yaş şartını karşıladığınızı ve bu Şartları kabul etme ehliyetine sahip olduğunuzu beyan edersiniz.</p>
+        </section>
 
-  <h2>6. User Content</h2>
-  <p>By uploading photos to the App, you grant Magic Mirror a limited, worldwide, non-exclusive, royalty-free license to process and temporarily store those photos solely for the purpose of generating try-on images.</p>
-  <p>You retain all ownership rights to your original photos. We do not claim any ownership over your content.</p>
+        <section class="doc-section" id="tr-4">
+          <h2>4. Ücretsiz Deneme ve Erişim</h2>
+          <ul>
+            <li>Yeni kullanıcılar, ilk kullanımda bir ücretsiz deneme görseli elde eder.</li>
+            <li>Ücretsiz deneme sonrasında, görsel üretim hakkı ödüllü reklam izleyerek veya tek seferlik paket satın alarak devam eder.</li>
+          </ul>
+        </section>
 
-  <h2>7. Generated Content & Intellectual Property</h2>
-  <p>All AI-generated images (“Generated Content”) are licensed to you for personal, non-commercial use.</p>
-  <p>You may save and share your generated images (e.g., on social media or with friends), provided that such use remains personal and non-commercial.</p>
-  <p>You may not sell, license, or distribute Generated Content for commercial purposes without our express written permission.</p>
-  <p>Magic Mirror (including its AI technology, design, trademarks, and underlying software) remains the exclusive property of GeniusMetaverse. You are granted a limited, revocable license to use the App as intended.</p>
+        <section class="doc-section" id="tr-5">
+          <h2>5. Paketler ve Satın Alımlar</h2>
+          <ul>
+            <li>Ücretli paketler, satın alma tarihinden itibaren 7 gün boyunca geçerli olmak üzere sabit sayıda görsel üretimi sağlar.</li>
+            <li>Paketler tek seferliktir; otomatik yenilenmez ve abonelik değildir.</li>
+            <li>Kullanılmayan üretimler devretmez ve iade edilmez.</li>
+            <li>Paket fiyatları bulunduğunuz ülkenin para birimine göre gösterilir.</li>
+            <li>Paket satın alarak bu kullanım koşullarını kabul etmiş olursunuz.</li>
+            <li>Tüm satın alımlar yalnızca Apple App Store veya Google Play Store üzerinden gerçekleştirilir ve ilgili mağazaların ödeme koşullarına tabidir.</li>
+          </ul>
+        </section>
 
-  <h2>8. Privacy & Security</h2>
-  <p>Your photos, personal data, and usage information are handled securely and in compliance with applicable data protection laws, including Turkey’s KVKK, the European Union’s GDPR, and relevant international standards.</p>
-  <p>We never share your photos or personal data with third parties for marketing purposes. For full details, please review our Privacy Policy.</p>
+        <section class="doc-section" id="tr-6">
+          <h2>6. İptal ve İadeler</h2>
+          <ul>
+            <li>Paketler satın alındıktan sonra iptal edilemez veya iade edilemez; yalnızca yürürlükteki kanunların gerektirdiği durumlarda istisna uygulanır.</li>
+            <li>İade işlemleri, varsa, yalnızca Apple veya Google tarafından kendi politikalarına göre gerçekleştirilir.</li>
+          </ul>
+        </section>
 
-  <h2>9. Prohibited Use</h2>
-  <p>You agree not to:</p>
-  <ul>
-    <li>Upload offensive, unlawful, harmful, infringing, or obscene content.</li>
-    <li>Attempt to reverse-engineer, decompile, hack, or interfere with the App.</li>
-    <li>Use the App for any illegal purpose or to violate any third-party rights.</li>
-    <li>Misrepresent your identity or impersonate others.</li>
-  </ul>
+        <section class="doc-section" id="tr-7">
+          <h2>7. Kullanıcı İçeriği</h2>
+          <p>Fotoğraf yükleyerek Magic Mirror’a, bu fotoğrafları yalnızca deneme görselleri üretmek amacıyla işleme ve geçici olarak saklama konusunda sınırlı, dünya çapında, münhasır olmayan ve telifsiz bir lisans vermiş olursunuz. Orijinal fotoğraflar üzerindeki tüm mülkiyet hakları sizde kalır. İçeriğiniz üzerinde herhangi bir mülkiyet iddiasında bulunmayız.</p>
+        </section>
 
-  <h2>10. Termination & Account Suspension</h2>
-  <p>We may suspend or terminate your access to the App if you violate these Terms, applicable laws, or if your use poses a risk to the service or other users. We will make reasonable efforts to notify you of such actions unless immediate termination is required.</p>
+        <section class="doc-section" id="tr-8">
+          <h2>8. Üretilen İçerik ve Fikri Mülkiyet</h2>
+          <ul>
+            <li>Tüm yapay zekâ ile üretilen görseller (“Üretilen İçerik”), kişisel ve ticari olmayan kullanım için lisanslanır.</li>
+            <li>Üretilen görsellerinizi kaydedebilir ve paylaşabilirsiniz (örneğin sosyal medyada veya arkadaşlarınızla), ancak kullanım kişisel ve ticari olmayan sınırlar içinde kalmalıdır.</li>
+            <li>Üretilen İçeriği satamaz, lisanslayamaz veya ticari amaçlarla dağıtamazsınız.</li>
+            <li>Magic Mirror (yapay zekâ teknolojisi, tasarım, markalar ve yazılım dahil) littleGENIUS’un münhasır mülkiyetinde kalır. Uygulamayı yalnızca amaçlandığı şekilde kullanmanız için sınırlı, geri alınabilir bir lisans verilir.</li>
+          </ul>
+        </section>
 
-  <h2>11. Limitation of Liability</h2>
-  <p>The App is provided “as is” and “as available,” without warranties of any kind. We do not guarantee uninterrupted access, error-free operation, or specific results from AI generations.</p>
-  <p>To the fullest extent permitted by law, Magic Mirror and GeniusMetaverse shall not be liable for any indirect, incidental, consequential, or punitive damages arising from your use of the App.</p>
+        <section class="doc-section" id="tr-9">
+          <h2>9. Gizlilik ve Güvenlik</h2>
+          <p>Fotoğraflarınız, kişisel verileriniz ve kullanım bilgileriniz güvenli şekilde işlenir ve Türkiye’nin KVKK’sı, Avrupa Birliği’nin GDPR’ı ve ilgili uluslararası standartlara uygun olarak korunur. Fotoğraflarınız veya kişisel verileriniz pazarlama amacıyla üçüncü taraflarla paylaşılmaz. Ayrıntılar için <a href="privacy-policy.html?lang=tr">Gizlilik Politikamızı</a> inceleyiniz.</p>
+        </section>
 
-  <h2>12. Indemnification</h2>
-  <p>You agree to indemnify, defend, and hold harmless Magic Mirror, GeniusMetaverse, and its affiliates from any claims, losses, liabilities, damages, costs, and expenses (including reasonable attorneys’ fees) arising from your violation of these Terms or misuse of the service.</p>
+        <section class="doc-section" id="tr-10">
+          <h2>10. Yasaklı Kullanım</h2>
+          <p>Aşağıdakileri yapmamayı kabul edersiniz:</p>
+          <ul>
+            <li>Saldırgan, yasa dışı, zararlı, ihlal edici veya müstehcen içerik yüklemek.</li>
+            <li>Uygulamayı tersine mühendislik, decompile, hack veya müdahale amacıyla kullanmak.</li>
+            <li>Uygulamayı yasa dışı amaçlarla veya üçüncü taraf haklarını ihlal edecek şekilde kullanmak.</li>
+            <li>Kimliğinizi yanlış beyan etmek veya başkalarını taklit etmek.</li>
+          </ul>
+        </section>
 
-  <h2>13. Changes to Terms</h2>
-  <p>We may update these Terms from time to time. We will notify you of material changes (e.g., via in-app notice or email). Your continued use of the App after such changes constitutes acceptance of the revised Terms.</p>
+        <section class="doc-section" id="tr-11">
+          <h2>11. Sonlandırma ve Hesap Askıya Alma</h2>
+          <p>Bu Şartları veya yürürlükteki yasaları ihlal etmeniz halinde ya da kullanımınız hizmete veya diğer kullanıcılara risk oluşturuyorsa, erişiminiz askıya alınabilir veya sonlandırılabilir. Acil sonlandırma gerektirmeyen durumlarda size makul ölçüde bildirim yapılır.</p>
+        </section>
 
-  <h2>14. Governing Law and Dispute Resolution</h2>
-  <p>These Terms are governed by the laws of the Republic of Turkey, without regard to conflict of law principles.</p>
-  <p>Any disputes arising out of or related to these Terms shall be resolved exclusively in the competent courts of Istanbul, Turkey.</p>
-  <p>Before initiating formal proceedings, we encourage you to contact us for an informal resolution.</p>
+        <section class="doc-section" id="tr-12">
+          <h2>12. Sorumluluk Sınırlaması</h2>
+          <p>Uygulama “olduğu gibi” ve “mevcut olduğu şekilde” sunulmaktadır; herhangi bir garanti verilmez. Kesintisiz erişim, hatasız çalışma veya belirli sonuçlar garanti edilmez. Yasal olarak izin verilen en geniş kapsamda, Magic Mirror ve littleGENIUS, kullanımınızdan doğan dolaylı, tesadüfi, sonuçsal veya cezai zararlardan sorumlu tutulamaz.</p>
+        </section>
 
-  <h2>15. Severability and Entire Agreement</h2>
-  <p>If any provision of these Terms is found invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
-  <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Magic Mirror.</p>
+        <section class="doc-section" id="tr-13">
+          <h2>13. Tazminat</h2>
+          <p>Bu Şartları ihlalinizden veya hizmeti kötüye kullanımınızdan doğan her türlü iddia, kayıp, sorumluluk, zarar, maliyet ve masraf (makul avukat ücretleri dahil) için Magic Mirror, littleGENIUS ve bağlı kuruluşlarını tazmin etmeyi kabul edersiniz.</p>
+        </section>
 
-  <h2>16. Contact</h2>
-  <p class="contact">For any questions, concerns, or support regarding these Terms of Service, please contact us at:<br>
-  <strong>Email:</strong> <a href="mailto:geniusmetaverse@gmail.com">geniusmetaverse@gmail.com</a></p>
+        <section class="doc-section" id="tr-14">
+          <h2>14. Şartlarda Değişiklik</h2>
+          <p>Bu Şartlar zaman zaman güncellenebilir. Önemli değişiklikler size uygulama içi bildirim veya e-posta yoluyla iletilir. Değişikliklerden sonra uygulamayı kullanmaya devam etmeniz, güncellenmiş Şartları kabul ettiğiniz anlamına gelir.</p>
+        </section>
+
+        <section class="doc-section" id="tr-15">
+          <h2>15. Geçerli Hukuk ve Uyuşmazlık Çözümü</h2>
+          <p>Bu Şartlar, Türkiye Cumhuriyeti yasalarına tabidir. Bu Şartlardan doğan uyuşmazlıklar İstanbul’daki yetkili mahkemelerde çözümlenir. Resmî süreç başlatmadan önce bizimle iletişime geçerek gayriresmî çözüm aramanız teşvik edilir.</p>
+        </section>
+
+        <section class="doc-section" id="tr-16">
+          <h2>16. Bölünebilirlik ve Sözleşmenin Bütünlüğü</h2>
+          <p>Bu Şartların herhangi bir hükmü geçersiz veya uygulanamaz bulunursa, kalan hükümler yürürlükte kalmaya devam eder. Bu Şartlar ve Gizlilik Politikamız, sizinle Magic Mirror arasındaki tüm anlaşmayı oluşturur.</p>
+        </section>
+
+        <section class="doc-section" id="tr-17">
+          <h2>17. İletişim</h2>
+          <p>Bu Hizmet Şartları ile ilgili her türlü soru, endişe veya destek için bizimle iletişime geçebilirsiniz:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGENIUS Destek Ekibi</strong><br>
+              E-posta: <a class="email-link" href="mailto:info@littlegenius.tr">info@littlegenius.tr</a><br>
+              Web: https://www.littlegenius.tr
+            </div>
+            <a class="contact-btn-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>E-posta Gönder</span>
+            </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- EN PANEL -->
+      <article class="lang-panel" id="panel-en" lang="en">
+        <div class="doc-header">
+          <h1>Magic Mirror Terms of Service</h1>
+          <div class="doc-meta">
+            <span>Effective Date: <strong>January 01, 2026</strong></span>
+            <span>Last Updated: <strong>January 01, 2026</strong></span>
+            <span>Owner: <strong>littleGENIUS</strong></span>
+          </div>
+        </div>
+
+        <nav class="doc-toc" aria-label="Table of Contents">
+          <h3>Table of Contents</h3>
+          <ol>
+            <li><a href="#en-1">Introduction</a></li>
+            <li><a href="#en-2">Use of Service</a></li>
+            <li><a href="#en-3">Eligibility</a></li>
+            <li><a href="#en-4">Free Trial &amp; Access</a></li>
+            <li><a href="#en-5">Packages &amp; Purchases</a></li>
+            <li><a href="#en-6">Cancellation &amp; Refunds</a></li>
+            <li><a href="#en-7">User Content</a></li>
+            <li><a href="#en-8">Generated Content &amp; Intellectual Property</a></li>
+            <li><a href="#en-9">Privacy &amp; Security</a></li>
+            <li><a href="#en-10">Prohibited Use</a></li>
+            <li><a href="#en-11">Termination &amp; Account Suspension</a></li>
+            <li><a href="#en-12">Limitation of Liability</a></li>
+            <li><a href="#en-13">Indemnification</a></li>
+            <li><a href="#en-14">Changes to Terms</a></li>
+            <li><a href="#en-15">Governing Law &amp; Dispute Resolution</a></li>
+            <li><a href="#en-16">Severability &amp; Entire Agreement</a></li>
+            <li><a href="#en-17">Contact</a></li>
+          </ol>
+        </nav>
+
+        <section class="doc-section" id="en-1">
+          <h2>1. Introduction</h2>
+          <p>Welcome to <strong>Magic Mirror</strong>, an AI-powered bridal try-on experience that lets you visualize your dream wedding gown on your own photos. By accessing or using our mobile application (the “App”), you agree to be bound by these Terms of Service (“Terms”). Please read them carefully. If you do not agree, please do not use the App.</p>
+        </section>
+
+        <section class="doc-section" id="en-2">
+          <h2>2. Use of Service</h2>
+          <p>Magic Mirror allows you to upload your photos and generate virtual bridal try-on images using artificial intelligence. The service is provided for personal, non-commercial use only. Any commercial use of the App or generated images is strictly prohibited without our prior written permission.</p>
+        </section>
+
+        <section class="doc-section" id="en-3">
+          <h2>3. Eligibility</h2>
+          <p>You must be at least 16 years old to use Magic Mirror. By using the App, you represent and warrant that you meet this age requirement and have the legal capacity to agree to these Terms.</p>
+        </section>
+
+        <section class="doc-section" id="en-4">
+          <h2>4. Free Trial &amp; Access</h2>
+          <ul>
+            <li>New users receive one free try-on image upon first use.</li>
+            <li>After the free trial, continued generations are available by watching rewarded advertisements or purchasing one-time packages.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-5">
+          <h2>5. Packages &amp; Purchases</h2>
+          <ul>
+            <li>Paid packages provide a fixed number of image generations, valid for 7 days from the date of purchase.</li>
+            <li>Packages are one-time purchases. They do not auto-renew and are not subscriptions.</li>
+            <li>Unused generations do not roll over and are non-refundable.</li>
+            <li>Package prices are displayed in the currency of your located country.</li>
+            <li>By purchasing a package, you acknowledge and accept these usage conditions.</li>
+            <li>All purchases are processed exclusively through the Apple App Store or Google Play Store, and are subject to their respective payment terms.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-6">
+          <h2>6. Cancellation &amp; Refunds</h2>
+          <ul>
+            <li>Packages cannot be canceled or refunded once purchased, except where required by applicable law.</li>
+            <li>Refunds, if applicable, are handled solely by Apple or Google according to their policies.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-7">
+          <h2>7. User Content</h2>
+          <p>By uploading photos to the App, you grant Magic Mirror a limited, worldwide, non-exclusive, royalty-free license to process and temporarily store those photos solely for the purpose of generating try-on images. You retain all ownership rights to your original photos. We do not claim any ownership over your content.</p>
+        </section>
+
+        <section class="doc-section" id="en-8">
+          <h2>8. Generated Content &amp; Intellectual Property</h2>
+          <ul>
+            <li>All AI-generated images (“Generated Content”) are licensed to you for personal, non-commercial use.</li>
+            <li>You may save and share your generated images (e.g., on social media or with friends), provided that such use remains personal and non-commercial.</li>
+            <li>You may not sell, license, or distribute Generated Content for commercial purposes without our express written permission.</li>
+            <li>Magic Mirror (including its AI technology, design, trademarks, and underlying software) remains the exclusive property of littleGENIUS. You are granted a limited, revocable license to use the App as intended.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-9">
+          <h2>9. Privacy &amp; Security</h2>
+          <p>Your photos, personal data, and usage information are handled securely and in compliance with applicable data protection laws, including Turkey’s KVKK, the European Union’s GDPR, and relevant international standards. We never share your photos or personal data with third parties for marketing purposes. For full details, please review our <a href="privacy-policy.html?lang=en">Privacy Policy</a>.</p>
+        </section>
+
+        <section class="doc-section" id="en-10">
+          <h2>10. Prohibited Use</h2>
+          <p>You agree not to:</p>
+          <ul>
+            <li>Upload offensive, unlawful, harmful, infringing, or obscene content.</li>
+            <li>Attempt to reverse-engineer, decompile, hack, or interfere with the App.</li>
+            <li>Use the App for any illegal purpose or to violate any third-party rights.</li>
+            <li>Misrepresent your identity or impersonate others.</li>
+          </ul>
+        </section>
+
+        <section class="doc-section" id="en-11">
+          <h2>11. Termination &amp; Account Suspension</h2>
+          <p>We may suspend or terminate your access to the App if you violate these Terms, applicable laws, or if your use poses a risk to the service or other users. We will make reasonable efforts to notify you of such actions unless immediate termination is required.</p>
+        </section>
+
+        <section class="doc-section" id="en-12">
+          <h2>12. Limitation of Liability</h2>
+          <p>The App is provided “as is” and “as available,” without warranties of any kind. We do not guarantee uninterrupted access, error-free operation, or specific results from AI generations. To the fullest extent permitted by law, Magic Mirror and littleGENIUS shall not be liable for any indirect, incidental, consequential, or punitive damages arising from your use of the App.</p>
+        </section>
+
+        <section class="doc-section" id="en-13">
+          <h2>13. Indemnification</h2>
+          <p>You agree to indemnify, defend, and hold harmless Magic Mirror, littleGENIUS, and its affiliates from any claims, losses, liabilities, damages, costs, and expenses (including reasonable attorneys’ fees) arising from your violation of these Terms or misuse of the service.</p>
+        </section>
+
+        <section class="doc-section" id="en-14">
+          <h2>14. Changes to Terms</h2>
+          <p>We may update these Terms from time to time. We will notify you of material changes (e.g., via in-app notice or email). Continued use of the App after changes take effect constitutes acceptance of the updated Terms.</p>
+        </section>
+
+        <section class="doc-section" id="en-15">
+          <h2>15. Governing Law &amp; Dispute Resolution</h2>
+          <p>These Terms are governed by the laws of the Republic of Turkey. Any disputes arising from these Terms shall be resolved in the competent courts of Istanbul. You are encouraged to seek an informal resolution by contacting us before initiating formal proceedings.</p>
+        </section>
+
+        <section class="doc-section" id="en-16">
+          <h2>16. Severability &amp; Entire Agreement</h2>
+          <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions remain in full force and effect. These Terms and our Privacy Policy constitute the entire agreement between you and Magic Mirror.</p>
+        </section>
+
+        <section class="doc-section" id="en-17">
+          <h2>17. Contact</h2>
+          <p>For any questions, concerns, or support regarding these Terms of Service, you can contact us:</p>
+          <div class="contact-highlight">
+            <div>
+              <strong>littleGENIUS Support Team</strong><br>
+              Email: <a class="email-link" href="mailto:info@littlegenius.tr">info@littlegenius.tr</a><br>
+              Website: https://www.littlegenius.tr
+            </div>
+            <a class="contact-btn-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Send Email</span>
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bar">
+      <span id="footCopyright">Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır</span>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="footLinkTos" href="terms-of-service.html">Kullanım Koşulları</a>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="footLinkPp" href="privacy-policy.html">Gizlilik Politikası</a>
+    </div>
+  </footer>
+
+  <script>
+    const uiTranslations = {
+      tr: {
+        pageTitle: "Magic Mirror - Kullanım Koşulları · littleGENIUS",
+        navFeatures: "ÖZELLİKLER",
+        navBoutiques: "İŞ BİRLİĞİ",
+        navFaq: "SSS",
+        navContact: "İLETİŞİM",
+        navDownload: "İNDİR",
+        footTos: "Kullanım Koşulları",
+        footPp: "Gizlilik Politikası",
+        footCopy: "Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır"
+      },
+      en: {
+        pageTitle: "Magic Mirror - Terms of Service · littleGENIUS",
+        navFeatures: "FEATURES",
+        navBoutiques: "PARTNER WITH US",
+        navFaq: "FAQ",
+        navContact: "CONTACT",
+        navDownload: "DOWNLOAD",
+        footTos: "Terms of Service",
+        footPp: "Privacy Policy",
+        footCopy: "Copyright © 2026 littleGENIUS · All rights reserved"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById("panel-tr").classList.toggle("is-active", lang === "tr");
+      document.getElementById("panel-en").classList.toggle("is-active", lang === "en");
+      document.querySelectorAll("[data-lang]").forEach(btn => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+      });
+      const t = uiTranslations[lang];
+      document.title = t.pageTitle;
+      document.getElementById("navFeatures").textContent = t.navFeatures;
+      document.getElementById("navBoutiques").textContent = t.navBoutiques;
+      document.getElementById("navFaq").textContent = t.navFaq;
+      document.getElementById("navContact").textContent = t.navContact;
+      document.getElementById("navDownload").textContent = t.navDownload;
+      document.getElementById("footLinkTos").textContent = t.footTos;
+      document.getElementById("footLinkPp").textContent = t.footPp;
+      document.getElementById("footCopyright").textContent = t.footCopy;
+      document.getElementById("footLinkTos").href = `terms-of-service.html?lang=${lang}`;
+      document.getElementById("footLinkPp").href = `privacy-policy.html?lang=${lang}`;
+      document.getElementById("backToAppBtn").href = `index.html?lang=${lang}`;
+      try { localStorage.setItem("littleGENIUSLanguage", lang); } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
+
+    let initialLang = "tr";
+    try {
+      const params = new URLSearchParams(window.location.search);
+      initialLang = params.get("lang") || localStorage.getItem("littleGENIUSLanguage") || "tr";
+    } catch (e) {}
+    setLanguage(initialLang === "en" ? "en" : "tr");
+
+    if (window.location.protocol === "file:") {
+      document.querySelectorAll("img").forEach(img => {
+        const rawSrc = img.getAttribute("src");
+        if (rawSrc && rawSrc.startsWith("../")) {
+          const remoteSrc = "https://www.littlegenius.tr/" + rawSrc.slice(3);
+          img.addEventListener("error", () => { img.src = remoteSrc; }, { once: true });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
