@@ -4,1052 +4,1287 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101a31">
-  <title>Magic Mirror | AI Bridal & Fashion Try-On · littleGENIUS</title>
-  <meta name="description" content="Magic Mirror: Yapay zekâ destekli gelinlik ve moda prova uygulaması. Yüzlerce gelinliği kendi üzerinizde deneyin, hayalinizdeki modeli keşfedin.">
+  <title>Magic Mirror - AI Bridal Try-On &amp; Gelinlik Stüdyosu · littleGENIUS</title>
+  <meta name="description" content="Magic Mirror ile tek bir selfie üzerinden yapay zekâ destekli sanal gelinlik provası yapın. 1000'lerce modeli saniyeler içinde deneyin, yakınlarınızla canlı anket başlatın.">
   <link rel="icon" type="image/png" href="../favicon_littleGenius.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../favicon_littleGenius.png">
-
-  <!-- Akıllı QR / Cihaz Yönlendirici: ?go=store ile gelen mobil kullanıcıyı doğrudan ilgili mağazaya yönlendirir -->
-  <script>
-    (function checkSmartRedirect() {
-      try {
-        var params = new URLSearchParams(window.location.search);
-        if (params.get('go') === 'store' || params.has('download') || params.has('qr')) {
-          var ua = navigator.userAgent || navigator.vendor || window.opera || '';
-          var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-          var isAndroid = /android/i.test(ua);
-
-          if (isIOS) {
-            window.location.replace("https://apps.apple.com/app/magic-mirror-wedding-dress/id6760668920");
-          } else if (isAndroid) {
-            window.location.replace("https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror");
-          }
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #101a31;
       --navy-2: #172541;
-      --navy-card: #1b2640;
       --navy-deep: #0a1324;
-      --ink: #182238;
-      --muted: #68748a;
       --gold: #e7c45b;
       --gold-hover: #f1d36f;
-      --gold-subtle: rgba(231, 196, 91, 0.12);
+      --gold-soft: rgba(231, 196, 91, .14);
       --cream: #f5f3ee;
       --white: #ffffff;
+      --ink: #182238;
+      --ink-soft: #364156;
+      --muted: #68748a;
+      --border: #e4e8f0;
       --header-h: 68px;
+      --ease-out: cubic-bezier(.22, 1, .36, 1);
     }
+
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 18px); }
+    ::selection { background: var(--gold); color: var(--navy-deep); }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       color: var(--ink);
-      background: var(--cream);
-      line-height: 1.6;
+      background: var(--white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font-family: inherit; }
 
-    /* ==========================================================================
-       SITE HEADER (littleGENIUS Alt Sayfa Kurumsal Üst Bar)
-       ========================================================================== */
+    h1, h2, h3, h4 { font-family: "Plus Jakarta Sans", Inter, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Sticky Header */
     .site-header {
       position: fixed;
-      z-index: 50;
+      z-index: 30;
       inset: 0 0 auto;
       min-height: var(--header-h);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 0 clamp(16px, 4vw, 56px);
-      color: #fff;
-      background: rgba(13, 24, 47, .96);
-      backdrop-filter: blur(12px);
+      padding: 0 clamp(18px, 4.5vw, 68px);
+      background: rgba(13, 24, 47, .94);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255, 255, 255, .09);
-      box-shadow: 0 4px 24px rgba(0,0,0,.25);
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* littleGENIUS Ana Platformuna Dönüş Butonu */
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      background: var(--gold);
-      color: var(--navy-deep);
-      font-size: .8rem;
-      font-weight: 750;
-      letter-spacing: -.01em;
-      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-      box-shadow: 0 2px 10px rgba(231,196,91,.28);
-    }
-    .back-btn:hover {
-      background: var(--gold-hover);
-      transform: translateX(-2px);
-      box-shadow: 0 4px 14px rgba(231,196,91,.4);
-    }
-    .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
-
-    .brand-divider {
-      width: 1px;
-      height: 22px;
-      background: rgba(255, 255, 255, 0.22);
-    }
-
-    /* Magic Mirror Başlığı (Sade & Kurumsal) */
-    .app-brand-title {
       color: #fff;
-      font-size: 1.05rem;
-      font-weight: 750;
-      letter-spacing: .02em;
-      white-space: nowrap;
     }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: clamp(14px, 2.5vw, 30px);
-    }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: clamp(12px, 2vw, 24px);
-    }
-    .main-nav a {
-      color: rgba(255, 255, 255, .82);
-      font-size: .74rem;
-      font-weight: 650;
-      letter-spacing: .06em;
-      transition: color .2s ease;
-      white-space: nowrap;
-    }
-    .main-nav a:hover { color: var(--gold); }
-
-    /* Home İkonu: Web sayfasına ait butonların tam başında */
-    .nav-home-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      padding: 4px;
+    .brand-group { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .back-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 6px; border-radius: 10px; color: var(--gold);
       transition: transform .2s ease, color .2s ease;
     }
-    .nav-home-icon:hover {
-      color: var(--gold-hover);
-      transform: scale(1.15);
+    .back-btn:hover { color: var(--gold-hover); transform: scale(1.12); }
+    .back-btn svg { width: 21px; height: 21px; display: block; fill: currentColor; }
+    .brand-divider { width: 1px; height: 20px; background: rgba(255, 255, 255, .22); }
+    .app-brand-title {
+      display: inline-flex; align-items: center; gap: 9px; color: #fff;
+      font-size: 1.05rem; font-weight: 800; letter-spacing: -.02em; white-space: nowrap;
     }
-    .nav-home-icon svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
+    .app-brand-title img { width: 28px; height: 28px; border-radius: 7px; object-fit: cover; }
+    .header-right { display: flex; align-items: center; gap: clamp(12px, 2.2vw, 24px); }
+    .main-nav { display: flex; align-items: center; gap: clamp(10px, 1.8vw, 22px); }
+    .main-nav a {
+      color: rgba(255, 255, 255, .82); font-size: .74rem; font-weight: 700;
+      letter-spacing: .06em; white-space: nowrap; transition: color .2s ease;
     }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(231, 196, 91, .5);
-      color: var(--gold) !important;
-      font-size: .72rem !important;
-      font-weight: 700 !important;
-      transition: all .2s ease;
+    .main-nav a:hover { color: var(--gold); }
+    .main-nav .nav-download {
+      padding: 7px 16px; border-radius: 999px; border: 1px solid rgba(231, 196, 91, .65);
+      background: transparent; color: var(--gold); font: inherit; font-size: .74rem; font-weight: 800;
+      letter-spacing: .06em; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
-    .nav-cta:hover {
-      background: var(--gold);
-      color: var(--navy-deep) !important;
-      border-color: var(--gold);
-    }
-
-    .language-switch {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      border-left: 1px solid rgba(255,255,255,.14);
-      padding-left: 12px;
-    }
+    .main-nav .nav-download:hover { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); }
+    .language-switch { display: flex; align-items: center; gap: 4px; }
     .language-switch button {
-      border: 0;
-      background: transparent;
-      color: rgba(255,255,255,.55);
-      font-size: .8rem;
-      font-weight: 700;
-      padding: 4px 6px;
-      cursor: pointer;
-      transition: color .2s ease;
+      border: 0; background: transparent; color: rgba(255, 255, 255, .58);
+      font: inherit; font-size: .8rem; font-weight: 700; padding: 6px 5px; cursor: pointer;
     }
     .language-switch button[aria-pressed="true"] {
-      color: #fff;
-      text-decoration: underline;
-      text-decoration-color: var(--gold);
-      text-underline-offset: 5px;
-    }
-    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
+      color: #fff; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 5px;
     }
 
-    /* ==========================================================================
-       HERO BÖLÜMÜ (Işıltılı & Netleşen Görsel)
-       ========================================================================== */
+    /* Hero Section */
     .hero {
       position: relative;
-      min-height: max(680px, 92svh);
-      display: flex;
-      align-items: center;
-      isolation: isolate;
-      padding: calc(var(--header-h) + 50px) clamp(20px, 6vw, 90px) 70px;
+      padding: calc(var(--header-h) + 54px) clamp(20px, 6vw, 96px) 76px;
+      background: #0b1428 url("./assets/magicmirror_hero.png") center center / cover no-repeat;
       color: #fff;
-      background: #08172f url("./magicmirror_hero.png") center right / cover no-repeat;
       overflow: hidden;
+      isolation: isolate;
     }
-    /* Ferah, görseli kapatmayan hafifletilmiş overlay */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: -1;
       background:
-        linear-gradient(90deg, rgba(8,23,47,.72) 0%, rgba(8,23,47,.45) 50%, rgba(8,23,47,.12) 100%),
-        linear-gradient(0deg, rgba(8,23,47,.62) 0%, transparent 45%);
+        linear-gradient(90deg, rgba(10, 19, 36, .78) 0%, rgba(10, 19, 36, .48) 54%, rgba(10, 19, 36, .20) 100%),
+        linear-gradient(180deg, rgba(10, 19, 36, .25) 0%, transparent 45%, rgba(10, 19, 36, .55) 100%);
     }
-
-    .hero-container {
+    .hero-inner {
       position: relative;
       z-index: 2;
-      width: 100%;
-      max-width: 1200px;
+      width: min(1140px, 100%);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(24px, 4vw, 48px);
       align-items: center;
-      gap: 40px;
     }
-
-    .hero-content {
-      max-width: 620px;
-    }
-
-    /* Buzlu Cam Efektli Üst Rozet */
-    .app-badge {
+    .hero-app-row {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      padding: 6px 15px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 999px;
-      margin-bottom: 20px;
-      backdrop-filter: blur(14px) saturate(140%);
-      -webkit-backdrop-filter: blur(14px) saturate(140%);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+      gap: 12px;
+      margin-bottom: 18px;
     }
-    .app-badge-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
+    .hero-app-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, .24);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
     }
-    .app-badge span {
-      font-size: .72rem;
-      font-weight: 750;
-      letter-spacing: .15em;
-      color: #fce79a;
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      margin: 0 0 20px;
-      font-size: clamp(2.3rem, 4.6vw, 4.4rem);
-      line-height: 1.05;
+    .hero-app-meta strong {
+      display: block;
+      font-size: 1rem;
       font-weight: 800;
-      letter-spacing: -.05em;
-      text-shadow: 0 2px 14px rgba(0,0,0,.5);
+      color: #fff;
     }
-
-    /* Pırıl pırıl, kirden arındırılmış altın sarısı başlık (text-shadow çakışması giderildi) */
-    .hero h1 span.gold-text {
-      color: #f8df82;
-      background: linear-gradient(135deg, #ffffff 0%, #ffea85 42%, #eec44d 100%);
+    .hero-app-meta span {
+      display: block;
+      font-size: .78rem;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 4.7vw, 3.65rem);
+      line-height: 1.06;
+      letter-spacing: -.04em;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+    .gold-text {
+      display: inline-block;
+      color: var(--gold);
+      background: linear-gradient(135deg, #f3d678 0%, #e7c45b 50%, #d4af37 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: none !important;
-      filter: drop-shadow(0 3px 12px rgba(0, 0, 0, 0.65));
-      display: inline-block;
     }
-
     .hero-lead {
-      margin: 0 0 32px;
-      color: rgba(255, 255, 255, .92);
-      font-size: clamp(1rem, 1.25vw, 1.14rem);
-      line-height: 1.75;
-      max-width: 540px;
-      text-shadow: 0 2px 12px rgba(0,0,0,.5);
+      margin: 18px 0 0;
+      max-width: 52ch;
+      font-size: 1.05rem;
+      line-height: 1.72;
+      color: #dbe4f3;
     }
-
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 30px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 28px;
-      border-radius: 999px;
-      background: var(--gold);
-      color: var(--navy-deep);
-      font-weight: 750;
-      font-size: .95rem;
-      letter-spacing: -.01em;
-      transition: all .25s ease;
-      box-shadow: 0 8px 24px rgba(231,196,91,.35);
-    }
-    .btn-primary:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(231,196,91,.45);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      font-weight: 650;
-      font-size: .92rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: all .2s ease;
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: #fff;
-    }
-
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: .82rem;
-      color: rgba(255,255,255,.9);
-      text-shadow: 0 2px 10px rgba(0,0,0,.45);
-    }
-    .hero-meta-item { display: flex; align-items: center; gap: 7px; }
-    .hero-meta-item svg { width: 16px; height: 16px; fill: var(--gold); }
-
-    /* ==========================================================================
-       HERO VİTRİN KARTI (Zarif, Şeffaf ve Ferah Buzlu Cam / Frosted Glass)
-       ========================================================================== */
-    .hero-preview-box {
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-    .hero-card {
-      position: relative;
-      width: min(100%, 340px);
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.38);
-      border-radius: 30px;
-      padding: 34px 26px 30px;
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-      box-shadow:
-        0 24px 50px rgba(0, 0, 0, 0.28),
-        inset 0 1px 1px rgba(255, 255, 255, 0.45);
-      text-align: center;
-    }
-    .hero-card-img {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 20px;
-      border-radius: 26px;
-      object-fit: contain;
-      filter: drop-shadow(0 14px 28px rgba(0,0,0,.3));
-      border: 2px solid rgba(255,255,255,.8);
-      background: rgba(255, 255, 255, .96);
-      padding: 8px;
-    }
-    .hero-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #ffffff;
-      text-shadow: 0 2px 12px rgba(0,0,0,.35);
-      letter-spacing: -.02em;
-    }
-    .hero-card p {
-      margin: 0;
-      color: rgba(255,255,255,.92);
-      font-size: .92rem;
-      text-shadow: 0 1px 8px rgba(0,0,0,.3);
-    }
-
-    /* ==========================================================================
-       GENEL BÖLÜM STİLLERİ
-       ========================================================================== */
-    .section { padding: 96px clamp(20px, 6vw, 90px); }
-    .section-inner { width: min(1160px, 100%); margin: 0 auto; }
-    .section-header { margin-bottom: 50px; }
-    .section-header.text-center {
-      text-align: center;
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .section-kicker {
-      margin: 0 0 12px;
-      color: #a17d27;
-      font-size: .74rem;
-      font-weight: 800;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-    .section h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(2rem, 3.8vw, 3.1rem);
-      line-height: 1.1;
-      letter-spacing: -.05em;
-    }
-    .section-intro {
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.75;
-    }
-
-    /* ==========================================================================
-       HOW IT WORKS (Beyaz Zemin)
-       ========================================================================== */
-    .steps-section { background: #ffffff; }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .step-card {
-      position: relative;
-      padding: 38px 28px 32px;
-      border-radius: 24px;
-      background: #faf9f6;
-      border: 1px solid #edebe4;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    .step-card:hover {
-      transform: translateY(-6px);
-      border-color: #e5cb78;
-      box-shadow: 0 18px 40px rgba(16,26,49,.07);
-    }
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: var(--navy);
-      color: var(--gold);
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 22px;
-    }
-    .step-card h3 {
-      margin: 0 0 12px;
-      color: var(--navy);
-      font-size: 1.22rem;
-      font-weight: 750;
-      letter-spacing: -.02em;
-    }
-    .step-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .94rem;
-      line-height: 1.65;
-    }
-
-    /* ==========================================================================
-       FEATURES (Krem Zemin)
-       ========================================================================== */
-    .features-section { background: var(--cream); }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .feature-card {
-      padding: 30px 26px;
-      border-radius: 20px;
-      background: #fff;
-      border: 1px solid #eae8e1;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: #e2c66d;
-      box-shadow: 0 16px 36px rgba(16,26,49,.06);
-    }
-    .feature-icon-wrapper {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      background: var(--gold-subtle);
-      border: 1px solid rgba(231,196,91,.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .feature-icon-wrapper svg {
-      width: 24px;
-      height: 24px;
-      fill: #a67c1e;
-    }
-    .feature-card h3 {
-      margin: 0 0 10px;
-      color: var(--navy);
-      font-size: 1.12rem;
-      font-weight: 750;
-    }
-    .feature-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .91rem;
-      line-height: 1.65;
-    }
-
-    /* ==========================================================================
-       BRANDS & SILHOUETTES (Beyaz Zemin)
-       ========================================================================== */
-    .brands-section { background: #fff; }
-    .silhouette-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 36px;
-    }
-    .silhouette-card {
-      padding: 24px 20px;
-      text-align: center;
-      border-radius: 18px;
-      background: #fdfcf9;
-      border: 1px solid #edebe4;
-      transition: all .2s ease;
-    }
-    .silhouette-card:hover {
-      background: #fff;
-      border-color: var(--gold);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(16,26,49,.06);
-    }
-    .silhouette-tag {
-      display: inline-block;
-      margin-bottom: 10px;
-      font-size: .7rem;
-      font-weight: 800;
-      color: #b08726;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    .silhouette-card h4 {
-      margin: 0 0 6px;
-      color: var(--navy);
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-    .silhouette-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .83rem;
-      line-height: 1.5;
-    }
-
-    /* ==========================================================================
-       DOWNLOAD BÖLÜMÜ (Krem Zemin - Doğal Ayırım & Ferah Geçiş)
-       ========================================================================== */
-    .download-section {
-      background: #f5f3ee;
-      color: var(--ink);
-      position: relative;
-      overflow: hidden;
-      border-top: 1px solid #edebe4;
-    }
-    .download-section .section-kicker { color: #a17d27; }
-    .download-section h2 { color: var(--navy); }
-    .download-section .section-intro { color: var(--muted); }
-
-    .download-box {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 40px;
-      align-items: center;
-      padding: clamp(28px, 5vw, 52px);
-      background: #ffffff;
-      border: 1px solid #e7e5dc;
-      border-radius: 32px;
-      box-shadow: 0 20px 48px rgba(16,26,49,.06);
-    }
-    .download-box h3 {
-      margin: 0 0 12px;
-      font-size: 1.55rem;
-      font-weight: 750;
-      color: var(--navy);
-      letter-spacing: -.02em;
-    }
-    .download-box p.download-p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .98rem;
-      line-height: 1.7;
-    }
-
-    .store-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
       margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
     }
     .store-btn {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 22px;
-      border-radius: 16px;
-      background: var(--navy);
-      border: 1px solid var(--navy);
-      color: #fff;
-      text-decoration: none;
-      transition: all .2s ease;
-      box-shadow: 0 4px 14px rgba(16,26,49,.14);
+      gap: 11px;
+      padding: 12px 19px;
+      border-radius: 14px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(231, 196, 91, .28);
+      transition: background .2s ease, transform .2s var(--ease-out);
     }
-    .store-btn:hover {
-      background: var(--navy-2);
+    .store-btn:hover { background: var(--gold-hover); transform: translateY(-2px); }
+    .store-btn.is-secondary-store {
+      background: #fff;
+      color: #111827;
+      border: 1px solid rgba(255, 255, 255, .9);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
+    }
+    .store-btn.is-secondary-store:hover {
+      background: #f5f3ee;
       border-color: var(--gold);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 22px rgba(16,26,49,.24);
     }
-    .store-btn svg { width: 28px; height: 28px; fill: var(--gold); }
-    .store-btn-text small { display: block; font-size: .68rem; color: rgba(255,255,255,.75); text-transform: uppercase; }
-    .store-btn-text strong { display: block; font-size: .98rem; font-weight: 700; color: #fff; }
+    .store-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .store-btn-text { display: flex; flex-direction: column; text-align: left; line-height: 1.15; }
+    .store-btn-text small { font-size: .64rem; font-weight: 700; opacity: .82; }
+    .store-btn-text span { font-size: .94rem; font-weight: 800; }
 
-    .qr-container {
+    .platform-note {
+      margin: 16px 0 0;
+      font-size: .82rem;
+      color: #cbd5e8;
+    }
+
+    /* Interactive Preview Stage (Frosted Glass Design) */
+    .preview-stage {
+      background: rgba(255, 255, 255, .14);
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+      color: #fff;
+      border-radius: 28px;
+      padding: 20px;
+      box-shadow: 0 28px 60px rgba(10, 19, 36, .34);
+      border: 1px solid rgba(255, 255, 255, .34);
+    }
+    .stage-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding: 0 4px;
+    }
+    .stage-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .35);
+    }
+    .stage-brand img { width: 24px; height: 24px; border-radius: 6px; object-fit: cover; }
+    .stage-badge {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(16, 26, 49, .45);
+      padding: 4px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .28);
+    }
+    .stage-panel {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+    }
+    .mm-card {
+      background: transparent;
+      border: 0;
+      padding: 0;
+    }
+
+    /* 3-Step Visual Try-On Flow (Full-length gowns + magical sparkle transformation) */
+    .tryon-heading {
+      margin: 0 0 12px;
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #fce79a;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+    }
+    .tryon-flow {
+      display: grid;
+      grid-template-columns: 1.15fr auto .95fr;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .tryon-left {
+      display: grid;
+      grid-template-rows: 1fr auto 1fr;
+      align-items: center;
+      gap: 6px;
+      text-align: left;
+    }
+    .tryon-lead,
+    .tryon-foot {
+      margin: 0;
+      font-size: .74rem;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.4;
+      color: #dbe4f3;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
+    }
+    .tryon-pair {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 6px;
+      align-items: center;
+    }
+    #opEquals { align-self: center; }
+    .tryon-tile {
+      background: rgba(255, 255, 255, .14);
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 15px;
+      padding: 6px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(10, 19, 36, .18);
+    }
+    .tryon-tile.is-result {
+      background: rgba(231, 196, 91, .22);
+      border-color: rgba(231, 196, 91, .75);
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(10, 19, 36, .28);
+    }
+    .tryon-photo {
+      width: 100%;
+      aspect-ratio: 9 / 15;
+      border-radius: 10px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 6px;
+      background: rgba(10, 19, 36, .28);
+    }
+    .result-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 15.5;
+      border-radius: 11px;
+      overflow: hidden;
+      margin-bottom: 6px;
+      background: rgba(10, 19, 36, .28);
+    }
+    .result-stage img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .result-after {
+      clip-path: inset(0 0 100% 0);
+    }
+    .result-stage.is-wiping .result-after {
+      transition: clip-path 1.15s cubic-bezier(.4, 0, .2, 1);
+    }
+    .result-stage.is-transformed .result-after {
+      clip-path: inset(0 0 0% 0);
+    }
+    .result-beam {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, #fce79a 25%, #fff 50%, #fce79a 75%, transparent 100%);
+      box-shadow: 0 0 18px 4px rgba(231, 196, 91, .85);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .result-stage.is-wiping .result-beam {
+      opacity: 1;
+      animation: beamSweep 1.15s cubic-bezier(.4, 0, .2, 1) forwards;
+    }
+    @keyframes beamSweep {
+      0% { top: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    .result-shimmer {
+      position: absolute;
+      inset: -20%;
+      background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .36) 48%, rgba(243, 214, 120, .35) 52%, transparent 65%);
+      transform: translateX(-120%);
+      pointer-events: none;
+      z-index: 4;
+    }
+    .result-stage.is-sparkling .result-shimmer {
+      animation: magicSheen 1.2s ease-out forwards;
+    }
+    @keyframes magicSheen {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(120%); }
+    }
+    .magic-sparkle {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      color: #fff6cc;
+      filter: drop-shadow(0 0 8px rgba(231, 196, 91, .95));
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+      pointer-events: none;
+      z-index: 5;
+    }
+    .magic-sparkle.sp1 { top: 14%; left: 18%; }
+    .magic-sparkle.sp2 { top: 28%; right: 16%; width: 22px; height: 22px; }
+    .magic-sparkle.sp3 { top: 54%; left: 22%; width: 15px; height: 15px; }
+    .magic-sparkle.sp4 { top: 68%; right: 22%; }
+    .magic-sparkle.sp5 { bottom: 16%; left: 48%; width: 20px; height: 20px; }
+    .result-stage.is-sparkling .magic-sparkle {
+      animation: sparkleTwinkle 1.3s ease-in-out forwards;
+    }
+    .result-stage.is-sparkling .magic-sparkle.sp2 { animation-delay: .15s; }
+    .result-stage.is-sparkling .magic-sparkle.sp3 { animation-delay: .28s; }
+    .result-stage.is-sparkling .magic-sparkle.sp4 { animation-delay: .4s; }
+    .result-stage.is-sparkling .magic-sparkle.sp5 { animation-delay: .52s; }
+    @keyframes sparkleTwinkle {
+      0% { opacity: 0; transform: scale(0) rotate(0deg); }
+      40% { opacity: 1; transform: scale(1.15) rotate(35deg); }
+      70% { opacity: .9; transform: scale(.85) rotate(65deg); }
+      100% { opacity: 0; transform: scale(0) rotate(95deg); }
+    }
+    .tryon-tile strong {
+      display: block;
+      font-size: .74rem;
+      color: #fff;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
+    }
+    .tryon-op {
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .4);
+    }
+    .look-controls {
+      margin-top: 12px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 24px;
+      gap: 10px;
+    }
+    .look-arrow {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .28);
+      background: rgba(10, 19, 36, .35);
+      color: rgba(255, 255, 255, .9);
+      font-size: .9rem;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .look-arrow:hover {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, .14);
+    }
+    .look-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .look-dot {
+      border: 0;
+      background: rgba(255, 255, 255, .36);
+      width: 18px;
+      height: 3px;
+      padding: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: width .28s var(--ease-out), background .25s ease;
+    }
+    .look-dot[aria-pressed="true"] {
+      width: 28px;
+      background: var(--gold);
+    }
+
+    .mm-pill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .mm-spec-box {
+      background: rgba(10, 19, 36, .68);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 12px;
+      padding: 11px 10px;
+    }
+    .mm-spec-box small {
+      display: block;
+      font-size: .68rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .mm-spec-box strong {
+      display: block;
+      margin-top: 4px;
+      font-size: .84rem;
+      color: #fff;
+    }
+
+    .mm-chip-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .mm-chip {
+      font-size: .74rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(231, 196, 91, .14);
+      border: 1px solid rgba(231, 196, 91, .36);
+      color: #fce79a;
+    }
+
+    .mode-switcher {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(10, 19, 36, .65);
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+    .mode-btn {
+      flex: 1;
+      border: 0;
+      background: transparent;
+      color: #b7c4dc;
+      font: inherit;
+      font-size: .74rem;
+      font-weight: 700;
+      padding: 8px 6px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+    .mode-btn[aria-selected="true"] {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+    .mode-btn:hover:not([aria-selected="true"]) {
+      color: #fff;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    /* Sections */
+    .section { padding: 84px clamp(20px, 6vw, 96px); }
+    .section-inner { width: min(1140px, 100%); margin: 0 auto; }
+    .section-heading {
+      margin: 0;
+      font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+      line-height: 1.1;
+      letter-spacing: -.04em;
+      font-weight: 800;
+      color: var(--navy);
+      text-wrap: balance;
+    }
+    .section-sub {
+      margin: 14px 0 0;
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+
+    /* Full-Bleed Bridal Studio Features Section (Magic Studio + Real Gowns) */
+    .features-section {
+      position: relative;
+      isolation: isolate;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      background: #f8f5ef url("./assets/magicmirror_hero_2.jpg") right center / cover no-repeat;
+      overflow: hidden;
+    }
+    .features-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(255, 252, 246, .82) 0%, rgba(255, 252, 246, .56) 40%, rgba(255, 252, 246, .1) 66%, transparent 100%);
+    }
+    .features-left-col {
+      max-width: min(500px, 48%);
+    }
+    .features-kicker {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #a17d27;
+    }
+    .features-left-col .section-heading {
+      font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+    }
+    .features-left-col .section-sub {
+      font-size: .95rem;
+      color: var(--ink-soft);
+    }
+    .editorial-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(28px, 5vw, 56px);
+      align-items: center;
+    }
+    .editorial-photo {
       border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 22px 48px rgba(16, 26, 49, .1);
+      background: var(--cream);
+    }
+    .editorial-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .feature-list { display: grid; gap: 11px; margin-top: 20px; width: min(330px, 100%); }
+    .feature-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 13px 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(16, 26, 49, .15);
+      background: transparent;
+      transition: border-color .2s ease, transform .2s var(--ease-out);
+    }
+    .feature-row:hover { border-color: var(--gold); transform: translateX(3px); }
+    .feature-ico {
+      width: 36px;
+      height: 64px;
+      aspect-ratio: 9 / 16;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .feature-ico img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .feature-row h3 { margin: 0 0 3px; font-size: .96rem; color: var(--navy); }
+    .feature-row p { margin: 0; font-size: .85rem; color: var(--ink-soft); line-height: 1.55; }
+    @media (max-width: 900px) {
+      .features-section { min-height: auto; background-position: 70% center; }
+      .features-section::before { background: rgba(255, 252, 246, .7); }
+      .features-left-col { max-width: 100%; }
+    }
+
+    /* Moodboard & Bridesmaid Poll Section */
+    .moodboard-section { background: var(--cream); }
+    .moodboard-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+    .moodboard-header .section-sub { margin: 12px auto 0; }
+    .moodboard-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 44px);
+      align-items: stretch;
+    }
+    .moodboard-photo {
+      height: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 36px rgba(16, 26, 49, .08);
+      background: var(--white);
+    }
+    .moodboard-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .moodboard-split { grid-template-columns: 1fr; }
+    }
+    .moodboard-card {
+      margin-top: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 16px 36px rgba(16, 26, 49, .06);
+    }
+    .moodboard-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .moodboard-head strong { font-size: .98rem; color: var(--navy); }
+    .moodboard-pill {
+      font-size: .74rem;
+      font-weight: 750;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: #faf6eb;
+      border: 1px solid #ece2c6;
+      color: #8c6b12;
+    }
+    .moodboard-showcase {
+      display: grid;
+      grid-template-columns: 1.22fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+    .moodboard-phone {
+      position: relative;
+      border-radius: 28px;
+      padding: 8px;
+      background: linear-gradient(145deg, #2b3446 0%, #111622 45%, #273042 100%);
+      border: 1px solid rgba(16, 26, 49, .35);
+      box-shadow: 0 18px 36px rgba(16, 26, 49, .18);
+      display: flex;
+      flex-direction: column;
+    }
+    .moodboard-phone::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      width: 48px;
+      height: 12px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: #070a11;
+      z-index: 2;
+    }
+    .moodboard-phone-screen {
+      flex: 1;
+      border-radius: 21px;
+      background: #fff;
+      padding: 26px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .moodboard-candidates {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+    .mb-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
       background: #faf9f6;
-      border: 1px solid #eae8e0;
+      text-align: center;
+      padding: 4px 4px 7px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .mb-item img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 6px;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .mb-winner {
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      background: #faf6eb;
+      padding: 8px 8px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 12px 28px rgba(16, 26, 49, .08);
+    }
+    .mb-winner-badge {
+      display: inline-block;
+      margin: 0 auto 6px;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--gold);
+    }
+    .mb-winner img {
+      width: 100%;
+      flex: 1;
+      aspect-ratio: 3 / 4.2;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 8px;
+      border-radius: 10px;
+      background: #fff;
+    }
+    .mb-vote-btn {
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--navy);
+      font: inherit;
+      font-size: .72rem;
+      font-weight: 750;
+      padding: 3px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      margin: 0 auto;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
+    }
+    .mb-vote-btn.is-voted {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--gold);
+    }
+    @media (max-width: 560px) {
+      .moodboard-showcase { grid-template-columns: 1fr; }
+    }
+    .privacy-note {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .privacy-note svg { width: 16px; height: 16px; fill: var(--navy); flex-shrink: 0; }
+
+    /* 3-Step How It Works */
+    .steps-section { background: var(--white); }
+    .steps-grid {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .step-card {
+      background: #faf9f6;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 22px;
+      transition: transform .25s var(--ease-out), box-shadow .25s ease;
+    }
+    .step-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(16, 26, 49, .06); }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 800;
+      font-size: .92rem;
+      margin-bottom: 14px;
+    }
+    .step-card h3 { margin: 0 0 8px; font-size: 1.08rem; color: var(--navy); }
+    .step-card p { margin: 0; font-size: .9rem; color: var(--ink-soft); line-height: 1.65; }
+
+    /* B2B Boutiques & Brands Partnership Section (Bridify-inspired) */
+    .b2b-section {
+      background: linear-gradient(135deg, #0c162c 0%, #101a31 60%, #172541 100%);
+      color: #fff;
+    }
+    .b2b-section .section-heading { color: #fff; }
+    .b2b-section .section-sub { color: #cbd5e8; }
+    .b2b-grid {
+      margin-top: 38px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .b2b-card {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .b2b-card strong {
+      display: block;
+      font-size: 1.04rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .b2b-card p {
+      margin: 0;
+      font-size: .9rem;
+      color: #dbe4f3;
+      line-height: 1.65;
+    }
+    .b2b-cta-bar {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 26px;
+      border-radius: 18px;
+      background: rgba(231, 196, 91, .1);
+      border: 1px solid rgba(231, 196, 91, .35);
+    }
+    .b2b-cta-bar p {
+      margin: 0;
+      font-size: .95rem;
+      color: #f3f6fc;
+      font-weight: 500;
+    }
+    .b2b-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-weight: 800;
+      font-size: .9rem;
+      white-space: nowrap;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .b2b-btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+
+    /* Download + QR + Instagram Bridge */
+    .download-section { background: var(--cream); }
+    .download-box {
+      margin-top: 34px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: clamp(26px, 4vw, 44px);
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+      box-shadow: 0 16px 40px rgba(16, 26, 49, .05);
+    }
+    .download-info h3 { margin: 0 0 10px; font-size: 1.5rem; color: var(--navy); }
+    .download-info p { margin: 0 0 22px; color: var(--ink-soft); font-size: .98rem; line-height: 1.7; }
+    .dl-store-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+    .dl-store-row .store-btn.is-secondary-store {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+    .dl-store-row .store-btn.is-secondary-store:hover { background: var(--navy-2); }
+    .ig-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: #faf6eb;
+      border: 1px solid #ece2c6;
+      color: var(--navy);
+      font-size: .84rem;
+      font-weight: 700;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .ig-pill:hover { border-color: var(--gold); transform: translateY(-1px); }
+    .ig-pill svg { width: 16px; height: 16px; fill: currentColor; color: #c13584; }
+
+    .qr-card {
+      text-align: center;
+      background: #faf9f6;
+      border: 1px solid #ebe8de;
+      border-radius: 20px;
+      padding: 24px;
     }
     .qr-frame {
       width: 170px;
       height: 170px;
-      background: #ffffff;
-      padding: 12px;
-      border-radius: 20px;
-      box-shadow: 0 10px 24px rgba(16,26,49,.07);
-      border: 1px solid #eceae3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0 auto 12px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
     }
-    .qr-frame img {
+    .qr-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .qr-card span { display: block; font-size: .84rem; color: var(--muted); font-weight: 600; }
+
+    /* FAQ */
+    .faq-section { background: var(--white); }
+    .faq-list { margin-top: 34px; display: grid; gap: 12px; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #faf9f6;
+      overflow: hidden;
+    }
+    .faq-question {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .qr-caption {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: .84rem;
-      max-width: 240px;
-    }
-
-    /* ==========================================================================
-       CONTACT US BÖLÜMÜ (Lacivert Zemin - Net ve Doğal Ayırım)
-       ========================================================================== */
-    .contact-section {
-      background: #0d172e;
-      color: #fff;
-      position: relative;
-      padding-bottom: 90px;
-      border-top: 1px solid rgba(255,255,255,.06);
-    }
-    .contact-title-top {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-    .contact-title-top h2 {
-      color: #fff;
-      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-      font-weight: 800;
-      letter-spacing: -.04em;
-      margin: 0;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: clamp(32px, 6vw, 70px);
+      border: 0;
+      background: transparent;
+      padding: 20px 22px;
+      text-align: left;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 750;
+      color: var(--navy);
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      gap: 16px;
+      cursor: pointer;
     }
-
-    .contact-info-col h3 {
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
       font-weight: 800;
-      line-height: 1.18;
-      letter-spacing: -.03em;
-      margin: 0 0 20px;
-      color: #ffffff;
+      flex-shrink: 0;
+      transition: transform .2s ease;
     }
-
-    .contact-info-desc {
-      color: rgba(255,255,255,.78);
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin: 0 0 28px;
-      max-width: 480px;
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
     }
+    .faq-item.active .faq-answer { max-height: 240px; }
+    .faq-answer p { margin: 0; padding: 0 22px 20px; color: var(--ink-soft); font-size: .94rem; line-height: 1.7; }
 
-    .contact-email-badge {
+    /* Contact Section (Cream Background + Crisp White Cards) */
+    .contact-section { background: var(--cream); color: var(--ink); }
+    .contact-section .section-heading { color: var(--navy); }
+    .contact-section .section-sub { color: var(--ink-soft); }
+    .contact-grid {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .contact-info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+    }
+    .contact-info-card h3 { margin: 0 0 8px; font-size: 1.2rem; color: var(--navy); }
+    .contact-info-card p { margin: 0 0 18px; color: var(--ink-soft); font-size: .94rem; }
+    .mail-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 20px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.18);
-      color: #fff;
-      font-size: .9rem;
-      font-weight: 600;
-      transition: all .2s ease;
-    }
-    .contact-email-badge:hover {
-      background: rgba(255,255,255,.14);
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    .contact-email-badge svg {
-      width: 17px;
-      height: 17px;
-      fill: var(--gold);
-    }
-
-    /* Form Kartı */
-    .contact-card {
-      background: var(--navy-card);
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 28px;
-      padding: clamp(24px, 4.5vw, 42px);
-      box-shadow: 0 24px 60px rgba(0,0,0,.35);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: .86rem;
-      font-weight: 650;
-      color: rgba(255,255,255,.86);
-      margin-bottom: 8px;
-    }
-    .form-group label span.req { color: #f47264; }
-
-    .form-control {
-      width: 100%;
-      background: #ffffff;
-      border: 1px solid rgba(255,255,255,.3);
+      padding: 11px 16px;
       border-radius: 12px;
-      padding: 13px 16px;
-      font-size: .95rem;
-      color: var(--navy-deep);
-      transition: all .2s ease;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 700;
+      font-size: .92rem;
     }
-    .form-control:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(231,196,91,.4);
-      border-color: var(--gold);
-    }
-    textarea.form-control {
-      min-height: 120px;
-      resize: vertical;
-    }
+    .mail-pill svg { width: 18px; height: 18px; fill: var(--gold); flex-shrink: 0; }
 
-    .form-checkbox-group {
+    .contact-form-card {
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: clamp(24px, 4vw, 34px);
+      box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 15px; }
+    .form-row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .field-label { display: block; font-size: .82rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .req-star { color: #ef4444; margin-left: 2px; }
+    .field-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #d9dfe9;
+      background: #fff;
+      color: var(--navy);
+      font: inherit;
+      font-size: .95rem;
+    }
+    .field-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-color: var(--gold); }
+    .field-input option { background: #fff; color: var(--navy); }
+    .field-input::placeholder { color: #7e8aa1; }
+    textarea.field-input { min-height: 110px; resize: vertical; }
+    .consent-row {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      margin: 22px 0 26px;
+      gap: 10px;
+      font-size: .82rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      cursor: pointer;
     }
-    .form-checkbox-group input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
+    .consent-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
       margin-top: 3px;
       accent-color: var(--gold);
-      cursor: pointer;
+      flex-shrink: 0;
     }
-    .form-checkbox-group label {
-      font-size: .78rem;
-      color: rgba(255,255,255,.7);
-      line-height: 1.55;
-      cursor: pointer;
-    }
-    .form-checkbox-group a {
-      color: #fff;
-      text-decoration: underline;
-      text-decoration-color: var(--gold);
-    }
-
-    .btn-submit {
+    .consent-row a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; font-weight: 600; }
+    .submit-btn {
       width: 100%;
-      padding: 15px;
+      padding: 15px 24px;
       border: 0;
       border-radius: 999px;
       background: var(--gold);
       color: var(--navy-deep);
-      font-size: 1.05rem;
+      font: inherit;
+      font-size: .98rem;
       font-weight: 800;
       cursor: pointer;
-      letter-spacing: -.01em;
-      transition: all .2s ease;
-      box-shadow: 0 6px 20px rgba(231,196,91,.3);
-      display: inline-flex;
+      box-shadow: 0 8px 24px rgba(231, 196, 91, .28);
+      transition: background .2s ease, transform .2s var(--ease-out);
+    }
+    .submit-btn:hover:not(:disabled) { background: var(--gold-hover); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: .65; cursor: not-allowed; }
+    .form-status { display: none; padding: 12px 14px; border-radius: 10px; font-size: .88rem; font-weight: 600; }
+    .form-status.is-success { display: block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .form-status.is-error { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+    /* Download Popup Modal */
+    .dl-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(10, 19, 36, .66);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      padding: 20px;
     }
-    .btn-submit:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(231,196,91,.42);
+    .dl-modal-backdrop.is-open { display: flex; }
+    .dl-modal {
+      position: relative;
+      width: min(460px, 100%);
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 26px;
+      padding: 32px 28px 28px;
+      box-shadow: 0 32px 72px rgba(10, 19, 36, .35);
+      border: 1px solid var(--border);
+      text-align: left;
     }
-    .btn-submit:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* Durum Bildirimleri */
-    .form-status {
-      display: none;
-      padding: 14px 18px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      font-size: .9rem;
-      line-height: 1.5;
-    }
-    .form-status.is-success {
-      display: block;
-      background: rgba(56, 161, 105, 0.18);
-      border: 1px solid #38a169;
-      color: #81e6d9;
-    }
-    .form-status.is-error {
-      display: block;
-      background: rgba(229, 62, 62, 0.18);
-      border: 1px solid #e53e3e;
-      color: #feb2b2;
-    }
-
-    /* ==========================================================================
-       SITE FOOTER (Görsel 3'teki Standart Sütunlu Yapı: Pages & Legal & Brand)
-       ========================================================================== */
-    .site-footer {
-      background: #091325;
-      color: #fff;
-      padding: 70px clamp(20px, 6vw, 90px) 36px;
-      border-top: 1px solid rgba(255,255,255,.07);
-    }
-    .footer-inner {
-      width: min(1160px, 100%);
-      margin: 0 auto;
-    }
-    .footer-top-grid {
+    .dl-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #faf9f6;
+      color: var(--navy);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: clamp(30px, 5vw, 60px);
-      padding-bottom: 50px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      place-items: center;
+      transition: background .2s ease, border-color .2s ease;
     }
-
-    /* 1. Kolon: Marka Tanıtımı */
-    .footer-brand-col .footer-brand-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      color: #ffffff;
-      margin: 0 0 10px;
-      display: inline-block;
-    }
-    .footer-brand-col p {
-      color: rgba(255,255,255,.65);
-      font-size: .9rem;
-      line-height: 1.65;
-      margin: 0 0 20px;
-      max-width: 320px;
-    }
-    .footer-back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--gold);
-      font-size: .84rem;
-      font-weight: 700;
-      transition: transform .2s ease;
-    }
-    .footer-back-link:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      transform: translateX(-3px);
-    }
-
-    /* 2. & 3. Kolon: Menü ve Yasal Linkler */
-    .footer-col-title {
-      font-size: .84rem;
-      font-weight: 750;
-      color: rgba(255,255,255,.9);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin: 0 0 20px;
-    }
-    .footer-links-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .dl-modal-close:hover { background: var(--cream); border-color: var(--gold); }
+    .dl-modal-head {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 12px;
+      margin-bottom: 12px;
     }
-    .footer-links-list a {
-      color: rgba(255,255,255,.68);
-      font-size: .88rem;
-      font-weight: 500;
-      transition: color .2s ease;
-      display: inline-block;
+    .dl-modal-head img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: cover;
     }
-    .footer-links-list a:hover {
-      color: var(--gold);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    .dl-modal h3 {
+      margin: 0 0 18px;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      color: var(--navy);
+      padding-right: 24px;
+    }
+    .dl-modal .dl-store-row { margin-bottom: 18px; }
+    .dl-modal-qr {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .dl-modal-qr .qr-frame {
+      width: 112px;
+      height: 112px;
+      margin: 0;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+    .dl-modal-qr p {
+      margin: 0 0 8px;
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--navy);
     }
 
-    /* Alt Ortalanmış Telif Satırı */
-    .footer-bottom-copyright {
-      padding-top: 32px;
-      text-align: center;
-      color: rgba(255,255,255,.5);
-      font-size: .82rem;
-      letter-spacing: .01em;
+    /* Footer */
+    .footer {
+      background: var(--navy-deep);
+      color: #b7c1d3;
+      padding: 26px clamp(20px, 6vw, 96px);
+      font-size: .84rem;
+      border-top: 1px solid rgba(255, 255, 255, .08);
     }
-
-    /* ==========================================================================
-       MOBİL DUYARLILIK (RESPONSIVE)
-       ========================================================================== */
-    @media (max-width: 960px) {
-      .hero-container { grid-template-columns: 1fr; gap: 40px; }
-      .hero-preview-box { display: none; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .silhouette-grid { grid-template-columns: repeat(2, 1fr); }
-      .download-box { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-      .footer-top-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .footer-brand-col { grid-column: 1 / -1; }
+    .footer-bar {
+      width: min(1140px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px 16px;
+      text-align: left;
     }
+    .footer-bar a { color: #d7e0ef; font-weight: 600; transition: color .2s ease; }
+    .footer-bar a:hover { color: var(--gold); text-decoration: underline; }
+    .footer-sep { color: rgba(255, 255, 255, .28); user-select: none; }
 
-    @media (max-width: 768px) {
-      :root { --header-h: 62px; }
-      .site-header { padding: 0 16px; }
-      .brand-group { gap: 8px; }
-      .back-btn { padding: 6px 10px; font-size: .74rem; }
-      .brand-divider { height: 18px; }
-      .app-brand-title { font-size: .95rem; }
+    @media (max-width: 900px) {
+      .hero-inner, .editorial-split, .download-box, .contact-grid { grid-template-columns: 1fr; }
+      .steps-grid, .b2b-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      :root { --header-h: 60px; }
       .main-nav { display: none; }
-      .features-grid { grid-template-columns: 1fr; }
-      .silhouette-grid { grid-template-columns: 1fr; }
-      .hero {
-        padding: calc(var(--header-h) + 30px) 20px 50px;
-        min-height: auto;
-      }
-      .section { padding: 64px 20px; }
-      .hero h1 { font-size: 2.3rem; }
-      .store-buttons { flex-direction: column; }
-      .store-btn { width: 100%; justify-content: center; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-top-grid { grid-template-columns: 1fr; gap: 30px; }
-      .site-footer { padding: 50px 20px 30px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .form-row-2, .mm-pill-grid { grid-template-columns: 1fr; }
+      .tryon-flow { grid-template-columns: 1fr; }
+      .tryon-op { display: none; }
     }
   </style>
 </head>
-<body id="top">
-
-  <!-- ==========================================================================
-       SITE HEADER
-       ========================================================================== -->
+<body>
   <header class="site-header">
     <div class="brand-group">
-      <!-- Ana Platforma Geri Dönüş -->
-      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Platformuna Dön">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-        <span>littleGENIUS</span>
+      <a class="back-btn" href="../" aria-label="littleGENIUS Ana Sayfa" title="littleGENIUS">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
       </a>
       <span class="brand-divider" aria-hidden="true"></span>
-      <!-- Başlık (Sade & Kurumsal) -->
-      <span class="app-brand-title">MAGIC MIRROR</span>
+      <a class="app-brand-title" href="#top">
+        <img src="./assets/magicmirror_logo.png" alt="Magic Mirror logo">
+        <span>Magic Mirror</span>
+      </a>
     </div>
 
     <div class="header-right">
-      <nav class="main-nav" aria-label="Magic Mirror navigation">
-        <!-- Home İkonu: Web sayfasına ait butonların tam solunda -->
-        <a class="nav-home-icon" href="#top" aria-label="Magic Mirror Home">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        </a>
-        <a href="#how-it-works" data-i18n="navHow">HOW IT WORKS</a>
-        <a href="#features" data-i18n="navFeatures">FEATURES</a>
-        <a href="#brands" data-i18n="navBrands">BRANDS</a>
-        <a href="#contact" data-i18n="navContact">CONTACT US</a>
-        <a class="nav-cta" href="#download" data-i18n="navDownload">DOWNLOAD</a>
+      <nav class="main-nav" aria-label="Section navigation">
+        <a href="#features" data-i18n="navFeatures">ÖZELLİKLER</a>
+        <a href="#faq" data-i18n="navFaq">SSS</a>
+        <a href="#contact" data-i18n="navContact">İLETİŞİM</a>
+        <a href="partners.html" id="navBoutiques" data-i18n="navBoutiques">İŞ BİRLİĞİ</a>
+        <button class="nav-download" type="button" id="openDownloadModal" data-i18n="navDownload">İNDİR</button>
       </nav>
-
       <div class="language-switch" aria-label="Language">
         <button type="button" data-lang="tr" aria-pressed="true">TR</button>
         <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -1057,290 +1292,289 @@
     </div>
   </header>
 
-  <main>
-    <!-- HERO BÖLÜMÜ -->
+  <main id="top">
+    <!-- HERO -->
     <section class="hero" aria-label="Magic Mirror Tanıtımı">
-      <div class="hero-container">
-        <div class="hero-content">
-          <div class="app-badge">
-            <img class="app-badge-icon" src="./magicmirror_logo.png" onerror="this.onerror=null;this.src='./magicmirror.png'" alt="Magic Mirror Logo">
-            <span data-i18n="badgeText">AI BRIDAL TRY-ON</span>
+      <div class="hero-inner">
+        <div>
+          <div class="hero-app-row">
+            <img class="hero-app-icon" src="./assets/magicmirror_logo.png" alt="Magic Mirror app icon">
+            <div class="hero-app-meta">
+              <strong>Magic Mirror</strong>
+              <span data-i18n="heroSubtitle">Dijital Gelinlik Provası</span>
+            </div>
           </div>
+
           <h1 data-i18n="heroTitle">En Özel Gününüz İçin <span class="gold-text">Kusursuz Duruş.</span></h1>
-          <p class="hero-lead" data-i18n="heroText">Yapay zekâ teknolojisiyle saniyeler içinde yüzlerce gelinlik modelini kendi vücut ölçülerinizle deneyin, tarzınızı keşfedin ve hayalinizdeki elbiseyi butiklere gitmeden görün.</p>
-          
+          <p class="hero-lead" data-i18n="heroLead">
+            Kendi fotoğrafınızla saniyeler içinde yüzlerce gelinlik modelini üzerinizde görün. Tarzınızı keşfedin, beğendiklerinizi sevdiklerinizle oylayın ve mağaza provasına güvenle gidin.
+          </p>
+
           <div class="hero-actions">
-            <a class="btn-primary" href="#download" data-i18n="btnDownload">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-              <span>Uygulamayı İndir</span>
+            <a class="store-btn is-secondary-store" href="https://apps.apple.com/app/magic-mirror-wedding-dress/id6760668920" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.54c.64-.78 1.08-1.87.96-2.96-.93.04-2.06.62-2.73 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.1-.49 2.74-1.27z"/></svg>
+              <div class="store-btn-text">
+                <small data-i18n="iosSmall">App Store'dan İndirin</small>
+                <span>App Store</span>
+              </div>
             </a>
-            <a class="btn-secondary" href="#how-it-works" data-i18n="btnHow">
-              <span>Nasıl Çalışır?</span>
-              <span aria-hidden="true">↓</span>
+            <a class="store-btn is-secondary-store" href="https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.955V2.77c.17-.386.386-.715.609-.956zm11.266 11.268l2.36 2.36-11.83 6.76 9.47-9.12zm0-2.164L5.405 1.798l11.83 6.76-2.36 2.36zm1.528 1.082l3.414 1.95a1.59 1.59 0 0 1 0 2.766l-3.414 1.95-2.022-2.022 2.022-2.644z"/></svg>
+              <div class="store-btn-text">
+                <small data-i18n="gpSmall">Google Play'den Alın</small>
+                <span>Google Play</span>
+              </div>
             </a>
           </div>
-
-          <div class="hero-meta">
-            <div class="hero-meta-item">
-              <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <span data-i18n="metaRating">iOS & Android Uyumlu</span>
-            </div>
-            <div class="hero-meta-item">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <span data-i18n="metaAI">Gerçekçi AI Simülasyonu</span>
-            </div>
-          </div>
+          <p class="platform-note" data-i18n="platformNote">iOS ve Android için ücretsiz</p>
         </div>
 
-        <!-- Vitrin Kartı (Ferah, Işıltılı ve Şeffaf Buzlu Cam Tasarım) -->
-        <div class="hero-preview-box">
-          <div class="hero-card">
-            <img class="hero-card-img" src="./magicmirror_logo.png" onerror="this.onerror=null;this.src='./magicmirror.png'" alt="Magic Mirror App Icon">
-            <h3>Magic Mirror</h3>
-            <p data-i18n="cardSubtitle">Bridal AI Studio & Virtual Fitting</p>
+        <!-- Interactive Preview Stage -->
+        <div class="preview-stage" aria-label="Magic Mirror interactive preview">
+          <div class="stage-panel">
+            <!-- AI Try-On Flow (1-4 sequential examples) -->
+            <div class="mm-card">
+              <p class="tryon-heading" data-i18n="tryonHeading">Sanal Gelinlik Provası</p>
+              <div class="tryon-flow">
+                <div class="tryon-left">
+                  <p class="tryon-lead" data-i18n="tryonLead">Tek dokunuşla gelinliği üzerinizde görün...</p>
+                  <div class="tryon-pair">
+                    <div class="tryon-tile" id="tileBefore">
+                      <img class="tryon-photo" id="tryonBeforeImg" src="./assets/before_1.png" alt="User photo before try-on">
+                      <strong data-i18n="flowPhoto">Fotoğrafın</strong>
+                    </div>
+                    <span class="tryon-op" id="opPlus" aria-hidden="true">+</span>
+                    <div class="tryon-tile" id="tileModel">
+                      <img class="tryon-photo" id="tryonModelImg" src="./assets/model_1.png" alt="Selected wedding dress">
+                      <strong data-i18n="flowDress">Gelinlik</strong>
+                    </div>
+                  </div>
+                  <p class="tryon-foot" data-i18n="tryonFoot">Ardından favorilerinizi butikte deneyin.</p>
+                </div>
+                <span class="tryon-op" id="opEquals" aria-hidden="true">=</span>
+                <div class="tryon-tile is-result" id="tileResult">
+                  <div class="result-stage" id="resultStage">
+                    <img id="tryonResultBase" src="./assets/before_1.png" alt="Before transformation">
+                    <img class="result-after" id="tryonAfterImg" src="./assets/after_1.png" alt="Virtual bridal try-on result">
+                    <div class="result-beam" aria-hidden="true"></div>
+                    <div class="result-shimmer" aria-hidden="true"></div>
+                    <svg class="magic-sparkle sp1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2Z"/></svg>
+                    <svg class="magic-sparkle sp2" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2Z"/></svg>
+                    <svg class="magic-sparkle sp3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2Z"/></svg>
+                    <svg class="magic-sparkle sp4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2Z"/></svg>
+                    <svg class="magic-sparkle sp5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2Z"/></svg>
+                  </div>
+                  <strong data-i18n="flowResult">Üzerinde</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="look-controls" aria-label="Try-on sample selector">
+            <div class="look-dots">
+              <button class="look-dot" type="button" data-look="0" aria-pressed="true" aria-label="Look 1"></button>
+              <button class="look-dot" type="button" data-look="1" aria-pressed="false" aria-label="Look 2"></button>
+              <button class="look-dot" type="button" data-look="2" aria-pressed="false" aria-label="Look 3"></button>
+              <button class="look-dot" type="button" data-look="3" aria-pressed="false" aria-label="Look 4"></button>
+              <button class="look-dot" type="button" data-look="4" aria-pressed="false" aria-label="Look 5"></button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS BÖLÜMÜ (Beyaz Zemin) -->
-    <section class="section steps-section" id="how-it-works">
-      <div class="section-inner">
-        <div class="section-header text-center">
-          <p class="section-kicker" data-i18n="stepsKicker">KOLAY VE HIZLI DENEYİM</p>
-          <h2 data-i18n="stepsTitle">Hayalinizdeki Gelinliğe 3 Adımda Ulaşın</h2>
-          <p class="section-intro" data-i18n="stepsIntro">Butik prova randevuları arasında yorulmadan, dilediğiniz her an telefonunuzdan prova yapın.</p>
-        </div>
-
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-number">01</div>
-            <h3 data-i18n="step1Title">Fotoğrafınızı Yükleyin</h3>
-            <p data-i18n="step1Desc">Boydan bir fotoğrafınızı veya net bir selfie yükleyin. Yapay zekâ, vücut hatlarınızı ve proporsiyonunuzu hassasiyetle algılar.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">02</div>
-            <h3 data-i18n="step2Title">Modelleri Deneyin</h3>
-            <p data-i18n="step2Desc">Prenses, balık, A-kesim veya vintage... Geniş katalogdan dilediğiniz tasarımı seçin ve saniyeler içinde üzerinizde görün.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">03</div>
-            <h3 data-i18n="step3Title">Kıyaslayın & Paylaşın</h3>
-            <p data-i18n="step3Desc">Favori provalarınızı galerinize kaydedin, sevdiklerinizle oylama yapın ve en kusursuz karara güvenle ulaşın.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURES BÖLÜMÜ (Krem Zemin) -->
+    <!-- FEATURES PART 1: FULL-BLEED CUSTOM STUDIO & REAL GOWNS -->
     <section class="section features-section" id="features">
       <div class="section-inner">
-        <div class="section-header text-center">
-          <p class="section-kicker" data-i18n="featKicker">AKILLI ÖZELLİKLER</p>
-          <h2 data-i18n="featTitle">Gelinlik Seçimini Kolaylaştıran Yenilikler</h2>
-          <p class="section-intro" data-i18n="featIntro">Magic Mirror, yalnızca fotoğraf yerleştiren sıradan bir filtre değil; kumaş dökümünü ve ışığı hesaplayan gelişmiş bir moda yapay zekâsıdır.</p>
-        </div>
+        <div class="features-left-col">
+          <span class="features-kicker" data-i18n="featKicker">TEK TIK PROVA</span>
+          <h2 class="section-heading" data-i18n="featHeading">İster Kendin Tasarla, İster Beğendiğin Modeli Anında Dene</h2>
+          <p class="section-sub" data-i18n="featSub">Hayalindeki gelinliği bulmak için üç güçlü yol, tek bir noktada:<br>İster sıfırdan kendin tasarla, ister beğendiğin bir modeli yükle, istersen seçkin modaevlerinin koleksiyonlarından ilham al.</p>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6.1 4.5 2.3 7.3-6.2-4.6-6.2 4.6 2.3-7.3-6.1-4.5h7.6z"/></svg>
+          <div class="feature-list">
+            <div class="feature-row">
+              <div class="feature-ico"><img src="./assets/feature_create.png" alt="Hayalindeki Gelinliği Tasarla"></div>
+              <div>
+                <h3 data-i18n="f1Title">Hayalindeki Gelinliği Tasarla</h3>
+                <p data-i18n="f1Desc">Kesimi, stili, kumaşı, yaka ve kol detaylarını seç; yapay zekâ teknolojisiyle sonucu üzerinde gör.</p>
+              </div>
             </div>
-            <h3 data-i18n="feat1Title">Magic Studio (Özel Tasarım)</h3>
-            <p data-i18n="feat1Desc">Yaka formu (kalp, V yaka, kayık), kumaş türü (dantel, tül, saten) ve etek kesimlerini dilediğiniz gibi birleştirin.</p>
-          </div>
 
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <div class="feature-row">
+              <div class="feature-ico"><img src="./assets/feature_tryany.png" alt="Fotoğraf Yükle ve Dene"></div>
+              <div>
+                <h3 data-i18n="f2Title">Instagram, Pinterest veya Katalog Fotoğrafı...</h3>
+                <p data-i18n="f2Desc">Beğendiğin herhangi bir gelinlik fotoğrafını yükle; tek dokunuşla kendi üzerinde nasıl durduğunu gör.</p>
+              </div>
             </div>
-            <h3 data-i18n="feat2Title">İlhamdan Deneme (Try Any Dress)</h3>
-            <p data-i18n="feat2Desc">Pinterest, Instagram veya dergilerde görüp beğendiğiniz herhangi bir gelinliğin fotoğrafını yükleyin, anında üzerinizde görün.</p>
-          </div>
 
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            <div class="feature-row">
+              <div class="feature-ico"><img src="./assets/feature_brands.png" alt="Global ve Yerel Modaevleri"></div>
+              <div>
+                <h3 data-i18n="f4Title">Global ve Yerel Modaevleri</h3>
+                <p data-i18n="f4Desc">Dünyaca ünlü markaların ve lokal gelinlik mağazalarının güncel koleksiyonlarını keşfet, özel fırsatlardan yararlan, randevu al.</p>
+              </div>
             </div>
-            <h3 data-i18n="feat3Title">Nedime & Aile Oylaması</h3>
-            <p data-i18n="feat3Desc">Kararsız kaldığınız modelleri yan yana koyup gizli anketler oluşturun, arkadaşlarınızın ve ailenizin oylarını tek ekranda toplayın.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/></svg>
-            </div>
-            <h3 data-i18n="feat4Title">Kişisel Stil & Vücut Analizi</h3>
-            <p data-i18n="feat4Desc">Boy ve beden bilgilerinizi girerek vücut tipinize en çok yakışacak silüet önerilerini akıllı algoritmadan alın.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/></svg>
-            </div>
-            <h3 data-i18n="feat5Title">Yüksek Kaliteli Dışa Aktarım</h3>
-            <p data-i18n="feat5Desc">Beğendiğiniz tüm simülasyonları yüksek çözünürlükle cihazınıza kaydedin ve prova randevularınızda terzinize gösterin.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon-wrapper">
-              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-            </div>
-            <h3 data-i18n="feat6Title">Gizlilik & Güvenlik</h3>
-            <p data-i18n="feat6Desc">Fotoğraflarınız yalnızca prova işlemi için güvenle işlenir ve izniniz olmadan üçüncü taraflarla asla paylaşılmaz.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BRANDS & MODELLER BÖLÜMÜ (Beyaz Zemin) -->
-    <section class="section brands-section" id="brands">
+    <!-- FEATURES PART 2: MOODBOARD GALLERY & BRIDESMAID POLLS -->
+    <section class="section moodboard-section" id="moodboard">
       <div class="section-inner">
-        <div class="section-header text-center">
-          <p class="section-kicker" data-i18n="brandsKicker">KOLEKSİYONLAR & TARZLAR</p>
-          <h2 data-i18n="brandsTitle">Her Zevke Uygun Silüetler</h2>
-          <p class="section-intro" data-i18n="brandsIntro">Dünya moda trendlerinden geleneksel çizgilere, aradığınız tüm formlar Magic Mirror kataloğunda.</p>
+        <div class="moodboard-header">
+          <h2 class="section-heading" data-i18n="mbHeading">Kaydet, Karşılaştır, Paylaş &amp; Yakınlarınla Anket Başlat</h2>
+          <p class="section-sub" data-i18n="mbSub">Favori provalarınızı tek bir galeride toplayın, yüksek çözünürlükle kaydedin ve nedimelerinizle paylaşarak en doğru kararı verin.</p>
         </div>
 
-        <div class="silhouette-grid">
-          <div class="silhouette-card">
-            <span class="silhouette-tag">Klasik & Zarif</span>
-            <h4 data-i18n="sil1Title">A-Kesim (A-Line)</h4>
-            <p data-i18n="sil1Desc">Her vücut tipine uyum sağlayan, dengeli ve zamansız zarafet.</p>
+        <div class="moodboard-split">
+          <div class="moodboard-photo">
+            <img src="./assets/magicmirror_hero_3.jpg" alt="Bride and bridesmaids voting on wedding dresses">
           </div>
 
-          <div class="silhouette-card">
-            <span class="silhouette-tag">Görkemli</span>
-            <h4 data-i18n="sil2Title">Prenses (Ball Gown)</h4>
-            <p data-i18n="sil2Desc">Masalsı bir düğün için hacimli etekler ve vurgulanmış bel formu.</p>
-          </div>
+          <div class="moodboard-card">
+            <div class="moodboard-head">
+              <strong data-i18n="mbCardTitle">Favori Provalarım</strong>
+              <span class="moodboard-pill" data-i18n="mbPill">Anket Sonuçları</span>
+            </div>
 
-          <div class="silhouette-card">
-            <span class="silhouette-tag">İddialı</span>
-            <h4 data-i18n="sil3Title">Balık Kesim (Mermaid)</h4>
-            <p data-i18n="sil3Desc">Vücut hatlarını cesurca saran, feminen ve sofistike silüet.</p>
-          </div>
+            <div class="moodboard-showcase">
+              <div class="moodboard-phone">
+                <div class="moodboard-phone-screen">
+                  <div class="moodboard-candidates">
+                    <div class="mb-item">
+                      <img src="./assets/poll_1.jpg" alt="Favorite gown option 1">
+                      <button class="mb-vote-btn" type="button" data-votes="4">♥ 4</button>
+                    </div>
+                    <div class="mb-item">
+                      <img src="./assets/poll_2.jpg" alt="Favorite gown option 2">
+                      <button class="mb-vote-btn" type="button" data-votes="7">♥ 7</button>
+                    </div>
+                    <div class="mb-item">
+                      <img src="./assets/poll_3.jpg" alt="Favorite gown option 3">
+                      <button class="mb-vote-btn" type="button" data-votes="6">♥ 6</button>
+                    </div>
+                    <div class="mb-item">
+                      <img src="./assets/poll_4.jpg" alt="Favorite gown option 4">
+                      <button class="mb-vote-btn" type="button" data-votes="18">♥ 18</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          <div class="silhouette-card">
-            <span class="silhouette-tag">Doğal & Rahat</span>
-            <h4 data-i18n="sil4Title">Bohem & Helen</h4>
-            <p data-i18n="sil4Desc">Uçuşan tüller, rustik danteller ve kır düğünlerinin favorisi.</p>
+              <div class="mb-winner">
+                <span class="mb-winner-badge" data-i18n="mbWinnerBadge">★ En Çok Oy Alan</span>
+                <img src="./assets/poll_result.jpg" alt="Top voted bridal look">
+                <button class="mb-vote-btn is-voted" type="button" data-votes="18">♥ 18</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- DOWNLOAD BÖLÜMÜ (Krem Zemin - Doğal Ayırım & Ferah Geçiş) -->
-    <section class="section download-section" id="download">
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
       <div class="section-inner">
-        <div class="section-header">
-          <p class="section-kicker" data-i18n="dlKicker">HEMEN BAŞLAYIN</p>
-          <h2 data-i18n="dlTitle">Magic Mirror'ı Ücretsiz Deneyin</h2>
-          <p class="section-intro" data-i18n="dlIntro">iOS veya Android cihazınıza saniyeler içinde indirin; gelinlik provanızı bugün başlatın.</p>
-        </div>
+        <h2 class="section-heading" data-i18n="faqHeading">Sıkça Sorulan Sorular</h2>
+        <p class="section-sub" data-i18n="faqSub">Magic Mirror kullanımı, gizlilik ve iş birlikleri hakkında merak edilenler.</p>
 
-        <div class="download-box">
-          <div class="download-info">
-            <h3 data-i18n="dlHeading">Gelinliğinizi Keşfetmek Artık Çok Kolay</h3>
-            <p class="download-p" data-i18n="dlParagraph">
-              Mağaza aramalarında zaman kaybetmeyin. İster Google Play'den ister App Store'dan ücretsiz indirip hemen ilk provanızı yapabilirsiniz.
-            </p>
-
-            <div class="store-buttons">
-              <!-- Google Play Store Bağlantısı -->
-              <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24"><path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.955V2.77c.17-.386.386-.715.609-.956zm11.266 11.268l2.36 2.36-11.83 6.76 9.47-9.12zm0-2.164L5.405 1.798l11.83 6.76-2.36 2.36zm1.528 1.082l3.414 1.95a1.59 1.59 0 0 1 0 2.766l-3.414 1.95-2.022-2.022 2.022-2.644z"/></svg>
-                <div class="store-btn-text">
-                  <small>GET IT ON</small>
-                  <strong>Google Play</strong>
-                </div>
-              </a>
-
-              <!-- App Store Bağlantısı -->
-              <a class="store-btn" href="https://apps.apple.com/app/magic-mirror-wedding-dress/id6760668920" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.63 1.35-.57.65-1.07 1.71-.93 2.73 1 .08 2.01-.48 2.63-1.23z"/></svg>
-                <div class="store-btn-text">
-                  <small>DOWNLOAD ON THE</small>
-                  <strong>App Store</strong>
-                </div>
-              </a>
-            </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q1">Magic Mirror ücretsiz mi?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p data-i18n="a1">Evet, uygulamayı indirmek, kataloğu incelemek ve ilk deneme haklarınızı kullanmak ücretsizdir. Daha fazla sanal prova ve özel stüdyo özellikleri için uygulama içi kredi paketleri veya abonelik seçenekleri sunulur.</p></div>
           </div>
 
-          <!-- QR Kod Alanı -->
-          <div class="qr-container">
-            <div class="qr-frame">
-              <img src="./magicmirror_qr_code.png" onerror="this.onerror=null;this.src='./MagicMirrorQRCode.png'" alt="Magic Mirror İndirme QR Kodu">
-            </div>
-            <p class="qr-caption" data-i18n="qrCaption">Telefonunuzun kamerasıyla QR kodu tarayarak uygulamayı anında indirin.</p>
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q2">Yüklediğim fotoğraflar güvende mi?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p data-i18n="a2">Fotoğraflarınız yalnızca talep ettiğiniz sanal gelinlik provasını oluşturmak için güvenli biçimde işlenir. İzniniz olmadan hiçbir fotoğraf üçüncü taraflarla paylaşılmaz veya herkese açık yayınlanmaz.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q3">Pinterest veya Instagram'da gördüğüm bir gelinliği deneyebilir miyim?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p data-i18n="a3">Evet. Try Any Dress özelliğiyle beğendiğiniz herhangi bir gelinlik görselini uygulamaya yükleyerek kendi fotoğrafınız üzerinde deneyebilirsiniz.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q4">Prova sonuçlarını ailemle veya nedimelerimle paylaşabilir miyim?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p data-i18n="a4">Evet, beğendiğiniz prova görsellerini yüksek çözünürlükle cihazınıza kaydedebilir, WhatsApp ve sosyal medya üzerinden paylaşarak oylama yapabilirsiniz.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="q5">Gelinlik butiğimiz veya markamız Magic Mirror'da nasıl yer alabilir?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><p data-i18n="a5">Aşağıdaki iletişim formundan "Butik / Marka İş Birliği" konusunu seçerek veya info@littlegenius.tr adresine yazarak koleksiyon entegrasyonu için bizimle iletişime geçebilirsiniz.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-       CONTACT US BÖLÜMÜ (Lacivert Zemin - Net ve Doğal Ayırım)
-       ========================================================================== -->
+    <!-- CONTACT -->
     <section class="section contact-section" id="contact">
       <div class="section-inner">
-        <div class="contact-title-top">
-          <h2 data-i18n="contactMainTitle">Contact us</h2>
-        </div>
+        <h2 class="section-heading" data-i18n="contactHeading">Destek ve İletişim</h2>
+        <p class="section-sub" data-i18n="contactSub">Sanal prova deneyiminiz, önerileriniz veya destek talepleriniz için bize doğrudan ulaşabilirsiniz.</p>
 
         <div class="contact-grid">
-          <!-- Sol Kolon: Başlık ve Açıklama Metni -->
-          <div class="contact-info-col">
-            <h3 data-i18n="contactPitch">Please contact us with any questions or requests</h3>
-            <p class="contact-info-desc" data-i18n="contactDesc">
-              Sorularınız, geri bildirimleriniz, butik entegrasyonları veya iş birliği fırsatları için bize dilediğiniz zaman ulaşabilirsiniz. Ekibimiz en kısa sürede sizinle iletişime geçecektir.
-            </p>
-            <a class="contact-email-badge" href="mailto:magicmirroriletisim@gmail.com">
-              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              <span>magicmirroriletisim@gmail.com</span>
+          <div class="contact-info-card">
+            <h3 data-i18n="directTitle">E-posta ile ulaşın</h3>
+            <p data-i18n="directText">Geri bildirimlerinizi ve yeni özellik fikirlerinizi duymaktan mutluluk duyarız.</p>
+            <a class="mail-pill" href="mailto:info@littlegenius.tr">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>info@littlegenius.tr</span>
             </a>
+            <p style="margin:18px 0 0; font-size:.86rem; color:var(--muted);">
+              <span data-i18n="partnerNote">Gelinlik butiği veya marka iş birliği için:</span>
+              <a id="contactPartnerLink" href="partners.html" style="color:var(--navy); font-weight:700; text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:3px;" data-i18n="partnerLink">Butikler Sayfasını İnceleyin →</a>
+            </p>
           </div>
 
-          <!-- Sağ Kolon: Form Kartı -->
-          <div class="contact-card">
-            <!-- Başarı veya Hata Bildirimi -->
-            <div id="formStatus" class="form-status" role="alert"></div>
-
-            <form id="contactForm" action="https://formsubmit.co/magicmirroriletisim@gmail.com" method="POST">
-              <!-- FormSubmit Yapılandırma Parametreleri -->
-              <input type="hidden" name="_subject" value="Yeni Magic Mirror İletişim Mesajı!">
+          <div class="contact-form-card">
+            <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/info@littlegenius.tr" method="POST">
+              <input type="hidden" name="_subject" value="Magic Mirror Web İletişim">
               <input type="hidden" name="_captcha" value="false">
               <input type="hidden" name="_template" value="table">
 
-              <!-- Email ve Name Çiftli Satır -->
-              <div class="form-row">
-                <div class="form-group" style="margin-bottom:0;">
-                  <label for="contactEmail"><span data-i18n="formEmail">Email</span> <span class="req">*</span></label>
-                  <input type="email" id="contactEmail" name="email" class="form-control" required placeholder="name@example.com">
+              <div class="form-row-2">
+                <div>
+                  <label class="field-label" for="email"><span data-i18n="lblEmail">E-posta</span> <span class="req-star">*</span></label>
+                  <input class="field-input" id="email" name="email" type="email" required placeholder="adiniz@ornek.com">
                 </div>
-                <div class="form-group" style="margin-bottom:0;">
-                  <label for="contactName"><span data-i18n="formName">Name</span> <span class="req">*</span></label>
-                  <input type="text" id="contactName" name="name" class="form-control" required placeholder="Adınız / Your Name">
+                <div>
+                  <label class="field-label" for="name"><span data-i18n="lblName">Ad Soyad / Mağaza Adı</span> <span class="req-star">*</span></label>
+                  <input class="field-input" id="name" name="name" type="text" required placeholder="Adınız Soyadınız">
                 </div>
               </div>
 
-              <!-- Mesaj Alanı -->
-              <div class="form-group" style="margin-top:20px;">
-                <label for="contactMessage"><span data-i18n="formMessage">What can we help you with?</span> <span class="req">*</span></label>
-                <textarea id="contactMessage" name="message" class="form-control" required placeholder="Mesajınız veya sorunuz... / Write your question here..."></textarea>
+              <div>
+                <label class="field-label" for="message"><span data-i18n="lblMsg">Size nasıl yardımcı olabiliriz?</span> <span class="req-star">*</span></label>
+                <textarea class="field-input" id="message" name="message" required placeholder="Mesajınızı yazın..."></textarea>
               </div>
 
-              <!-- Onay Kutusu (KVKK / Gizlilik) -->
-              <div class="form-checkbox-group">
-                <input type="checkbox" id="contactConsent" name="consent" required checked>
-                <label for="contactConsent" data-i18n="formConsent">
-                  I agree to receive communications from littleGENIUS. For more information on how we protect and respect your privacy, please review our <a id="formPrivacyLink" href="privacy-policy-tr.html" target="_blank">Privacy Policy</a>.
-                </label>
-              </div>
+              <label class="consent-row">
+                <input type="checkbox" id="consentCheck" required>
+                <span id="consentText"></span>
+              </label>
 
-              <!-- Gönder Butonu -->
-              <button type="submit" id="submitBtn" class="btn-submit">
-                <span id="btnSubmitText" data-i18n="btnSubmit">Submit</span>
+              <button class="submit-btn" type="submit" id="submitBtn">
+                <span id="btnSubmitText" data-i18n="btnSubmit">Mesaj Gönder</span>
               </button>
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
             </form>
           </div>
         </div>
@@ -1348,301 +1582,500 @@
     </section>
   </main>
 
-  <!-- ==========================================================================
-       SITE FOOTER (Görsel 3'teki Standart Sütunlu Yapı: Pages & Legal & Brand)
-       ========================================================================== -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-top-grid">
-        <!-- 1. Kolon: Marka Tanıtımı -->
-        <div class="footer-brand-col">
-          <a class="footer-brand-title" href="#top">littleGENIUS</a>
-          <p data-i18n="footerBrandText">Fikirleri gerçeğe dönüştüren özgün mobil uygulamalar ve yaratıcı dijital deneyimler geliştiriyoruz.</p>
-          <a class="footer-back-link" href="../">
-            <span>←</span> <span data-i18n="footerHomeLink">littleGENIUS Ana Sayfa</span>
+  <!-- DOWNLOAD POPUP MODAL -->
+  <div class="dl-modal-backdrop" id="downloadModal" role="dialog" aria-modal="true" aria-labelledby="dlModalTitle" hidden>
+    <div class="dl-modal">
+      <button class="dl-modal-close" type="button" id="closeDownloadModal" aria-label="Close">×</button>
+      <div class="dl-modal-head">
+        <img src="./assets/magicmirror_logo.png" alt="Magic Mirror logo">
+        <strong style="font-size:.95rem; color:var(--navy);">Magic Mirror</strong>
+      </div>
+      <h3 id="dlModalTitle" data-i18n="dlBoxTitle">Hayalinizdeki gelinliği bulmanın en kolay yolu</h3>
+
+      <div class="dl-store-row">
+        <a class="store-btn" href="https://apps.apple.com/app/magic-mirror-wedding-dress/id6760668920" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.54c.64-.78 1.08-1.87.96-2.96-.93.04-2.06.62-2.73 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.1-.49 2.74-1.27z"/></svg>
+          <div class="store-btn-text">
+            <small data-i18n="iosSmall2">App Store'dan İndirin</small>
+            <span>App Store</span>
+          </div>
+        </a>
+        <a class="store-btn is-secondary-store" href="https://play.google.com/store/apps/details?id=com.geniusmetaversemagicmirror" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.609 1.814L13.793 12 3.61 22.186a2.38 2.38 0 0 1-.61-.955V2.77c.17-.386.386-.715.609-.956zm11.266 11.268l2.36 2.36-11.83 6.76 9.47-9.12zm0-2.164L5.405 1.798l11.83 6.76-2.36 2.36zm1.528 1.082l3.414 1.95a1.59 1.59 0 0 1 0 2.766l-3.414 1.95-2.022-2.022 2.022-2.644z"/></svg>
+          <div class="store-btn-text">
+            <small data-i18n="gpSmall2">Google Play'den Alın</small>
+            <span>Google Play</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="dl-modal-qr">
+        <div class="qr-frame">
+          <img src="./assets/magicmirror_qr_code.png" alt="Magic Mirror Download QR Code">
+        </div>
+        <div>
+          <p data-i18n="qrCaption">Uygulamayı indirmek için taratın</p>
+          <a class="ig-pill" href="https://www.instagram.com/magicmirror.bridaltryon/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+            <span>@magicmirror.bridaltryon</span>
           </a>
         </div>
-
-        <!-- 2. Kolon: Sayfa / Navigasyon Menüsü -->
-        <div>
-          <h4 class="footer-col-title" data-i18n="footerColPages">Pages</h4>
-          <ul class="footer-links-list">
-            <li><a href="#how-it-works" data-i18n="navHow">HOW IT WORKS</a></li>
-            <li><a href="#features" data-i18n="navFeatures">FEATURES</a></li>
-            <li><a href="#brands" data-i18n="navBrands">BRANDS</a></li>
-            <li><a href="#contact" data-i18n="navContact">CONTACT US</a></li>
-            <li><a href="#download" data-i18n="navDownload">DOWNLOAD</a></li>
-          </ul>
-        </div>
-
-        <!-- 3. Kolon: Yasal ve Yardım Belgeleri (Dile Göre Dinamik) -->
-        <div>
-          <h4 class="footer-col-title" data-i18n="footerColLegal">Legal</h4>
-          <ul class="footer-links-list">
-            <li><a id="footerFaq" href="faq-tr.html" data-i18n="linkFaq">Frequently Asked Questions (FAQ)</a></li>
-            <li><a id="footerTos" href="terms-of-service-tr.html" data-i18n="linkTos">Terms of Service (TOS)</a></li>
-            <li><a id="footerPp" href="privacy-policy-tr.html" data-i18n="linkPp">Privacy Policy (PP)</a></li>
-            <li><a id="footerSupport" href="support.html" data-i18n="linkSupport">Support & Contact</a></li>
-          </ul>
-        </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Alt Ortalanmış Telif Satırı -->
-      <div class="footer-bottom-copyright">
-        Copyright © 2026, a product of littleGenius
-      </div>
+  <footer class="footer">
+    <div class="footer-bar">
+      <span data-i18n="copyright">Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır</span>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="tosLink" href="terms-of-service.html" data-i18n="footTOS">Kullanım Koşulları</a>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <a id="ppLink" href="privacy-policy.html" data-i18n="footPP">Gizlilik Politikası</a>
     </div>
   </footer>
 
-  <!-- ==========================================================================
-       DİL VE FORM GÖNDERİM SCRIPTI
-       ========================================================================== -->
   <script>
     const translations = {
-      en: {
-        navHow: "HOW IT WORKS",
-        navFeatures: "FEATURES",
-        navBrands: "BRANDS",
-        navContact: "CONTACT US",
-        navDownload: "DOWNLOAD",
-        badgeText: "AI BRIDAL TRY-ON",
-        heroTitle: "Flawless Fit For Your <span class='gold-text'>Special Day.</span>",
-        heroText: "Try on hundreds of wedding dress styles with AI in seconds, tailored to your body proportions. Explore your style before visiting bridal boutiques.",
-        btnDownload: "Download App",
-        btnHow: "How It Works",
-        metaRating: "iOS & Android Ready",
-        metaAI: "Realistic AI Simulation",
-        cardSubtitle: "Bridal AI Studio & Virtual Fitting",
-        stepsKicker: "SIMPLE & FAST EXPERIENCE",
-        stepsTitle: "Find Your Dream Dress in 3 Steps",
-        stepsIntro: "Skip the exhausting boutique fitting rounds and explore limitless styles straight from your smartphone.",
-        step1Title: "Upload Your Photo",
-        step1Desc: "Upload a full-length photo or clear selfie. The AI accurately maps your silhouette and body proportions.",
-        step2Title: "Try Diverse Styles",
-        step2Desc: "Princess, mermaid, A-line or vintage... Pick any design from our rich catalog and see it on yourself instantly.",
-        step3Title: "Compare & Share",
-        step3Desc: "Save your favorite try-ons to your private gallery, collect votes from family and friends, and choose with total confidence.",
-        featKicker: "SMART CAPABILITIES",
-        featTitle: "Innovations That Make Fitting Effortless",
-        featIntro: "Magic Mirror is not just an image filter; it is an advanced fashion AI that accurately renders fabric drape, textures, and lighting.",
-        feat1Title: "Magic Studio (Custom Design)",
-        feat1Desc: "Customize neckline styles (sweetheart, V-neck, off-shoulder), fabrics (lace, satin, chiffon), and skirts to your taste.",
-        feat2Title: "Try Any Dress from Inspiration",
-        feat2Desc: "Upload photos of wedding gowns found on Pinterest, Instagram, or magazines and virtually try them on immediately.",
-        feat3Title: "Bridesmaid & Family Polls",
-        feat3Desc: "Place styles side-by-side, create anonymous polls, and easily collect votes and feedback from your loved ones.",
-        feat4Title: "Personal Fit & Style Quiz",
-        feat4Desc: "Enter your height and sizing details to receive intelligent recommendations for silhouettes that flatter your shape best.",
-        feat5Title: "High-Resolution Export",
-        feat5Desc: "Save your favorite simulations in crisp high quality to share with your bridal boutique or tailor.",
-        feat6Title: "Privacy & Security",
-        feat6Desc: "Your photos are processed securely solely for virtual fitting and are never shared with third parties without permission.",
-        brandsKicker: "COLLECTIONS & SILHOUETTES",
-        brandsTitle: "Silhouettes For Every Taste",
-        brandsIntro: "From international runway trends to timeless classics, all forms await you in the Magic Mirror catalog.",
-        sil1Title: "A-Line",
-        sil1Desc: "Flattering for all body types, balanced and timelessly elegant.",
-        sil2Title: "Ball Gown (Princess)",
-        sil2Desc: "Voluminous skirts and a fitted bodice for a true fairytale celebration.",
-        sil3Title: "Mermaid",
-        sil3Desc: "Boldly hugging curves for a feminine and sophisticated look.",
-        sil4Title: "Bohemian & Helen",
-        sil4Desc: "Flowing fabrics, rustic laces, ideal for romantic outdoor weddings.",
-        dlKicker: "GET STARTED TODAY",
-        dlTitle: "Try Magic Mirror For Free",
-        dlIntro: "Download to your iOS or Android device in seconds and begin your bridal fitting journey today.",
-        dlHeading: "Finding Your Perfect Dress Is Now Effortless",
-        dlParagraph: "Don't spend weeks visiting crowded salons blindly. Download free from Google Play or the App Store and start your first fitting right now.",
-        qrCaption: "Scan the QR code with your phone camera to download the app instantly.",
-        contactMainTitle: "Contact us",
-        contactPitch: "Please contact us with any questions or requests",
-        contactDesc: "Have questions, feedback, boutique partnership inquiries, or need support? Send us a message and our team will get in touch with you shortly.",
-        formEmail: "Email",
-        formName: "Name",
-        formMessage: "What can we help you with?",
-        formConsent: "I agree to receive communications from littleGENIUS. For more information on how we protect and respect your privacy, please review our <a id='formPrivacyLink' href='privacy-policy-en.html' target='_blank'>Privacy Policy</a>.",
-        btnSubmit: "Submit",
-        btnSending: "Sending...",
-        msgSuccess: "Thank you! Your message has been sent successfully. We will get back to you shortly.",
-        msgError: "Oops! Something went wrong while sending your message. Please write directly to magicmirroriletisim@gmail.com.",
-        footerBrandText: "We create digital experiences and original mobile applications that inspire, entertain, and bring ideas to life.",
-        footerHomeLink: "littleGENIUS Home Platform",
-        footerColPages: "Pages",
-        footerColLegal: "Legal",
-        linkFaq: "Frequently Asked Questions (FAQ)",
-        linkTos: "Terms of Service (TOS)",
-        linkPp: "Privacy Policy (PP)",
-        linkSupport: "Support & Contact"
-      },
       tr: {
-        navHow: "NASIL ÇALIŞIR",
         navFeatures: "ÖZELLİKLER",
-        navBrands: "MODELLER",
+        navBoutiques: "İŞ BİRLİĞİ",
+        navFaq: "SSS",
         navContact: "İLETİŞİM",
         navDownload: "İNDİR",
-        badgeText: "YAPAY ZEKÂ GELİNLİK PROVASI",
-        heroTitle: "En Özel Gününüz İçin <span class='gold-text'>Kusursuz Duruş.</span>",
-        heroText: "Yapay zekâ teknolojisiyle saniyeler içinde yüzlerce gelinlik modelini kendi vücut ölçülerinizle deneyin, tarzınızı keşfedin ve hayalinizdeki elbiseyi butiklere gitmeden görün.",
-        btnDownload: "Uygulamayı İndir",
-        btnHow: "Nasıl Çalışır?",
-        metaRating: "iOS & Android Uyumlu",
-        metaAI: "Gerçekçi AI Simülasyonu",
-        cardSubtitle: "Gelinlik AI Stüdyosu & Sanal Prova",
-        stepsKicker: "KOLAY VE HIZLI DENEYİM",
-        stepsTitle: "Hayalinizdeki Gelinliğe 3 Adımda Ulaşın",
-        stepsIntro: "Butik prova randevuları arasında yorulmadan, dilediğiniz her an telefonunuzdan prova yapın.",
+        heroSubtitle: "Yapay Zekâ Destekli Sanal Gelinlik Provası",
+        heroTitle: 'Tek Bir Selfie ile <span class="gold-text">Hayalindeki Gelinliği Üzerinde Gör</span>',
+        heroLead: "Mağazalarda saatlerce ağır gelinlikler deneyip yorulmadan önce kendi fotoğrafınla 1000'lerce couture modeli saniyeler içinde üzerinde gör. Özel tasarımlar oluştur, en yakınlarınla canlı anket başlat ve provaya \"O Gelinliği\" bilerek git.",
+        iosSmall: "App Store'dan İndirin",
+        gpSmall: "Google Play'den Alın",
+        iosSmall2: "App Store'dan İndirin",
+        gpSmall2: "Google Play'den Alın",
+        platformNote: "İlk provan tamamen ücretsiz · iOS ve Android",
+        tryonHeading: "Sanal Gelinlik Provası",
+        tryonLead: "Tek dokunuşla, kendi yüzün ve vücut ölçünle...",
+        tryonFoot: "Önce üzerinde gör, sonra mağazada güvenle dene.",
+        v1Title: "Fotoğrafınız + Gelinlik = Üzerinizde",
+        v1Tag: "~30 Saniye",
+        v1Desc: "Boydan fotoğrafınızı yükleyin, beğendiğiniz modeli seçin; Magic Mirror kumaş dökümünü ve ışığı vücut ölçülerinize uyarlasın.",
+        flowPhoto: "Fotoğrafın",
+        flowPhotoSub: "Net bir kare",
+        flowDress: "Gelinlik",
+        flowDressSub: "Katalog veya ilham",
+        flowResult: "Üzerinde",
+        flowResultSub: "Gerçekçi prova",
+        v2Title: "Magic Studio · Özel Tasarım",
+        v2Tag: "Özel Kombinasyon",
+        v2Desc: "Yaka formu, kumaş dokusu ve etek silüetini birleştirerek hayalinizdeki gelinliği adım adım oluşturun.",
+        spec1Lbl: "Yaka",
+        spec1Val: "Kalp / V Yaka",
+        spec2Lbl: "Kumaş",
+        spec2Val: "Dantel & Tül",
+        spec3Lbl: "Silüet",
+        spec3Val: "A-Kesim / Balık",
+        v3Title: "Yakınlarınla Canlı Anket",
+        v3Tag: "Özel Paylaşım",
+        v3Desc: "Kararsız kaldığınız gelinlik provalarını yan yana kaydedin, WhatsApp veya özel bağlantı üzerinden anket başlatın.",
+        v3Chip1: "Yüksek Çözünürlük",
+        v3Chip2: "Favori Listesi",
+        v3Chip3: "Hızlı Paylaşım",
+        v4Title: "Her Zevke Uygun Silüetler",
+        v4Tag: "Klasik & Modern",
+        v4Desc: "Vücut tipinize ve düğün konseptinize en uygun kesimi keşfedin; A-Kesim'den Balık modele kadar tüm tarzları karşılaştırın.",
+        v4Chip1: "A-Kesim & Prenses",
+        v4Chip2: "Balık & Bohem",
+        tabTryOn: "AI Prova",
+        tabStudio: "Stüdyo",
+        tabVote: "Anket",
+        tabBoutique: "Silüetler",
+        stepsHeading: "Hayalinizdeki gelinliğe 3 adımda ulaşın",
+        stepsSub: "Mağaza randevuları arasında yorulmadan, telefonunuzdan dilediğiniz an prova yapın.",
         step1Title: "Fotoğrafınızı Yükleyin",
-        step1Desc: "Boydan bir fotoğrafınızı veya net bir selfie yükleyin. Yapay zekâ, vücut hatlarınızı ve proporsiyonunuzu hassasiyetle algılar.",
-        step2Title: "Modelleri Deneyin",
-        step2Desc: "Prenses, balık, A-kesim veya vintage... Geniş katalogdan dilediğiniz tasarımı seçin ve saniyeler içinde üzerinizde görün.",
-        step3Title: "Kıyaslayın & Paylaşın",
-        step3Desc: "Favori provalarınızı galerinize kaydedin, sevdiklerinizle oylama yapın ve en kusursuz karara güvenle ulaşın.",
-        featKicker: "AKILLI ÖZELLİKLER",
-        featTitle: "Gelinlik Seçimini Kolaylaştıran Yenilikler",
-        featIntro: "Magic Mirror, yalnızca fotoğraf yerleştiren sıradan bir filtre değil; kumaş dökümünü ve ışığı hesaplayan gelişmiş bir moda yapay zekâsıdır.",
-        feat1Title: "Magic Studio (Özel Tasarım)",
-        feat1Desc: "Yaka formu (kalp, V yaka, kayık), kumaş türü (dantel, tül, saten) ve etek kesimlerini dilediğiniz gibi birleştirin.",
-        feat2Title: "İlhamdan Deneme (Try Any Dress)",
-        feat2Desc: "Pinterest, Instagram veya dergilerde görüp beğendiğiniz herhangi bir gelinliğin fotoğrafını yükleyin, anında üzerinizde görün.",
-        feat3Title: "Nedime & Aile Oylaması",
-        feat3Desc: "Kararsız kaldığınız modelleri yan yana koyup gizli anketler oluşturun, arkadaşlarınızın ve ailenizin oylarını tek ekranda toplayın.",
-        feat4Title: "Kişisel Stil & Vücut Analizi",
-        feat4Desc: "Boy ve beden bilgilerinizi girerek vücut tipinize en çok yakışacak silüet önerilerini akıllı algoritmadan alın.",
-        feat5Title: "Yüksek Kaliteli Dışa Aktarım",
-        feat5Desc: "Beğendiğiniz tüm simülasyonları yüksek çözünürlükle cihazınıza kaydedin ve prova randevularınızda terzinize gösterin.",
-        feat6Title: "Gizlilik & Güvenlik",
-        feat6Desc: "Fotoğraflarınız yalnızca prova işlemi için güvenle işlenir ve izniniz olmadan üçüncü taraflarla asla paylaşılmaz.",
-        brandsKicker: "KOLEKSİYONLAR & TARZLAR",
-        brandsTitle: "Her Zevke Uygun Silüetler",
-        brandsIntro: "Dünya moda trendlerinden geleneksel çizgilere, aradığınız tüm formlar Magic Mirror kataloğunda.",
-        sil1Title: "A-Kesim (A-Line)",
-        sil1Desc: "Her vücut tipine uyum sağlayan, dengeli ve zamansız zarafet.",
-        sil2Title: "Prenses (Ball Gown)",
-        sil2Desc: "Masalsı bir düğün için hacimli etekler ve vurgulanmış bel formu.",
-        sil3Title: "Balık Kesim (Mermaid)",
-        sil3Desc: "Vücut hatlarını cesurca saran, feminen ve sofistike silüet.",
-        sil4Title: "Bohem & Helen",
-        sil4Desc: "Uçuşan tüller, rustik danteller ve kır düğünlerinin favorisi.",
-        dlKicker: "HEMEN BAŞLAYIN",
-        dlTitle: "Magic Mirror'ı Ücretsiz Deneyin",
-        dlIntro: "iOS veya Android cihazınıza saniyeler içinde indirin; gelinlik provanızı bugün başlatın.",
-        dlHeading: "Gelinliğinizi Keşfetmek Artık Çok Kolay",
-        dlParagraph: "Mağaza aramalarında zaman kaybetmeyin. İster Google Play'den ister App Store'dan ücretsiz indirip hemen ilk provanızı yapabilirsiniz.",
-        qrCaption: "Telefonunuzun kamerasıyla QR kodu tarayarak uygulamayı anında indirin.",
-        contactMainTitle: "Bize Ulaşın",
-        contactPitch: "Sorularınız ve talepleriniz için lütfen bize ulaşın",
-        contactDesc: "Sorularınız, geri bildirimleriniz, butik entegrasyonları veya iş birliği fırsatları için bize dilediğiniz zaman ulaşabilirsiniz. Ekibimiz en kısa sürede sizinle iletişime geçecektir.",
-        formEmail: "E-posta",
-        formName: "İsim & Soyisim",
-        formMessage: "Size nasıl yardımcı olabiliriz?",
-        formConsent: "littleGENIUS tarafından bilgilendirilme almayı kabul ediyorum. Gizliliğinizi nasıl koruduğumuz hakkında bilgi için <a id='formPrivacyLink' href='privacy-policy-tr.html' target='_blank'>Gizlilik Politikası</a>'nı inceleyin.",
-        btnSubmit: "Gönder",
+        step1Desc: "Boydan bir fotoğrafınızı seçin. Yapay zekâ, vücut hatlarınızı ve proporsiyonunuzu hassasiyetle analiz eder.",
+        step2Title: "Modelleri Üzerinizde Görün",
+        step2Desc: "Katalogdan veya kendi ilham görsellerinizden (Pinterest/Instagram) bir model seçin ve saniyeler içinde sonucu görün.",
+        step3Title: "Karşılaştırın & Randevuya Hazırlanın",
+        step3Desc: "Favori provalarınızı kaydedin, sevdiklerinizle paylaşın ve mağaza randevunuza tam olarak ne istediğinizi bilerek gidin.",
+        featKicker: "TEK TIK PROVA",
+        featHeading: "İster Kendin Tasarla, İster Beğendiğin Modeli Anında Dene",
+        featSub: "Hayalindeki gelinliği bulmak için üç güçlü yol, tek bir noktada:<br>İster sıfırdan kendin tasarla, ister beğendiğin bir modeli yükle, istersen seçkin modaevlerinin koleksiyonlarından ilham al.",
+        f1Title: "Hayalindeki Gelinliği Tasarla",
+        f1Desc: "Kesimi, stili, kumaşı, yaka ve kol detaylarını seç; yapay zekâ teknolojisiyle sonucu üzerinde gör.",
+        f2Title: "Instagram, Pinterest veya Katalog Fotoğrafı...",
+        f2Desc: "Beğendiğin herhangi bir gelinlik fotoğrafını yükle; tek dokunuşla kendi üzerinde nasıl durduğunu gör.",
+        f4Title: "Global ve Yerel Modaevleri",
+        f4Desc: "Dünyaca ünlü markaların ve lokal gelinlik mağazalarının güncel koleksiyonlarını keşfet, özel fırsatlardan yararlan, randevu al.",
+        mbHeading: "Kaydet, Karşılaştır, Paylaş & Yakınlarınla Anket Başlat",
+        mbSub: "Favori provalarını kişisel galerinde yan yana karşılaştır. Kararsız kaldığın modelleri tek dokunuşla canlı ankete dönüştür; yakın arkadaşların ve ailenle gerçek zamanlı ankette oylatıp \"O Gelinliği\" birlikte seç.",
+        mbCardTitle: "Favori Provalarım",
+        mbPill: "Canlı Anket Sonuçları",
+        mbWinnerBadge: "★ En Çok Oy Alan",
+        mbPrivacy: "Fotoğraflarınız yalnızca sanal prova için işlenir ve en geç 7 gün içinde silinir.",
+        b2bHeading: "Gelinlik Mağazaları ve Tasarımcılar İçin",
+        b2bSub: "Koleksiyonunuzu yapay zekâ provasıyla buluşturun; randevu öncesi elbisenizi üzerinde görmüş, karar vermeye hazır gelin adaylarına ulaşın.",
+        b2b1Title: "Koleksiyon Vitrin Profili",
+        b2b1Desc: "Gelinlik modellerinizi Magic Mirror kataloğuna ekleyin; kullanıcılar markanızın tasarımlarını kendi fotoğrafları üzerinde doğrudan denesin.",
+        b2b2Title: "Sponsored Try-On & Öne Çıkarma",
+        b2b2Desc: "Yeni sezon koleksiyonlarınızı öne çıkarın, ilham arayan gelin adaylarının akışında markanıza özel sanal prova kampanyaları oluşturun.",
+        b2b3Title: "Mağaza Randevusuna Dönüşüm",
+        b2b3Desc: "Sadece beğeni değil; gerçek prova talebi. Modelinizi üzerinde görüp beğenen gelin adaylarını doğrudan mağazanıza yönlendirin.",
+        b2bBarText: "Markanız veya gelinlik mağazanız için erken dönem iş ortaklığı ve koleksiyon entegrasyonu görüşmesi başlatın.",
+        b2bBtn: "Mağaza / Marka Başvurusu Yap →",
+        dlHeading: "Magic Mirror'ı Ücretsiz Deneyin",
+        dlSub: "iPhone, iPad veya Android cihazınıza indirin; ilk sanal gelinlik provanızı saniyeler içinde başlatın.",
+        dlBoxTitle: "İlk gelinlik provanı şimdi ücretsiz başlat",
+        dlBoxDesc: "App Store ve Google Play üzerinden ücretsiz indirin. Yeni özellikler, gelinlik ilhamları ve gerçek prova örnekleri için Instagram topluluğumuzu takip edin.",
+        qrCaption: "Kameranızla okutup uygulamayı hemen indirin",
+        faqHeading: "Sıkça Sorulan Sorular",
+        faqSub: "Magic Mirror kullanımı, gizlilik ve iş birlikleri hakkında merak edilenler.",
+        q1: "Magic Mirror ücretsiz mi?",
+        a1: "Evet! Uygulamayı indirmek, koleksiyonları incelemek ve ilk sanal gelinlik provanızı yapmak tamamen ücretsizdir. Abonelik zorunluluğu olmadan, dilediğiniz zaman yalnızca ihtiyacınız kadar kredi paketi (2, 5, 10 veya 20 kredi) alabilirsiniz.",
+        q2: "Yüklediğim fotoğraflar güvende mi?",
+        a2: "Fotoğraflarınız yalnızca talep ettiğiniz sanal gelinlik provasını oluşturmak için güvenli biçimde işlenir. İzniniz olmadan hiçbir fotoğraf üçüncü taraflarla paylaşılmaz veya herkese açık yayınlanmaz.",
+        q3: "Instagram veya Pinterest'te gördüğüm bir gelinliği deneyebilir miyim?",
+        a3: "Kesinlikle. Beğendiğiniz herhangi bir gelinlik görselini telefonunuzdan yükleyerek kendi fotoğrafınız üzerinde saniyeler içinde gerçeğe en yakın sonucu görebilirsiniz.",
+        q4: "Prova sonuçlarını ailemle veya yakın arkadaşlarımla paylaşabilir miyim?",
+        a4: "Evet! Beğendiğiniz prova görsellerini yüksek çözünürlükle cihazınıza kaydedebilir, WhatsApp veya sosyal medya üzerinden tek dokunuşla anket oluşturup sevdiklerinize oylatabilirsiniz.",
+        q5: "Gelinlik mağazamız veya markamız Magic Mirror'da nasıl yer alabilir?",
+        a5: "Gelinlik mağazaları ve tasarımcılar için özel İş Birliği sayfamızdaki başvuru formunu doldurabilir veya info@littlegenius.tr adresine yazabilirsiniz.",
+        contactHeading: "Yardıma mı ihtiyacınız var?",
+        contactSub: "Prova deneyiminiz, önerileriniz veya iş birlikleri için bize doğrudan yazabilirsiniz.",
+        directTitle: "E-posta ile ulaşın",
+        directText: "Geri bildirimlerinizi ve yeni özellik fikirlerinizi duymaktan mutluluk duyarız.",
+        partnerNote: "Gelinlik mağazası veya marka iş birliği için:",
+        partnerLink: "İş Birliği Sayfasını İnceleyin →",
+        lblEmail: "E-posta",
+        lblName: "Ad Soyad",
+        lblMsg: "Size nasıl yardımcı olabiliriz?",
+        consentHtml: 'littleGENIUS\'tan iletişim mesajları almayı kabul ediyorum. Verilerinizi nasıl koruduğumuzu öğrenmek için <a href="privacy-policy.html?lang=tr">Gizlilik Politikamızı</a> inceleyebilirsiniz.',
+        btnSubmit: "Mesaj Gönder",
         btnSending: "Gönderiliyor...",
-        msgSuccess: "Teşekkürler! Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.",
-        msgError: "Mesaj gönderilirken bir sorun oluştu. Lütfen doğrudan magicmirroriletisim@gmail.com adresine yazın.",
-        footerBrandText: "Fikirleri gerçeğe dönüştüren özgün mobil uygulamalar ve yaratıcı dijital deneyimler geliştiriyoruz.",
-        footerHomeLink: "littleGENIUS Ana Platform",
-        footerColPages: "Sayfalar",
-        footerColLegal: "Yasal Bilgiler",
-        linkFaq: "Sıkça Sorulan Sorular (SSS)",
-        linkTos: "Kullanım Koşulları (TOS)",
-        linkPp: "Gizlilik Politikası (PP)",
-        linkSupport: "Destek & İletişim"
+        msgSuccess: "Mesajınız başarıyla iletildi. En kısa sürede dönüş yapacağız.",
+        msgError: "Mesaj gönderilirken bir sorun oluştu. Doğrudan info@littlegenius.tr adresine yazabilirsiniz.",
+        footTOS: "Kullanım Koşulları",
+        footPP: "Gizlilik Politikası",
+        copyright: "Telif Hakkı © 2026 littleGENIUS · Tüm hakları saklıdır"
+      },
+      en: {
+        navFeatures: "FEATURES",
+        navBoutiques: "PARTNER WITH US",
+        navFaq: "FAQ",
+        navContact: "CONTACT",
+        navDownload: "DOWNLOAD",
+        heroSubtitle: "AI-Powered Virtual Bridal Fitting",
+        heroTitle: 'See Your Dream Wedding Dress <span class="gold-text">With Just One Selfie.</span>',
+        heroLead: "Before spending exhausting hours trying on heavy gowns in boutiques, see 1000s of couture styles on your own photo in seconds. Design custom looks, vote live with your bridesmaids, and walk into your fitting knowing \"The One\".",
+        iosSmall: "Download on the",
+        gpSmall: "Get it on",
+        iosSmall2: "Download on the",
+        gpSmall2: "Get it on",
+        tryonHeading: "AI Virtual Fitting",
+        tryonLead: "Your face, your body, true lighting—in one tap...",
+        tryonFoot: "Try it on here first, then step into the boutique with confidence.",
+        platformNote: "Your first fitting is completely FREE · iOS & Android",
+        stageBadge: "Live Experience",
+        v1Title: "Your Photo + The Dress = You in It",
+        v1Tag: "~30 Seconds",
+        v1Desc: "Upload a full-body photo and pick any gown—Magic Mirror adapts fabric drape, lace detail, and lighting naturally to your proportions.",
+        flowPhoto: "Your Photo",
+        flowPhotoSub: "Clear portrait",
+        flowDress: "The Dress",
+        flowDressSub: "Catalog or inspo",
+        flowResult: "You in It",
+        flowResultSub: "Realistic try-on",
+        v2Title: "Magic Studio · Custom Design",
+        v2Tag: "Custom Mix",
+        v2Desc: "Combine necklines, fabrics, and silhouettes to build and preview your dream wedding dress step by step.",
+        spec1Lbl: "Neckline",
+        spec1Val: "Sweetheart / V",
+        spec2Lbl: "Fabric",
+        spec2Val: "Lace & Tulle",
+        spec3Lbl: "Silhouette",
+        spec3Val: "A-Line / Mermaid",
+        v3Title: "Bridesmaid & Family Vote",
+        v3Tag: "Private Share",
+        v3Desc: "Save your top try-on looks side by side and share via WhatsApp or private link to gather votes from friends and family.",
+        v3Chip1: "High-Res Export",
+        v3Chip2: "Favorites List",
+        v3Chip3: "Easy Sharing",
+        v4Title: "Silhouettes for Every Bride",
+        v4Tag: "Classic & Modern",
+        v4Desc: "Discover the cut that flatters your figure and wedding venue—compare A-Line, Ball Gown, Mermaid, and Boho styles effortlessly.",
+        v4Chip1: "A-Line & Ball Gown",
+        v4Chip2: "Mermaid & Boho",
+        tabTryOn: "AI Try-On",
+        tabStudio: "Studio",
+        tabVote: "Voting",
+        tabBoutique: "Silhouettes",
+        stepsHeading: "Find your dream dress in 3 simple steps",
+        stepsSub: "Try on gowns from your phone anytime—no rushing between boutique appointments.",
+        step1Title: "Upload Your Photo",
+        step1Desc: "Choose a full-length photo. Our AI accurately maps your posture and proportions.",
+        step2Title: "Try On Any Style",
+        step2Desc: "Pick from curated silhouettes or upload a dress you loved on Pinterest or Instagram and see it on yourself in seconds.",
+        step3Title: "Compare & Book with Confidence",
+        step3Desc: "Save your favorite looks, share them with your bridal party, and arrive at your fitting knowing what truly suits you.",
+        featKicker: "ONE-TAP FITTING",
+        featHeading: "Design Your Own Gown or Try On Any Dress Instantly",
+        featSub: "Three powerful ways to find your dream gown, all in one place:<br>design it from scratch, upload any photo you love, or explore curated designer collections.",
+        f1Title: "Design Your Dream Gown",
+        f1Desc: "Choose the cut, style, fabric, neckline, and sleeve details, and see the result on yourself with AI.",
+        f2Title: "Upload Any Photo from Instagram, Pinterest or Boutiques",
+        f2Desc: "Upload any wedding dress photo you love and see how it looks on yourself in a single tap.",
+        f4Title: "Global & Local Designer Collections",
+        f4Desc: "Explore the latest collections from world-renowned brands and local bridal houses, enjoy exclusive offers, and book your fitting.",
+        mbHeading: "Save, Compare, Share & Launch a Live Bridal Poll",
+        mbSub: "Compare your favorite AI fittings side by side in your gallery. Turn top contenders into an instant poll, share with bridesmaids and family, track real-time votes, and find \"The One\" together.",
+        mbCardTitle: "My Saved Fittings",
+        mbPill: "Live Poll Results",
+        mbWinnerBadge: "★ Top Voted",
+        mbPrivacy: "Your photos are processed solely for virtual try-on and automatically deleted within 7 days.",
+        b2bHeading: "For Bridal Boutiques & Designers",
+        b2bSub: "Bring your gowns into AI virtual try-on and reach brides who have already seen themselves in your designs before booking.",
+        b2b1Title: "Collection Showcase Profile",
+        b2b1Desc: "Feature your wedding dress catalog inside Magic Mirror so brides can virtually try on your designs directly.",
+        b2b2Title: "Sponsored Try-On Campaigns",
+        b2b2Desc: "Highlight new seasonal collections in front of actively searching brides with interactive virtual try-ons.",
+        b2b3Title: "High-Intent Store Appointments",
+        b2b3Desc: "Turn digital inspiration into real fitting-room bookings from brides who already love how your gown looks on them.",
+        b2bBarText: "Interested in early boutique onboarding or designer collection integration? Let's talk.",
+        b2bBtn: "Apply as a Boutique / Brand →",
+        dlHeading: "Try Magic Mirror for Free",
+        dlSub: "Download on iPhone, iPad, or Android and start your first AI wedding dress fitting in seconds.",
+        dlBoxTitle: "Claim your first free bridal fitting today",
+        dlBoxDesc: "Free on the App Store and Google Play. Follow our Instagram community for new features, gown inspiration, and real try-on highlights.",
+        qrCaption: "Scan with your phone camera to download now",
+        faqHeading: "Frequently Asked Questions",
+        faqSub: "Everything you need to know about Magic Mirror, privacy, and boutique partnerships.",
+        q1: "Is Magic Mirror free to use?",
+        a1: "Yes! Downloading the app, browsing collections, and your first virtual bridal fitting are completely free. With no forced subscriptions, you can simply grab credit packs (2, 5, 10, or 20 credits) whenever you want more fittings.",
+        q2: "Are my uploaded photos kept private and safe?",
+        a2: "Your photos are processed securely solely to generate your requested bridal try-on. They are never sold or shared publicly without your permission.",
+        q3: "Can I try on a dress I found on Pinterest or Instagram?",
+        a3: "Yes! Simply upload any wedding dress photo from Instagram, Pinterest, or a boutique, and preview how it looks on your own body in seconds.",
+        q4: "Can I share my try-on results with family or bridesmaids?",
+        a4: "Yes, you can save high-resolution results to your device and turn them into an instant live poll on WhatsApp or social media to vote together.",
+        q5: "How can our bridal boutique or brand partner with Magic Mirror?",
+        a5: "Visit our dedicated Partner With Us page to submit your collection details, or email info@littlegenius.tr.",
+        contactHeading: "Need a hand before the big day?",
+        contactSub: "Reach out directly for fitting questions, feature ideas, or feedback.",
+        directTitle: "Email us directly",
+        directText: "We read every note and love hearing from brides using Magic Mirror.",
+        partnerNote: "For bridal boutiques or designer brands:",
+        partnerLink: "Visit Partners Page →",
+        lblEmail: "Email",
+        lblName: "Full Name",
+        lblMsg: "How can we help you?",
+        consentHtml: 'I agree to receive communications from littleGENIUS. Review our <a href="privacy-policy.html?lang=en">Privacy Policy</a> to learn how we safeguard your data.',
+        btnSubmit: "Send Message",
+        btnSending: "Sending...",
+        msgSuccess: "Thanks! Your message has been sent and we will reply soon.",
+        msgError: "Something went wrong. Please email info@littlegenius.tr directly.",
+        footTOS: "Terms of Service",
+        footPP: "Privacy Policy",
+        copyright: "Copyright © 2026 littleGENIUS · All rights reserved"
       }
     };
 
     let language = "tr";
-
     function setLanguage(nextLang) {
       language = nextLang;
       document.documentElement.lang = nextLang;
-
-      // Metinleri Güncelle
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        if (translations[nextLang] && translations[nextLang][key]) {
-          el.innerHTML = translations[nextLang][key];
+        if (translations[nextLang][key] !== undefined) {
+          if (key === "heroTitle" || key === "featSub") el.innerHTML = translations[nextLang][key];
+          else el.textContent = translations[nextLang][key];
         }
       });
-
-      // Dil Butonlarını Güncelle
       document.querySelectorAll("[data-lang]").forEach(btn => {
         btn.setAttribute("aria-pressed", String(btn.dataset.lang === nextLang));
       });
-
-      // Form içindeki gizlilik politikası linkini güncelle
-      const formPrivacyLink = document.getElementById("formPrivacyLink");
-      if (formPrivacyLink) {
-        formPrivacyLink.href = nextLang === "en" ? "privacy-policy-en.html" : "privacy-policy-tr.html";
+      const consentEl = document.getElementById("consentText");
+      if (consentEl && translations[nextLang].consentHtml) {
+        consentEl.innerHTML = translations[nextLang].consentHtml;
       }
-
-      // Footer yasal linklerini dile göre güncelle
-      const footerFaq = document.getElementById("footerFaq");
-      const footerTos = document.getElementById("footerTos");
-      const footerPp = document.getElementById("footerPp");
-      if (footerFaq) footerFaq.href = nextLang === "en" ? "faq-en.html" : "faq-tr.html";
-      if (footerTos) footerTos.href = nextLang === "en" ? "terms-of-service-en.html" : "terms-of-service-tr.html";
-      if (footerPp) footerPp.href = nextLang === "en" ? "privacy-policy-en.html" : "privacy-policy-tr.html";
-
-      try {
-        localStorage.setItem("littleGENIUSLanguage", nextLang);
-      } catch (e) {}
+      const ppEl = document.getElementById("ppLink");
+      const tosEl = document.getElementById("tosLink");
+      const navBoutiquesEl = document.getElementById("navBoutiques");
+      const contactPartnerEl = document.getElementById("contactPartnerLink");
+      if (ppEl) ppEl.href = `privacy-policy.html?lang=${nextLang}`;
+      if (tosEl) tosEl.href = `terms-of-service.html?lang=${nextLang}`;
+      if (navBoutiquesEl) navBoutiquesEl.href = `partners.html?lang=${nextLang}`;
+      if (contactPartnerEl) contactPartnerEl.href = `partners.html?lang=${nextLang}`;
+      try { localStorage.setItem("littleGENIUSLanguage", nextLang); } catch (e) {}
     }
 
     document.querySelectorAll("[data-lang]").forEach(btn => {
       btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
     });
 
-    // Ana platform dilini senkronize et
     let savedLanguage = "tr";
     try {
-      savedLanguage = localStorage.getItem("littleGENIUSLanguage") || "tr";
+      const params = new URLSearchParams(window.location.search);
+      savedLanguage = params.get("lang") || localStorage.getItem("littleGENIUSLanguage") || "tr";
     } catch (e) {}
     setLanguage(savedLanguage === "en" ? "en" : "tr");
 
-    // ==========================================================================
-    // FORM GÖNDERİMİ (AJAX ile Sayfa Yenilenmeden magicmirroriletisim@gmail.com'a Gönderim)
-    // ==========================================================================
+    // 5 real Before + Model -> After Try-On pairs with dots & auto-cycle
+    const lookPairs = [
+      { before: "./assets/before_1.png", model: "./assets/model_1.png", after: "./assets/after_1.png" },
+      { before: "./assets/before_2.png", model: "./assets/model_2.png", after: "./assets/after_2.png" },
+      { before: "./assets/before_3.jpg", model: "./assets/model_3.jpg", after: "./assets/after_3.jpg" },
+      { before: "./assets/before_4.jpg", model: "./assets/model_4.png", after: "./assets/after_4.jpg" },
+      { before: "./assets/before_5.png", model: "./assets/model_5.png", after: "./assets/after_5.png" }
+    ];
+    const tryonBeforeImg = document.getElementById("tryonBeforeImg");
+    const tryonModelImg = document.getElementById("tryonModelImg");
+    const tryonResultBase = document.getElementById("tryonResultBase");
+    const tryonAfterImg = document.getElementById("tryonAfterImg");
+    const tileBefore = document.getElementById("tileBefore");
+    const tileModel = document.getElementById("tileModel");
+    const tileResult = document.getElementById("tileResult");
+    const opPlus = document.getElementById("opPlus");
+    const opEquals = document.getElementById("opEquals");
+    const resultStage = document.getElementById("resultStage");
+    const lookDots = document.querySelectorAll(".look-dot");
+    const prevLookBtn = document.getElementById("prevLook");
+    const nextLookBtn = document.getElementById("nextLook");
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let currentLook = 0;
+    let lookTimer = null;
+    let stepTimers = [];
+
+    function clearStepTimers() {
+      stepTimers.forEach(t => window.clearTimeout(t));
+      stepTimers = [];
+    }
+
+    function showLook(index) {
+      clearStepTimers();
+      currentLook = (index + lookPairs.length) % lookPairs.length;
+      const pair = lookPairs[currentLook];
+
+      if (tryonBeforeImg) tryonBeforeImg.src = pair.before;
+      if (tryonModelImg) tryonModelImg.src = pair.model;
+      if (tryonResultBase) tryonResultBase.src = pair.before;
+      if (tryonAfterImg) tryonAfterImg.src = pair.after;
+      lookDots.forEach((dot, idx) => dot.setAttribute("aria-pressed", String(idx === currentLook)));
+
+      if (prefersReduced) {
+        if (resultStage) resultStage.classList.add("is-transformed");
+        return;
+      }
+
+      // Reset result transformation, then run golden beam + magic sparkle reveal
+      if (resultStage) {
+        resultStage.classList.remove("is-transformed", "is-wiping", "is-sparkling");
+        void resultStage.offsetWidth;
+      }
+
+      // After showing Before + Model + Before together, sweep into After with sparkles
+      stepTimers.push(window.setTimeout(() => {
+        if (resultStage) resultStage.classList.add("is-wiping", "is-transformed");
+      }, 650));
+
+      stepTimers.push(window.setTimeout(() => {
+        if (resultStage) resultStage.classList.add("is-sparkling");
+      }, 1150));
+    }
+
+    function startLookCycle() {
+      if (lookTimer) window.clearInterval(lookTimer);
+      if (prefersReduced) return;
+      lookTimer = window.setInterval(() => showLook(currentLook + 1), 5400);
+    }
+
+    lookDots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        showLook(idx);
+        startLookCycle();
+      });
+    });
+    if (prevLookBtn) prevLookBtn.addEventListener("click", () => { showLook(currentLook - 1); startLookCycle(); });
+    if (nextLookBtn) nextLookBtn.addEventListener("click", () => { showLook(currentLook + 1); startLookCycle(); });
+    showLook(0);
+    startLookCycle();
+
+    // Download popup modal
+    const downloadModal = document.getElementById("downloadModal");
+    const openDownloadBtn = document.getElementById("openDownloadModal");
+    const closeDownloadBtn = document.getElementById("closeDownloadModal");
+
+    function setDownloadModal(open) {
+      if (!downloadModal) return;
+      downloadModal.hidden = !open;
+      downloadModal.classList.toggle("is-open", open);
+    }
+
+    if (openDownloadBtn) openDownloadBtn.addEventListener("click", () => setDownloadModal(true));
+    if (closeDownloadBtn) closeDownloadBtn.addEventListener("click", () => setDownloadModal(false));
+    if (downloadModal) {
+      downloadModal.addEventListener("click", e => {
+        if (e.target === downloadModal) setDownloadModal(false);
+      });
+    }
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") setDownloadModal(false);
+    });
+    try {
+      if (new URLSearchParams(window.location.search).get("download") === "1") setDownloadModal(true);
+    } catch (e) {}
+
+    // Moodboard interactive vote toggle
+    document.querySelectorAll(".mb-vote-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const voted = btn.classList.toggle("is-voted");
+        const base = Number(btn.dataset.votes || 0);
+        btn.textContent = `♥ ${voted ? base + 1 : base}`;
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll(".faq-question").forEach(btn => {
+      btn.addEventListener("click", () => btn.parentElement.classList.toggle("active"));
+    });
+
+    // Contact form
     const contactForm = document.getElementById("contactForm");
     const formStatus = document.getElementById("formStatus");
     const submitBtn = document.getElementById("submitBtn");
     const btnSubmitText = document.getElementById("btnSubmitText");
-
     contactForm.addEventListener("submit", async function(e) {
       e.preventDefault();
-
-      // Butonu bekleme moduna al
       submitBtn.disabled = true;
-      btnSubmitText.textContent = translations[language].btnSending || "Sending...";
+      btnSubmitText.textContent = translations[language].btnSending;
       formStatus.className = "form-status";
-      formStatus.style.display = "none";
-
-      const formData = new FormData(contactForm);
-
       try {
-        const response = await fetch("https://formsubmit.co/ajax/magicmirroriletisim@gmail.com", {
+        const res = await fetch("https://formsubmit.co/ajax/info@littlegenius.tr", {
           method: "POST",
-          headers: { 
-            'Accept': 'application/json'
-          },
-          body: formData
+          headers: { "Accept": "application/json" },
+          body: new FormData(contactForm)
         });
-
-        if (response.ok) {
-          formStatus.className = "form-status is-success";
-          formStatus.textContent = translations[language].msgSuccess;
-          contactForm.reset();
-        } else {
-          throw new Error("Form submission error");
-        }
-      } catch (error) {
-        formStatus.className = "form-status is-error";
+        if (!res.ok) throw new Error("Request failed");
+        formStatus.textContent = translations[language].msgSuccess;
+        formStatus.classList.add("is-success");
+        contactForm.reset();
+      } catch (err) {
         formStatus.textContent = translations[language].msgError;
+        formStatus.classList.add("is-error");
       } finally {
         submitBtn.disabled = false;
         btnSubmitText.textContent = translations[language].btnSubmit;
       }
     });
+
+    // Local file:// fallback
+    if (window.location.protocol === "file:") {
+      document.querySelectorAll("img").forEach(img => {
+        const rawSrc = img.getAttribute("src");
+        if (rawSrc && rawSrc.startsWith("./")) {
+          const remoteSrc = "https://www.littlegenius.tr/magicmirror/" + rawSrc.slice(2);
+          img.addEventListener("error", () => { img.src = remoteSrc; }, { once: true });
+        } else if (rawSrc && rawSrc.startsWith("../")) {
+          const remoteSrc = "https://www.littlegenius.tr/" + rawSrc.slice(3);
+          img.addEventListener("error", () => { img.src = remoteSrc; }, { once: true });
+        }
+      });
+    }
   </script>
 </body>
 </html>
