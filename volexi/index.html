@@ -541,9 +541,9 @@
     }
     .faq-item.active .faq-answer { display: block; }
 
-    /* Contact */
+    /* Contact (Deep Navy Section + Crisp White Cards) */
     .contact-section {
-      background: var(--navy);
+      background: var(--navy-deep);
       color: #fff;
     }
     .contact-section .section-heading { color: #fff; }
@@ -552,28 +552,30 @@
       margin-top: 36px;
       display: grid;
       grid-template-columns: .9fr 1.1fr;
-      gap: clamp(28px, 5vw, 56px);
+      gap: clamp(24px, 4vw, 48px);
       align-items: start;
     }
     .contact-direct {
       padding: 28px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, .05);
-      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 22px;
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, .14);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, .28);
     }
-    .contact-direct h3 { margin: 0 0 10px; font-size: 1.15rem; }
-    .contact-direct p { margin: 0 0 20px; color: #c4cfdf; font-size: .95rem; }
+    .contact-direct h3 { margin: 0 0 10px; font-size: 1.15rem; color: var(--navy); }
+    .contact-direct p { margin: 0 0 20px; color: #364156; font-size: .95rem; }
     .mail-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .32);
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: var(--navy);
       color: #fff;
       font-weight: 700;
       font-size: .92rem;
-      transition: border-color .2s ease, background .2s ease;
+      transition: background .2s ease, transform .2s ease;
     }
     .mail-pill svg {
       width: 18px;
@@ -581,13 +583,15 @@
       color: var(--gold);
       flex-shrink: 0;
     }
-    .mail-pill:hover { border-color: var(--gold); background: rgba(255, 255, 255, .08); }
+    .mail-pill:hover { background: var(--navy-2); transform: translateY(-1px); }
 
     .contact-form {
-      background: var(--navy-2);
-      padding: 28px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, .1);
+      background: var(--white);
+      color: var(--ink);
+      padding: clamp(24px, 4vw, 34px);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, .28);
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -601,7 +605,7 @@
       display: block;
       font-size: .82rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--navy);
       margin-bottom: 7px;
     }
     .req-star {
@@ -612,13 +616,14 @@
       width: 100%;
       padding: 12px 14px;
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, .16);
-      background: rgba(10, 19, 36, .6);
-      color: #fff;
+      border: 1px solid #d9dfe9;
+      background: #fff;
+      color: var(--navy);
       font: inherit;
       font-size: .95rem;
     }
-    .field-input::placeholder { color: #8c9bb5; }
+    .field-input::placeholder { color: #7e8aa1; }
+    .field-input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-color: var(--gold); }
     textarea.field-input { min-height: 112px; resize: vertical; }
     .consent-row {
       display: flex;
@@ -627,7 +632,7 @@
       margin-top: 2px;
       font-size: .82rem;
       line-height: 1.55;
-      color: #c9d4e7;
+      color: #364156;
       cursor: pointer;
     }
     .consent-row input[type="checkbox"] {
@@ -639,13 +644,13 @@
       cursor: pointer;
     }
     .consent-row a {
-      color: #fff;
+      color: var(--navy);
       text-decoration: underline;
       text-decoration-color: var(--gold);
       text-underline-offset: 3px;
       font-weight: 600;
     }
-    .consent-row a:hover { color: var(--gold); }
+    .consent-row a:hover { color: var(--navy-2); }
     .submit-btn {
       width: 100%;
       padding: 15px 24px;
@@ -669,8 +674,8 @@
       font-size: .88rem;
       font-weight: 600;
     }
-    .form-status.is-success { display: block; background: rgba(16, 185, 129, .18); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, .4); }
-    .form-status.is-error { display: block; background: rgba(239, 68, 68, .18); color: #fecaca; border: 1px solid rgba(239, 68, 68, .4); }
+    .form-status.is-success { display: block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .form-status.is-error { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
 
     /* Footer */
     .footer {
