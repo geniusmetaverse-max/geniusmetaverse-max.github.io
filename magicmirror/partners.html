@@ -362,15 +362,17 @@
     .faq-item[data-open="true"] .faq-a { display: block; }
     .faq-a p { margin: 0; }
 
-    /* Application Form Section (Cream Background + Crisp White Cards Standard) */
-    .apply-section { background: var(--cream); }
+    /* Application Form Section (Deep Navy Background + Crisp White Cards Standard) */
+    .apply-section { background: var(--navy-deep); color: #fff; }
+    .apply-section .section-heading { color: #fff; }
+    .apply-section .section-sub { color: #c4cfdf; }
     .apply-grid {
       margin-top: 34px; display: grid; grid-template-columns: .85fr 1.15fr;
       gap: clamp(24px, 4vw, 48px); align-items: start;
     }
     .apply-info {
-      background: var(--white); border: 1px solid var(--border); border-radius: 22px; padding: 28px;
-      box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+      background: var(--white); color: var(--ink); border: 1px solid rgba(255, 255, 255, .14); border-radius: 22px; padding: 28px;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, .28);
     }
     .apply-info h3 { margin: 0 0 8px; font-size: 1.2rem; color: var(--navy); }
     .apply-info p { margin: 0 0 18px; color: var(--ink-soft); font-size: .94rem; }
@@ -385,8 +387,8 @@
     }
 
     .apply-form-card {
-      background: var(--white); color: var(--ink); border: 1px solid var(--border); border-radius: 22px;
-      padding: clamp(24px, 4vw, 34px); box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+      background: var(--white); color: var(--ink); border: 1px solid rgba(255, 255, 255, .14); border-radius: 22px;
+      padding: clamp(24px, 4vw, 34px); box-shadow: 0 22px 50px rgba(0, 0, 0, .28);
     }
     .contact-form { display: flex; flex-direction: column; gap: 15px; }
     .form-row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
