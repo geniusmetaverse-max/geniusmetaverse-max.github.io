@@ -380,15 +380,14 @@
     .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
     .about-note { padding: 22px 26px; margin: 18px 0 0; border-left: 3px solid var(--gold); background: rgba(255, 255, 255, .64); color: #48546a; font-size: .98rem; line-height: 1.75; }
 
-    /* Contact Section (Cream Background + Crisp White Cards) */
+    /* Contact Section (Deep Navy Background + Crisp White Cards) */
     .contact-section {
-      color: var(--ink);
-      background: var(--cream);
-      border-top: 1px solid var(--border);
+      color: #fff;
+      background: #0a1324;
     }
-    .contact-section h2 { color: var(--navy); }
-    .contact-section .section-kicker { color: #a17d27; }
-    .contact-section .section-intro { color: var(--ink-soft); }
+    .contact-section h2 { color: #fff; }
+    .contact-section .section-kicker { color: #f0d37a; }
+    .contact-section .section-intro { color: #c4cfdf; }
     .contact-grid {
       margin-top: 34px;
       display: grid;
@@ -400,8 +399,9 @@
       padding: 28px;
       border-radius: 22px;
       background: var(--white);
-      border: 1px solid var(--border);
-      box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, .14);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, .28);
     }
     .contact-direct h3 { margin: 0 0 18px; font-size: 1.15rem; color: var(--navy); }
     .mail-pill {
@@ -424,8 +424,8 @@
       color: var(--ink);
       padding: clamp(24px, 4vw, 34px);
       border-radius: 22px;
-      border: 1px solid var(--border);
-      box-shadow: 0 14px 36px rgba(16, 26, 49, .05);
+      border: 1px solid rgba(255, 255, 255, .14);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, .28);
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -509,7 +509,7 @@
     }
     .form-status.is-success { display: block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
     .form-status.is-error { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
-    .footer { padding: 23px 20px; color: #b7c1d3; background: #0b1427; text-align: center; font-size: .82rem; }
+    .footer { padding: 23px 20px; color: #b7c1d3; background: #0a1324; border-top: 1px solid rgba(255, 255, 255, .08); text-align: center; font-size: .82rem; }
 
     @media (max-width: 980px) {
       .hero { background-position: 28% bottom; }
