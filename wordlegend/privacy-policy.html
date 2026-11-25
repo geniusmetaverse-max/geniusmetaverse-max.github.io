@@ -329,7 +329,7 @@
         <a href="index.html#features" id="navFeatures">ÖZELLİKLER</a>
         <a href="index.html#faq" id="navFaq">SSS</a>
         <a href="index.html#contact" id="navContact">İLETİŞİM</a>
-        <a class="nav-download" href="index.html#download" id="navDownload">İNDİR</a>
+        <a class="nav-download" href="index.html?modal=download" id="navDownload">İNDİR</a>
       </nav>
       <div class="language-switch" aria-label="Dil / Language">
         <button type="button" data-lang="tr" aria-pressed="true">TR</button>
@@ -657,7 +657,7 @@
       document.getElementById("navFeatures").href = `index.html?lang=${activeLang}#features`;
       document.getElementById("navFaq").href = `index.html?lang=${activeLang}#faq`;
       document.getElementById("navContact").href = `index.html?lang=${activeLang}#contact`;
-      document.getElementById("navDownload").href = `index.html?lang=${activeLang}#download`;
+      document.getElementById("navDownload").href = `index.html?lang=${activeLang}&modal=download`;
       document.getElementById("footLinkTos").href = `terms-of-service.html?lang=${activeLang}`;
       document.getElementById("footLinkPp").href = `privacy-policy.html?lang=${activeLang}`;
       try { localStorage.setItem("littleGENIUSLanguage", activeLang); } catch (e) {}
