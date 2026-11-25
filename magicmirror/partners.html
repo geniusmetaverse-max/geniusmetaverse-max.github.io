@@ -246,10 +246,15 @@
     }
     .ev-impact { display: grid; gap: 8px; }
     .ev-metric {
+      display: flex; align-items: center; gap: 10px;
       padding: 10px 13px; border-radius: 12px; background: #faf9f6; border: 1px solid var(--border);
     }
-    .ev-metric strong { display: block; font-size: .89rem; color: var(--navy); }
-    .ev-metric span { display: block; font-size: .78rem; color: var(--muted); line-height: 1.4; }
+    .ev-arrow {
+      flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+      color: var(--navy);
+    }
+    .ev-arrow svg { width: 16px; height: 28px; display: block; }
+    .ev-metric strong { display: block; font-size: .89rem; line-height: 1.32; color: var(--navy); }
 
     .editorial-copy .section-sub { margin-bottom: 24px; }
     .editorial-list { border-top: 1px solid rgba(16, 26, 49, .14); }
@@ -454,7 +459,7 @@
     <div class="header-right">
       <nav class="main-nav" aria-label="Section navigation">
         <a href="#solutions" data-i18n="navWhy">NEDEN MAGIC MIRROR</a>
-        <a href="#packages" data-i18n="navPacks">ÇÖZÜMLER</a>
+        <a href="#packages" data-i18n="navPacks">HİZMETLERİMİZ</a>
         <a href="#faq" data-i18n="navFaq">SSS</a>
         <a href="#apply" data-i18n="navApply">İŞ ORTAĞI OL</a>
         <a class="nav-download" href="index.html" id="navAppHome" data-i18n="navApp">UYGULAMA</a>
@@ -514,20 +519,20 @@
               <img class="ev-photo" src="./assets/partners_hero_2.jpg" alt="Magic Mirror">
               <div class="ev-impact">
                 <div class="ev-metric">
-                  <strong data-i18n="m0Title">↓ Kaçırılan Potansiyel Müşteriler</strong>
-                  <span data-i18n="m0Desc">Vitrinden geçip giden, yorulan veya ulaşamadığınız gelinler.</span>
+                  <span class="ev-arrow" aria-hidden="true"><svg viewBox="0 0 16 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v23M2.5 19.5 8 25.5l5.5-6"/></svg></span>
+                  <strong data-i18n="m0Title">Kaçırılan Potansiyel Müşteriler</strong>
                 </div>
                 <div class="ev-metric">
-                  <strong data-i18n="m1Title">↓ Boşa Giden Prova Süresi</strong>
-                  <span data-i18n="m1Desc">Aday ne istediğini bilerek gelir.</span>
+                  <span class="ev-arrow" aria-hidden="true"><svg viewBox="0 0 16 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v23M2.5 19.5 8 25.5l5.5-6"/></svg></span>
+                  <strong data-i18n="m1Title">Uzayıp Giden Prova Süreleri</strong>
                 </div>
                 <div class="ev-metric">
-                  <strong data-i18n="m2Title">↓ Gelinlik Yıpranması</strong>
-                  <span data-i18n="m2Desc">Ön eleme dijitalde tamamlanır.</span>
+                  <span class="ev-arrow" aria-hidden="true"><svg viewBox="0 0 16 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v23M2.5 19.5 8 25.5l5.5-6"/></svg></span>
+                  <strong data-i18n="m2Title">Gelinlik Yıpranmaları</strong>
                 </div>
                 <div class="ev-metric">
-                  <strong data-i18n="m3Title">↓ Boşa Giden Reklam Bütçeleri</strong>
-                  <span data-i18n="m3Desc">Hedef kitle doğrudan gelin adaylarıdır.</span>
+                  <span class="ev-arrow" aria-hidden="true"><svg viewBox="0 0 16 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v23M2.5 19.5 8 25.5l5.5-6"/></svg></span>
+                  <strong data-i18n="m3Title">Boşa Giden Reklam Bütçeleri</strong>
                 </div>
               </div>
             </div>
@@ -535,23 +540,23 @@
 
           <div class="editorial-copy">
             <h2 class="section-heading" data-i18n="solHeading">Markanız İçin Ne Değişir?</h2>
-            <p class="section-sub" data-i18n="solSub">Kararsız ziyaretçi trafiğini değil, mağazanızda provaya hazır müşterileri artırın.</p>
+            <p class="section-sub" data-i18n="solSub">Mağazanızda kararsız ziyaretçi trafiğini değil, satış potansiyeli yüksek, provaya hazır müşteri sayısını arttırın.</p>
 
             <div class="editorial-list">
               <div class="editorial-row">
-                <h3 data-i18n="v3Title">Vitrinden geçeni de, yorulan gelini de kaybetmeyin</h3>
-                <p data-i18n="v3Desc">Ulaşamadığınız kitleyi çekin, içeri girmeyen vitrin ziyaretçisine QR ile deneme sunun; fiziksel provada yorulan adaylara ise kalan modelleri dijitalde gösterip satışı sürdürün.</p>
+                <h3 data-i18n="v3Title">Karar anındaki tüm potansiyel gelin adaylarına ulaşın</h3>
+                <p data-i18n="v3Desc">İlk araştırmasını internette yapan gelin adaylarına ulaşın. Mağaza vitrininize ilgi gösteren ama içeri girmeyen ziyaretçisine QR kod ile deneme imkanı sunarak satışı başlatın. Mağazada denemelerde yorulan ya da kararsız adaylara kalan modelleri sanal kabinde gösterip satışı sürdürün.</p>
               </div>
               <div class="editorial-row">
-                <h3 data-i18n="v1Title">Daha kısa ön eleme, daha yüksek dönüşüm</h3>
+                <h3 data-i18n="v1Title">Kısa, hızlı, net provalar ile daha yüksek dönüşüm</h3>
                 <p data-i18n="v1Desc">Gelin adayı hangi kesim ve yakanın kendisine yakıştığını önceden görür; mağazanızdaki görüşme doğrudan satışa odaklanır.</p>
               </div>
               <div class="editorial-row">
-                <h3 data-i18n="v2Title">Gelinlikleriniz gereksiz yıpranmaz</h3>
+                <h3 data-i18n="v2Title">Numune gelinlikleriniz yeni gibi tertemiz</h3>
                 <p data-i18n="v2Desc">Kararsız denemeler dijitalde çözüldüğü için mağazanızdaki gelinlikler yalnızca gerçekten ilgilenen adaylar tarafından giyilir.</p>
               </div>
               <div class="editorial-row">
-                <h3 data-i18n="v4Title">Sıfır teknik efor ve iş yükü</h3>
+                <h3 data-i18n="v4Title">Sıfır maliyet, sıfır efor, sıfır risk</h3>
                 <p data-i18n="v4Desc">Yeni fotoğraf çekimi veya karmaşık entegrasyon gerekmez. Seçtiğiniz modellerin görsellerini iletmeniz yeterli; kalanını ekibimiz sizin yerine yönetir.</p>
               </div>
             </div>
@@ -586,24 +591,24 @@
                 <p data-i18n="ao1Desc">Markanız şehir ve ana vitrin listelerinde en ön sırada yer alır; daha fazla gelin adayına görünür.</p>
               </div>
               <div class="addon-item">
-                <h4 data-i18n="ao2Title">Çoklu Koleksiyon &amp; Kategori</h4>
-                <p data-i18n="ao2Desc">Daha fazla gelinliği Yeni Sezon, İndirimli Modeller veya Sample Sale gibi ayrı koleksiyonlarda sergileyin.</p>
+                <h4 data-i18n="ao2Title">Çoklu Koleksiyon Oluşturma</h4>
+                <p data-i18n="ao2Desc">Sezona ve ihtiyaçlarınıza göre, Yeni Sezon, İndirimli Modeller gibi ayrı ayrı koleksiyonlar oluşturun.</p>
               </div>
               <div class="addon-item">
-                <h4 data-i18n="ao3Title">Özel Teklif &amp; Tekil İndirim Kodu</h4>
-                <p data-i18n="ao3Desc">Promosyon ve özel fırsat duyuruları yayınlayın; gelinlere mağazanıza özel tekil indirim kodları tanımlayın.</p>
+                <h4 data-i18n="ao3Title">Özel Teklif &amp; Duyuru Yayınlama</h4>
+                <p data-i18n="ao3Desc">Promosyon ve özel fırsat duyuruları yayınlayın; kişiye özel tek kullanımlık indirim kodları tanımlayın.</p>
               </div>
               <div class="addon-item">
-                <h4 data-i18n="ao4Title">Markaya Özel Prova Kredisi &amp; Promo Kod</h4>
-                <p data-i18n="ao4Desc">Yalnızca sizin gelinlik modellerinizde kullanılmak üzere gelin adaylarına özel promo kodları tanımlayın.</p>
+                <h4 data-i18n="ao4Title">Prova Kredisi Oluşturma</h4>
+                <p data-i18n="ao4Desc">Yalnızca markanıza ait modellerde kullanılabilen özel prova kredileri tanımlayın.</p>
               </div>
               <div class="addon-item">
-                <h4 data-i18n="ao5Title">Marka Bazlı İlgi &amp; Model Raporları</h4>
-                <p data-i18n="ao5Desc">Koleksiyonunuzda en çok hangi gelinliklerin denendiğini ve ilgi gördüğünü düzenli raporlarla takip edin.</p>
+                <h4 data-i18n="ao6Title">Randevu Taleplerini Alma</h4>
+                <p data-i18n="ao6Desc">Modelinizi deneyip beğenen gelin adaylarının iletişim bilgilerini ve randevu taleplerini alın.</p>
               </div>
               <div class="addon-item">
-                <h4 data-i18n="ao6Title">Randevu Talebi &amp; Aday Bilgileri</h4>
-                <p data-i18n="ao6Desc">Modelinizi deneyip beğenen gelin adaylarının ad, telefon ve düğün tarihi bilgilerini doğrudan randevu talebi olarak alın.</p>
+                <h4 data-i18n="ao5Title">Performans Raporları</h4>
+                <p data-i18n="ao5Desc">Marka &amp; mağazanıza ait performans raporları ile sonuçları değerlendirin</p>
               </div>
             </div>
           </div>
@@ -735,7 +740,7 @@
     const translations = {
       tr: {
         navWhy: "NEDEN MAGIC MIRROR",
-        navPacks: "ÇÖZÜMLER",
+        navPacks: "HİZMETLERİMİZ",
         navFaq: "SSS",
         navApply: "İŞ ORTAĞI OL",
         navApp: "UYGULAMA",
@@ -747,23 +752,19 @@
         ls1Title: "Mevcut koleksiyon görsellerinizi gönderin",
         ls2Title: "Gerçek gelin adayları üzerinde görsün",
         ls3Title: "Hazır müşteri mağazanıza gelsin",
-        m0Title: "↓ Kaçırılan Potansiyel Müşteriler",
-        m0Desc: "Vitrinden geçip giden, yorulan veya ulaşamadığınız gelinler.",
-        m1Title: "↓ Boşa Giden Prova Süresi",
-        m1Desc: "Aday ne istediğini bilerek gelir.",
-        m2Title: "↓ Gelinlik Yıpranması",
-        m2Desc: "Ön eleme dijitalde tamamlanır.",
-        m3Title: "↓ Boşa Giden Reklam Bütçeleri",
-        m3Desc: "Hedef kitle doğrudan gelin adaylarıdır.",
+        m0Title: "Kaçırılan Potansiyel Müşteriler",
+        m1Title: "Uzayıp Giden Prova Süreleri",
+        m2Title: "Gelinlik Yıpranmaları",
+        m3Title: "Boşa Giden Reklam Bütçeleri",
         solHeading: "Markanız İçin Ne Değişir?",
-        solSub: "Kararsız ziyaretçi trafiğini değil, mağazanızda provaya hazır müşterileri artırın.",
-        v1Title: "Daha kısa ön eleme, daha yüksek dönüşüm",
+        solSub: "Mağazanızda kararsız ziyaretçi trafiğini değil, satış potansiyeli yüksek, provaya hazır müşteri sayısını arttırın.",
+        v1Title: "Kısa, hızlı, net provalar ile daha yüksek dönüşüm",
         v1Desc: "Gelin adayı hangi kesim ve yakanın kendisine yakıştığını önceden görür; mağazanızdaki görüşme doğrudan satışa odaklanır.",
-        v2Title: "Gelinlikleriniz gereksiz yıpranmaz",
+        v2Title: "Numune gelinlikleriniz yeni gibi tertemiz",
         v2Desc: "Kararsız denemeler dijitalde çözüldüğü için mağazanızdaki gelinlikler yalnızca gerçekten ilgilenen adaylar tarafından giyilir.",
-        v3Title: "Vitrinden geçeni de, yorulan gelini de kaybetmeyin",
-        v3Desc: "Ulaşamadığınız kitleyi çekin, içeri girmeyen vitrin ziyaretçisine QR ile deneme sunun; fiziksel provada yorulan adaylara ise kalan modelleri dijitalde gösterip satışı sürdürün.",
-        v4Title: "Sıfır teknik efor ve iş yükü",
+        v3Title: "Karar anındaki tüm potansiyel gelin adaylarına ulaşın",
+        v3Desc: "İlk araştırmasını internette yapan gelin adaylarına ulaşın. Mağaza vitrininize ilgi gösteren ama içeri girmeyen ziyaretçisine QR kod ile deneme imkanı sunarak satışı başlatın. Mağazada denemelerde yorulan ya da kararsız adaylara kalan modelleri sanal kabinde gösterip satışı sürdürün.",
+        v4Title: "Sıfır maliyet, sıfır efor, sıfır risk",
         v4Desc: "Yeni fotoğraf çekimi veya karmaşık entegrasyon gerekmez. Seçtiğiniz modellerin görsellerini iletmeniz yeterli; kalanını ekibimiz sizin yerine yönetir.",
         packsHeading: "Pilot Uygulama ile Başlayın, İhtiyacınıza Göre Büyütün",
         packsSub: "Markanızın ihtiyaçlarına ve hedefine göre size özel ek çözümlerle potansiyelinizi artırın.",
@@ -776,16 +777,16 @@
         apBtn: "Mağazanızı Ücretsiz Listeleyin",
         ao1Title: "Marka Vitrinde Öne Çıkma",
         ao1Desc: "Markanız şehir ve ana vitrin listelerinde en ön sırada yer alır; daha fazla gelin adayına görünür.",
-        ao2Title: "Çoklu Koleksiyon & Kategori",
-        ao2Desc: "Daha fazla gelinliği Yeni Sezon, İndirimli Modeller veya Sample Sale gibi ayrı koleksiyonlarda sergileyin.",
-        ao3Title: "Özel Teklif & Tekil İndirim Kodu",
-        ao3Desc: "Promosyon ve özel fırsat duyuruları yayınlayın; gelinlere mağazanıza özel tekil indirim kodları tanımlayın.",
-        ao4Title: "Markaya Özel Prova Kredisi & Promo Kod",
-        ao4Desc: "Yalnızca sizin gelinlik modellerinizde kullanılmak üzere gelin adaylarına özel promo kodları tanımlayın.",
-        ao5Title: "Marka Bazlı İlgi & Model Raporları",
-        ao5Desc: "Koleksiyonunuzda en çok hangi gelinliklerin denendiğini ve ilgi gördüğünü düzenli raporlarla takip edin.",
-        ao6Title: "Randevu Talebi & Aday Bilgileri",
-        ao6Desc: "Modelinizi deneyip beğenen gelin adaylarının ad, telefon ve düğün tarihi bilgilerini doğrudan randevu talebi olarak alın.",
+        ao2Title: "Çoklu Koleksiyon Oluşturma",
+        ao2Desc: "Sezona ve ihtiyaçlarınıza göre, Yeni Sezon, İndirimli Modeller gibi ayrı ayrı koleksiyonlar oluşturun.",
+        ao3Title: "Özel Teklif & Duyuru Yayınlama",
+        ao3Desc: "Promosyon ve özel fırsat duyuruları yayınlayın; kişiye özel tek kullanımlık indirim kodları tanımlayın.",
+        ao4Title: "Prova Kredisi Oluşturma",
+        ao4Desc: "Yalnızca markanıza ait modellerde kullanılabilen özel prova kredileri tanımlayın.",
+        ao5Title: "Performans Raporları",
+        ao5Desc: "Marka & mağazanıza ait performans raporları ile sonuçları değerlendirin",
+        ao6Title: "Randevu Taleplerini Alma",
+        ao6Desc: "Modelinizi deneyip beğenen gelin adaylarının iletişim bilgilerini ve randevu taleplerini alın.",
         faqHeading: "Sıkça Sorulanlar",
         pq1: "Magic Mirror mağaza ziyaretlerini azaltır mı?",
         pa1: "Hayır. Gelinlik gibi özel bir seçimde son karar her zaman mağazanızdaki gerçek provada verilir. Magic Mirror sadece kararsız ön elemeyi dijitalde çözerek mağazanıza satın alma potansiyeli yüksek, modelinizi beğenmiş gelin adaylarının girmesini sağlar.",
@@ -819,7 +820,7 @@
       },
       en: {
         navWhy: "WHY MAGIC MIRROR",
-        navPacks: "SOLUTIONS",
+        navPacks: "SERVICES",
         navFaq: "FAQ",
         navApply: "BECOME A PARTNER",
         navApp: "APP",
@@ -831,23 +832,19 @@
         ls1Title: "Send your existing collection photos",
         ls2Title: "Real brides see it on themselves",
         ls3Title: "Ready-to-try brides visit your store",
-        m0Title: "↓ Missed Potential Brides",
-        m0Desc: "Walk-bys, fatigued fittings, or brides outside your reach.",
-        m1Title: "↓ Wasted Fitting Time",
-        m1Desc: "Brides arrive knowing what they want.",
-        m2Title: "↓ Gown Wear & Tear",
-        m2Desc: "Early screening happens digitally.",
-        m3Title: "↓ Wasted Ad Spend",
-        m3Desc: "Reach brides actively choosing a gown.",
+        m0Title: "Missed Potential Brides",
+        m1Title: "Prolonged Fitting Times",
+        m2Title: "Gown Wear & Tear",
+        m3Title: "Wasted Ad Spend",
         solHeading: "What Changes for Your Brand?",
-        solSub: "Stop spending time on undecided browsing—welcome brides ready to say yes.",
-        v1Title: "Shorter pre-screening, higher conversion",
+        solSub: "Increase high-intent, fitting-ready brides in your store—not undecided browsing traffic.",
+        v1Title: "Higher conversion with short, fast, and focused fittings",
         v1Desc: "Brides discover which silhouette and neckline flatter them beforehand, turning store appointments into focused fittings.",
-        v2Title: "Less physical wear on your gowns",
+        v2Title: "Keep your sample gowns spotless like new",
         v2Desc: "Undecided trial happens digitally, so your boutique samples are worn by genuinely interested brides.",
-        v3Title: "Turn walk-bys and fatigued fittings into sales",
-        v3Desc: "Reach brides beyond your street, invite window shoppers to try via QR, and let fatigued brides preview remaining gowns digitally instead of walking out.",
-        v4Title: "Zero technical effort and workload",
+        v3Title: "Reach every potential bride at the moment of decision",
+        v3Desc: "Reach brides starting their search online. Turn window shoppers into active leads with a QR code try-on experience. Keep the sale moving by letting fatigued or undecided brides preview remaining gowns in the virtual fitting room.",
+        v4Title: "Zero cost, zero effort, zero risk",
         v4Desc: "No new photoshoot or complex integration required. Just send your selected gown images and our team handles the rest for you.",
         packsHeading: "Start with a Pilot, Grow as You Need",
         packsSub: "Unlock your potential with custom add-on solutions tailored to your brand's needs and goals.",
@@ -860,16 +857,16 @@
         apBtn: "List Your Store Free",
         ao1Title: "Priority Showcase Placement",
         ao1Desc: "Rank first in your city and main showcase listings so more brides discover your gowns.",
-        ao2Title: "Multi-Collection & Categories",
-        ao2Desc: "Display more gowns organized under dedicated sections like New Season, Sale, or Sample Sale.",
-        ao3Title: "Promotions & Unique Discount Codes",
-        ao3Desc: "Publish special offers and generate unique promo codes for brides visiting your store.",
-        ao4Title: "Brand-Exclusive Try-On Wallet & Promo Codes",
-        ao4Desc: "Generate exclusive promo codes valid strictly for trying on your brand's gowns.",
-        ao5Title: "Brand-Level Gown & Interest Reports",
-        ao5Desc: "Track which gowns in your collection get tried on the most with regular brand performance reports.",
-        ao6Title: "Appointment Requests & Bride Leads",
-        ao6Desc: "Receive name, phone, and wedding date directly from brides requesting a fitting for your gown.",
+        ao2Title: "Multi-Collection Creation",
+        ao2Desc: "Create separate collections such as New Season or Sale Models tailored to your season and needs.",
+        ao3Title: "Special Offers & Announcements",
+        ao3Desc: "Publish promotions and special offer announcements; generate personalized single-use discount codes.",
+        ao4Title: "Try-On Credit Creation",
+        ao4Desc: "Issue custom try-on credits valid exclusively for your brand's gowns.",
+        ao5Title: "Performance Reports",
+        ao5Desc: "Evaluate your results with dedicated performance reports for your brand & store.",
+        ao6Title: "Receiving Appointment Requests",
+        ao6Desc: "Receive contact details and appointment requests directly from brides who try and love your gown.",
         faqHeading: "Frequently Asked Questions",
         pq1: "Does Magic Mirror reduce in-store visits?",
         pa1: "No. For a purchase as personal as a wedding gown, the final decision always happens in your fitting room. Magic Mirror simply handles undecided pre-screening digitally so brides with high purchase intent who already love your gown walk through your door.",
