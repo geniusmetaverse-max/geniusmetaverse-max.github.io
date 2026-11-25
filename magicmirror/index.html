@@ -283,7 +283,9 @@
       grid-template-columns: 1.15fr auto .95fr;
       gap: 10px;
       align-items: stretch;
+      transition: opacity .22s ease;
     }
+    .tryon-flow.is-switching { opacity: 0; }
     .tryon-left {
       display: grid;
       grid-template-rows: 1fr auto 1fr;
@@ -1934,6 +1936,7 @@
     const opPlus = document.getElementById("opPlus");
     const opEquals = document.getElementById("opEquals");
     const resultStage = document.getElementById("resultStage");
+    const tryonFlow = document.querySelector(".tryon-flow");
     const lookDots = document.querySelectorAll(".look-dot");
     const prevLookBtn = document.getElementById("prevLook");
     const nextLookBtn = document.getElementById("nextLook");
@@ -1942,21 +1945,24 @@
     let lookTimer = null;
     let stepTimers = [];
 
+    // Preload all try-on assets so set transitions never flash stale/old images
+    lookPairs.forEach(pair => {
+      [pair.before, pair.model, pair.after].forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    });
+
     function clearStepTimers() {
       stepTimers.forEach(t => window.clearTimeout(t));
       stepTimers = [];
     }
 
-    function showLook(index) {
-      clearStepTimers();
-      currentLook = (index + lookPairs.length) % lookPairs.length;
-      const pair = lookPairs[currentLook];
-
+    function applyLook(pair) {
       if (tryonBeforeImg) tryonBeforeImg.src = pair.before;
       if (tryonModelImg) tryonModelImg.src = pair.model;
       if (tryonResultBase) tryonResultBase.src = pair.before;
       if (tryonAfterImg) tryonAfterImg.src = pair.after;
-      lookDots.forEach((dot, idx) => dot.setAttribute("aria-pressed", String(idx === currentLook)));
 
       if (prefersReduced) {
         if (resultStage) resultStage.classList.add("is-transformed");
@@ -1979,6 +1985,25 @@
       }, 1150));
     }
 
+    function showLook(index, instant = false) {
+      clearStepTimers();
+      currentLook = (index + lookPairs.length) % lookPairs.length;
+      const pair = lookPairs[currentLook];
+      lookDots.forEach((dot, idx) => dot.setAttribute("aria-pressed", String(idx === currentLook)));
+
+      if (instant || prefersReduced || !tryonFlow) {
+        applyLook(pair);
+        return;
+      }
+
+      // Smoothly fade out the completed set before swapping to the next set
+      tryonFlow.classList.add("is-switching");
+      stepTimers.push(window.setTimeout(() => {
+        applyLook(pair);
+        tryonFlow.classList.remove("is-switching");
+      }, 220));
+    }
+
     function startLookCycle() {
       if (lookTimer) window.clearInterval(lookTimer);
       if (prefersReduced) return;
@@ -1993,7 +2018,7 @@
     });
     if (prevLookBtn) prevLookBtn.addEventListener("click", () => { showLook(currentLook - 1); startLookCycle(); });
     if (nextLookBtn) nextLookBtn.addEventListener("click", () => { showLook(currentLook + 1); startLookCycle(); });
-    showLook(0);
+    showLook(0, true);
     startLookCycle();
 
     // Download popup modal
